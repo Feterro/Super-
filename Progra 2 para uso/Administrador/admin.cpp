@@ -31,7 +31,7 @@ void Admin:: connected()
 }
 void Admin::disconnected()
 {
-    qDebug()<<"Cliente desconectado";
+    qDebug()<<"Conexion perdida";
 }
 void Admin::readyRead()
 {

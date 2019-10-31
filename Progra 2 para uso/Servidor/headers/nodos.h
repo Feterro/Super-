@@ -36,13 +36,13 @@ Clase amiga de lista marcas y la clase principal.
         siguiente=NULL;
         color=ROJO;
     }
+    float precio;
    private:
     string codPasillo;
     string nombre;
     string codProducto;
     string codMarca;
     int cantGondola;
-    float precio;
     int cantcomp;
     nodoMarca *hIzq;
     nodoMarca *hDer;

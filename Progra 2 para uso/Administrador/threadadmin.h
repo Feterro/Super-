@@ -19,6 +19,8 @@ public:
     void insertarPas();
     void insertarPro();
     void insertarMar();
+    void consImp();
+    void modPre();
 
 signals:
     void escribirServidor(QByteArray info);

@@ -31,7 +31,7 @@ void serverSocket::readyRead()
     string infoConv=info.toStdString();
     if(infoConv.substr(0,2)=="IN"||infoConv.substr(0,2)=="RE"||infoConv.substr(0,2)=="CO"||infoConv.substr(0,2)=="CA"||infoConv.substr(0,2)=="CB"||infoConv.substr(0,2)=="CF"||infoConv.substr(0,2)=="ZP"||infoConv.substr(0,2)=="ZC"||infoConv.substr(0,2)=="ZR")
           this->funcionesCliente(infoConv);
-    else if(infoConv.substr(0,2)=="XB"||infoConv.substr(0,2)=="XB"||infoConv.substr(0,2)=="XV"||infoConv.substr(0,2)=="XP"||infoConv.substr(0,2)=="XR"||infoConv.substr(0,2)=="XM")
+    else if(infoConv.substr(0,2)=="MX"||infoConv.substr(0,2)=="XZ"||infoConv.substr(0,2)=="BX"||infoConv.substr(0,2)=="XO"||infoConv.substr(0,2)=="XA"||infoConv.substr(0,2)=="XB"||infoConv.substr(0,2)=="XB"||infoConv.substr(0,2)=="XV"||infoConv.substr(0,2)=="XP"||infoConv.substr(0,2)=="XR"||infoConv.substr(0,2)=="XM"||infoConv.substr(0,2)=="XC")
         this->funcionesAdministrador(infoConv);
 }
 void serverSocket::funcionesAdministrador(string infoConv)
@@ -43,6 +43,37 @@ void serverSocket::funcionesAdministrador(string infoConv)
     else if(infoConv.substr(0,2)=="XD")
     {
         arbolPasillos.bloqueo=false;
+    }
+    else if(infoConv.substr(0,2)=="BX")
+    {
+        string codVal=infoConv;
+        char cstr[codVal.size() + 1];
+        strcpy(cstr, codVal.c_str());
+        char var[]=";";
+        char *token = strtok(cstr,var);
+        token = strtok(NULL,var);
+        string codiPas=token;
+        token = strtok(NULL,var);
+        string codiPro=token;
+   // bool val=false;
+   // val=arbolPasillos.ValidarProducto1(arbolPasillos.raiz,codiPas,codiPro,val);
+        AVLProducto arb;
+        string devolv=arb.EnlaceAvlServPro(arbolPasillos.raiz,infoConv);
+        QByteArray listaPro(devolv.c_str(), devolv.length());
+        this->socket->write("MC;"+listaPro);
+    }
+    else if(infoConv.substr(0,2)=="XO")
+    {
+        string devolver=arbolPasillos.InordenServ(arbolPasillos.raiz);
+        QByteArray listaPa(devolver.c_str(), devolver.length());
+        this->socket->write("MA;"+listaPa);
+    }
+    else if(infoConv.substr(0,2)=="XA")
+    {
+        AVLProducto arb;
+        string devolver=arb.EnlaceAvlServ(arbolPasillos.raiz,infoConv.substr(2,4));
+        QByteArray listaPro(devolver.c_str(), devolver.length());
+        this->socket->write("MB;"+listaPro);
     }
     else if(infoConv.substr(0,2)=="XV")
     {
@@ -143,6 +174,44 @@ void serverSocket::funcionesAdministrador(string infoConv)
         princi.insertarMarca(codPasi,codPro,codMar,nombre,cant,precio,canasta);
         arbolPasillos.InordenTriple(arbolPasillos.raiz);
         this->socket->write("LE;Proceso de insercion terminado");
+    }
+    else if(infoConv.substr(0,2)=="XZ")
+    {
+        char cstr[infoConv.size() + 1];
+        strcpy(cstr, infoConv.c_str());
+        char var[]=";";
+        char *token = strtok(cstr,var);
+        string codi=token;
+        token = strtok(NULL,var);
+        string codPas=token;
+        token = strtok(NULL,var);
+        string codPro=token;
+        token = strtok(NULL,var);
+        string codMar=token;
+        string dev=princi.ConsultarImpuesto(codPas,codPro,codMar);
+        QByteArray listaPro(dev.c_str(), dev.length());
+        this->socket->write("MB;"+listaPro);
+    }
+    else if(infoConv.substr(0,2)=="MX")
+    {
+        char cstr[infoConv.size() + 1];
+        strcpy(cstr, infoConv.c_str());
+        char var[]=";";
+        char *token = strtok(cstr,var);
+        string codi=token;
+        token = strtok(NULL,var);
+        string codPas=token;
+        token = strtok(NULL,var);
+        string codPro=token;
+        token = strtok(NULL,var);
+        string codMar=token;
+        token = strtok(NULL,var);
+        string prec=token;
+        pnodoMarca mar=arbolPasillos.encontrarNodo1(arbolPasillos.raiz, codPas, codPro, codMar, mar);
+        float preci=stof(prec);
+        mar->precio=preci;
+        this->socket->write("LE;Cambio de precio realizado");
+        arbolPasillos.InordenTriple(arbolPasillos.raiz);
     }
 }
 void serverSocket::funcionesCliente(string infoConv)

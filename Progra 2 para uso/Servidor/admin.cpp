@@ -50,11 +50,11 @@ void Admin::run()
                     //arbolPasillos=princi.insertarMarca();
                 }
                 else if (resp=="4"){
-                    string impu=princi.ConsultarImpuesto();
-                    cout<<impu<<endl;
+                    //string impu=princi.ConsultarImpuesto();
+                    //cout<<impu<<endl;
                 }
                 else if (resp=="5"){
-                    princi.ModificarPrecio();
+                    //princi.ModificarPrecio();
                 }
                 else if (resp=="6"){
                     princi.ModificarImpuesto();

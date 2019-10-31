@@ -5,10 +5,12 @@
 #include <QTcpSocket>
 #include <QDebug>
 #include <QThreadPool>
+#include <sstream>
+#include <string>
 #include "Principal.h"
 #include "globalHeaders.h"
 #include "headers/avlProducto.h"
-#include <sstream>
+
 //#include "Progra2principal.h"
 
 using namespace std;

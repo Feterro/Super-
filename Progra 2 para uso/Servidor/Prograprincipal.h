@@ -25,8 +25,6 @@ void Ciudad::Mostrar()
     /*
     Muestra contenido de la lista de ciudades
     */
-
-
     nodoCiudad *aux;
     if (primero== NULL)
         cout << "No hay elementos";
@@ -2053,194 +2051,64 @@ void Principal::ModificarCanasta(){//Buscar y quitar el cout
         ModificarCanasta();
     }
 }
-void Principal::ModificarPrecio(){
-    cout<<"Pasillos disponibles: "<<endl;
-    cout<<"Codigo / Nombre "<<endl;
-    arbolPasillos.MostrarPasillos(arbolPasillos.raiz);
-    cout<<"Escoja el codigo del pasillo en el que esta la marca a la que le desea modificar el precio: "<<endl;
-    string codPas;
-    cin>>codPas;
-    bool valido=false;
-    valido=arbolPasillos.encontrarPasillo(valido,arbolPasillos.raiz, codPas);
-    if (valido){
-        cout<<"Productos a escoger en este pasillo: "<<endl;
-        cout<<"Codigo / Nombre"<<endl;
-        arbolPasillos.MostrarProductos(arbolPasillos.raiz, codPas);
-        cout<<"Escriba el codigo del producto: "<<endl;
-        string codProd;
-        cin>>codProd;
-        bool valid2=false;
-        valid2=arbolPasillos.ValidarProducto1(arbolPasillos.raiz, codPas, codProd, valid2);
-        if(valid2){
-            cout<<"Las marcas a escoger son: "<<endl;
-            cout<<"Nombre / Codigo // Cantidad Gondola / Precio"<<endl;
-            arbolPasillos.MostrarMarcas(arbolPasillos.raiz, codPas, codProd);
-            cout<<"Escoja un codigo de marca: "<<endl;
-            string codMar;
-            cin>>codMar;
-            bool valid3=false;
-            valid3=arbolPasillos.validarMarca(arbolPasillos.raiz, codPas, codProd, codMar, valid3);
-            if (valid3){
-                pnodoMarca mar=arbolPasillos.encontrarNodo1(arbolPasillos.raiz, codPas, codProd, codMar, mar);
-                cout<<"Ingrese el nuevo precio de "<<" "<<mar->codMarca<<" "<<mar->nombre<<" "<<endl;
-                float nuevoPrecio;
-                cin>>nuevoPrecio;
-                if(!cin){
-                    cin.clear();
-                    cin.ignore();
-                    cout<<"Ingrese solo numeros: "<<endl;
-                    cin>>nuevoPrecio;
-                }
-                mar->precio=nuevoPrecio;
-                cout<<"Precio modificado exitosamente"<<endl;
-            }
-            else{
-                cout<<"Codigo de marca invalido, vuelva a ingresar los datos."<<endl;
-                ModificarPrecio();
-            }
-        }
-        else{
-            cout<<"Codigo de producto invalido, vuelva a ingresar los datos."<<endl;
-            ModificarPrecio();
-        }
-
-    }
-    else{
-        cout<<"Codigo de pasillo incorrecto, vuelva a ingresar los datos"<<endl;
-        ModificarPrecio();
-    }
-}
-//arbolPas arbolPas::insertarPasillo(string codPas, string nomb){
-//    arbolPasillos.InsertaBinario(arbolPasillos.raiz, codPas, nomb);
-//    if (largo!=largo2){
-//        cout<<"Pasillo creado con exito!"<<endl;
-//        cout<<"Codigo de pasillo: "<<codPas<<" Nombre pasillo: "<<nomb<<endl;
-//    }
-//    else{
-//        cout<<"El pasillo no se pudo crear porque el codigo ya existia."<<endl;
-//        insertarPasillo();
-//    }
-//    return arbolPasillos;
-//}
-//arbolPas arbolPas::insertarProductos(){
-//    cout<<"Las opciones de pasillos son: "<<endl;
+//void Principal::ModificarPrecio(){
+//    cout<<"Pasillos disponibles: "<<endl;
+//    cout<<"Codigo / Nombre "<<endl;
 //    arbolPasillos.MostrarPasillos(arbolPasillos.raiz);
-//    cout<<"Escriba el codigo de la opcion que desea: "<<endl;
+//    cout<<"Escoja el codigo del pasillo en el que esta la marca a la que le desea modificar el precio: "<<endl;
 //    string codPas;
 //    cin>>codPas;
 //    bool valido=false;
-//    valido=encontrarPasillo(valido, arbolPasillos.raiz, codPas);
+//    valido=arbolPasillos.encontrarPasillo(valido,arbolPasillos.raiz, codPas);
 //    if (valido){
-//        cout<<"Ingrese el codigo del producto que desea ingresar: "<<endl;
-//        string codProd;
-//        cin>>codProd;
-//        cout<<"Ingrese el nombre del producto que desea ingresar: "<<endl;
-//        string nombre;
-//        cin>>nombre;
-//        bool valid2=false;
-//        valid2=ValidarProducto1(arbolPasillos.raiz, codPas, codProd, valid2);
-//        if (!valid2){
-//            pnodoProd nuevo=new nodoProducto(codPas, codProd, nombre);
-//            AVLProducto arbolprod;
-//            arbolprod.EnlaceAvl(arbolPasillos.raiz, nuevo);
-//            cout<<"Producto agregado con exito!"<<endl;
-//            cout<<"Codigo de pasillo: "<<codPas<<" Codigo de producto: "<<codProd<<" Nombre: "<<nombre<<endl;
-//        }
-//        else{
-//            cout<<"Los datos para producto que ingreso ya existen."<<endl;
-//            arbolPasillos.insertarProductos();
-//        }
-//    }
-//    else{
-//        cout<<"Escoja un codigo de un pasillo valido: "<<endl;
-//        string codPas2;
-//        cin>>codPas2;
-//        arbolPasillos.insertarProductos();
-//    }
-//    return arbolPasillos;
-
-//}
-//arbolPas Principal::insertarMarca(){
-//    cout<<"Estas son las opciones de pasillos que hay: "<<endl;
-//    arbolPasillos.MostrarPasillos(arbolPasillos.raiz);
-//    cout<<"Escriba el numero del codigo en el que quiere insertar la marca nueva: "<<endl;
-//    string codPas;
-//    cin>>codPas;
-//    bool valido=false;
-//    valido=arbolPasillos.encontrarPasillo( valido, arbolPasillos.raiz, codPas);
-//    if(valido){
-//        cout<<"Estas son las opciones de productos: "<<endl;
+//        cout<<"Productos a escoger en este pasillo: "<<endl;
+//        cout<<"Codigo / Nombre"<<endl;
 //        arbolPasillos.MostrarProductos(arbolPasillos.raiz, codPas);
-//        cout<<"Escriba el codigo del producto en el que desea agregar la marca nueva: "<<endl;
+//        cout<<"Escriba el codigo del producto: "<<endl;
 //        string codProd;
 //        cin>>codProd;
 //        bool valid2=false;
 //        valid2=arbolPasillos.ValidarProducto1(arbolPasillos.raiz, codPas, codProd, valid2);
-//        if (valid2){
-//            pnodoProd raiz=arbolPasillos.encontrarNodoProd1(arbolPasillos.raiz, codPas, codProd, raiz);
-//            cout<<"Escriba el codigo de la marca nueva: "<<endl;
+//        if(valid2){
+//            cout<<"Las marcas a escoger son: "<<endl;
+//            cout<<"Nombre / Codigo // Cantidad Gondola / Precio"<<endl;
+//            arbolPasillos.MostrarMarcas(arbolPasillos.raiz, codPas, codProd);
+//            cout<<"Escoja un codigo de marca: "<<endl;
 //            string codMar;
 //            cin>>codMar;
 //            bool valid3=false;
-//            valid3=arbolPasillos.validarMarca(arbolPasillos.raiz, codPas, codProd, codMar,valid3);
-//            if (!valid3){
-//                cout<<"Escriba el nombre de la marca nueva: "<<endl;
-//                string nombre;
-//                cin>>nombre;
-//                cout<<"Ingrese la cantidad que existe de esta nueva marca: "<<endl;
-//                int cant;
-//                cin>>cant;
+//            valid3=arbolPasillos.validarMarca(arbolPasillos.raiz, codPas, codProd, codMar, valid3);
+//            if (valid3){
+//                pnodoMarca mar=arbolPasillos.encontrarNodo1(arbolPasillos.raiz, codPas, codProd, codMar, mar);
+//                cout<<"Ingrese el nuevo precio de "<<" "<<mar->codMarca<<" "<<mar->nombre<<" "<<endl;
+//                float nuevoPrecio;
+//                cin>>nuevoPrecio;
 //                if(!cin){
 //                    cin.clear();
 //                    cin.ignore();
-//                    cout<<"Ingrese solo valores numericos: "<<endl;
-//                    cin>>cant;
+//                    cout<<"Ingrese solo numeros: "<<endl;
+//                    cin>>nuevoPrecio;
 //                }
-//                cout<<"Ingrese el precio de la nueva marca: "<<endl;
-//                float precio;
-//                cin>>precio;
-//                if(!cin){
-//                    cin.clear();
-//                    cin.ignore();
-//                    cout<<"Ingrese solo valores numericos: "<<endl;
-//                    cin>>precio;
-//                }
-//                cout<<"Ingrese 1 si es de canasta basica u otra cosa sino: "<<endl;
-//                string canasta;
-//                cin>>canasta;
-//                bool canasBasic;
-//                if (canasta=="1"){
-//                    canasBasic=true;
-//                }
-//                else{
-//                    canasBasic=false;
-//                }
-//                pnodoMarca nuevo=new nodoMarca(codPas,nombre, codProd, codMar, cant, precio);
-//                AVLProducto productos;
-//                productos.EnlaceRN(raiz, nuevo);
-//                string conca=codPas+codProd+codMar;
-//                stringstream conca2(conca);
-//                int conca3;
-//                conca2>>conca3;
-//                arbolInventario.insertar(conca3, codPas, nombre, codProd, codMar, cant, canasBasic, arbolInventario.raiz);
-//                cout<<"Marca agregada con exito!"<<endl;
-//                cout<<"Codigo de pasillo: "<<codPas<<" Codigo de producto: "<<codProd<<" Codigo de marca: "<<codMar<<" Nombre: "<<nombre<<" "<<"Cantidad ingresada: "<<cant<<" Precio: "<<precio<<" Canasta: "<<canasBasic<<endl;
+//                mar->precio=nuevoPrecio;
+//                cout<<"Precio modificado exitosamente"<<endl;
 //            }
 //            else{
-//                cout<<"Ese codigo de marca ya existe.Ingrese los datos nuevamente."<<endl;
-//                arbolPasillos=insertarMarca();
+//                cout<<"Codigo de marca invalido, vuelva a ingresar los datos."<<endl;
+//                ModificarPrecio();
 //            }
 //        }
 //        else{
-//            cout<<"Ingrese datos correctos,codigo de producto inexistente."<<endl;
-//            arbolPasillos=insertarMarca();
+//            cout<<"Codigo de producto invalido, vuelva a ingresar los datos."<<endl;
+//            ModificarPrecio();
 //        }
+
 //    }
 //    else{
-//        cout<<"Ingrese un codigo de pasillo que exista."<<endl;
-//        arbolPasillos=insertarMarca();
+//        cout<<"Codigo de pasillo incorrecto, vuelva a ingresar los datos"<<endl;
+//        ModificarPrecio();
 //    }
 //}
+
 arbolPas Principal::insertarMarca(string codPas, string codProd, string codMar, string nombre, string canti, string preci, string canasta){
     bool valido=false;
     valido=arbolPasillos.encontrarPasillo( valido, arbolPasillos.raiz, codPas);

@@ -52,11 +52,10 @@ void ThreadAdmin::run()
                     insertarMar();
                 }
                 else if (resp=="4"){
-                    //string impu=princi.ConsultarImpuesto();
-                    //cout<<impu<<endl;
+                    consImp();
                 }
                 else if (resp=="5"){
-                    //princi.ModificarPrecio();
+                    modPre();
                 }
                 else if (resp=="6"){
                     //princi.ModificarImpuesto();
@@ -104,7 +103,62 @@ void ThreadAdmin::run()
             cout<<"Codigo invalido"<<endl;
     }
 }
-
+void ThreadAdmin::modPre()
+{
+    cout<<"\n";
+    emit escribirServidor(QString::fromStdString("XO").toUtf8());
+    this->sleep(1);
+    string env;
+    string codComp;
+    cout<<"\nDigite el codigo de Pasillo que desea: "<<endl;
+    cin>>env;
+    cout<<"\n";
+    codComp=env;
+    emit escribirServidor(QString::fromStdString("XA"+codComp).toUtf8());
+    this->sleep(1);
+    cout<<"Digite el codigo de Producto que desea: "<<endl;
+    cin>>env;
+    cout<<"\n";
+    codComp=codComp+";"+env;
+    emit escribirServidor(QString::fromStdString("BX;"+codComp).toUtf8());
+    this->sleep(1);
+    cout<<"Digite el codigo de Marca que desea: "<<endl;
+    cin>>env;
+    codComp=codComp+";"+env;
+    this->sleep(1);
+    cout<<"Digite el nuevo precio a asignar: "<<endl;
+    cin>>env;
+    codComp=codComp+";"+env;
+    emit escribirServidor(QString::fromStdString("MX;"+codComp).toUtf8());
+    cout<<"\n"<<endl;
+    this->sleep(1);
+}
+void ThreadAdmin::consImp()
+{
+    cout<<"\n";
+    emit escribirServidor(QString::fromStdString("XO").toUtf8());
+    this->sleep(1);
+    string env;
+    string codComp;
+    cout<<"\nDigite el codigo de Pasillo que desea: "<<endl;
+    cin>>env;
+    cout<<"\n";
+    codComp=env;
+    emit escribirServidor(QString::fromStdString("XA"+codComp).toUtf8());
+    this->sleep(1);
+    cout<<"Digite el codigo de Producto que desea: "<<endl;
+    cin>>env;
+    cout<<"\n";
+    codComp=codComp+";"+env;
+    emit escribirServidor(QString::fromStdString("BX;"+codComp).toUtf8());
+    this->sleep(1);
+    cout<<"Digite el codigo de Marca que desea: "<<endl;
+    cin>>env;
+    codComp=codComp+";"+env;
+    emit escribirServidor(QString::fromStdString("XZ;"+codComp).toUtf8());
+    cout<<"\n"<<endl;
+    this->sleep(1);
+}
 void ThreadAdmin::insertarPas()
 {
     string cod;
@@ -157,12 +211,12 @@ void ThreadAdmin::insertarMar()
         string nuevpre;
         string nuevcan;
         cout<<"\n";
-        emit escribirServidor(QString::fromStdString("CO").toUtf8());
+        emit escribirServidor(QString::fromStdString("XO").toUtf8());
         this->sleep(1);
         cout<<"\nDigite el codigo de Pasillo que desea: "<<endl;
         cin>>env;
         cout<<"\n";
-        emit escribirServidor(QString::fromStdString("CA"+env).toUtf8());
+        emit escribirServidor(QString::fromStdString("XA"+env).toUtf8());
         this->sleep(1);
         cout<<"Digite el codigo de Producto que desea: "<<endl;
         cin>>cod;
@@ -176,7 +230,7 @@ void ThreadAdmin::insertarMar()
         cin>>nuevpre;
         cout<<"Digite 1 si es de canasta basica u otra cosa sino: "<<endl;
         cin>>nuevcan;
-        env=env+cod+nuevcod+nuevnom+nuevcant+nuevpre+nuevcan;
+        env=env+";"+cod+";"+nuevcod+";"+nuevnom+";"+nuevcant+";"+nuevpre+";"+nuevcan;
         emit escribirServidor(QString::fromStdString("XM;"+env).toUtf8());
     }
 }
