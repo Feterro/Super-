@@ -3319,4 +3319,69 @@ void arbolPas::borrarProducto(pnodoPas &R,string codPas, string codProd){
     }
 }
 
+
+void RN::fixDoubleBlack(nodoMarca *x) {
+    if (x == raiz)
+      // Reached root
+      return;
+
+    nodoMarca *sibling = x->sibling(), *parent = x->padre;
+    if (sibling == NULL) {
+      // No sibiling, double black pushed up
+      fixDoubleBlack(parent);
+    } else {
+      if (sibling->color == ROJO) {
+        // Sibling red
+        parent->color = ROJO;
+        sibling->color = NEGRO;
+        if (sibling->isOnLeft()) {
+          // left case
+          rotarDerecha(raiz,parent);
+        } else {
+          // right case
+          rotarIzquierda(raiz, parent);
+        }
+        fixDoubleBlack(x);
+      } else {
+        // Sibling black
+        if (sibling->hasRedChild()) {
+          // at least 1 red children
+          if (sibling->hIzq != NULL and sibling->hIzq->color == ROJO) {
+            if (sibling->isOnLeft()) {
+              // left left
+              sibling->hIzq->color = sibling->color;
+              sibling->color = parent->color;
+              rotarDerecha(raiz,parent);
+            } else {
+              // right left
+              sibling->hIzq->color = parent->color;
+              rotarDerecha(raiz,sibling);
+              rotarIzquierda(raiz,parent);
+            }
+          } else {
+            if (sibling->isOnLeft()) {
+              // left right
+              sibling->hDer->color = parent->color;
+              rotarIzquierda(raiz,sibling);
+              rotarDerecha(raiz,parent);
+            } else {
+              // right right
+              sibling->hDer->color = sibling->color;
+              sibling->color = parent->color;
+              rotarIzquierda(raiz,parent);
+            }
+          }
+          parent->color = NEGRO;
+        } else {
+          // 2 black children
+          sibling->color = ROJO;
+          if (parent->color == NEGRO)
+            fixDoubleBlack(parent);
+          else
+            parent->color = NEGRO;
+        }
+      }
+    }
+  }
+
 #endif // PROGRAPRINCIPAL_H
