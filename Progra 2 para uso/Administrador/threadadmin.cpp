@@ -55,7 +55,7 @@ void ThreadAdmin::run()
                     consImp();
                 }
                 else if (resp=="5"){
-                    modPre();
+                    modificar(resp);
                 }
                 else if (resp=="6"){
                     //princi.ModificarImpuesto();
@@ -103,7 +103,7 @@ void ThreadAdmin::run()
             cout<<"Codigo invalido"<<endl;
     }
 }
-void ThreadAdmin::modPre()
+void ThreadAdmin::modificar(string resp)
 {
     cout<<"\n";
     emit escribirServidor(QString::fromStdString("XO").toUtf8());
@@ -126,10 +126,24 @@ void ThreadAdmin::modPre()
     cin>>env;
     codComp=codComp+";"+env;
     this->sleep(1);
-    cout<<"Digite el nuevo precio a asignar: "<<endl;
-    cin>>env;
-    codComp=codComp+";"+env;
-    emit escribirServidor(QString::fromStdString("MX;"+codComp).toUtf8());
+    if(resp=="5")
+    {
+        cout<<"Digite el nuevo precio a asignar: "<<endl;
+        cin>>env;
+        codComp=codComp+";"+env;
+        emit escribirServidor(QString::fromStdString("MX;"+codComp).toUtf8());
+    }
+    else if(resp=="6")
+    {
+        cout<<"Digite el nuevo porcentaje de impuesto a asignar: "<<endl;
+        cin>>env;
+        codComp=codComp+";"+env;
+        emit escribirServidor(QString::fromStdString("NX;"+codComp).toUtf8());
+    }
+    else if(resp=="7")
+    {
+        emit escribirServidor(QString::fromStdString("LX;"+codComp).toUtf8());
+    }
     cout<<"\n"<<endl;
     this->sleep(1);
 }
