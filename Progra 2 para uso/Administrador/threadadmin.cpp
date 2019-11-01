@@ -58,10 +58,10 @@ void ThreadAdmin::run()
                     modificar(resp);
                 }
                 else if (resp=="6"){
-                    //princi.ModificarImpuesto();
+                    modificar(resp);
                 }
                 else if (resp=="7"){
-                    //princi.ModificarCanasta();
+                    modificar(resp);
                 }
                 else if (resp=="8"){
                     //string precio=princi.consultarUnPrecioAdm();

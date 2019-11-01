@@ -183,9 +183,9 @@ listaSimple y listaDCInv
     string codMarca;
     string nombre;
     int impuesto;
+    bool codCanasta;
    private:
     string codPasillo;
-    bool codCanasta;
     string codProducto;
     int cantStock;
     int codArbol;

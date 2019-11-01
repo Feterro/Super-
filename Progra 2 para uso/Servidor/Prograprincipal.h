@@ -245,7 +245,7 @@ void RN::InordenMar(pnodoMarca R){
         return;
     }else{
         InordenMar(R->hIzq);
-        cout<<R->codPasillo<<"~"<<R->codProducto<<"~"<<R->codMarca<<"~"<<R->nombre<<"~"<<R->cantGondola<<"~"<<R->precio<<"/";
+        cout<<R->codPasillo<<"~"<<R->codProducto<<"~"<<R->codMarca<<"~"<<R->nombre<<"~"<<R->cantGondola<<"~"<<R->precio<<"/"<<endl;
         InordenMar(R->hDer);
     }
 }
@@ -1128,6 +1128,7 @@ Ciudad Ciudad::agregarCiudades(){
             }
         }
     }
+    archivo.close();
     //listaCiudades.Mostrar();
     return listaCiudades;
 }

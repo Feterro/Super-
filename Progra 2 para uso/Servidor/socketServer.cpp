@@ -31,7 +31,7 @@ void serverSocket::readyRead()
     string infoConv=info.toStdString();
     if(infoConv.substr(0,2)=="IN"||infoConv.substr(0,2)=="RE"||infoConv.substr(0,2)=="CO"||infoConv.substr(0,2)=="CA"||infoConv.substr(0,2)=="CB"||infoConv.substr(0,2)=="CF"||infoConv.substr(0,2)=="ZP"||infoConv.substr(0,2)=="ZC"||infoConv.substr(0,2)=="ZR")
           this->funcionesCliente(infoConv);
-    else if(infoConv.substr(0,2)=="MX"||infoConv.substr(0,2)=="XZ"||infoConv.substr(0,2)=="BX"||infoConv.substr(0,2)=="XO"||infoConv.substr(0,2)=="XA"||infoConv.substr(0,2)=="XB"||infoConv.substr(0,2)=="XB"||infoConv.substr(0,2)=="XV"||infoConv.substr(0,2)=="XP"||infoConv.substr(0,2)=="XR"||infoConv.substr(0,2)=="XM"||infoConv.substr(0,2)=="XC")
+    else if(infoConv.substr(0,2)=="NX"||infoConv.substr(0,2)=="LX"||infoConv.substr(0,2)=="MX"||infoConv.substr(0,2)=="XZ"||infoConv.substr(0,2)=="BX"||infoConv.substr(0,2)=="XO"||infoConv.substr(0,2)=="XA"||infoConv.substr(0,2)=="XB"||infoConv.substr(0,2)=="XB"||infoConv.substr(0,2)=="XV"||infoConv.substr(0,2)=="XP"||infoConv.substr(0,2)=="XR"||infoConv.substr(0,2)=="XM"||infoConv.substr(0,2)=="XC")
         this->funcionesAdministrador(infoConv);
 }
 void serverSocket::funcionesAdministrador(string infoConv)
@@ -43,6 +43,48 @@ void serverSocket::funcionesAdministrador(string infoConv)
     else if(infoConv.substr(0,2)=="XD")
     {
         arbolPasillos.bloqueo=false;
+    }
+    else if(infoConv.substr(0,2)=="NX")
+    {
+        char cstr[infoConv.size() + 1];
+        strcpy(cstr, infoConv.c_str());
+        char var[]=";";
+        char *token = strtok(cstr,var);
+        string codi=token;
+        token = strtok(NULL,var);
+        string codPas=token;
+        token = strtok(NULL,var);
+        string codPro=token;
+        token = strtok(NULL,var);
+        string codMar=token;
+        token = strtok(NULL,var);
+        string porce=token;
+        pnodoInventario invent=arbolInventario.encontrarNodo(arbolInventario.raiz, codPas, codPro, codMar, invent);
+        int porcen=stoi(porce);
+        invent->impuesto=porcen;
+        this->socket->write("LE;Cambio de impuesto realizado");
+        cout<<invent->codMarca<<" "<<invent->nombre<<"  "<<invent->impuesto<<" "<<invent->codCanasta<<endl;
+    }
+    else if(infoConv.substr(0,2)=="LX")
+    {
+        char cstr[infoConv.size() + 1];
+        strcpy(cstr, infoConv.c_str());
+        char var[]=";";
+        char *token = strtok(cstr,var);
+        string codi=token;
+        token = strtok(NULL,var);
+        string codPas=token;
+        token = strtok(NULL,var);
+        string codPro=token;
+        token = strtok(NULL,var);
+        string codMar=token;
+        pnodoInventario invent=arbolInventario.encontrarNodo(arbolInventario.raiz, codPas, codPro, codMar, invent);
+        if(invent->codCanasta==true)
+            invent->codCanasta=false;
+        else
+            invent->codCanasta=true;
+        this->socket->write("LE;Cambio de canasta realizado");
+        cout<<invent->codMarca<<" "<<invent->nombre<<"  "<<invent->impuesto<<" "<<invent->codCanasta<<endl;
     }
     else if(infoConv.substr(0,2)=="BX")
     {
