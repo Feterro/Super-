@@ -20,7 +20,8 @@ public:
     void insertarPro();
     void insertarMar();
     void consImp();
-    void modPre();
+    void modificar(string resp);
+
 
 signals:
     void escribirServidor(QByteArray info);
