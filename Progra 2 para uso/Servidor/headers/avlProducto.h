@@ -32,7 +32,11 @@ public:
     pnodoMarca encontrarNodo2(pnodoProd ra, string codProd, string codMar, pnodoMarca marca);
     string InordenProServ(pnodoProd R);
     pnodoProd encontrarNodoProd2(pnodoProd ra, string codProd, pnodoProd prod);
-
+    void BorrarBalanceado(pnodoProd &raiz, bool &Hh, string &codProd);
+    void Borrar(pnodoProd &D, pnodoProd &q, bool &Hh);
+    void Equilibrar1(pnodoProd &n, bool &Hh);
+    void Equilibrar2(pnodoProd &n, bool &Hh);
+    void borrarProducto (string codProducto);
 
     friend class lista;
 };

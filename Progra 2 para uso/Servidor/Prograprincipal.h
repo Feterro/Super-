@@ -1530,6 +1530,7 @@ void arbolPas::MostrarProductos(pnodoPas R, string codPas){
         MostrarProductos(R->hDer, codPas);
     }
 }
+
 void AVLProducto::MostrarProductos(pnodoProd R){
     /*
     Muestra los productos del árbol
@@ -3199,17 +3200,123 @@ void arbolPas::borrar(pnodoPas &D, pnodoPas &q) {
     }
 }
 
+void arbolPas::borrarPasillo(string codPas){
+    borrarBinario(this->raiz,codPas);
+}
 
+void AVLProducto::BorrarBalanceado(pnodoProd &r, bool &Hh, string &x) {
+    pnodoProd q = nullptr;
+    if (r != nullptr) {
+        if (stoi(r->codProducto) > stoi(x)) {
+            BorrarBalanceado(r->hIzq, Hh, x);
+            if (Hh) {
+                Equilibrar1(r, Hh);
+            }
+        } else {
+            if (stoi(r->codProducto) < stoi(x)) {
+                BorrarBalanceado(r->hDer, Hh, x);
+                if (Hh) {
+                    Equilibrar2(r, Hh);
+                }
+            } else {
+                q = r;
+                if (q->hDer == nullptr) {
+                    r = q->hIzq;
+                    Hh = true;
+                } else {
+                    if (q->hIzq == nullptr) {
+                        r = q->hDer;
+                        Hh = true;
+                    } else {
+                        Borrar(q->hIzq, r, Hh);
+                        if (Hh) {
+                            Equilibrar1(r, Hh);
+                        }
+                    }
+                    delete q;
+                }
+            }
+        }
+    }
+}
 
+void AVLProducto::Borrar(pnodoProd &D, pnodoProd &q, bool &Hh) {
+    if (D->hDer != nullptr) {
+        Borrar(D->hDer, q, Hh);
+        if (Hh) {
+            Equilibrar2(D, Hh);
+        }
+    } else {
+        D->hDer = q->hDer;
+        q = D;
+        Hh = true;
+    }
+}
 
+void AVLProducto::Equilibrar1(pnodoProd &n, bool &Hh) {
+    pnodoProd n1;
+    switch (n->FB) {
+        case -1: n->FB = 0;
+            break;
+        case 0: n->FB = 1;
+            Hh = false;
+            break;
+        case 1: n1 = n->hDer;
+            if (n1->FB >= 0) {
+                if (n1->FB == 0) {
+                    Hh = false;
+                    RotacionSimpleDerecha(n, n1);
+                } else {
+                    RotacionDobleDerecha(n, n1);
+                }
+            }
+    }
+}
 
+void AVLProducto::Equilibrar2(pnodoProd &n, bool &Hh) {
+    pnodoProd n1;
+    switch (n->FB) {
+        case 1: n->FB = 0;
+            break;
+        case 0: n->FB = -1;
+            Hh = false;
+            break;
+        case -1: n1 = n->hIzq;
+            if (n1->FB <= 0) {
+                if (n1->FB == 0) {
+                    Hh = false;
+                    RotacionSimpleIzquierda(n, n1);
+                } else {
+                    RotacionDobleIzquierda(n, n1);
+                }
+            }
+    }
+}
 
+void AVLProducto::borrarProducto(string codProducto){
+    BorrarBalanceado(this->raiz,this->Hh,codProducto);
+}
 
+void arbolPas::borrarProducto(string codPas, string codProd){
+   borrarProducto(this->raiz,codPas,codProd);
+}
 
-
-
-
-
-
+void arbolPas::borrarProducto(pnodoPas &R,string codPas, string codProd){
+    /*
+    Muestra los productos del árbol
+    */
+    if(R==NULL){
+        return;
+    }else{
+        borrarProducto(R->hIzq, codPas, codProd);
+        if (R->codPasillo==codPas){
+            AVLProducto pro;
+            pro.raiz=R->subsiguiente;
+            pro.borrarProducto(codProd);
+            R->subsiguiente = pro.raiz;
+        }
+        borrarProducto(R->hDer, codPas, codProd);
+    }
+}
 
 #endif // PROGRAPRINCIPAL_H
