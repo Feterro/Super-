@@ -37,6 +37,9 @@ public:
     void Equilibrar1(pnodoProd &n, bool &Hh);
     void Equilibrar2(pnodoProd &n, bool &Hh);
     void borrarProducto (string codProducto);
+    void borrarMarca (pnodoProd &R, string codProducto, string codMarca);
+    void borrarMarca (string codProducto, string codMarca);
+    pnodoProd buscarNodoAVL(pnodoProd pRaiz, string codProducto);
 
     friend class lista;
 };

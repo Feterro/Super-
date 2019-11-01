@@ -59,41 +59,6 @@ Clase amiga de lista marcas y la clase principal.
 
         return padre->hIzq;
       }
-    nodoMarca *successor(nodoMarca *x) {
-        nodoMarca *temp = x;
-        while (temp->hIzq != NULL)
-          temp = temp->hIzq;
-        return temp;
-      }
-    nodoMarca *BSTreplace(nodoMarca *x) {
-        // when node have 2 children
-        if (x->hIzq != NULL and x->hDer != NULL)
-          return successor(x->hDer);
-
-        // when leaf
-        if (x->hIzq == NULL and x->hDer == NULL)
-          return NULL;
-
-        // when single child
-        if (x->hIzq != NULL)
-          return x->hIzq;
-        else
-          return x->hDer;
-      }
-    void swapValues(nodoMarca *u, nodoMarca *v) {
-        string temp1;
-        string temp2;
-        string temp3;
-        temp1 = u->codMarca;
-        temp2 = u ->codPasillo;
-        temp3 = u ->codProducto;
-        u->codMarca = v->codMarca;
-        u->codPasillo = v->codPasillo;
-        u->codProducto = v->codProducto;
-        v->codMarca = temp1;
-        v->codPasillo = temp2;
-        v->codProducto = temp3;
-      }
     bool hasRedChild() {
         return (hIzq != NULL and hIzq->color == ROJO) or
                (hDer != NULL and hDer->color == ROJO);

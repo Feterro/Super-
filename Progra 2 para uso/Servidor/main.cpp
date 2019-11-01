@@ -39,5 +39,6 @@ int main(int argc, char *argv[])
     Admin administrador;
     administrador.start();
 
+
     return a.exec();
 }
