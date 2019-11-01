@@ -90,3 +90,9 @@
                                    21 ITCR  1 1
                                    20 ITCR  1 1
                                    19 ITCR  1 1
+*******************************Reportes administrador*******************************
+Pasillo mas vendido: 
+                     01 Abarrotes
+
+Pasillo menos vendido: 
+                      01 Abarrotes

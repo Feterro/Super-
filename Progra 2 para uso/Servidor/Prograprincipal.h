@@ -3164,4 +3164,52 @@ void Principal::clienteMasFacturas(){
     archivo<<"                          "<<masMonto->cedula<<" "<<masMonto->nombre<<" "<<masMonto->montoFact<<endl;
     archivo.close();
 }
+
+void arbolPas::borrarBinario(pnodoPas &ra, string &codPas){
+    pnodoPas q = nullptr;
+    if (raiz != nullptr) {
+        if (stoi (ra->codPasillo) > stoi (codPas)) {
+            borrarBinario(ra->hIzq, codPas);
+        } else {
+            if (stoi (ra->codPasillo) < stoi (codPas)) {
+                borrarBinario(ra->hDer, codPas);
+            } else {
+                q = ra;
+                if (q->hDer == nullptr) {
+                    ra = q->hIzq;
+                } else {
+                    if (q->hIzq == nullptr) {
+                        raiz = q->hDer;
+                    } else {
+                        borrar(q->hIzq, ra);
+                    }
+                    delete q;
+                }
+            }
+        }
+    }
+}
+
+void arbolPas::borrar(pnodoPas &D, pnodoPas &q) {
+    if (D->hDer != nullptr) {
+        borrar(D->hDer, q);
+    } else {
+        D->hDer = q->hDer;
+        q = D;
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 #endif // PROGRAPRINCIPAL_H

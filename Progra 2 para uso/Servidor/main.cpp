@@ -16,8 +16,7 @@ Servidor servGlo;
 int main(int argc, char *argv[])
 {
     qRegisterMetaType<qintptr>("qintptr");
-    arbolClientes.cargarClientes("Clientes.txt");
-    //arbolClientes.listaCreciente();
+    //arbolClientes.cargarClientes("Clientes.txt");
     cout<<endl;
 
     arbolAdmin.cargarAdmins("Administradores.txt");
@@ -25,7 +24,7 @@ int main(int argc, char *argv[])
     cout<<endl;
 
     arbolPasillos=arbolPasillos.arbolMarcas();
-    //arbolPasillos.InordenTriple(arbolPasillos.raiz);
+    //arbolPasillos.MostrarPasillos(arbolPasillos.raiz);
     cout<<"\n"<<endl;
 
     arbolInventario=arbolInventario.agregarInventario();

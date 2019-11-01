@@ -42,6 +42,8 @@ los pasillos. Base de la estructura creada con archivos
     void ventaPasillo(pnodoPas R, string codPas);
     pnodoPas nodoPasillos(pnodoPas R,string codPas, pnodoPas pasi);
     void MostrarPasillosReporte(pnodoPas r);
+    void borrarBinario (pnodoPas &ra, string &codPas);
+    void borrar (pnodoPas &D, pnodoPas &q);
 
 };
 #endif // ARBOLPAS_H
