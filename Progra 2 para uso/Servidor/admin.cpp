@@ -21,9 +21,9 @@ void Admin::run()
             fin=false;
             cout<<"Bienvenido!"<<endl;
             cout<<"Usted tiene las opciones de: "<<endl;
-            cout<<"1.Insertar Pasillo"<<endl;
-            cout<<"2.Insertar Producto"<<endl;
-            cout<<"3.Insertar Marca"<<endl;
+            cout<<"1.Borrar Cliente"<<endl;
+            cout<<"2.Escribir B"<<endl;
+            cout<<"3.Lista creciente"<<endl;
             cout<<"4.Consultar el % impuesto de un producto"<<endl;
             cout<<"5.Modificar el Precio"<<endl;
             cout<<"6.Modificar el % de impuesto"<<endl;
@@ -41,17 +41,23 @@ void Admin::run()
                 string resp;
                 cin>>resp;
                 if (resp=="1"){
-                    //arbolPasillos=arbolPasillos.insertarPasillo();
+                    int x;
+                    cout<<"Digite la cedula del cliente a borrar: ";
+                    cin>>x;
+                    arbolClientes.eliminar(x);
+                    cout<<endl<<"Cliente borrado"<<endl;
                 }
                 else if (resp=="2"){
-                    //arbolPasillos=arbolPasillos.insertarProductos();
+                    arbolClientes.escribir();
                 }
                 else if (resp=="3"){
-                    //arbolPasillos=princi.insertarMarca();
+                    arbolClientes.listaCreciente();
                 }
                 else if (resp=="4"){
-                    //string impu=princi.ConsultarImpuesto();
-                    //cout<<impu<<endl;
+                    int x;
+                    cout<<"Digite la cedula del cliente a insertar: ";
+                    cin>>x;
+                    arbolClientes.insertar(x,"Andres Aguilar","12345678","23","Hola");
                 }
                 else if (resp=="5"){
                     //princi.ModificarPrecio();
