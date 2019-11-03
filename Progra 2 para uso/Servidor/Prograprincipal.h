@@ -3375,15 +3375,31 @@ void RN::swapValues(nodoMarca *u, nodoMarca *v) {
     string temp;
     string temp2;
     string temp3;
+    string temp4;
+    int temp5;
+    int temp6;
+    float temp7;
     temp = u->codMarca;
     temp2 = u -> codPasillo;
     temp3 = u-> codProducto;
+    temp4 = u -> nombre;
+    temp5 = u -> cantGondola;
+    temp6 = u -> cantcomp;
+    temp7 = u -> precio;
     u->codMarca = v->codMarca;
     u->codPasillo = v->codPasillo;
     u->codProducto = v->codProducto;
+    u->nombre = v ->nombre;
+    u ->cantcomp = v->cantcomp;
+    u->cantGondola = v -> cantGondola;
+    u->precio = v->precio;
     v->codMarca = temp;
     v->codPasillo = temp2;
     v->codProducto = temp3;
+    v->nombre = temp4;
+    v->cantGondola = temp5;
+    v->cantcomp = temp6;
+    v->precio = temp7;
 }
 
 void RN::deleteNode(nodoMarca *v) {
@@ -3427,6 +3443,10 @@ void RN::deleteNode(nodoMarca *v) {
        v->codMarca = u->codMarca;
        v->codPasillo = u->codPasillo;
        v->codProducto = u->codProducto;
+       v->nombre = u ->nombre;
+       v ->cantcomp = u->cantcomp;
+       v->cantGondola = u -> cantGondola;
+       v->precio = u ->precio;
        v->hIzq = v->hDer = NULL;
        delete u;
      } else {
