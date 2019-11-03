@@ -3615,4 +3615,199 @@ void AVLProducto::borrarMarca( string codProd, string codMarca){
 }
 
 
+
+void ArbolB::eliminar(tipoClave cl) {
+    this->raiz = eliminar(cl, raiz);
+}
+
+/**
+ * Recorre el arbol para eliminar una clave
+ * @param cl La clave que se desea eliminar
+ * @param raiz La pagina actual
+ * @return La nueva raiz
+ */
+Pagina *ArbolB::eliminar(tipoClave cl, Pagina* raiz) {
+    bool encontrado = false;
+    Pagina *p = new Pagina(this->orden);
+    eliminarRegistro(cl, raiz, encontrado);
+    if (!encontrado) {
+        cout << "El elemento no se encuentra en el arbol"<<endl;
+        return raiz;
+    }
+    else { // La raiz ha quedado vacia
+        if (raiz->obtenerCuenta() == 0) {
+            p = raiz;
+            raiz = raiz->obtenerRama(0);
+            delete p;
+            return raiz;
+        }
+        return raiz;
+    }
+}
+
+void ArbolB::eliminarRegistro(tipoClave cl, Pagina *ra, bool &encontrado) {
+    int k = 0;
+    if (ra==nullptr) {
+        encontrado = false;
+    }
+    else {
+        encontrado = buscarNodo(ra, cl, k);
+        if (encontrado) {
+            if (ra->obtenerRama(k - 1) == NULL) {
+                quitar(ra, k);
+            }
+            else { // Noes hoja
+                sucesor(ra, k);
+                eliminarRegistro(ra->obtenerClave(k), ra->obtenerRama(k), encontrado);
+                // PRUEBA
+                if (ra->obtenerCuenta() < 2) {
+                    this->restablecer(ra, k);
+                }
+                if (!encontrado) {
+                    cout << "Error en el proceso";
+                }
+            }
+        }
+        else { // No ha sido localizada la clave
+            eliminarRegistro(cl, ra->obtenerRama(k), encontrado);
+            if (ra->obtenerRama(k) != NULL) {
+                if (ra->obtenerRama(k)->obtenerCuenta() < 2) {
+                    restablecer(ra, k);
+                }
+            }
+        }
+    }
+}
+
+void ArbolB::quitar(Pagina*& p, int k) {
+    for (int j = k + 1; j <= p->obtenerCuenta(); j++) {
+        p->cambiarClave(j - 1, p->obtenerClave(j));
+        p->cambiarDato(j - 1, 0 , p->obtenerDato(j,0));
+        p->cambiarDato(j - 1, 1 , p->obtenerDato(j,1));
+        p->cambiarDato(j - 1, 2 , p->obtenerDato(j,2));
+        p->cambiarDato(j - 1, 3 , p->obtenerDato(j,3));
+        p->cambiarRamas(j - 1, p->obtenerRama(j));
+    }
+    p->cambiarCuenta(p->obtenerCuenta() - 1);
+}
+
+void ArbolB::sucesor(Pagina*& p, int k) {
+    Pagina *q;
+    q = p->obtenerRama(k);
+    while (q->obtenerRama(0) != NULL) {
+        q = q->obtenerRama(0);
+    }
+    p->cambiarClave(k, q->obtenerClave(1));
+    p->cambiarDato(k,0, q->obtenerDato(1,0));
+    p->cambiarDato(k,1, q->obtenerDato(1,1));
+    p->cambiarDato(k,2, q->obtenerDato(1,2));
+    p->cambiarDato(k,3, q->obtenerDato(1,3));
+}
+
+void ArbolB::restablecer(Pagina*& p, int k) {
+    if (k > 0) {
+        if (p->obtenerRama(k - 1)->obtenerCuenta() > 2) {
+            moverDerecha(p, k);
+        }
+        else {
+            combina(p, k);
+        }
+    }
+    else {
+        if (p->obtenerRama(1)->obtenerCuenta() > 2) {
+            moverIzquierda(p, 1);
+        }
+        else {
+            combina(p, 1);
+        }
+    }
+}
+
+void ArbolB::moverDerecha(Pagina*& p, int k) {
+    for (int j = p->obtenerRama(k)->obtenerCuenta(); j >= 1; j--) {
+        p->obtenerRama(k)->cambiarClave(j + 1, p->obtenerRama(k)->obtenerClave(j));
+        p->obtenerRama(k)->cambiarDato(j + 1, 0 , p->obtenerRama(k)->obtenerDato(j,0));
+        p->obtenerRama(k)->cambiarDato(j + 1, 1 , p->obtenerRama(k)->obtenerDato(j,1));
+        p->obtenerRama(k)->cambiarDato(j + 1, 2 , p->obtenerRama(k)->obtenerDato(j,2));
+        p->obtenerRama(k)->cambiarDato(j + 1, 3 , p->obtenerRama(k)->obtenerDato(j,3));
+        p->obtenerRama(k)->cambiarRamas(j + 1, p->obtenerRama(k)->obtenerRama(j));
+    }
+    p->obtenerRama(k)->cambiarCuenta(p->obtenerRama(k)->obtenerCuenta() + 1);
+    p->obtenerRama(k)->cambiarRamas(1, p->obtenerRama(k)->obtenerRama(0));
+    p->obtenerRama(k)->cambiarClave(1, p->obtenerClave(k));
+    p->obtenerRama(k)->cambiarDato(1,0, p->obtenerDato(k,0));
+    p->obtenerRama(k)->cambiarDato(1,1, p->obtenerDato(k,1));
+     p->obtenerRama(k)->cambiarDato(1,2, p->obtenerDato(k,2));
+     p->obtenerRama(k)->cambiarDato(1,3, p->obtenerDato(k,3));
+    p->cambiarDato(k,0,p->obtenerRama(k - 1)->obtenerDato(p->obtenerRama(k - 1)->obtenerCuenta(),0));
+    p->cambiarDato(k,1,p->obtenerRama(k - 1)->obtenerDato(p->obtenerRama(k - 1)->obtenerCuenta(),1));
+    p->cambiarDato(k,2,p->obtenerRama(k - 1)->obtenerDato(p->obtenerRama(k - 1)->obtenerCuenta(),2));
+    p->cambiarDato(k,3,p->obtenerRama(k - 1)->obtenerDato(p->obtenerRama(k - 1)->obtenerCuenta(),3));
+    p->cambiarClave(k, p->obtenerRama(k - 1)->obtenerClave(p->obtenerRama(k - 1)->obtenerCuenta()));
+    p->obtenerRama(k)->cambiarRamas(0, p->obtenerRama(k - 1)->obtenerRama(p->obtenerRama(k - 1)->obtenerCuenta()));
+    p->obtenerRama(k - 1)->cambiarCuenta(p->obtenerRama(k - 1)->obtenerCuenta() - 1);
+}
+
+void ArbolB::moverIzquierda(Pagina*& p, int k) {
+    p->obtenerRama(k - 1)->cambiarCuenta(p->obtenerRama(k - 1)->obtenerCuenta() + 1);
+    p->obtenerRama(k - 1)->cambiarClave(p->obtenerRama(k - 1)->obtenerCuenta(), p->obtenerClave(k));
+    p->obtenerRama(k - 1)->cambiarDato(p->obtenerRama(k - 1)->obtenerCuenta(),0, p->obtenerDato(k,0));
+    p->obtenerRama(k - 1)->cambiarDato(p->obtenerRama(k - 1)->obtenerCuenta(),1, p->obtenerDato(k,1));
+     p->obtenerRama(k - 1)->cambiarDato(p->obtenerRama(k - 1)->obtenerCuenta(),2, p->obtenerDato(k,2));
+      p->obtenerRama(k - 1)->cambiarDato(p->obtenerRama(k - 1)->obtenerCuenta(),3, p->obtenerDato(k,3));
+    p->obtenerRama(k - 1)->cambiarRamas(p->obtenerRama(k - 1)->obtenerCuenta(), p->obtenerRama(k)->obtenerRama(0));
+    p->cambiarClave(k, p->obtenerRama(k)->obtenerClave(1));
+    p->cambiarDato(k, 0 ,p->obtenerRama(k)->obtenerDato(1,0));
+    p->cambiarDato(k, 1 ,p->obtenerRama(k)->obtenerDato(1,1));
+    p->cambiarDato(k, 2 ,p->obtenerRama(k)->obtenerDato(1,2));
+    p->cambiarDato(k, 3 ,p->obtenerRama(k)->obtenerDato(1,3));
+    p->cambiarRamas(0, p->obtenerRama(k)->obtenerRama(1));
+    p->obtenerRama(k)->cambiarCuenta(p->obtenerRama(k)->obtenerCuenta() - 1);
+
+    for (int j = 1; j <= p->obtenerRama(k)->obtenerCuenta(); j++) {
+        p->obtenerRama(k)->cambiarClave(j, p->obtenerRama(k)->obtenerClave(j + 1));
+        p->obtenerRama(k)->cambiarDato(j,0, p->obtenerRama(k)->obtenerDato(j + 1,0));
+        p->obtenerRama(k)->cambiarDato(j,1, p->obtenerRama(k)->obtenerDato(j + 1,1));
+        p->obtenerRama(k)->cambiarDato(j,2, p->obtenerRama(k)->obtenerDato(j + 1,2));
+        p->obtenerRama(k)->cambiarDato(j,3, p->obtenerRama(k)->obtenerDato(j + 1,3));
+        p->obtenerRama(k)->cambiarRamas(j, p->obtenerRama(k)->obtenerRama(j + 1));
+    }
+}
+
+void ArbolB::combina(Pagina*& p, int k) {
+    Pagina *q = new Pagina(this->orden);
+    q = p->obtenerRama(k);
+
+    p->obtenerRama(k - 1)->cambiarCuenta(p->obtenerRama(k - 1)->obtenerCuenta() + 1);
+    p->obtenerRama(k - 1)->cambiarClave(p->obtenerRama(k - 1)->obtenerCuenta(), p->obtenerClave(k));
+    p->obtenerRama(k - 1)->cambiarDato(p->obtenerRama(k - 1)->obtenerCuenta(),0 , p->obtenerDato(k,0));
+    p->obtenerRama(k - 1)->cambiarDato(p->obtenerRama(k - 1)->obtenerCuenta(),1 , p->obtenerDato(k,1));
+    p->obtenerRama(k - 1)->cambiarDato(p->obtenerRama(k - 1)->obtenerCuenta(),2 , p->obtenerDato(k,2));
+    p->obtenerRama(k - 1)->cambiarDato(p->obtenerRama(k - 1)->obtenerCuenta(),3 , p->obtenerDato(k,3));
+    p->obtenerRama(k - 1)->cambiarRamas(p->obtenerRama(k - 1)->obtenerCuenta(), q->obtenerRama(0));
+
+    for (int j = 1; j <= q->obtenerCuenta(); j++) {
+        p->obtenerRama(k - 1)->cambiarCuenta(p->obtenerRama(k - 1)->obtenerCuenta() + 1);
+        p->obtenerRama(k - 1)->cambiarClave(p->obtenerRama(k - 1)->obtenerCuenta(), q->obtenerClave(j));
+        p->obtenerRama(k - 1)->cambiarDato(p->obtenerRama(k - 1)->obtenerCuenta(), 0 , q->obtenerDato(j, 0));
+        p->obtenerRama(k - 1)->cambiarDato(p->obtenerRama(k - 1)->obtenerCuenta(), 1 , q->obtenerDato(j, 1));
+        p->obtenerRama(k - 1)->cambiarDato(p->obtenerRama(k - 1)->obtenerCuenta(), 2 , q->obtenerDato(j, 2));
+        p->obtenerRama(k - 1)->cambiarDato(p->obtenerRama(k - 1)->obtenerCuenta(), 3 , q->obtenerDato(j, 3));
+        p->obtenerRama(k - 1)->cambiarRamas(p->obtenerRama(k - 1)->obtenerCuenta(), q->obtenerRama(j));
+    }
+
+    for (int j = k; j <= p->obtenerCuenta() - 1; j++) {
+        p->cambiarClave(j, p->obtenerClave(j + 1));
+        p->cambiarDato(j,0, p->obtenerDato(j + 1,0));
+        p->cambiarDato(j,1, p->obtenerDato(j + 1,1));
+        p->cambiarDato(j,2, p->obtenerDato(j + 1,2));
+        p->cambiarDato(j,3, p->obtenerDato(j + 1,3));
+        p->cambiarRamas(j, p->obtenerRama(j + 1));
+    }
+    p->cambiarCuenta(p->obtenerCuenta() - 1);
+    delete q;
+}
+
+
+
 #endif // PROGRAPRINCIPAL_H

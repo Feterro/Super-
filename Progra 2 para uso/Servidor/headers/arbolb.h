@@ -16,6 +16,14 @@ private:
     Pagina *insertar(Pagina *raiz, tipoClave cl, string nombre, string telefono, string codigoCiudad, string correo);
     bool empujar(Pagina *actual, tipoClave cl, tipoClave &mediana, Pagina *&nuevo, string &nombre, string &telefono, string &codigoCiudad, string &correo);
     void meterPagina(Pagina *actual, tipoClave cl, Pagina *ramaDr, int k, string nombre, string telefono, string codigoCiudad, string correo);
+    Pagina *eliminar(tipoClave cl, Pagina *raiz);
+    void eliminarRegistro(tipoClave cl, Pagina *ra, bool &encontrado);
+    void quitar(Pagina *&p, int k);
+    void sucesor(Pagina *&p, int k);
+    void restablecer(Pagina *&p, int k);
+    void moverDerecha(Pagina *&p, int k);
+    void moverIzquierda(Pagina *&p, int k);
+    void combina(Pagina *&p, int k);
 
 public:
     ArbolB()
@@ -53,6 +61,7 @@ public:
     void agregarClienteNoRegistrado(int cedula, ArbolB arbol);
     void mostrar1();
     void mostrar(Pagina *r, int h);
+    void eliminar(tipoClave cl);
 
     friend class Principal;
 };
