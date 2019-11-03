@@ -1,5 +1,5 @@
 #include "threadadmin.h"
-
+#include"mainwindow.h"
 ThreadAdmin::ThreadAdmin(QObject *parent):QThread(parent)
 {
     connect(this, SIGNAL(escribirServidor(QByteArray)),&socketAdmin,SLOT(escribirServidor(QByteArray)));
@@ -7,17 +7,19 @@ ThreadAdmin::ThreadAdmin(QObject *parent):QThread(parent)
 
 void ThreadAdmin::run()
 {
+    cout<<"Hola"<<endl;
     bool fin=true;
     while(fin)
     {
+        cout<<"Hola2"<<endl;
         emit escribirServidor(QString::fromStdString("XD").toUtf8());
-        string identificacion;
-        cout<<"Digite su codigo de administrador: ";
-        cin>>identificacion;
-        cout<<"\n";
-        emit escribirServidor(QString::fromStdString("XV;"+identificacion).toUtf8());
+        cout<<"Despues del emit"<<endl;
+        cout<<"if"<<endl;
+        emit escribirServidor("XV;"+MainWindow().codigo.toUtf8());
+        cout<<"Thread: "<<MainWindow().codigo.toUtf8().constData();
+        cout<<"algo"<<endl;
         this->sleep(1);
-        if(socketAdmin.registro==true)
+        if(fin)
         {
             emit escribirServidor(QString::fromStdString("XB").toUtf8());
             fin=false;
@@ -72,7 +74,7 @@ void ThreadAdmin::run()
                     //cout<<canasta<<endl;
                 }
                 else if (resp=="10"){
-                    //if(!princi.cola.ListaVacia())
+                    //if(!princi.cola.ListaVacia()
                     //                    {
                     //                        //qintptr descrip=princi.cola.primero->descriptor;
                     //                        //string factura=princi.agregarListaOrdenada();

@@ -14,6 +14,11 @@ class MainWindow : public QMainWindow
 public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
+    QString codigo;
+private slots:
+    void on_BIngresar_clicked();
+
+    void on_pushButton_clicked();
 
 private:
     Ui::MainWindow *ui;

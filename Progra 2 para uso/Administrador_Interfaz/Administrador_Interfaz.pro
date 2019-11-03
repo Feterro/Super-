@@ -24,7 +24,6 @@ SOURCES += \
 HEADERS += \
     admin.h \
     globalizarsocketad.h \
-    mainadmin.h \
     mainwindow.h \
     threadadmin.h
 

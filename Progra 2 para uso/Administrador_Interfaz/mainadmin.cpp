@@ -8,10 +8,7 @@ Admin socketAdmin;
 
 int main(int argc, char *argv[])
 {
-    socketAdmin.SocketConnection();
 
-    ThreadAdmin proceso;
-    proceso.start();
 
     QApplication a(argc, argv);
     MainWindow w;
