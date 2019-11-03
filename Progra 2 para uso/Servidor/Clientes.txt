@@ -6,15 +6,3 @@
 6;Ivannia Cerdas;21;86683915;ancamp5@gmail.com
 7;Fabrizio Ferreto;34;9867654;fabferreto@gmail.com
 8;Crystel Montero;12;5768329;crysmonterog@gmail.com
-9;Crystel Montero;12;5768329;crysmonterog@gmail.com
-10;Crystel Montero;12;5768329;crysmonterog@gmail.com
-11;Crystel Montero;12;5768329;crysmonterog@gmail.com
-12;Crystel Montero;12;5768329;crysmonterog@gmail.com
-13;Crystel Montero;12;5768329;crysmonterog@gmail.com
-14;Crystel Montero;12;5768329;crysmonterog@gmail.com
-15;Crystel Montero;12;5768329;crysmonterog@gmail.com
-16;Crystel Montero;12;5768329;crysmonterog@gmail.com
-17;Crystel Montero;12;5768329;crysmonterog@gmail.com
-18;Crystel Montero;12;5768329;crysmonterog@gmail.com
-19;Crystel Montero;12;5768329;crysmonterog@gmail.com
-20;Crystel Montero;12;5768329;crysmonterog@gmail.com
