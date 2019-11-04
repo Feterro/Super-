@@ -2,7 +2,7 @@
 #include"mainwindow.h"
 ThreadAdmin::ThreadAdmin(QObject *parent):QThread(parent)
 {
-    connect(this, SIGNAL(escribirServidor(QByteArray)),&socketAdmin,SLOT(escribirServidor(QByteArray)));
+    //connect(this, SIGNAL(escribirServidor(QByteArray)),&socketAdmin,SLOT(escribirServidor(QByteArray)));
 }
 
 void ThreadAdmin::run()
@@ -12,16 +12,16 @@ void ThreadAdmin::run()
     while(fin)
     {
         cout<<"Hola2"<<endl;
-        emit escribirServidor(QString::fromStdString("XD").toUtf8());
+        //emit escribirServidor(QString::fromStdString("XD").toUtf8());
         cout<<"Despues del emit"<<endl;
         cout<<"if"<<endl;
-        emit escribirServidor("XV;"+MainWindow().codigo.toUtf8());
+       // emit escribirServidor("XV;"+MainWindow().codigo.toUtf8());
         cout<<"Thread: "<<MainWindow().codigo.toUtf8().constData();
         cout<<"algo"<<endl;
         this->sleep(1);
-        if(fin)
+        if(socketAdmin.registro==true)
         {
-            emit escribirServidor(QString::fromStdString("XB").toUtf8());
+          //  emit escribirServidor(QString::fromStdString("XB").toUtf8());
             fin=false;
             bool menu=true;
             while(menu){
@@ -108,7 +108,7 @@ void ThreadAdmin::run()
 void ThreadAdmin::modificar(string resp)
 {
     cout<<"\n";
-    emit escribirServidor(QString::fromStdString("XO").toUtf8());
+  //  emit escribirServidor(QString::fromStdString("XO").toUtf8());
     this->sleep(1);
     string env;
     string codComp;
@@ -116,13 +116,13 @@ void ThreadAdmin::modificar(string resp)
     cin>>env;
     cout<<"\n";
     codComp=env;
-    emit escribirServidor(QString::fromStdString("XA"+codComp).toUtf8());
+   // emit escribirServidor(QString::fromStdString("XA"+codComp).toUtf8());
     this->sleep(1);
     cout<<"Digite el codigo de Producto que desea: "<<endl;
     cin>>env;
     cout<<"\n";
     codComp=codComp+";"+env;
-    emit escribirServidor(QString::fromStdString("BX;"+codComp).toUtf8());
+   // emit escribirServidor(QString::fromStdString("BX;"+codComp).toUtf8());
     this->sleep(1);
     cout<<"Digite el codigo de Marca que desea: "<<endl;
     cin>>env;
@@ -133,18 +133,18 @@ void ThreadAdmin::modificar(string resp)
         cout<<"Digite el nuevo precio a asignar: "<<endl;
         cin>>env;
         codComp=codComp+";"+env;
-        emit escribirServidor(QString::fromStdString("MX;"+codComp).toUtf8());
+        //emit escribirServidor(QString::fromStdString("MX;"+codComp).toUtf8());
     }
     else if(resp=="6")
     {
         cout<<"Digite el nuevo porcentaje de impuesto a asignar: "<<endl;
         cin>>env;
         codComp=codComp+";"+env;
-        emit escribirServidor(QString::fromStdString("NX;"+codComp).toUtf8());
+        //emit escribirServidor(QString::fromStdString("NX;"+codComp).toUtf8());
     }
     else if(resp=="7")
     {
-        emit escribirServidor(QString::fromStdString("LX;"+codComp).toUtf8());
+       // emit escribirServidor(QString::fromStdString("LX;"+codComp).toUtf8());
     }
     cout<<"\n"<<endl;
     this->sleep(1);
@@ -152,7 +152,7 @@ void ThreadAdmin::modificar(string resp)
 void ThreadAdmin::consImp()
 {
     cout<<"\n";
-    emit escribirServidor(QString::fromStdString("XO").toUtf8());
+   // emit escribirServidor(QString::fromStdString("XO").toUtf8());
     this->sleep(1);
     string env;
     string codComp;
@@ -160,18 +160,18 @@ void ThreadAdmin::consImp()
     cin>>env;
     cout<<"\n";
     codComp=env;
-    emit escribirServidor(QString::fromStdString("XA"+codComp).toUtf8());
+    //emit escribirServidor(QString::fromStdString("XA"+codComp).toUtf8());
     this->sleep(1);
     cout<<"Digite el codigo de Producto que desea: "<<endl;
     cin>>env;
     cout<<"\n";
     codComp=codComp+";"+env;
-    emit escribirServidor(QString::fromStdString("BX;"+codComp).toUtf8());
+    //emit escribirServidor(QString::fromStdString("BX;"+codComp).toUtf8());
     this->sleep(1);
     cout<<"Digite el codigo de Marca que desea: "<<endl;
     cin>>env;
     codComp=codComp+";"+env;
-    emit escribirServidor(QString::fromStdString("XZ;"+codComp).toUtf8());
+   // emit escribirServidor(QString::fromStdString("XZ;"+codComp).toUtf8());
     cout<<"\n"<<endl;
     this->sleep(1);
 }
@@ -184,7 +184,7 @@ void ThreadAdmin::insertarPas()
     cout<<"\nDigite el nombre del nuevo Pasillo: ";
     cin>>nom;
     string codnom=cod+";"+nom;
-    emit escribirServidor(QString::fromStdString("XP;"+codnom).toUtf8());
+   // emit escribirServidor(QString::fromStdString("XP;"+codnom).toUtf8());
     this->sleep(1);
 }
 
@@ -193,7 +193,7 @@ void ThreadAdmin::insertarPro()
     while(socketAdmin.correcto)
     {
         cout<<"\n";
-        emit escribirServidor(QString::fromStdString("CO").toUtf8());
+       // emit escribirServidor(QString::fromStdString("CO").toUtf8());
         this->sleep(1);
         string env;
         cout<<"\nDigite el codigo de Pasillo que desea: "<<endl;
@@ -206,7 +206,7 @@ void ThreadAdmin::insertarPro()
         cout<<"\nDigite el nombre del nuevo Producto: ";
         cin>>nom;
         string codnom=cod+";"+nom;
-        emit escribirServidor(QString::fromStdString("XR;"+env+";"+codnom).toUtf8());
+       // emit escribirServidor(QString::fromStdString("XR;"+env+";"+codnom).toUtf8());
         this->sleep(1);
         if(!socketAdmin.correcto)
             cout<<"Codigos incorrectos, intente de nuevo\n"<<endl;
@@ -227,12 +227,12 @@ void ThreadAdmin::insertarMar()
         string nuevpre;
         string nuevcan;
         cout<<"\n";
-        emit escribirServidor(QString::fromStdString("XO").toUtf8());
+        //emit escribirServidor(QString::fromStdString("XO").toUtf8());
         this->sleep(1);
         cout<<"\nDigite el codigo de Pasillo que desea: "<<endl;
         cin>>env;
         cout<<"\n";
-        emit escribirServidor(QString::fromStdString("XA"+env).toUtf8());
+        //emit escribirServidor(QString::fromStdString("XA"+env).toUtf8());
         this->sleep(1);
         cout<<"Digite el codigo de Producto que desea: "<<endl;
         cin>>cod;
@@ -247,6 +247,6 @@ void ThreadAdmin::insertarMar()
         cout<<"Digite 1 si es de canasta basica u otra cosa sino: "<<endl;
         cin>>nuevcan;
         env=env+";"+cod+";"+nuevcod+";"+nuevnom+";"+nuevcant+";"+nuevpre+";"+nuevcan;
-        emit escribirServidor(QString::fromStdString("XM;"+env).toUtf8());
+        //emit escribirServidor(QString::fromStdString("XM;"+env).toUtf8());
     }
 }

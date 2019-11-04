@@ -78,6 +78,7 @@ void Admin::readyRead()
 }
 void Admin::escribirServidor(QByteArray info)
 {
+    cout<<"aqui"<<endl;
     this->socketCli->write(info);
 }
 void Admin::cambiarRegistro(string infoConv)

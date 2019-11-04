@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'mainwindow.ui'
 **
-** Created by: Qt User Interface Compiler version 5.12.5
+** Created by: Qt User Interface Compiler version 5.13.1
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
 ********************************************************************************/
@@ -31,7 +31,6 @@ public:
     QLineEdit *TCodigo;
     QLabel *label_4;
     QPushButton *BIngresar;
-    QPushButton *pushButton;
     QMenuBar *menubar;
     QStatusBar *statusbar;
 
@@ -60,9 +59,6 @@ public:
         BIngresar = new QPushButton(centralwidget);
         BIngresar->setObjectName(QString::fromUtf8("BIngresar"));
         BIngresar->setGeometry(QRect(140, 180, 93, 28));
-        pushButton = new QPushButton(centralwidget);
-        pushButton->setObjectName(QString::fromUtf8("pushButton"));
-        pushButton->setGeometry(QRect(250, 190, 93, 28));
         MainWindow->setCentralWidget(centralwidget);
         menubar = new QMenuBar(MainWindow);
         menubar->setObjectName(QString::fromUtf8("menubar"));
@@ -79,13 +75,12 @@ public:
 
     void retranslateUi(QMainWindow *MainWindow)
     {
-        MainWindow->setWindowTitle(QApplication::translate("MainWindow", "MainWindow", nullptr));
-        label->setText(QApplication::translate("MainWindow", "Codigo de administrador:", nullptr));
-        label_2->setText(QApplication::translate("MainWindow", "Bienvenido al supermercado", nullptr));
-        label_3->setText(QApplication::translate("MainWindow", "Dijite su codigo de administrador ", nullptr));
+        MainWindow->setWindowTitle(QCoreApplication::translate("MainWindow", "MainWindow", nullptr));
+        label->setText(QCoreApplication::translate("MainWindow", "Codigo de administrador:", nullptr));
+        label_2->setText(QCoreApplication::translate("MainWindow", "Bienvenido al supermercado", nullptr));
+        label_3->setText(QCoreApplication::translate("MainWindow", "Dijite su codigo de administrador ", nullptr));
         label_4->setText(QString());
-        BIngresar->setText(QApplication::translate("MainWindow", "Ingresar", nullptr));
-        pushButton->setText(QApplication::translate("MainWindow", "PushButton", nullptr));
+        BIngresar->setText(QCoreApplication::translate("MainWindow", "Ingresar", nullptr));
     } // retranslateUi
 
 };

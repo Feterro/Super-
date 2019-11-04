@@ -1,7 +1,13 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
+#include <iostream>
 #include <QMainWindow>
+#include <QObject>
+#include <QThread>
+#include <QTcpSocket>
+#include "admin.h"
+#include "globalizarsocketad.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -15,10 +21,11 @@ public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
     QString codigo;
+signals:
+    void escribirServidor(QByteArray info);
+
 private slots:
     void on_BIngresar_clicked();
-
-    void on_pushButton_clicked();
 
 private:
     Ui::MainWindow *ui;

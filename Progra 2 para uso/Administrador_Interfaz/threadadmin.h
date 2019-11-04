@@ -6,7 +6,7 @@
 #include <QTcpSocket>
 #include <iostream>
 #include "admin.h"
-#include "globalizarSocketAd.h"
+#include "globalizarsocketad.h"
 
 using namespace std;
 
