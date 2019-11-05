@@ -325,7 +325,8 @@ void ThreadCli::consPre()
 }
 void ThreadCli::comprar(string ced, bool repe)
 {
-    while(true)
+    bool booli=true;
+    while(booli==true)
     {
 
         cout<<"\n";
@@ -367,11 +368,11 @@ void ThreadCli::comprar(string ced, bool repe)
                     cin>>resp;
                     if(resp=="S"||resp=="s")
                     {
-                        comprar(ced,true);
+                        repe=true;
                     }
                     else
                     {
-                        break;
+                        booli=false;
                     }
                 }
                 else

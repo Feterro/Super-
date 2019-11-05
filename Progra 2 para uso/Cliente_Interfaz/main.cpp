@@ -1,20 +1,17 @@
 #include <QCoreApplication>
 #include "cliente.h"
 #include "threadcli.h"
-#include "mainwindow.h"
+#include "ventanaprincipalcliente.h"
 #include <QApplication>
 
 Cliente socketCli;
 
 int main(int argc, char *argv[])
 {
-    socketCli.SocketConnection();
-
-    ThreadCli proceso;
-    proceso.start();
 
     QApplication a(argc, argv);
-    MainWindow w;
+    socketCli.SocketConnection();
+    ventanaPrincipalCliente w;
     w.show();
     return a.exec();
 }

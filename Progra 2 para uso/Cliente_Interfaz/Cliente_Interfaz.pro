@@ -18,17 +18,17 @@ DEFINES += QT_DEPRECATED_WARNINGS
 SOURCES += \
     cliente.cpp \
     main.cpp \
-    mainwindow.cpp \
-    threadcli.cpp
+    threadcli.cpp \
+    ventanaprincipalcliente.cpp
 
 HEADERS += \
     cliente.h \
     globalizarSocket.h \
-    mainwindow.h \
-    threadcli.h
+    threadcli.h \
+    ventanaprincipalcliente.h
 
 FORMS += \
-    mainwindow.ui
+    ventanaprincipalcliente.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

@@ -1,17 +1,14 @@
 #ifndef SOCKETSERVER_H
 #define SOCKETSERVER_H
 
-#include<stdlib.h>
 #include <QObject>
 #include <QTcpSocket>
 #include <QDebug>
 #include <QThreadPool>
-#include <sstream>
-#include <string>
 #include "Principal.h"
 #include "globalHeaders.h"
 #include "headers/avlProducto.h"
-
+#include <sstream>
 //#include "Progra2principal.h"
 
 using namespace std;
@@ -26,6 +23,7 @@ public:
     void funcionesCliente(string sennal);
     void funcionesAdministrador(string sennal);
     void agregar(string cantConv);
+    void crearFactura(string nombre, string texto);
     QTcpSocket *socket;
 
 signals:

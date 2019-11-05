@@ -46,11 +46,7 @@ HEADERS += \
 
 DISTFILES += \
     Administradores.txt \
-    Ciudades.txt \
     Clientes.txt \
-    Conexiones.txt \
-    Inventario.txt \
     MarcasProductos.txt \
     Pasillos.txt \
-    ProductosPasillos.txt \
-    Ptos de articulacion.txt
+    ProductosPasillos.txt

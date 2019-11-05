@@ -36,7 +36,7 @@ void Cliente::readyRead()
 {
     QByteArray info=socketCli->readAll();
     string infoConv=info.toStdString();
-    //cout<<infoConv<<endl;
+    cout<<infoConv<<endl;
     if(infoConv=="BK")
     {
         verificarBloqueo(infoConv);

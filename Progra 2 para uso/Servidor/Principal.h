@@ -58,8 +58,9 @@ class listaVentas
     bool agregarArticulo(listaVentas lista, string pas, string prod, string mar);
     void BorrarInicio();
     int largoLista();
-   private:
     pnodoVenta primero;
+   private:
+
     pnodoVenta actual;
    friend class Principal;
 };
@@ -90,7 +91,8 @@ class Principal
         void ModificarPrecio();
         void ModificarCanasta();
         string ConsultarCanasta();
-        void revisarGondolas();
+        void revisarGondolas(int canti);
+        string enlistarGondolas();
         void encontrarPasSumar(pnodoPas R, string codPas, pnodoPas pasillo);
         void cargarInventario();
         string agregarListaOrdenada();
@@ -123,8 +125,9 @@ class Principal
         void clienteMasFacturas();
         colaCliente cola;
         lista cliente;
-    private:
         listaVentas ventas;
+    private:
+
         //colaCliente cola;
 };
 #endif // PRINCIPAL_H

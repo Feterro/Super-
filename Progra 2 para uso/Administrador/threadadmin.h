@@ -19,8 +19,9 @@ public:
     void insertarPas();
     void insertarPro();
     void insertarMar();
-    void consImp();
+    void cons(string resp);
     void modificar(string resp);
+    void revisarGondolas();
 
 
 signals:
@@ -35,3 +36,4 @@ protected:
 };
 
 #endif // THREADADMIN_H
+

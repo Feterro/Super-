@@ -6,6 +6,7 @@
 #include <QThread>
 #include <QThreadPool>
 #include <iostream>
+#include <string>
 
 using namespace std;
 
@@ -19,6 +20,8 @@ public:
     void correccion(string vali);
     bool registro;
     bool correcto=true;
+    int cantRecar;
+
 public slots:
     void connected();
     void disconnected();

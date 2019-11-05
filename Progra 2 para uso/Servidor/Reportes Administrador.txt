@@ -1,98 +1,95 @@
-                                   91 Luisiana  1 1
-                                   89 Rojitos  1 1
-                                   06 PValidacion2  1 1
-                                   86 SalSol  1 1
-                                   85 Verdurin  13 0
-                                   84 Verdurin  13 0
-                                   83 Verdurin  13 0
-                                   82 Verdurin  1 1
-                                   81 Verdurin  1 1
-                                   80 Verdurin  13 0
-                                   79 Verdurin  1 1
-                                   78 Verdurin  1 1
-                                   77 Verdurin  1 1
-                                   76 Verdurin  1 1
-                                   75 Verdurin  1 1
-                                   58 Pilsen  13 0
-                                   57 Bacardi  13 0
-                                   56 JoseCuervo  13 0
-                                   55 Smirnoff  13 0
-                                   54 CasilleroDelDiablo  13 0
-                                   63 Zaguatin  1 1
-                                   62 Zaguatin  1 1
-                                   61 Zaguatin  1 1
-                                   60 Zaguatin  1 1
-                                   59 Zaguatin  1 1
-                                   53 Tosty  13 0
-                                   52 Diana  13 0
-                                   51 Doritos  13 0
-                                   50 Lays  13 0
-                                   18 LG  13 0
-                                   17 Samsung  13 0
-                                   16 Telstar  13 0
-                                   15 Mabe  13 0
-                                   14 Oster  13 0
-                                   13 Lucecita  1 1
-                                   79 PValidacion  1 1
-                                   12 Lucecita  1 1
-                                   11 H&H  1 1
-                                   10 Garden  13 0
-                                   09 Garden  13 0
-                                   08 Garden  13 0
-                                   88 Kerns  1 1
-                                   07 Car  13 0
-                                   06 Car  13 0
-                                   05 LimpiaCar  13 0
-                                   04 Wild  13 0
-                                   03 Wild  13 0
-                                   02 Wild  13 0
-                                   01 Wild  13 0
-                                   90 Blanquita  99 1
-                                   49 Bendicion  1 1
-                                   48 Bendicion  1 1
-                                   47 Bendicion  1 1
-                                   74 MainStays  1 1
-                                   73 MainStays  1 1
-                                   72 MainStays  13 0
-                                   71 MainStays  13 0
-                                   70 MainStays  1 1
-                                   69 MainStays  13 0
-                                   46 Bayer  1 1
-                                   44 Pfizer  1 1
-                                   43 Stein  1 1
-                                   42 CCSS  1 1
-                                   87 CintaAzul  1 1
-                                   41 TooFace  1 1
-                                   40 TooFace  13 0
-                                   39 TooFace  1 1
-                                   68 Gallito  13 0
-                                   67 Gallito  13 0
-                                   66 Gallito  13 0
-                                   65 Gallito  13 0
-                                   64 Gallito  13 0
-                                   38 DosPinos  13 0
-                                   37 DosPinos  1 1
-                                   36 DosPinos  13 0
-                                   35 DosPinos  1 1
-                                   34 DosPinos  13 0
-                                   33 Kimby  1 1
-                                   32 Frosty  1 1
-                                   31 Frosty  1 1
-                                   30 Kimby  1 1
-                                   29 Kellogs  13 0
-                                   28 Quaker  13 0
-                                   27 Jummy  13 0
-                                   26 Forever21  13 0
-                                   25 QuickSilver  13 0
-                                   24 ITCR  1 1
-                                   23 ITCR  1 1
-                                   22 ITCR  1 1
-                                   21 ITCR  1 1
-                                   20 ITCR  1 1
-                                   19 ITCR  1 1
 *******************************Reportes administrador*******************************
 Pasillo mas vendido: 
                      01 Abarrotes
 
 Pasillo menos vendido: 
                       01 Abarrotes
+
+Producto mas vendido en un pasillo: 
+                                    Pasillo: 01 
+                                                 20 Arroz
+La marca mas vendida es: 
+                       Pasillo: 01 producto: 20
+                                                      51 Luisiana
+Las marcas del producto que escogio son: 
+Pasillo: 20 Producto: 45 : 
+                       67~Blanquita~4~500
+Se selecciono un codigo de pasillo inexistente
+
+Clientes registrados del supermercado: 
+
+                                    1234567,Juan Perez
+
+                                    1290738,Jose Ramirez
+
+                                    2345678,Ana Campos
+
+Pasillos que existen en el supermercado: 
+                                         Abarrotes 01
+                                         Carnes 4
+                                         Bebidas 15
+                                         Limpieza 20
+
+Producto mas cargado en gondolas: 
+                                  20 Arroz
+El iventario del supermecado es: 
+                                   51 Luisiana  1 1
+                                   67 SalSol  13 0
+                                   36 Rojitos  13 0
+                                   38 CintaAzul  1 1
+                                   37 Kerns  13 0
+                                   67 Blanquita  13 0
+*******************************Reportes administrador*******************************
+Pasillo mas vendido: 
+                     01 Abarrotes
+
+Pasillo menos vendido: 
+                      01 Abarrotes
+
+Producto mas vendido en un pasillo: 
+                                    Pasillo: 01 
+                                                 20 Arroz
+La marca mas vendida es: 
+                       Pasillo: 01 producto: 20
+                                                      51 Luisiana
+Las marcas del producto que escogio son: 
+Pasillo: 01 Producto: 20 : 
+                       51~Luisiana~24~1000
+                       67~SalSol~10~200
+
+Productos de un pasillo: 
+Pasillo: 4
+                        73~Jamones
+
+Clientes registrados del supermercado: 
+
+                                    1234567,Juan Perez
+
+                                    1290738,Jose Ramirez
+
+                                    2345678,Ana Campos
+
+Pasillos que existen en el supermercado: 
+                                         Abarrotes 01
+                                         Carnes 4
+                                         Bebidas 15
+                                         Limpieza 20
+
+Producto mas cargado en gondolas: 
+                                  20 Arroz
+El iventario del supermecado es: 
+                                   51 Luisiana  1 1
+                                   67 SalSol  13 0
+                                   36 Rojitos  13 0
+                                   38 CintaAzul  1 1
+                                   37 Kerns  13 0
+                                   67 Blanquita  13 0
+
+Cliente con mas facturas: 
+                         2345678 1398079563
+
+Cliente con menos facturas: 
+                         1234567 995897390
+
+Factura de mayor monto: 
+                          1234567 Juan Perez 2.42143e+014

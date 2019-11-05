@@ -2,6 +2,12 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include <QObject>
+#include <QThread>
+#include <QTcpSocket>
+#include <iostream>
+#include "cliente.h"
+#include "globalizarSocket.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }

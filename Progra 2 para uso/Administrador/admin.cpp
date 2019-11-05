@@ -75,6 +75,22 @@ void Admin::readyRead()
     {
         correccion(infoConv);
     }
+    else if(infoConv.substr(0,2)=="LG")
+    {
+        //cout<<infoConv<<endl;
+        char cstr[infoConv.size() + 1];
+        strcpy(cstr, infoConv.c_str());
+        char var[]=";";
+        char *token = strtok(cstr,var);
+        token = strtok(NULL,var);
+        string canti=token;
+        this->cantRecar=stoi(canti);
+        if(this->cantRecar>0)
+        {
+            token = strtok(NULL,var);
+            cout<<token<<endl;
+        }
+    }
 }
 void Admin::escribirServidor(QByteArray info)
 {

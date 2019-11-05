@@ -1,4 +1,4 @@
-﻿#ifndef PROGRAPRINCIPAL_H
+#ifndef PROGRAPRINCIPAL_H
 #define PROGRAPRINCIPAL_H
 #include <iostream>
 #include <fstream>
@@ -16,19 +16,6 @@
 #include "globalHeaders.h"
 
 using namespace std;
-bool esNumerico (string pstring){
-    int lim = pstring.length();
-    for (int i = 0;i<lim;i++){
-        char temp = pstring[i];
-        if(!isdigit(temp)){
-            return false;
-        }
-    }
-    return true;
-}
-
-
-
 /*
 Metodos simples de insertar, mostrar ect
 */
@@ -38,6 +25,8 @@ void Ciudad::Mostrar()
     /*
     Muestra contenido de la lista de ciudades
     */
+
+
     nodoCiudad *aux;
     if (primero== NULL)
         cout << "No hay elementos";
@@ -258,7 +247,7 @@ void RN::InordenMar(pnodoMarca R){
         return;
     }else{
         InordenMar(R->hIzq);
-        cout<<R->codPasillo<<"~"<<R->codProducto<<"~"<<R->codMarca<<"~"<<R->nombre<<"~"<<R->cantGondola<<"~"<<R->precio<<"/"<<endl;
+        cout<<R->codPasillo<<"~"<<R->codProducto<<"~"<<R->codMarca<<"~"<<R->nombre<<"~"<<R->cantGondola<<"~"<<R->precio<<"/";
         InordenMar(R->hDer);
     }
 }
@@ -1141,7 +1130,6 @@ Ciudad Ciudad::agregarCiudades(){
             }
         }
     }
-    archivo.close();
     //listaCiudades.Mostrar();
     return listaCiudades;
 }
@@ -1543,7 +1531,6 @@ void arbolPas::MostrarProductos(pnodoPas R, string codPas){
         MostrarProductos(R->hDer, codPas);
     }
 }
-
 void AVLProducto::MostrarProductos(pnodoProd R){
     /*
     Muestra los productos del árbol
@@ -1572,7 +1559,7 @@ void arbolPas::MostrarPasillos(pnodoPas ra){
         MostrarPasillos(ra->hDer);
     }
 }
-bool arbolPas::encontrarPasillo(bool &encontrado, pnodoPas ra, string codPas){
+bool arbolPas::encontrarPasillo(bool encontrado, pnodoPas ra, string codPas){
     /*
     Búsqueda de pasillo en el árbol
     */
@@ -2066,64 +2053,125 @@ void Principal::ModificarCanasta(){//Buscar y quitar el cout
         ModificarCanasta();
     }
 }
-//void Principal::ModificarPrecio(){
-//    cout<<"Pasillos disponibles: "<<endl;
-//    cout<<"Codigo / Nombre "<<endl;
-//    arbolPasillos.MostrarPasillos(arbolPasillos.raiz);
-//    cout<<"Escoja el codigo del pasillo en el que esta la marca a la que le desea modificar el precio: "<<endl;
-//    string codPas;
-//    cin>>codPas;
-//    bool valido=false;
-//    valido=arbolPasillos.encontrarPasillo(valido,arbolPasillos.raiz, codPas);
-//    if (valido){
-//        cout<<"Productos a escoger en este pasillo: "<<endl;
-//        cout<<"Codigo / Nombre"<<endl;
-//        arbolPasillos.MostrarProductos(arbolPasillos.raiz, codPas);
-//        cout<<"Escriba el codigo del producto: "<<endl;
-//        string codProd;
-//        cin>>codProd;
-//        bool valid2=false;
-//        valid2=arbolPasillos.ValidarProducto1(arbolPasillos.raiz, codPas, codProd, valid2);
-//        if(valid2){
-//            cout<<"Las marcas a escoger son: "<<endl;
-//            cout<<"Nombre / Codigo // Cantidad Gondola / Precio"<<endl;
-//            arbolPasillos.MostrarMarcas(arbolPasillos.raiz, codPas, codProd);
-//            cout<<"Escoja un codigo de marca: "<<endl;
-//            string codMar;
-//            cin>>codMar;
-//            bool valid3=false;
-//            valid3=arbolPasillos.validarMarca(arbolPasillos.raiz, codPas, codProd, codMar, valid3);
-//            if (valid3){
-//                pnodoMarca mar=arbolPasillos.encontrarNodo1(arbolPasillos.raiz, codPas, codProd, codMar, mar);
-//                cout<<"Ingrese el nuevo precio de "<<" "<<mar->codMarca<<" "<<mar->nombre<<" "<<endl;
-//                float nuevoPrecio;
-//                cin>>nuevoPrecio;
-//                if(!cin){
-//                    cin.clear();
-//                    cin.ignore();
-//                    cout<<"Ingrese solo numeros: "<<endl;
-//                    cin>>nuevoPrecio;
-//                }
-//                mar->precio=nuevoPrecio;
-//                cout<<"Precio modificado exitosamente"<<endl;
-//            }
-//            else{
-//                cout<<"Codigo de marca invalido, vuelva a ingresar los datos."<<endl;
-//                ModificarPrecio();
-//            }
-//        }
-//        else{
-//            cout<<"Codigo de producto invalido, vuelva a ingresar los datos."<<endl;
-//            ModificarPrecio();
-//        }
+void Principal::ModificarPrecio(){
+    cout<<"Pasillos disponibles: "<<endl;
+    cout<<"Codigo / Nombre "<<endl;
+    arbolPasillos.MostrarPasillos(arbolPasillos.raiz);
+    cout<<"Escoja el codigo del pasillo en el que esta la marca a la que le desea modificar el precio: "<<endl;
+    string codPas;
+    cin>>codPas;
+    bool valido=false;
+    valido=arbolPasillos.encontrarPasillo(valido,arbolPasillos.raiz, codPas);
+    if (valido){
+        cout<<"Productos a escoger en este pasillo: "<<endl;
+        cout<<"Codigo / Nombre"<<endl;
+        arbolPasillos.MostrarProductos(arbolPasillos.raiz, codPas);
+        cout<<"Escriba el codigo del producto: "<<endl;
+        string codProd;
+        cin>>codProd;
+        bool valid2=false;
+        valid2=arbolPasillos.ValidarProducto1(arbolPasillos.raiz, codPas, codProd, valid2);
+        if(valid2){
+            cout<<"Las marcas a escoger son: "<<endl;
+            cout<<"Nombre / Codigo // Cantidad Gondola / Precio"<<endl;
+            arbolPasillos.MostrarMarcas(arbolPasillos.raiz, codPas, codProd);
+            cout<<"Escoja un codigo de marca: "<<endl;
+            string codMar;
+            cin>>codMar;
+            bool valid3=false;
+            valid3=arbolPasillos.validarMarca(arbolPasillos.raiz, codPas, codProd, codMar, valid3);
+            if (valid3){
+                pnodoMarca mar=arbolPasillos.encontrarNodo1(arbolPasillos.raiz, codPas, codProd, codMar, mar);
+                cout<<"Ingrese el nuevo precio de "<<" "<<mar->codMarca<<" "<<mar->nombre<<" "<<endl;
+                float nuevoPrecio;
+                cin>>nuevoPrecio;
+                if(!cin){
+                    cin.clear();
+                    cin.ignore();
+                    cout<<"Ingrese solo numeros: "<<endl;
+                    cin>>nuevoPrecio;
+                }
+                mar->precio=nuevoPrecio;
+                cout<<"Precio modificado exitosamente"<<endl;
+            }
+            else{
+                cout<<"Codigo de marca invalido, vuelva a ingresar los datos."<<endl;
+                ModificarPrecio();
+            }
+        }
+        else{
+            cout<<"Codigo de producto invalido, vuelva a ingresar los datos."<<endl;
+            ModificarPrecio();
+        }
 
-//    }
-//    else{
-//        cout<<"Codigo de pasillo incorrecto, vuelva a ingresar los datos"<<endl;
-//        ModificarPrecio();
-//    }
-//}
+    }
+    else{
+        cout<<"Codigo de pasillo incorrecto, vuelva a ingresar los datos"<<endl;
+        ModificarPrecio();
+    }
+}
+arbolPas arbolPas::insertarPasillo(){
+    cout<<"Ingrese el numero del nuevo pasillo: "<<endl;
+    string codPas;
+    cin>>codPas;
+    cout<<"Ingrese el nombre del nuevo pasillo :"<<endl;
+    string nomb;
+    cin>>nomb;
+    int largo=0;
+    largo=arbolPasillos.largoArbol(arbolPasillos.raiz, largo);
+    cout<<"Largo: "<<largo<<endl;
+    int largo2=0;
+    arbolPasillos.InsertaBinario(arbolPasillos.raiz, codPas, nomb);
+    largo2=arbolPasillos.largoArbol(arbolPasillos.raiz, largo2);
+    cout<<"Largo2: "<<largo2<<endl;
+    if (largo!=largo2){
+        cout<<"Pasillo creado con exito!"<<endl;
+        cout<<"Codigo de pasillo: "<<codPas<<" Nombre pasillo: "<<nomb<<endl;
+    }
+    else{
+        cout<<"El pasillo no se pudo crear porque el codigo ya existia."<<endl;
+        insertarPasillo();
+    }
+    return arbolPasillos;
+}
+arbolPas arbolPas::insertarProductos(){
+    cout<<"Las opciones de pasillos son: "<<endl;
+    arbolPasillos.MostrarPasillos(arbolPasillos.raiz);
+    cout<<"Escriba el codigo de la opcion que desea: "<<endl;
+    string codPas;
+    cin>>codPas;
+    bool valido=false;
+    valido=encontrarPasillo(valido, arbolPasillos.raiz, codPas);
+    if (valido){
+        cout<<"Ingrese el codigo del producto que desea ingresar: "<<endl;
+        string codProd;
+        cin>>codProd;
+        cout<<"Ingrese el nombre del producto que desea ingresar: "<<endl;
+        string nombre;
+        cin>>nombre;
+        bool valid2=false;
+        valid2=ValidarProducto1(arbolPasillos.raiz, codPas, codProd, valid2);
+        if (!valid2){
+            pnodoProd nuevo=new nodoProducto(codPas, codProd, nombre);
+            AVLProducto arbolprod;
+            arbolprod.EnlaceAvl(arbolPasillos.raiz, nuevo);
+            cout<<"Producto agregado con exito!"<<endl;
+            cout<<"Codigo de pasillo: "<<codPas<<" Codigo de producto: "<<codProd<<" Nombre: "<<nombre<<endl;
+        }
+        else{
+            cout<<"Los datos para producto que ingreso ya existen."<<endl;
+            arbolPasillos.insertarProductos();
+        }
+    }
+    else{
+        cout<<"Escoja un codigo de un pasillo valido: "<<endl;
+        string codPas2;
+        cin>>codPas2;
+        arbolPasillos.insertarProductos();
+    }
+    return arbolPasillos;
 
+}
 arbolPas Principal::insertarMarca(string codPas, string codProd, string codMar, string nombre, string canti, string preci, string canasta){
     bool valido=false;
     valido=arbolPasillos.encontrarPasillo( valido, arbolPasillos.raiz, codPas);
@@ -2334,54 +2382,62 @@ Retorna el largo de la cola de clientes.
     return cont;
     }
 }
-void Principal::revisarGondolas()
+void Principal::revisarGondolas(int canti)
 {
 /*
 Metodo que revisa gondolas y las rellena de ser necesario
 */
     pnodoVenta prodPila=ventas.primero;
     int larglist=ventas.largoLista();
-    cout<<larglist<<endl;
     int cont=0;
-    while(cont<larglist)
+    bool encuentra=false;
+    while(cont<larglist&&!encuentra)
     {
-        cout<<"En el ciclo"<<endl;
         pnodoMarca mar=arbolPasillos.encontrarNodo1(arbolPasillos.raiz, prodPila->codPasillo, prodPila->codProducto, prodPila->codMarca, mar);
         if (mar->cantGondola<=2){
-            cout<<"If"<<endl;
-            cout<<"Cuanto desea cargar en la gondola de "<<mar->nombre<<" ?: "<<endl;
-            int canti;
-            cin>>canti;
-            if(!cin){
-                cin.clear();
-                cin.ignore();
-                cout<<"Ingrese solo numeros: "<<endl;
-                cin>>canti;
-            }
             pnodoInventario inven=arbolInventario.encontrarNodo(arbolInventario.raiz, mar->codPasillo, mar->codProducto, mar->codMarca, inven);
             if (inven->cantStock>=canti){
                 inven->cantStock=((inven->cantStock)-canti);
                 mar->cantGondola=((mar->cantGondola)+canti);
-                cout<<"Se relleno la gondola!"<<endl;
+                encuentra=true;
             }
             else{
-                cout<<"En el inventario no hay suficiente para cargar la gondola, desea cargar lo que hay? Digite 1 para si u otra cosa para no: "<<endl;
-                string rep;
-                cin>>rep;
-                if (rep=="1"){
-                    mar->cantGondola=((mar->cantGondola)+inven->cantStock);
-                    inven->cantStock=0;
-                    cout<<"Se cargo no la gondola!"<<endl;
-                }
-                else{
-                    cout<<"No se cargo la gondola por no haber productos"<<endl;
-                }
+                mar->cantGondola=((mar->cantGondola)+inven->cantStock);
+                inven->cantStock=(inven->cantStock=0);
+                encuentra=true;
             }
         }
         prodPila=prodPila->siguiente;
         cont++;
     }
-    cout<<"Sale"<<endl;
+}
+string Principal::enlistarGondolas()
+{
+/*
+Metodo que revisa gondolas y las rellena de ser necesario
+*/
+    string lis;
+    int canti=0;
+    pnodoVenta prodPila=ventas.primero;
+    int larglist=ventas.largoLista();
+    int cont=0;
+    cout<<ventas.largoLista()<<endl;
+    while(cont<larglist)
+    {
+        pnodoMarca mar=arbolPasillos.encontrarNodo1(arbolPasillos.raiz, prodPila->codPasillo, prodPila->codProducto, prodPila->codMarca, mar);
+        cout<<mar->nombre<<endl;
+        if (mar->cantGondola<=2){
+            canti+=1;
+            lis=lis+" "+mar->nombre;
+        }
+        prodPila=prodPila->siguiente;
+        cont++;
+    }
+    string cant=to_string(canti);
+    cout<<cant<<endl;
+    cout<<lis<<endl;
+    cant=cant+";"+lis;
+    return cant;
 }
 void Principal::cargarInventario(){
     pnodoVenta prodPila=ventas.primero;
@@ -3178,800 +3234,4 @@ void Principal::clienteMasFacturas(){
     archivo<<"                          "<<masMonto->cedula<<" "<<masMonto->nombre<<" "<<masMonto->montoFact<<endl;
     archivo.close();
 }
-
-void arbolPas::borrarBinario(pnodoPas &ra, string &codPas){
-    pnodoPas q = nullptr;
-    if (raiz != nullptr) {
-        if (stoi (ra->codPasillo) > stoi (codPas)) {
-            borrarBinario(ra->hIzq, codPas);
-        } else {
-            if (stoi (ra->codPasillo) < stoi (codPas)) {
-                borrarBinario(ra->hDer, codPas);
-            } else {
-                q = ra;
-                if (q->hDer == nullptr) {
-                    ra = q->hIzq;
-                } else {
-                    if (q->hIzq == nullptr) {
-                        raiz = q->hDer;
-                    } else {
-                        borrar(q->hIzq, ra);
-                    }
-                    delete q;
-                }
-            }
-        }
-    }
-}
-
-void arbolPas::borrar(pnodoPas &D, pnodoPas &q) {
-    if (D->hDer != nullptr) {
-        borrar(D->hDer, q);
-    } else {
-        D->hDer = q->hDer;
-        q = D;
-    }
-}
-
-void arbolPas::borrarPasillo(string codPas){
-    bool temp;
-    encontrarPasillo(temp,this->raiz,codPas);
-    if (temp){
-        borrarBinario(this->raiz,codPas);
-     }else{
-        cout<<"No se ha encontrado el pasillo indicado"<<endl;
-    }
-}
-
-void AVLProducto::BorrarBalanceado(pnodoProd &r, bool &Hh, string &x) {
-    pnodoProd q = nullptr;
-    if (r != nullptr) {
-        if (stoi(r->codProducto) > stoi(x)) {
-            BorrarBalanceado(r->hIzq, Hh, x);
-            if (Hh) {
-                Equilibrar1(r, Hh);
-            }
-        } else {
-            if (stoi(r->codProducto) < stoi(x)) {
-                BorrarBalanceado(r->hDer, Hh, x);
-                if (Hh) {
-                    Equilibrar2(r, Hh);
-                }
-            } else {
-                q = r;
-                if (q->hDer == nullptr) {
-                    r = q->hIzq;
-                    Hh = true;
-                } else {
-                    if (q->hIzq == nullptr) {
-                        r = q->hDer;
-                        Hh = true;
-                    } else {
-                        Borrar(q->hIzq, r, Hh);
-                        if (Hh) {
-                            Equilibrar1(r, Hh);
-                        }
-                    }
-                    delete q;
-                }
-            }
-        }
-    }
-}
-
-void AVLProducto::Borrar(pnodoProd &D, pnodoProd &q, bool &Hh) {
-    if (D->hDer != nullptr) {
-        Borrar(D->hDer, q, Hh);
-        if (Hh) {
-            Equilibrar2(D, Hh);
-        }
-    } else {
-        D->hDer = q->hDer;
-        q = D;
-        Hh = true;
-    }
-}
-
-void AVLProducto::Equilibrar1(pnodoProd &n, bool &Hh) {
-    pnodoProd n1;
-    switch (n->FB) {
-        case -1: n->FB = 0;
-            break;
-        case 0: n->FB = 1;
-            Hh = false;
-            break;
-        case 1: n1 = n->hDer;
-            if (n1->FB >= 0) {
-                if (n1->FB == 0) {
-                    Hh = false;
-                    RotacionSimpleDerecha(n, n1);
-                } else {
-                    RotacionDobleDerecha(n, n1);
-                }
-            }
-    }
-}
-
-void AVLProducto::Equilibrar2(pnodoProd &n, bool &Hh) {
-    pnodoProd n1;
-    switch (n->FB) {
-        case 1: n->FB = 0;
-            break;
-        case 0: n->FB = -1;
-            Hh = false;
-            break;
-        case -1: n1 = n->hIzq;
-            if (n1->FB <= 0) {
-                if (n1->FB == 0) {
-                    Hh = false;
-                    RotacionSimpleIzquierda(n, n1);
-                } else {
-                    RotacionDobleIzquierda(n, n1);
-                }
-            }
-    }
-}
-
-void AVLProducto::borrarProducto(string codProducto){
-    pnodoProd aux = buscarNodoAVL(this->raiz,codProducto);
-    if (aux==nullptr){
-        cout<<"No se ha localizado el producto en el pasill indicado";
-        return;
-    }
-    BorrarBalanceado(this->raiz,this->Hh,codProducto);
-}
-
-void arbolPas::borrarProducto(string codPas, string codProd){
-    bool temp;
-    encontrarPasillo(temp,this->raiz,codPas);
-    if (!temp){
-        cout<<"El pasillo indicado no es valido"<<endl;
-        return;
-    }
-   borrarProducto(this->raiz,codPas,codProd);
-}
-
-void arbolPas::borrarProducto(pnodoPas &R,string codPas, string codProd){
-    if(R==NULL){
-        return;
-    }else{
-        borrarProducto(R->hIzq, codPas, codProd);
-        if (R->codPasillo==codPas){
-            AVLProducto pro;
-            pro.raiz=R->subsiguiente;
-            pro.borrarProducto(codProd);
-            R->subsiguiente = pro.raiz;
-        }
-        borrarProducto(R->hDer, codPas, codProd);
-    }
-}
-
-nodoMarca *RN::successor(nodoMarca *x) {
-   nodoMarca *temp = x;
-
-   while (temp->hIzq != NULL)
-     temp = temp->hIzq;
-
-   return temp;
- }
-
-nodoMarca *RN::BSTreplace(nodoMarca *x) {
-   // when node have 2 children
-   if (x->hIzq != NULL and x->hDer != NULL)
-     return successor(x->hDer);
-
-   // when leaf
-   if (x->hIzq == NULL and x->hDer == NULL)
-     return NULL;
-
-   // when single child
-   if (x->hIzq != NULL)
-     return x->hIzq;
-   else
-     return x->hDer;
- }
-
-void RN::swapValues(nodoMarca *u, nodoMarca *v) {
-    string temp;
-    string temp2;
-    string temp3;
-    string temp4;
-    int temp5;
-    int temp6;
-    float temp7;
-    temp = u->codMarca;
-    temp2 = u -> codPasillo;
-    temp3 = u-> codProducto;
-    temp4 = u -> nombre;
-    temp5 = u -> cantGondola;
-    temp6 = u -> cantcomp;
-    temp7 = u -> precio;
-    u->codMarca = v->codMarca;
-    u->codPasillo = v->codPasillo;
-    u->codProducto = v->codProducto;
-    u->nombre = v ->nombre;
-    u ->cantcomp = v->cantcomp;
-    u->cantGondola = v -> cantGondola;
-    u->precio = v->precio;
-    v->codMarca = temp;
-    v->codPasillo = temp2;
-    v->codProducto = temp3;
-    v->nombre = temp4;
-    v->cantGondola = temp5;
-    v->cantcomp = temp6;
-    v->precio = temp7;
-}
-
-void RN::deleteNode(nodoMarca *v) {
-   nodoMarca *u = BSTreplace(v);
-   // True when u and v are both black
-   bool uvBlack = ((u == NULL or u->color == NEGRO) and (v->color == NEGRO));
-   nodoMarca *parent = v->padre;
-
-   if (u == NULL) {
-     // u is NULL therefore v is leaf
-     if (v == raiz) {
-       // v is root, making root null
-       raiz = NULL;
-     } else {
-       if (uvBlack) {
-         // u and v both black
-         // v is leaf, fix double black at v
-         fixDoubleBlack(v);
-       } else {
-         // u or v is red
-         if (v->sibling() != NULL)
-           // sibling is not null, make it red"
-           v->sibling()->color = ROJO;
-       }
-
-       // delete v from the tree
-       if (v->isOnLeft()) {
-         parent->hIzq = NULL;
-       } else {
-         parent->hDer = NULL;
-       }
-     }
-     delete v;
-     return;
-   }
-
-   if (v->hIzq == NULL or v->hDer == NULL) {
-     // v has 1 child
-     if (v == raiz) {
-       // v is root, assign the value of u to v, and delete u
-       v->codMarca = u->codMarca;
-       v->codPasillo = u->codPasillo;
-       v->codProducto = u->codProducto;
-       v->nombre = u ->nombre;
-       v ->cantcomp = u->cantcomp;
-       v->cantGondola = u -> cantGondola;
-       v->precio = u ->precio;
-       v->hIzq = v->hDer = NULL;
-       delete u;
-     } else {
-       // Detach v from tree and move u up
-       if (v->isOnLeft()) {
-         parent->hIzq = u;
-       } else {
-         parent->hDer = u;
-       }
-       delete v;
-       u->padre = parent;
-       if (uvBlack) {
-         // u and v both black, fix double black at u
-         fixDoubleBlack(u);
-       } else {
-         // u or v red, color u black
-         u->color = NEGRO;
-       }
-     }
-     return;
-   }
-   // v has 2 children, swap values with successor and recurse
-   swapValues(u, v);
-   deleteNode(u);
-}
-
-pnodoMarca RN::searchTreeHelper(pnodoMarca node, string codMarca) {
-    if (node == NULL || codMarca == node->codMarca) {
-        return node;
-    }
-    if (stoi(codMarca) < stoi(node->codMarca)) {
-        return searchTreeHelper(node->hIzq, codMarca);
-    }
-    return searchTreeHelper(node->hDer, codMarca);
-}
-
-void RN::borrarMarca(string codMarca){
-    pnodoMarca aux = searchTreeHelper(this->raiz,codMarca);
-    if (aux==NULL){
-        cout<<"No se ha encontrado la marca en el pasillo y producto indicados"<<endl;
-        return;
-    }
-    deleteNode(aux);
-}
-
-void RN::fixDoubleBlack(nodoMarca *x) {
-    if (x == raiz)
-      // Reached root
-      return;
-
-    nodoMarca *sibling = x->sibling(), *parent = x->padre;
-    if (sibling == NULL) {
-      // No sibiling, double black pushed up
-      fixDoubleBlack(parent);
-    } else {
-      if (sibling->color == ROJO) {
-        // Sibling red
-        parent->color = ROJO;
-        sibling->color = NEGRO;
-        if (sibling->isOnLeft()) {
-          // left case
-          rotarDerecha(raiz,parent);
-        } else {
-          // right case
-          rotarIzquierda(raiz, parent);
-        }
-        fixDoubleBlack(x);
-      } else {
-        // Sibling black
-        if (sibling->hasRedChild()) {
-          // at least 1 red children
-          if (sibling->hIzq != NULL and sibling->hIzq->color == ROJO) {
-            if (sibling->isOnLeft()) {
-              // left left
-              sibling->hIzq->color = sibling->color;
-              sibling->color = parent->color;
-              rotarDerecha(raiz,parent);
-            } else {
-              // right left
-              sibling->hIzq->color = parent->color;
-              rotarDerecha(raiz,sibling);
-              rotarIzquierda(raiz,parent);
-            }
-          } else {
-            if (sibling->isOnLeft()) {
-              // left right
-              sibling->hDer->color = parent->color;
-              rotarIzquierda(raiz,sibling);
-              rotarDerecha(raiz,parent);
-            } else {
-              // right right
-              sibling->hDer->color = sibling->color;
-              sibling->color = parent->color;
-              rotarIzquierda(raiz,parent);
-            }
-          }
-          parent->color = NEGRO;
-        } else {
-          // 2 black children
-          sibling->color = ROJO;
-          if (parent->color == NEGRO)
-            fixDoubleBlack(parent);
-          else
-            parent->color = NEGRO;
-        }
-      }
-    }
-  }
-
-pnodoProd AVLProducto::buscarNodoAVL(pnodoProd pRaiz, string codProducto)
-{
-    if (pRaiz == nullptr || stoi (pRaiz->codProducto) == stoi(codProducto))
-       return pRaiz;
-    if (pRaiz->codProducto < codProducto)
-       return buscarNodoAVL(pRaiz->hDer, codProducto);
-    return buscarNodoAVL(pRaiz->hDer, codProducto);
-}
-
-void arbolPas::borrarMarca(string codPas, string codProd, string codMarca){
-    bool temp;
-    encontrarPasillo(temp,this->raiz,codPas);
-    if (!temp){
-        cout<<"El pasillo indicado no es valido"<<endl;
-        return;
-    }
-   borrarMarca(this->raiz,codPas,codProd, codMarca);
-}
-
-void arbolPas::borrarMarca(pnodoPas &R, string codPas, string codProd, string codMarca){
-    if(R==NULL){
-        return;
-    }else{
-        borrarMarca(R->hIzq, codPas, codProd, codMarca);
-        if (R->codPasillo==codPas){
-            AVLProducto pro;
-            pro.raiz=R->subsiguiente;
-            pro.borrarMarca(codProd, codMarca);
-            R->subsiguiente = pro.raiz;
-        }
-        borrarMarca(R->hDer, codPas, codProd, codMarca);
-    }
-}
-
-void AVLProducto::borrarMarca(pnodoProd &R, string codProd, string codMarca){
-    if(R==NULL){
-        return;
-    }else{
-        borrarMarca(R->hIzq,codProd, codMarca);
-        if (R->codProducto==codProd){
-            RN pro;
-            pro.raiz=R->subsiguiente;
-            pro.borrarMarca(codMarca);
-            R->subsiguiente = pro.raiz;
-        }
-        borrarMarca(R->hDer, codProd, codMarca);
-    }
-}
-
-void AVLProducto::borrarMarca( string codProd, string codMarca){
-    pnodoProd aux = buscarNodoAVL(this->raiz,codProd);
-    if (aux==NULL){
-        cout<<"No se ha localizado el producto en el pasillo indicado"<<endl;
-        return;
-    }
-    borrarMarca(this->raiz,codProd,codMarca);
-}
-
-void ArbolB::eliminar(tipoClave cl) {
-    this->raiz = eliminar(cl, raiz);
-}
-
-/**
- * Recorre el arbol para eliminar una clave
- * @param cl La clave que se desea eliminar
- * @param raiz La pagina actual
- * @return La nueva raiz
- */
-Pagina *ArbolB::eliminar(tipoClave cl, Pagina* raiz) {
-    bool encontrado = false;
-    Pagina *p = new Pagina(this->orden);
-    eliminarRegistro(cl, raiz, encontrado);
-    if (!encontrado) {
-        cout << "El elemento no se encuentra en el arbol";
-        return raiz;
-    }
-    else { // La raiz ha quedado vacia
-        if (raiz->obtenerCuenta() == 0) {
-            p = raiz;
-            raiz = raiz->obtenerRama(0);
-            delete p;
-            return raiz;
-        }
-        return raiz;
-    }
-}
-
-void ArbolB::eliminarRegistro(tipoClave cl, Pagina *ra, bool &encontrado) {
-    int k = 0;
-    if (this->arbolVacio()) {
-        encontrado = false;
-    }
-    else {
-        encontrado = buscarNodo(ra, cl, k);
-        if (encontrado) {
-            if (ra->obtenerRama(k - 1) == NULL) {
-                quitar(ra, k);
-            }
-            else { // Noes hoja
-                sucesor(ra, k);
-                eliminarRegistro(ra->obtenerClave(k), ra->obtenerRama(k), encontrado);
-                // PRUEBA
-                if (ra->obtenerCuenta() < 2) {
-                    this->restablecer(ra, k);
-                }
-                if (!encontrado) {
-                    cout << "Error en el proceso";
-                }
-            }
-        }
-        else { // No ha sido localizada la clave
-            eliminarRegistro(cl, ra->obtenerRama(k), encontrado);
-            if (ra->obtenerRama(k) != NULL) {
-                if (ra->obtenerRama(k)->obtenerCuenta() < 2) {
-                    restablecer(ra, k);
-                }
-            }
-        }
-    }
-}
-
-void ArbolB::quitar(Pagina*& p, int k) {
-    for (int j = k + 1; j <= p->obtenerCuenta(); j++) {
-        p->cambiarClave(j - 1, p->obtenerClave(j));
-        p->cambiarRamas(j - 1, p->obtenerRama(j));
-    }
-    p->cambiarCuenta(p->obtenerCuenta() - 1);
-}
-
-void ArbolB::sucesor(Pagina*& p, int k) {
-    Pagina *q;
-    q = p->obtenerRama(k);
-    while (q->obtenerRama(0) != NULL) {
-        q = q->obtenerRama(0);
-    }
-    p->cambiarClave(k, q->obtenerClave(1));
-}
-
-void ArbolB::restablecer(Pagina*& p, int k) {
-    if (k > 0) {
-        if (p->obtenerRama(k - 1)->obtenerCuenta() > 2) {
-            cout<<"Mover derecha"<<endl;
-            moverDerecha(p, k);
-        }
-        else {
-            cout<<"Combina"<<endl;
-            combina(p, k);
-        }
-    }
-    else {
-        if (p->obtenerRama(1)->obtenerCuenta() > 2) {
-            cout<<"Mover izquierda"<<endl;
-            moverIzquierda(p, 1);
-        }
-        else {
-            cout<<"Combina"<<endl;
-            combina(p, 1);
-        }
-    }
-}
-
-void ArbolB::moverDerecha(Pagina*& p, int k) {
-    for (int j = p->obtenerRama(k)->obtenerCuenta(); j >= 1; j--) {
-        p->obtenerRama(k)->cambiarClave(j + 1, p->obtenerRama(k)->obtenerClave(j));
-        p->obtenerRama(k)->cambiarRamas(j + 1, p->obtenerRama(k)->obtenerRama(j));
-    }
-    p->obtenerRama(k)->cambiarCuenta(p->obtenerRama(k)->obtenerCuenta() + 1);
-    p->obtenerRama(k)->cambiarRamas(1, p->obtenerRama(k)->obtenerRama(0));
-    p->obtenerRama(k)->cambiarClave(1, p->obtenerClave(k));
-
-    p->cambiarClave(k,
-            p->obtenerRama(k - 1)->obtenerClave(p->obtenerRama(k - 1)->obtenerCuenta()));
-    p->obtenerRama(k)
-     ->cambiarRamas(0, p->obtenerRama(k - 1)->obtenerRama(p->obtenerRama(k - 1)->obtenerCuenta()));
-    p->obtenerRama(k - 1)->cambiarCuenta(p->obtenerRama(k - 1)->obtenerCuenta() - 1);
-}
-
-void ArbolB::moverIzquierda(Pagina*& p, int k) {
-    p->obtenerRama(k - 1)->cambiarCuenta(p->obtenerRama(k - 1)->obtenerCuenta() + 1);
-    p->obtenerRama(k - 1)->cambiarClave(p->obtenerRama(k - 1)->obtenerCuenta(), p->obtenerClave(k));
-    p->obtenerRama(k - 1)->cambiarRamas(p->obtenerRama(k - 1)->obtenerCuenta(), p->obtenerRama(k)->obtenerRama(0));
-
-    p->cambiarClave(k, p->obtenerRama(k)->obtenerClave(1));
-    p->cambiarRamas(0, p->obtenerRama(k)->obtenerRama(1));
-    p->obtenerRama(k)->cambiarCuenta(p->obtenerRama(k)->obtenerCuenta() - 1);
-
-    for (int j = 1; j <= p->obtenerRama(k)->obtenerCuenta(); j++) {
-        p->obtenerRama(k)->cambiarClave(j, p->obtenerRama(k)->obtenerClave(j + 1));
-        p->obtenerRama(k)->cambiarRamas(j, p->obtenerRama(k)->obtenerRama(j + 1));
-    }
-}
-
-void ArbolB::combina(Pagina*& p, int k) {
-    Pagina *q = new Pagina(this->orden);
-    q = p->obtenerRama(k);
-
-    p->obtenerRama(k - 1)->cambiarCuenta(p->obtenerRama(k - 1)->obtenerCuenta() + 1);
-    p->obtenerRama(k - 1)->cambiarClave(p->obtenerRama(k - 1)->obtenerCuenta(), p->obtenerClave(k));
-    p->obtenerRama(k - 1)->cambiarRamas(p->obtenerRama(k - 1)->obtenerCuenta(), q->obtenerRama(0));
-
-    for (int j = 1; j <= q->obtenerCuenta(); j++) {
-        p->obtenerRama(k - 1)->cambiarCuenta(p->obtenerRama(k - 1)->obtenerCuenta() + 1);
-        p->obtenerRama(k - 1)->cambiarClave(p->obtenerRama(k - 1)->obtenerCuenta(), q->obtenerClave(j));
-        p->obtenerRama(k - 1)->cambiarRamas(p->obtenerRama(k - 1)->obtenerCuenta(), q->obtenerRama(j));
-    }
-
-    for (int j = k; j <= p->obtenerCuenta() - 1; j++) {
-        p->cambiarClave(j, p->obtenerClave(j + 1));
-        p->cambiarRamas(j, p->obtenerRama(j + 1));
-    }
-
-    p->cambiarCuenta(p->obtenerCuenta() - 1);
-    delete q;
-}
-
-
-//void ArbolB::eliminar(tipoClave cl) {
-//    this->raiz = eliminar(cl, raiz);
-//}
-
-///**
-// * Recorre el arbol para eliminar una clave
-// * @param cl La clave que se desea eliminar
-// * @param raiz La pagina actual
-// * @return La nueva raiz
-// */
-//Pagina *ArbolB::eliminar(tipoClave cl, Pagina* raiz) {
-//    bool encontrado = false;
-//    Pagina *p = new Pagina(this->orden);
-//    eliminarRegistro(cl, raiz, encontrado);
-//    if (!encontrado) {
-//        cout << "El elemento no se encuentra en el arbol"<<endl;
-//        return raiz;
-//    }
-//    else { // La raiz ha quedado vacia
-//        if (raiz->obtenerCuenta() == 0) {
-//            p = raiz;
-//            raiz = raiz->obtenerRama(0);
-//            delete p;
-//            return raiz;
-//        }
-//        return raiz;
-//    }
-//}
-
-//void ArbolB::eliminarRegistro(tipoClave cl, Pagina *ra, bool &encontrado) {
-//    int k = 0;
-//    if (ra==nullptr) {
-//        encontrado = false;
-//    }
-//    else {
-//        encontrado = buscarNodo(ra, cl, k);
-//        if (encontrado) {
-//            if (ra->obtenerRama(k - 1) == NULL) {
-//                quitar(ra, k);
-//            }
-//            else { // Noes hoja
-//                sucesor(ra, k);
-//                eliminarRegistro(ra->obtenerClave(k), ra->obtenerRama(k), encontrado);
-//                // PRUEBA
-//                if (ra->obtenerCuenta() < 2) {
-//                    this->restablecer(ra, k);
-//                }
-//                if (!encontrado) {
-//                    cout << "Error en el proceso";
-//                }
-//            }
-//        }
-//        else { // No ha sido localizada la clave
-//            eliminarRegistro(cl, ra->obtenerRama(k), encontrado);
-//            if (ra->obtenerRama(k) != NULL) {
-//                if (ra->obtenerRama(k)->obtenerCuenta() < 2) {
-//                    restablecer(ra, k);
-//                }
-//            }
-//        }
-//    }
-//}
-
-//void ArbolB::quitar(Pagina*& p, int k) {
-//    for (int j = k + 1; j <= p->obtenerCuenta(); j++) {
-//        p->cambiarClave(j - 1, p->obtenerClave(j));
-//        p->cambiarDato(j - 1, 0 , p->obtenerDato(j,0));
-//        p->cambiarDato(j - 1, 1 , p->obtenerDato(j,1));
-//        p->cambiarDato(j - 1, 2 , p->obtenerDato(j,2));
-//        p->cambiarDato(j - 1, 3 , p->obtenerDato(j,3));
-//        p->cambiarRamas(j - 1, p->obtenerRama(j));
-//    }
-//    p->cambiarCuenta(p->obtenerCuenta() - 1);
-//}
-
-//void ArbolB::sucesor(Pagina*& p, int k) {
-//    Pagina *q;
-//    q = p->obtenerRama(k);
-//    while (q->obtenerRama(0) != NULL) {
-//        q = q->obtenerRama(0);
-//    }
-//    p->cambiarClave(k, q->obtenerClave(1));
-//    p->cambiarDato(k,0, q->obtenerDato(1,0));
-//    p->cambiarDato(k,1, q->obtenerDato(1,1));
-//    p->cambiarDato(k,2, q->obtenerDato(1,2));
-//    p->cambiarDato(k,3, q->obtenerDato(1,3));
-//}
-
-//void ArbolB::restablecer(Pagina*& p, int k) {
-//    if (k > 0) {
-//        if (p->obtenerRama(k - 1)->obtenerCuenta() > 2) {
-//            cout<<"Mover derecha"<<endl;
-//            moverDerecha(p, k);
-//        }
-//        else {
-//            cout<<"Combina"<<endl;
-//            combina(p, k);
-//        }
-//    }
-//    else {
-//        if (p->obtenerRama(1)->obtenerCuenta() > 2) {
-//            cout<<"Mover izquierda"<<endl;
-//            moverIzquierda(p, 1);
-//        }
-//        else {
-//            cout<<"Combina"<<endl;
-//            combina(p, 1);
-//        }
-//    }
-//}
-
-//void ArbolB::moverDerecha(Pagina*& p, int k) {
-//    for (int j = p->obtenerRama(k)->obtenerCuenta(); j >= 1; j--) {
-//        p->obtenerRama(k)->cambiarClave(j + 1, p->obtenerRama(k)->obtenerClave(j));
-//        p->obtenerRama(k)->cambiarDato(j + 1, 0 , p->obtenerRama(k)->obtenerDato(j,0));
-//        p->obtenerRama(k)->cambiarDato(j + 1, 1 , p->obtenerRama(k)->obtenerDato(j,1));
-//        p->obtenerRama(k)->cambiarDato(j + 1, 2 , p->obtenerRama(k)->obtenerDato(j,2));
-//        p->obtenerRama(k)->cambiarDato(j + 1, 3 , p->obtenerRama(k)->obtenerDato(j,3));
-//        p->obtenerRama(k)->cambiarRamas(j + 1, p->obtenerRama(k)->obtenerRama(j));
-//    }
-//    p->obtenerRama(k)->cambiarCuenta(p->obtenerRama(k)->obtenerCuenta() + 1);
-//    p->obtenerRama(k)->cambiarRamas(1, p->obtenerRama(k)->obtenerRama(0));
-//    p->obtenerRama(k)->cambiarClave(1, p->obtenerClave(k));
-//    p->obtenerRama(k)->cambiarDato(1,0, p->obtenerDato(k,0));
-//    p->obtenerRama(k)->cambiarDato(1,1, p->obtenerDato(k,1));
-//     p->obtenerRama(k)->cambiarDato(1,2, p->obtenerDato(k,2));
-//     p->obtenerRama(k)->cambiarDato(1,3, p->obtenerDato(k,3));
-//    p->cambiarDato(k,0,p->obtenerRama(k - 1)->obtenerDato(p->obtenerRama(k - 1)->obtenerCuenta(),0));
-//    p->cambiarDato(k,1,p->obtenerRama(k - 1)->obtenerDato(p->obtenerRama(k - 1)->obtenerCuenta(),1));
-//    p->cambiarDato(k,2,p->obtenerRama(k - 1)->obtenerDato(p->obtenerRama(k - 1)->obtenerCuenta(),2));
-//    p->cambiarDato(k,3,p->obtenerRama(k - 1)->obtenerDato(p->obtenerRama(k - 1)->obtenerCuenta(),3));
-//    p->cambiarClave(k, p->obtenerRama(k - 1)->obtenerClave(p->obtenerRama(k - 1)->obtenerCuenta()));
-//    p->obtenerRama(k)->cambiarRamas(0, p->obtenerRama(k - 1)->obtenerRama(p->obtenerRama(k - 1)->obtenerCuenta()));
-//    p->obtenerRama(k - 1)->cambiarCuenta(p->obtenerRama(k - 1)->obtenerCuenta() - 1);
-//}
-
-
-//void ArbolB::moverIzquierda(Pagina*& p, int k) {
-//    p->obtenerRama(k - 1)->cambiarCuenta(p->obtenerRama(k - 1)->obtenerCuenta() + 1);
-//    p->obtenerRama(k - 1)->cambiarClave(p->obtenerRama(k - 1)->obtenerCuenta(), p->obtenerClave(k));
-//    p->obtenerRama(k - 1)->cambiarDato(p->obtenerRama(k - 1)->obtenerCuenta(),0, p->obtenerDato(k,0));
-//    p->obtenerRama(k - 1)->cambiarDato(p->obtenerRama(k - 1)->obtenerCuenta(),1, p->obtenerDato(k,1));
-//     p->obtenerRama(k - 1)->cambiarDato(p->obtenerRama(k - 1)->obtenerCuenta(),2, p->obtenerDato(k,2));
-//      p->obtenerRama(k - 1)->cambiarDato(p->obtenerRama(k - 1)->obtenerCuenta(),3, p->obtenerDato(k,3));
-//    p->obtenerRama(k - 1)->cambiarRamas(p->obtenerRama(k - 1)->obtenerCuenta(), p->obtenerRama(k)->obtenerRama(0));
-//    p->cambiarClave(k, p->obtenerRama(k)->obtenerClave(1));
-//    p->cambiarDato(k, 0 ,p->obtenerRama(k)->obtenerDato(1,0));
-//    p->cambiarDato(k, 1 ,p->obtenerRama(k)->obtenerDato(1,1));
-//    p->cambiarDato(k, 2 ,p->obtenerRama(k)->obtenerDato(1,2));
-//    p->cambiarDato(k, 3 ,p->obtenerRama(k)->obtenerDato(1,3));
-//    p->cambiarRamas(0, p->obtenerRama(k)->obtenerRama(1));
-//    p->obtenerRama(k)->cambiarCuenta(p->obtenerRama(k)->obtenerCuenta() - 1);
-
-//    for (int j = 1; j <= p->obtenerRama(k)->obtenerCuenta(); j++) {
-//        p->obtenerRama(k)->cambiarClave(j, p->obtenerRama(k)->obtenerClave(j + 1));
-//        p->obtenerRama(k)->cambiarDato(j,0, p->obtenerRama(k)->obtenerDato(j + 1,0));
-//        p->obtenerRama(k)->cambiarDato(j,1, p->obtenerRama(k)->obtenerDato(j + 1,1));
-//        p->obtenerRama(k)->cambiarDato(j,2, p->obtenerRama(k)->obtenerDato(j + 1,2));
-//        p->obtenerRama(k)->cambiarDato(j,3, p->obtenerRama(k)->obtenerDato(j + 1,3));
-//        p->obtenerRama(k)->cambiarRamas(j, p->obtenerRama(k)->obtenerRama(j + 1));
-//    }
-//}
-
-
-//void ArbolB::combina(Pagina*& p, int k) {
-//    Pagina *q = new Pagina(this->orden);
-//    q = p->obtenerRama(k);
-
-//    p->obtenerRama(k - 1)->cambiarCuenta(p->obtenerRama(k - 1)->obtenerCuenta() + 1);
-//    p->obtenerRama(k - 1)->cambiarClave(p->obtenerRama(k - 1)->obtenerCuenta(), p->obtenerClave(k));
-//    p->obtenerRama(k - 1)->cambiarDato(p->obtenerRama(k - 1)->obtenerCuenta(),0 , p->obtenerDato(k,0));
-//    p->obtenerRama(k - 1)->cambiarDato(p->obtenerRama(k - 1)->obtenerCuenta(),1 , p->obtenerDato(k,1));
-//    p->obtenerRama(k - 1)->cambiarDato(p->obtenerRama(k - 1)->obtenerCuenta(),2 , p->obtenerDato(k,2));
-//    p->obtenerRama(k - 1)->cambiarDato(p->obtenerRama(k - 1)->obtenerCuenta(),3 , p->obtenerDato(k,3));
-//    p->obtenerRama(k - 1)->cambiarRamas(p->obtenerRama(k - 1)->obtenerCuenta(), q->obtenerRama(0));
-
-//    for (int j = 1; j <= q->obtenerCuenta(); j++) {
-//        p->obtenerRama(k - 1)->cambiarCuenta(p->obtenerRama(k - 1)->obtenerCuenta() + 1);
-//        p->obtenerRama(k - 1)->cambiarClave(p->obtenerRama(k - 1)->obtenerCuenta(), q->obtenerClave(j));
-//        p->obtenerRama(k - 1)->cambiarDato(p->obtenerRama(k - 1)->obtenerCuenta(), 0 , q->obtenerDato(j, 0));
-//        p->obtenerRama(k - 1)->cambiarDato(p->obtenerRama(k - 1)->obtenerCuenta(), 1 , q->obtenerDato(j, 1));
-//        p->obtenerRama(k - 1)->cambiarDato(p->obtenerRama(k - 1)->obtenerCuenta(), 2 , q->obtenerDato(j, 2));
-//        p->obtenerRama(k - 1)->cambiarDato(p->obtenerRama(k - 1)->obtenerCuenta(), 3 , q->obtenerDato(j, 3));
-//        p->obtenerRama(k - 1)->cambiarRamas(p->obtenerRama(k - 1)->obtenerCuenta(), q->obtenerRama(j));
-//    }
-
-//    for (int j = k; j <= p->obtenerCuenta() - 1; j++) {
-//        p->cambiarClave(j, p->obtenerClave(j + 1));
-//        p->cambiarDato(j,0, p->obtenerDato(j + 1,0));
-//        p->cambiarDato(j,1, p->obtenerDato(j + 1,1));
-//        p->cambiarDato(j,2, p->obtenerDato(j + 1,2));
-//        p->cambiarDato(j,3, p->obtenerDato(j + 1,3));
-//        p->cambiarRamas(j, p->obtenerRama(j + 1));
-//    }
-//    p->cambiarCuenta(p->obtenerCuenta() - 1);
-//    delete q;
-//}
-
-
-
-
-
 #endif // PROGRAPRINCIPAL_H

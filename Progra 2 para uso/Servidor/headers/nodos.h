@@ -36,7 +36,6 @@ Clase amiga de lista marcas y la clase principal.
         siguiente=NULL;
         color=ROJO;
     }
-    bool isOnLeft() { return this == padre->hIzq; }
     float precio;
    private:
     string codPasillo;
@@ -50,20 +49,6 @@ Clase amiga de lista marcas y la clase principal.
     nodoMarca *padre;
     nodoMarca *siguiente;
     Color color;
-    nodoMarca *sibling() {
-        if (padre == NULL)
-          return NULL;
-
-        if (isOnLeft())
-          return padre->hDer;
-
-        return padre->hIzq;
-      }
-    bool hasRedChild() {
-        return (hIzq != NULL and hIzq->color == ROJO) or
-               (hDer != NULL and hDer->color == ROJO);
-      }
-
 
    friend class AVLProducto;
    friend class arbolPas;
@@ -306,6 +291,8 @@ class nodoCola {
        codCiudad=ciudad;
        siguiente = NULL;
        pila=NULL;
+       descriptor= descri;
+       cantFact=1;
        descriptor=descri;
     }
 
@@ -319,7 +306,7 @@ nodoCola(int ced, string nom, string ciudad, string tel, string correo,qintptr d
        pila=NULL;
        siguiente = signodo;
        descriptor= descri;
-       cantFact=0;
+       cantFact=1;
        montoFact=0;
     }
     nodoPila *pila;
@@ -357,13 +344,13 @@ class nodoListaVentas {
         cantidad=cant;
         siguiente=signodo;
     }
-   private:
-    int cantidad;
+    nodoListaVentas *siguiente;
     string codPasillo;
+   private:
+    int cantidad;   
     string codProducto;
     string codMarca;
     string codCiudad;
-    nodoListaVentas *siguiente;
 
    friend class listaVentas;
    friend class Principal;

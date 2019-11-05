@@ -21,9 +21,9 @@ void Admin::run()
             fin=false;
             cout<<"Bienvenido!"<<endl;
             cout<<"Usted tiene las opciones de: "<<endl;
-            cout<<"1.Borrar Cliente"<<endl;
-            cout<<"2.Escribir B"<<endl;
-            cout<<"3.Lista creciente"<<endl;
+            cout<<"1.Insertar Pasillo"<<endl;
+            cout<<"2.Insertar Producto"<<endl;
+            cout<<"3.Insertar Marca"<<endl;
             cout<<"4.Consultar el % impuesto de un producto"<<endl;
             cout<<"5.Modificar el Precio"<<endl;
             cout<<"6.Modificar el % de impuesto"<<endl;
@@ -41,26 +41,20 @@ void Admin::run()
                 string resp;
                 cin>>resp;
                 if (resp=="1"){
-                    int x;
-                    cout<<"Digite la cedula del cliente a borrar: ";
-                    cin>>x;
-                    arbolClientes.eliminar(x);
-                    cout<<endl<<"Cliente borrado"<<endl;
+                    arbolPasillos=arbolPasillos.insertarPasillo();
                 }
                 else if (resp=="2"){
-                    arbolClientes.escribir();
+                    arbolPasillos=arbolPasillos.insertarProductos();
                 }
                 else if (resp=="3"){
-                    arbolClientes.listaCreciente();
+                    //arbolPasillos=princi.insertarMarca();
                 }
                 else if (resp=="4"){
-                    int x;
-                    cout<<"Digite la cedula del cliente a insertar: ";
-                    cin>>x;
-                    arbolClientes.insertar(x,"Andres Aguilar","12345678","23","Hola");
+                    string impu=princi.ConsultarImpuesto();
+                    cout<<impu<<endl;
                 }
                 else if (resp=="5"){
-                    //princi.ModificarPrecio();
+                    princi.ModificarPrecio();
                 }
                 else if (resp=="6"){
                     princi.ModificarImpuesto();
@@ -87,7 +81,7 @@ void Admin::run()
                         cout<<"No se han realizado compras aun"<<endl;
                 }
                 else if (resp=="11"){
-                    princi.revisarGondolas();
+                    //princi.revisarGondolas();
                 }
                 else if (resp=="12"){
                     princi.cargarInventario();
@@ -109,3 +103,35 @@ void Admin::run()
     }
 }
 
+//void Admin::run()
+//{
+//    bool fin=true;
+//    while(fin)
+//    {
+//        int identificacion;
+//        cout<<"Digite su codigo de administrador: ";
+//        cin>>identificacion;
+//        cout<<"\n";
+//        if(princi.validarAdministrador(arbolAdmin,identificacion))
+//        {
+//            arbolPasillos.bloqueo=true;
+//            string uno;
+//            cout<<"Bienvenido!"<<endl;
+//            cout<<"Ponga 1 y vea que pasa prro: ";
+//            cin>>uno;
+//            if(uno=="1")
+//            {
+//                if(!princi.cola.ListaVacia())
+//                {
+//                    qintptr descrip=princi.cola.primero->descriptor;//BORRAR PRIMERO
+//                    princi.agregarListaOrdenada();
+
+//                }
+//                else
+//                    cout<<"No se han realizado compras aun"<<endl;
+//            }
+//        }
+//        else
+//            cout<<"Codigo invalido"<<endl;
+//    }
+//}

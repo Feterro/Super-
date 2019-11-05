@@ -31,7 +31,7 @@ void serverSocket::readyRead()
     string infoConv=info.toStdString();
     if(infoConv.substr(0,2)=="IN"||infoConv.substr(0,2)=="RE"||infoConv.substr(0,2)=="CO"||infoConv.substr(0,2)=="CA"||infoConv.substr(0,2)=="CB"||infoConv.substr(0,2)=="CF"||infoConv.substr(0,2)=="ZP"||infoConv.substr(0,2)=="ZC"||infoConv.substr(0,2)=="ZR")
           this->funcionesCliente(infoConv);
-    else if(infoConv.substr(0,2)=="NX"||infoConv.substr(0,2)=="LX"||infoConv.substr(0,2)=="MX"||infoConv.substr(0,2)=="XZ"||infoConv.substr(0,2)=="BX"||infoConv.substr(0,2)=="XO"||infoConv.substr(0,2)=="XA"||infoConv.substr(0,2)=="XB"||infoConv.substr(0,2)=="XB"||infoConv.substr(0,2)=="XV"||infoConv.substr(0,2)=="XP"||infoConv.substr(0,2)=="XR"||infoConv.substr(0,2)=="XM"||infoConv.substr(0,2)=="XC")
+    else if(infoConv.substr(0,2)=="RG"||infoConv.substr(0,2)=="LG"||infoConv.substr(0,2)=="FK"||infoConv.substr(0,2)=="WZ"||infoConv.substr(0,2)=="YZ"||infoConv.substr(0,2)=="NX"||infoConv.substr(0,2)=="LX"||infoConv.substr(0,2)=="MX"||infoConv.substr(0,2)=="XZ"||infoConv.substr(0,2)=="BX"||infoConv.substr(0,2)=="XO"||infoConv.substr(0,2)=="XA"||infoConv.substr(0,2)=="XB"||infoConv.substr(0,2)=="XD"||infoConv.substr(0,2)=="XV"||infoConv.substr(0,2)=="XP"||infoConv.substr(0,2)=="XR"||infoConv.substr(0,2)=="XM"||infoConv.substr(0,2)=="XC")
         this->funcionesAdministrador(infoConv);
 }
 void serverSocket::funcionesAdministrador(string infoConv)
@@ -43,6 +43,65 @@ void serverSocket::funcionesAdministrador(string infoConv)
     else if(infoConv.substr(0,2)=="XD")
     {
         arbolPasillos.bloqueo=false;
+    }
+    else if(infoConv.substr(0,2)=="LG")
+    {
+        string lis=princi.enlistarGondolas();
+        //cout<<lis<<endl;
+        int num=0;
+        pnodoVenta aux=princi.ventas.primero;
+        while(num<princi.ventas.largoLista())
+        {
+            cout<<aux->codPasillo<<endl;
+            aux=aux->siguiente;
+            num++;
+        }
+        QByteArray listaPro(lis.c_str(), lis.length());
+        this->socket->write("LG;"+listaPro);
+    }
+    else if(infoConv.substr(0,2)=="RG")
+    {
+        char cstr[infoConv.size() + 1];
+        strcpy(cstr, infoConv.c_str());
+        char var[]=";";
+        char *token = strtok(cstr,var);
+        token = strtok(NULL,var);
+        string cantidad=token;
+        princi.revisarGondolas(stoi(cantidad));
+    }
+    else if(infoConv.substr(0,2)=="YZ")
+    {
+        char cstr[infoConv.size() + 1];
+        strcpy(cstr, infoConv.c_str());
+        char var[]=";";
+        char *token = strtok(cstr,var);
+        string codi=token;
+        token = strtok(NULL,var);
+        string codPas=token;
+        token = strtok(NULL,var);
+        string codPro=token;
+        token = strtok(NULL,var);
+        string codMar=token;
+        string dev=princi.consultarUnPrecio(codPas,codPro,codMar);
+        QByteArray listaPro(dev.c_str(), dev.length());
+        this->socket->write("MB;"+listaPro);
+    }
+    else if(infoConv.substr(0,2)=="WZ")
+    {
+        char cstr[infoConv.size() + 1];
+        strcpy(cstr, infoConv.c_str());
+        char var[]=";";
+        char *token = strtok(cstr,var);
+        string codi=token;
+        token = strtok(NULL,var);
+        string codPas=token;
+        token = strtok(NULL,var);
+        string codPro=token;
+        token = strtok(NULL,var);
+        string codMar=token;
+        string dev=princi.ConsultarCanasta(codPas,codPro,codMar);
+        QByteArray listaPro(dev.c_str(), dev.length());
+        this->socket->write("MB;"+listaPro);
     }
     else if(infoConv.substr(0,2)=="NX")
     {
@@ -254,6 +313,17 @@ void serverSocket::funcionesAdministrador(string infoConv)
         mar->precio=preci;
         this->socket->write("LE;Cambio de precio realizado");
         arbolPasillos.InordenTriple(arbolPasillos.raiz);
+    }
+    else if (infoConv.substr(0,2)=="FK") {
+        int fac=princi.cola.primero->cedula;
+        string fact=to_string(fac);
+        int cantF=princi.cola.primero->cantFact;
+        string cantf=to_string(cantF);
+        string nombre=fact+"_"+cantf+".txt";
+        cout<<nombre<<endl;
+        string factura=princi.agregarListaOrdenada();
+        cout<<"\n\n"<<factura<<endl;
+        crearFactura(nombre,factura);
     }
 }
 void serverSocket::funcionesCliente(string infoConv)
@@ -513,4 +583,11 @@ void serverSocket::agregar(string infoConv)
     }
     else
         this->socket->write("BK");
+}
+void serverSocket::crearFactura(string nombre, string texto)
+{
+    ofstream archivo;
+    archivo.open(nombre,ios::out);
+    archivo<<texto;
+    archivo.close();
 }

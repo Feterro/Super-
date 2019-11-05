@@ -35,8 +35,8 @@ void ThreadAdmin::run()
                 cout<<"8.Consultar un precio"<<endl;
                 cout<<"9.Consultar si un producto es de la canasta"<<endl;
                 cout<<"10.Facturar"<<endl;
-                cout<<"11.Verificar inventario"<<endl;
-                cout<<"12.Verificar gondolas"<<endl;
+                cout<<"11.Verificar gondolas"<<endl;
+                cout<<"12.Verificar inventario"<<endl;
                 cout<<"13.Reportes"<<endl;
                 cout<<"14.Salir"<<endl;
                 cout<<"\nEscriba el numero de la opcion que desea: "<<endl;
@@ -52,7 +52,7 @@ void ThreadAdmin::run()
                     insertarMar();
                 }
                 else if (resp=="4"){
-                    consImp();
+                    cons(resp);
                 }
                 else if (resp=="5"){
                     modificar(resp);
@@ -64,25 +64,17 @@ void ThreadAdmin::run()
                     modificar(resp);
                 }
                 else if (resp=="8"){
-                    //string precio=princi.consultarUnPrecioAdm();
-                    //cout<<precio<<endl;
+                    cons(resp);
                 }
                 else if (resp=="9"){
-                    //string canasta=princi.ConsultarCanasta();
-                    //cout<<canasta<<endl;
+                    cons(resp);
                 }
                 else if (resp=="10"){
-                    //if(!princi.cola.ListaVacia())
-                    //                    {
-                    //                        //qintptr descrip=princi.cola.primero->descriptor;
-                    //                        //string factura=princi.agregarListaOrdenada();
-                    //                        //emit enviarFactura(descrip, QByteArray::fromStdString(factura));
-                    //                    }
-                    //                    else
-                    //                        cout<<"No se han realizado compras aun"<<endl;
+                    emit escribirServidor(QString::fromStdString("FK").toUtf8());
+                    this->sleep(1);
                 }
                 else if (resp=="11"){
-                    //princi.revisarGondolas();
+                    revisarGondolas();
                 }
                 else if (resp=="12"){
                     //princi.cargarInventario();
@@ -95,6 +87,7 @@ void ThreadAdmin::run()
                     cout<<"Gracias por usar el sistema"<<endl;
                     menu=false;
                     fin=true;
+                    emit escribirServidor(QString::fromStdString("XD").toUtf8());
                 }
             }
 
@@ -103,6 +96,24 @@ void ThreadAdmin::run()
             cout<<"Codigo invalido"<<endl;
     }
 }
+void ThreadAdmin::revisarGondolas()
+{
+    cout<<"\n"<<endl;
+    emit escribirServidor(QString::fromStdString("LG").toUtf8());
+    this->sleep(1);
+    int cont=socketAdmin.cantRecar;
+    cout<<"\nDigite la cantidad de los productos uno a uno"<<endl;
+    while(cont>0)
+    {
+        string soli;
+        cout<<"\nDigite la cantidad de recarga: ";
+        cin>>soli;
+        emit escribirServidor(QString::fromStdString("RG;"+soli).toUtf8());
+        cont--;
+    }
+    cout<<"\nRecarga terminada!\n"<<endl;
+}
+
 void ThreadAdmin::modificar(string resp)
 {
     cout<<"\n";
@@ -147,7 +158,7 @@ void ThreadAdmin::modificar(string resp)
     cout<<"\n"<<endl;
     this->sleep(1);
 }
-void ThreadAdmin::consImp()
+void ThreadAdmin::cons(string cod)
 {
     cout<<"\n";
     emit escribirServidor(QString::fromStdString("XO").toUtf8());
@@ -169,8 +180,13 @@ void ThreadAdmin::consImp()
     cout<<"Digite el codigo de Marca que desea: "<<endl;
     cin>>env;
     codComp=codComp+";"+env;
-    emit escribirServidor(QString::fromStdString("XZ;"+codComp).toUtf8());
-    cout<<"\n"<<endl;
+    if(cod=="4")
+        emit escribirServidor(QString::fromStdString("XZ;"+codComp).toUtf8());
+    else if(cod=="8")
+        emit escribirServidor(QString::fromStdString("YZ;"+codComp).toUtf8());
+    else if(cod=="9")
+        emit escribirServidor(QString::fromStdString("WZ;"+codComp).toUtf8());
+    cout<<"\n\n"<<endl;
     this->sleep(1);
 }
 void ThreadAdmin::insertarPas()
