@@ -26,7 +26,6 @@ void Ciudad::Mostrar()
     Muestra contenido de la lista de ciudades
     */
 
-
     nodoCiudad *aux;
     if (primero== NULL)
         cout << "No hay elementos";
@@ -259,7 +258,7 @@ string RN::InordenMarServ(pnodoMarca R){
  if(R==NULL){
         return"";
     }else{
-        string dev=R->codMarca+" "+ R->nombre+"\n";
+        string dev=R->codMarca+":"+ R->nombre+"\n";
         dev+=InordenMarServ(R->hIzq);
         dev+=InordenMarServ(R->hDer);
         return dev;
@@ -387,7 +386,7 @@ string arbolPas::InordenServ(pnodoPas R){
     if(R==NULL){
         return "";
     }else{
-        string conc=R->codPasillo+ " " + R->nombre +"\n";
+        string conc=R->codPasillo+ ":" + R->nombre +"\n";
         conc+=InordenServ(R->hIzq);
         conc+=InordenServ(R->hDer);
         return conc;
@@ -662,7 +661,7 @@ string AVLProducto::InordenProServ(pnodoProd R){
     if(R==NULL){
         return "";
     }else{
-        string conc=R->codProducto+" "+R->nombre+"\n";
+        string conc=R->codProducto+":"+R->nombre+"\n";
         conc+=InordenProServ(R->hIzq);
         conc+=InordenProServ(R->hDer);
         return conc;
@@ -2635,6 +2634,15 @@ string Principal::pagar(Pila pila){
 string Principal::agregarListaOrdenada(){
 //Metodo primero
     pnodoCola aux=cola.primero;
+    pnodoCola auxi=princi.cliente.primeroClie;
+    while(auxi->siguiente!=NULL)
+    {
+        if(auxi->cedula==aux->cedula)
+        {
+            auxi->cantFact=(auxi->cantFact)+1;
+        }
+        auxi=auxi->siguiente;
+    }
     pnodoPila aux2=aux->pila;
     Pila lista1;
     while(aux2!=NULL)

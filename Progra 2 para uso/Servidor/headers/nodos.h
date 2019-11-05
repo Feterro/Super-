@@ -280,6 +280,7 @@ class nodoCola {
        codCiudad=ciudad;
        siguiente = NULL;
        pila=NULL;
+       cantFact=1;
        descriptor=0;
     }
     nodoCola(int ced, string nom, string ciudad,  string tel, string correo,qintptr descri)

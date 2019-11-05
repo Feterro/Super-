@@ -317,7 +317,16 @@ void serverSocket::funcionesAdministrador(string infoConv)
     else if (infoConv.substr(0,2)=="FK") {
         int fac=princi.cola.primero->cedula;
         string fact=to_string(fac);
-        int cantF=princi.cola.primero->cantFact;
+        pnodoCola auxi=princi.cliente.primeroClie;
+        int cantF=0;
+        while(auxi->siguiente!=NULL)
+        {
+            if(auxi->cedula==princi.cola.primero->cedula)
+            {
+                cantF=auxi->cantFact;
+            }
+            auxi=auxi->siguiente;
+        }
         string cantf=to_string(cantF);
         string nombre=fact+"_"+cantf+".txt";
         cout<<nombre<<endl;
@@ -337,6 +346,14 @@ void serverSocket::funcionesCliente(string infoConv)
         else
             this->socket->write("BK");
     }
+//    else if(infoConv.substr(0,2)=="YY")
+//    {
+//        stringstream linea(infoConv);
+//        string o;
+//        while(getline(linea,o))
+//            cout<<o;
+
+//    }
     else if(infoConv.substr(0,2)=="RE")
     {
         if(arbolPasillos.bloqueo==false)

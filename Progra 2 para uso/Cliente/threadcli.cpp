@@ -64,6 +64,7 @@ void ThreadCli::run()
                     }
                     else if(decis=="6")
                     {
+                        emit escribirServidor(QString::fromStdString("YY"+cedDig).toUtf8());
                         cout<<"Gracias por usar nuestro servicio!"<<endl;
                         break;
                     }

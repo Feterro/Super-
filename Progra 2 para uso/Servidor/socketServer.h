@@ -9,6 +9,8 @@
 #include "globalHeaders.h"
 #include "headers/avlProducto.h"
 #include <sstream>
+#include <iostream>
+#include <string>
 //#include "Progra2principal.h"
 
 using namespace std;
