@@ -29,7 +29,7 @@ void serverSocket::readyRead()
     QByteArray info=socket->readAll();
     //qDebug()<<info<<endl;
     string infoConv=info.toStdString();
-    if(infoConv.substr(0,2)=="IN"||infoConv.substr(0,2)=="RE"||infoConv.substr(0,2)=="CO"||infoConv.substr(0,2)=="CA"||infoConv.substr(0,2)=="CB"||infoConv.substr(0,2)=="CF"||infoConv.substr(0,2)=="ZP"||infoConv.substr(0,2)=="ZC"||infoConv.substr(0,2)=="ZR")
+    if(infoConv.substr(0,2)=="IN"||infoConv.substr(0,2)=="RK"||infoConv.substr(0,2)=="KA"||infoConv.substr(0,2)=="RE"||infoConv.substr(0,2)=="CO"||infoConv.substr(0,2)=="CA"||infoConv.substr(0,2)=="CB"||infoConv.substr(0,2)=="CF"||infoConv.substr(0,2)=="ZP"||infoConv.substr(0,2)=="ZC"||infoConv.substr(0,2)=="ZR")
           this->funcionesCliente(infoConv);
     else if(infoConv.substr(0,2)=="RG"||infoConv.substr(0,2)=="LG"||infoConv.substr(0,2)=="FK"||infoConv.substr(0,2)=="WZ"||infoConv.substr(0,2)=="YZ"||infoConv.substr(0,2)=="NX"||infoConv.substr(0,2)=="LX"||infoConv.substr(0,2)=="MX"||infoConv.substr(0,2)=="XZ"||infoConv.substr(0,2)=="BX"||infoConv.substr(0,2)=="XO"||infoConv.substr(0,2)=="XA"||infoConv.substr(0,2)=="XB"||infoConv.substr(0,2)=="XD"||infoConv.substr(0,2)=="XV"||infoConv.substr(0,2)=="XP"||infoConv.substr(0,2)=="XR"||infoConv.substr(0,2)=="XM"||infoConv.substr(0,2)=="XC")
         this->funcionesAdministrador(infoConv);
@@ -346,14 +346,46 @@ void serverSocket::funcionesCliente(string infoConv)
         else
             this->socket->write("BK");
     }
-//    else if(infoConv.substr(0,2)=="YY")
-//    {
-//        stringstream linea(infoConv);
-//        string o;
-//        while(getline(linea,o))
-//            cout<<o;
+    else if(infoConv.substr(0,2)=="KA")
+    {
+        if(arbolPasillos.bloqueo==false)
+        {
+            char cstr[infoConv.size() + 1];
+            strcpy(cstr, infoConv.c_str());
+            char var[]=";";
+            char *token = strtok(cstr,var);
+            token = strtok(NULL,var);
+            string cedu=token;
+            int ced=stoi(cedu);
+            string canti;
+            pnodoCola auxi=princi.cliente.primeroClie;
+            while(auxi->siguiente!=NULL)
+            {
+                if(auxi->cedula==ced)
+                {
+                    canti=to_string(auxi->cantFact-1);
+                }
+                auxi=auxi->siguiente;
+            }
+            string escr="Usted tiene "+canti+" facturas, digite el numero de cual desea ver\n";
+            QByteArray listaPa(escr.c_str(), escr.length());
+            this->socket->write("MB;"+listaPa);
+        }
 
-//    }
+    }
+    else if(infoConv.substr(0,2)=="RK")
+    {
+        char cstr[infoConv.size() + 1];
+        strcpy(cstr, infoConv.c_str());
+        char var[]=";";
+        char *token = strtok(cstr,var);
+        token = strtok(NULL,var);
+        string nombre=token;
+        cout<<nombre<<endl;
+        string factura=princi.consultarFactura(nombre);
+        QByteArray listaPa(factura.c_str(), factura.length());
+        this->socket->write("MB;"+listaPa);
+    }
     else if(infoConv.substr(0,2)=="RE")
     {
         if(arbolPasillos.bloqueo==false)

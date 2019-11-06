@@ -21,6 +21,7 @@ public:
     void consImp();
     void consCan();
     void reportes();
+    void revFactura();
 
 
 signals:

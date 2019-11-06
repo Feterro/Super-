@@ -22,20 +22,21 @@ void ThreadCli::run()
                 cout<<"Longitud de cedula incorrecto"<<endl;
         }
         emit escribirServidor(QString::fromStdString("IN"+cedDig).toUtf8());
-        this->sleep(2);
+        this->sleep(1);
         if(socketCli.registro==true)
         {
             string decis;
             while(true)
             {
-               this->sleep(1);
+               //this->sleep(1); //posible sleep importante
                cout<<"Menu\n"<<endl;
                cout<<"\n 1)Consultar Precio";
                cout<<"\n 2)Consultar si un producto es de la canasta";
                cout<<"\n 3)Consultar el % impuesto de un producto";
                cout<<"\n 4)Comprar";
-               cout<<"\n 5)Reportes";
-               cout<<"\n 6)Salir";
+               cout<<"\n 5)Consultar facturas";
+               cout<<"\n 6)Reportes";
+               cout<<"\n 7)Salir";
                cout<<"\n Digite el numero de la opcion deseada: "<<endl;
                cin>>decis;
                emit escribirServidor(QString::fromStdString("IN"+cedDig).toUtf8());
@@ -60,9 +61,13 @@ void ThreadCli::run()
                     }
                     else if(decis=="5")
                     {
-                        reportes();
+                        revFactura();
                     }
                     else if(decis=="6")
+                    {
+                        reportes();
+                    }
+                    else if(decis=="7")
                     {
                         emit escribirServidor(QString::fromStdString("YY"+cedDig).toUtf8());
                         cout<<"Gracias por usar nuestro servicio!"<<endl;
@@ -156,7 +161,7 @@ void ThreadCli::run()
                                     }
                                     else if(deci=="4")
                                     {
-
+                                        reportes();
                                     }
                                     else if(deci=="5")
                                     {
@@ -180,6 +185,20 @@ void ThreadCli::run()
                 }
             }
     }
+}
+
+void ThreadCli::revFactura()
+{
+    string cedu;
+    cout<<"\n Digite su numero de cedula: "<<endl;
+    cin>>cedu;
+    emit escribirServidor(QString::fromStdString("KA;"+cedu).toUtf8());
+    this->sleep(1);
+    string numArch;
+    cin>>numArch;
+    string nomArch=cedu+"_"+numArch+".txt";
+    emit escribirServidor(QString::fromStdString("RK;"+nomArch).toUtf8());
+    this->sleep(1);
 }
 
 void ThreadCli::reportes()

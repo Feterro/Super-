@@ -1907,7 +1907,7 @@ string Principal::consultarUnPrecio(string codPas, string codProd, string codMar
             if(vali3){
                 pnodoMarca mar=arbolPasillos.encontrarNodo1(arbolPasillos.raiz, codPas, codProd, codMar, mar);
                 string precio=to_string(mar->precio);
-                return "El precio de "+mar->nombre+" es de: "+precio;
+                return precio;
             }
             else{
             return"Codigos invalidos,trate de nuevo";
@@ -3717,5 +3717,20 @@ void AVLProducto::borrarMarca( string codProd, string codMarca){
         return;
     }
     borrarMarca(this->raiz,codProd,codMarca);
+}
+string Principal::consultarFactura(string nomArch)
+{
+    ifstream archivo;
+    string texto;
+    archivo.open(nomArch,ios::in);
+    if(archivo.fail())
+        return"Factura no encontrada";
+    string factura;
+    while(!archivo.eof())
+    {
+        getline(archivo,texto);
+        factura=factura+texto+"\n";
+    }
+    return factura;
 }
 #endif // PROGRAPRINCIPAL_H

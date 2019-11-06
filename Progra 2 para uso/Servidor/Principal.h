@@ -123,6 +123,7 @@ class Principal
         pnodoProd masCargadoGondola(pnodoPas R, pnodoProd nodo2);
         pnodoProd masGondola(pnodoProd R, pnodoProd nodo2);
         void clienteMasFacturas();
+        string consultarFactura(string nomArch);
         colaCliente cola;
         lista cliente;
         listaVentas ventas;
