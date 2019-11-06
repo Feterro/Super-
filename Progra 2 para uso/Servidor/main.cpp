@@ -12,6 +12,7 @@ ArbolInventario arbolInventario;
 Ciudad listaCiudades;
 Principal princi;
 Servidor servGlo;
+Graph grafoArt = montarGrafo("Ciudades.txt", "Ptos de articulacion.txt");
 
 int main(int argc, char *argv[])
 {
@@ -37,8 +38,10 @@ int main(int argc, char *argv[])
     QCoreApplication a(argc, argv);
     servGlo.inicioServidor();
 
-    Admin administrador;
-    administrador.start();
+//    Admin administrador;
+//    administrador.start();
+    string result = grafoArt.AP();
+    cout<<result;
 
     return a.exec();
 }

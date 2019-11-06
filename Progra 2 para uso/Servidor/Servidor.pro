@@ -16,6 +16,7 @@ DEFINES += QT_DEPRECATED_WARNINGS
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+        GrafoArtic.cpp \
         admin.cpp \
         main.cpp \
         server.cpp \
@@ -27,6 +28,7 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
 
 HEADERS += \
+    GrafoArtic.h \
     Principal.h \
     Prograprincipal.h \
     admin.h \
@@ -46,7 +48,11 @@ HEADERS += \
 
 DISTFILES += \
     Administradores.txt \
+    Ciudades.txt \
     Clientes.txt \
     MarcasProductos.txt \
     Pasillos.txt \
-    ProductosPasillos.txt
+    ProductosPasillos.txt \
+    Ptos de articulacion.txt \
+    Ptos de articulacion.txt \
+    Ptos de articulacion.txt

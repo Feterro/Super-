@@ -8,6 +8,7 @@
 #include "headers/nodos.h"
 #include "headers/rojinegro.h"
 #include "Principal.h"
+#include "GrafoArtic.h"
 
 extern  ArbolB arbolClientes;
 extern  ArbolB arbolAdmin;
@@ -15,5 +16,6 @@ extern  arbolPas arbolPasillos;
 extern  ArbolInventario arbolInventario;
 extern  Ciudad listaCiudades;
 extern  Principal princi;
+extern  Graph grafoArt;
 
 #endif // GLOBALHEADERS_H
