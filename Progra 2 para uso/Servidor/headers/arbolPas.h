@@ -27,7 +27,7 @@ los pasillos. Base de la estructura creada con archivos
     arbolPas arbolProductos();
     arbolPas arbolMarcas();
     void MostrarPasillos(pnodoPas ra);
-    bool encontrarPasillo(bool encontrado,pnodoPas ra, string codPas);
+    bool encontrarPasillo(bool &encontrado,pnodoPas ra, string codPas);
     void MostrarProductos(pnodoPas r, string codPas);
     bool ValidarProducto1(pnodoPas ra, string codPas, string codProd, bool valido);
     void MostrarMarcas(pnodoPas R, string codPas, string codProd);
@@ -42,6 +42,13 @@ los pasillos. Base de la estructura creada con archivos
     void ventaPasillo(pnodoPas R, string codPas);
     pnodoPas nodoPasillos(pnodoPas R,string codPas, pnodoPas pasi);
     void MostrarPasillosReporte(pnodoPas r);
+    pnodoPas borrarBinario (pnodoPas ra, string codPas);
+    void borrar (pnodoPas &D);
+    void borrarPasillo (string codPas);
+    void borrarProducto (pnodoPas &R, string codPas, string codProd);
+    void borrarProducto (string codPas, string codProd);
+    void borrarMarca(pnodoPas &R, string codPas, string codProd, string codMarca);
+    void borrarMarca(string codPas, string codProd, string codMarca);
 
 };
 #endif // ARBOLPAS_H

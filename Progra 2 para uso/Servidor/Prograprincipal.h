@@ -16,6 +16,18 @@
 #include "globalHeaders.h"
 
 using namespace std;
+
+bool esNumerico (string pstring){
+    int lim = pstring.length();
+    for (int i = 0;i<lim;i++){
+        char temp = pstring[i];
+        if(!isdigit(temp)){
+            return false;
+        }
+    }
+    return true;
+}
+
 /*
 Metodos simples de insertar, mostrar ect
 */
@@ -1558,7 +1570,7 @@ void arbolPas::MostrarPasillos(pnodoPas ra){
         MostrarPasillos(ra->hDer);
     }
 }
-bool arbolPas::encontrarPasillo(bool encontrado, pnodoPas ra, string codPas){
+bool arbolPas::encontrarPasillo(bool &encontrado, pnodoPas ra, string codPas){
     /*
     Búsqueda de pasillo en el árbol
     */
@@ -3241,5 +3253,469 @@ void Principal::clienteMasFacturas(){
     archivo<<"\nFactura de mayor monto: "<<endl;
     archivo<<"                          "<<masMonto->cedula<<" "<<masMonto->nombre<<" "<<masMonto->montoFact<<endl;
     archivo.close();
+}
+
+pnodoPas arbolPas::borrarBinario (pnodoPas root, string k)
+{
+    // Base case
+    if (root == NULL)
+        return root;
+
+    // Recursive calls for ancestors of
+    // node to be deleted
+    if (stoi (root->codPasillo) > stoi (k)) {
+        root->hIzq = borrarBinario(root->hIzq, k);
+        return root;
+    }
+    else if (stoi(root->codPasillo) < stoi (k)) {
+        root->hDer = borrarBinario(root->hDer, k);
+        return root;
+    }
+
+    // We reach here when root is the node
+    // to be deleted.
+
+    // If one of the children is empty
+    if (root->hIzq == NULL) {
+        pnodoPas temp = root->hDer;
+        delete root;
+        return temp;
+    }
+    else if (root->hDer == NULL) {
+        pnodoPas temp = root->hIzq;
+        delete root;
+        return temp;
+    }
+
+    // If both children exist
+    else {
+
+        pnodoPas succParent = root->hDer;
+
+        // Find successor
+        pnodoPas succ = root->hDer;
+        while (succ->hIzq != NULL) {
+            succParent = succ;
+            succ = succ->hIzq;
+        }
+
+        // Delete successor.  Since successor
+        // is always left child of its parent
+        // we can safely make successor's right
+        // right child as left of its parent.
+        succParent->hIzq = succ->hDer;
+
+        // Copy Successor Data to root
+        root->codPasillo = succ->codPasillo;
+        root->subsiguiente = succ->subsiguiente;
+        root->pasvis = succ->pasvis;
+        root->nombre = succ->nombre;
+
+        // Delete Successor and return root
+        delete succ;
+        return root;
+    }
+}
+
+void arbolPas::borrarPasillo(string codPas){
+    bool temp;
+    encontrarPasillo(temp,this->raiz,codPas);
+    if (temp){
+        this->raiz = borrarBinario(this->raiz,codPas);
+     }else{
+        cout<<"No se ha encontrado el pasillo indicado"<<endl;
+    }
+}
+
+void AVLProducto::BorrarBalanceado(pnodoProd &r, bool &Hh, string &x) {
+    pnodoProd q = nullptr;
+    if (r != nullptr) {
+        if (stoi(r->codProducto) > stoi(x)) {
+            BorrarBalanceado(r->hIzq, Hh, x);
+            if (Hh) {
+                Equilibrar1(r, Hh);
+            }
+        } else {
+            if (stoi(r->codProducto) < stoi(x)) {
+                BorrarBalanceado(r->hDer, Hh, x);
+                if (Hh) {
+                    Equilibrar2(r, Hh);
+                }
+            } else {
+                q = r;
+                if (q->hDer == nullptr) {
+                    r = q->hIzq;
+                    Hh = true;
+                } else {
+                    if (q->hIzq == nullptr) {
+                        r = q->hDer;
+                        Hh = true;
+                    } else {
+                        Borrar(q->hIzq, r, Hh);
+                        if (Hh) {
+                            Equilibrar1(r, Hh);
+                        }
+                    }
+                    delete q;
+                }
+            }
+        }
+    }
+}
+
+void AVLProducto::Borrar(pnodoProd &D, pnodoProd &q, bool &Hh) {
+    if (D->hDer != nullptr) {
+        Borrar(D->hDer, q, Hh);
+        if (Hh) {
+            Equilibrar2(D, Hh);
+        }
+    } else {
+        D->hDer = q->hDer;
+        q = D;
+        Hh = true;
+    }
+}
+
+void AVLProducto::Equilibrar1(pnodoProd &n, bool &Hh) {
+    pnodoProd n1;
+    switch (n->FB) {
+        case -1: n->FB = 0;
+            break;
+        case 0: n->FB = 1;
+            Hh = false;
+            break;
+        case 1: n1 = n->hDer;
+            if (n1->FB >= 0) {
+                if (n1->FB == 0) {
+                    Hh = false;
+                    RotacionSimpleDerecha(n, n1);
+                } else {
+                    RotacionDobleDerecha(n, n1);
+                }
+            }
+    }
+}
+
+void AVLProducto::Equilibrar2(pnodoProd &n, bool &Hh) {
+    pnodoProd n1;
+    switch (n->FB) {
+        case 1: n->FB = 0;
+            break;
+        case 0: n->FB = -1;
+            Hh = false;
+            break;
+        case -1: n1 = n->hIzq;
+            if (n1->FB <= 0) {
+                if (n1->FB == 0) {
+                    Hh = false;
+                    RotacionSimpleIzquierda(n, n1);
+                } else {
+                    RotacionDobleIzquierda(n, n1);
+                }
+            }
+    }
+}
+
+void AVLProducto::borrarProducto(string codProducto){
+    pnodoProd aux = buscarNodoAVL(this->raiz,codProducto);
+    if (aux==nullptr){
+        cout<<"No se ha localizado el producto en el pasill indicado";
+        return;
+    }
+    BorrarBalanceado(this->raiz,this->Hh,codProducto);
+}
+
+void arbolPas::borrarProducto(string codPas, string codProd){
+    bool temp;
+    encontrarPasillo(temp,this->raiz,codPas);
+    if (!temp){
+        cout<<"El pasillo indicado no es valido"<<endl;
+        return;
+    }
+   borrarProducto(this->raiz,codPas,codProd);
+}
+
+void arbolPas::borrarProducto(pnodoPas &R,string codPas, string codProd){
+    if(R==NULL){
+        return;
+    }else{
+        borrarProducto(R->hIzq, codPas, codProd);
+        if (R->codPasillo==codPas){
+            AVLProducto pro;
+            pro.raiz=R->subsiguiente;
+            pro.borrarProducto(codProd);
+            R->subsiguiente = pro.raiz;
+        }
+        borrarProducto(R->hDer, codPas, codProd);
+    }
+}
+
+nodoMarca *RN::successor(nodoMarca *x) {
+   nodoMarca *temp = x;
+
+   while (temp->hIzq != NULL)
+     temp = temp->hIzq;
+
+   return temp;
+ }
+
+nodoMarca *RN::BSTreplace(nodoMarca *x) {
+   // when node have 2 children
+   if (x->hIzq != NULL and x->hDer != NULL)
+     return successor(x->hDer);
+
+   // when leaf
+   if (x->hIzq == NULL and x->hDer == NULL)
+     return NULL;
+
+   // when single child
+   if (x->hIzq != NULL)
+     return x->hIzq;
+   else
+     return x->hDer;
+ }
+
+void RN::swapValues(nodoMarca *u, nodoMarca *v) {
+    string temp;
+    string temp2;
+    string temp3;
+    string temp4;
+    int temp5;
+    int temp6;
+    float temp7;
+    temp = u->codMarca;
+    temp2 = u -> codPasillo;
+    temp3 = u-> codProducto;
+    temp4 = u -> nombre;
+    temp5 = u -> cantGondola;
+    temp6 = u -> cantcomp;
+    temp7 = u -> precio;
+    u->codMarca = v->codMarca;
+    u->codPasillo = v->codPasillo;
+    u->codProducto = v->codProducto;
+    u->nombre = v ->nombre;
+    u ->cantcomp = v->cantcomp;
+    u->cantGondola = v -> cantGondola;
+    u->precio = v->precio;
+    v->codMarca = temp;
+    v->codPasillo = temp2;
+    v->codProducto = temp3;
+    v->nombre = temp4;
+    v->cantGondola = temp5;
+    v->cantcomp = temp6;
+    v->precio = temp7;
+}
+
+void RN::deleteNode(nodoMarca *v) {
+   nodoMarca *u = BSTreplace(v);
+   // True when u and v are both black
+   bool uvBlack = ((u == NULL or u->color == NEGRO) and (v->color == NEGRO));
+   nodoMarca *parent = v->padre;
+
+   if (u == NULL) {
+     // u is NULL therefore v is leaf
+     if (v == raiz) {
+       // v is root, making root null
+       raiz = NULL;
+     } else {
+       if (uvBlack) {
+         // u and v both black
+         // v is leaf, fix double black at v
+         fixDoubleBlack(v);
+       } else {
+         // u or v is red
+         if (v->sibling() != NULL)
+           // sibling is not null, make it red"
+           v->sibling()->color = ROJO;
+       }
+
+       // delete v from the tree
+       if (v->isOnLeft()) {
+         parent->hIzq = NULL;
+       } else {
+         parent->hDer = NULL;
+       }
+     }
+     delete v;
+     return;
+   }
+
+   if (v->hIzq == NULL or v->hDer == NULL) {
+     // v has 1 child
+     if (v == raiz) {
+       // v is root, assign the value of u to v, and delete u
+       v->codMarca = u->codMarca;
+       v->codPasillo = u->codPasillo;
+       v->codProducto = u->codProducto;
+       v->nombre = u ->nombre;
+       v ->cantcomp = u->cantcomp;
+       v->cantGondola = u -> cantGondola;
+       v->precio = u ->precio;
+       v->hIzq = v->hDer = NULL;
+       delete u;
+     } else {
+       // Detach v from tree and move u up
+       if (v->isOnLeft()) {
+         parent->hIzq = u;
+       } else {
+         parent->hDer = u;
+       }
+       delete v;
+       u->padre = parent;
+       if (uvBlack) {
+         // u and v both black, fix double black at u
+         fixDoubleBlack(u);
+       } else {
+         // u or v red, color u black
+         u->color = NEGRO;
+       }
+     }
+     return;
+   }
+   // v has 2 children, swap values with successor and recurse
+   swapValues(u, v);
+   deleteNode(u);
+}
+
+pnodoMarca RN::searchTreeHelper(pnodoMarca node, string codMarca) {
+    if (node == NULL || codMarca == node->codMarca) {
+        return node;
+    }
+    if (stoi(codMarca) < stoi(node->codMarca)) {
+        return searchTreeHelper(node->hIzq, codMarca);
+    }
+    return searchTreeHelper(node->hDer, codMarca);
+}
+
+void RN::borrarMarca(string codMarca){
+    pnodoMarca aux = searchTreeHelper(this->raiz,codMarca);
+    if (aux==NULL){
+        cout<<"No se ha encontrado la marca en el pasillo y producto indicados"<<endl;
+        return;
+    }
+    deleteNode(aux);
+}
+
+void RN::fixDoubleBlack(nodoMarca *x) {
+    if (x == raiz)
+      // Reached root
+      return;
+
+    nodoMarca *sibling = x->sibling(), *parent = x->padre;
+    if (sibling == NULL) {
+      // No sibiling, double black pushed up
+      fixDoubleBlack(parent);
+    } else {
+      if (sibling->color == ROJO) {
+        // Sibling red
+        parent->color = ROJO;
+        sibling->color = NEGRO;
+        if (sibling->isOnLeft()) {
+          // left case
+          rotarDerecha(raiz,parent);
+        } else {
+          // right case
+          rotarIzquierda(raiz, parent);
+        }
+        fixDoubleBlack(x);
+      } else {
+        // Sibling black
+        if (sibling->hasRedChild()) {
+          // at least 1 red children
+          if (sibling->hIzq != NULL and sibling->hIzq->color == ROJO) {
+            if (sibling->isOnLeft()) {
+              // left left
+              sibling->hIzq->color = sibling->color;
+              sibling->color = parent->color;
+              rotarDerecha(raiz,parent);
+            } else {
+              // right left
+              sibling->hIzq->color = parent->color;
+              rotarDerecha(raiz,sibling);
+              rotarIzquierda(raiz,parent);
+            }
+          } else {
+            if (sibling->isOnLeft()) {
+              // left right
+              sibling->hDer->color = parent->color;
+              rotarIzquierda(raiz,sibling);
+              rotarDerecha(raiz,parent);
+            } else {
+              // right right
+              sibling->hDer->color = sibling->color;
+              sibling->color = parent->color;
+              rotarIzquierda(raiz,parent);
+            }
+          }
+          parent->color = NEGRO;
+        } else {
+          // 2 black children
+          sibling->color = ROJO;
+          if (parent->color == NEGRO)
+            fixDoubleBlack(parent);
+          else
+            parent->color = NEGRO;
+        }
+      }
+    }
+  }
+
+pnodoProd AVLProducto::buscarNodoAVL(pnodoProd pRaiz, string codProducto)
+{
+    if (pRaiz == nullptr || stoi (pRaiz->codProducto) == stoi(codProducto))
+       return pRaiz;
+    if (pRaiz->codProducto < codProducto)
+       return buscarNodoAVL(pRaiz->hDer, codProducto);
+    return buscarNodoAVL(pRaiz->hDer, codProducto);
+}
+
+
+void arbolPas::borrarMarca(string codPas, string codProd, string codMarca){
+    bool temp;
+    encontrarPasillo(temp,this->raiz,codPas);
+    if (!temp){
+        cout<<"El pasillo indicado no es valido"<<endl;
+        return;
+    }
+   borrarMarca(this->raiz,codPas,codProd, codMarca);
+}
+
+void arbolPas::borrarMarca(pnodoPas &R, string codPas, string codProd, string codMarca){
+    if(R==NULL){
+        return;
+    }else{
+        borrarMarca(R->hIzq, codPas, codProd, codMarca);
+        if (R->codPasillo==codPas){
+            AVLProducto pro;
+            pro.raiz=R->subsiguiente;
+            pro.borrarMarca(codProd, codMarca);
+            R->subsiguiente = pro.raiz;
+        }
+        borrarMarca(R->hDer, codPas, codProd, codMarca);
+    }
+}
+
+void AVLProducto::borrarMarca(pnodoProd &R, string codProd, string codMarca){
+    if(R==NULL){
+        return;
+    }else{
+        borrarMarca(R->hIzq,codProd, codMarca);
+        if (R->codProducto==codProd){
+            RN pro;
+            pro.raiz=R->subsiguiente;
+            pro.borrarMarca(codMarca);
+            R->subsiguiente = pro.raiz;
+        }
+        borrarMarca(R->hDer, codProd, codMarca);
+    }
+}
+
+void AVLProducto::borrarMarca( string codProd, string codMarca){
+    pnodoProd aux = buscarNodoAVL(this->raiz,codProd);
+    if (aux==NULL){
+        cout<<"No se ha localizado el producto en el pasillo indicado"<<endl;
+        return;
+    }
+    borrarMarca(this->raiz,codProd,codMarca);
 }
 #endif // PROGRAPRINCIPAL_H

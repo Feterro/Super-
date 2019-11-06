@@ -25,5 +25,12 @@ public:
 	void MostrarMarcas3(pnodoMarca ra);
 	bool validarMarcas3(pnodoMarca ra, string codMar,bool encontrado);
 	pnodoMarca encontrarNodo3(pnodoMarca ra, string codMar, pnodoMarca marca);
+    void fixDoubleBlack(nodoMarca *x);
+    nodoMarca *successor(nodoMarca *x);
+    nodoMarca *BSTreplace(nodoMarca *x);
+    void swapValues(nodoMarca *u, nodoMarca *v);
+    void deleteNode(nodoMarca *v);
+    pnodoMarca searchTreeHelper(pnodoMarca node, string codMarca);
+    void borrarMarca (string codMarca);
 };
 #endif // ROJINEGRO_H

@@ -37,8 +37,8 @@ int main(int argc, char *argv[])
     QCoreApplication a(argc, argv);
     servGlo.inicioServidor();
 
-//    Admin administrador;
-//    administrador.start();
+    Admin administrador;
+    administrador.start();
 
     return a.exec();
 }
