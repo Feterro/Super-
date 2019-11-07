@@ -2,6 +2,10 @@
 #define VENTANAPRINCIPALCLIENTE_H
 
 #include <QMainWindow>
+#include <QMessageBox>
+#include <QInputDialog>
+#include <QIcon>
+#include <sstream>
 #include "globalizarSocket.h"
 
 namespace Ui {
@@ -28,8 +32,21 @@ private slots:
 
     void on_TCedula_returnPressed();
 
+    void on_BRegistrar_clicked();
+
+    void on_BBuscarPrecio_clicked();
+
+    void on_BBuscarPasillo_clicked();
+
+    void on_BBuscarProd_clicked();
+
+    void on_BLlenarCBPasillos_clicked();
+
+    void on_BBuscarOtra_clicked();
+
 private:
     Ui::ventanaPrincipalCliente *ui;
+    int cont;
 };
 
 #endif // VENTANAPRINCIPALCLIENTE_H

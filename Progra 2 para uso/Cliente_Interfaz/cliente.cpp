@@ -36,7 +36,7 @@ void Cliente::readyRead()
 {
     QByteArray info=socketCli->readAll();
     string infoConv=info.toStdString();
-    cout<<infoConv<<endl;
+    //cout<<infoConv<<endl;
     if(infoConv=="BK")
     {
         verificarBloqueo(infoConv);
@@ -54,16 +54,19 @@ void Cliente::readyRead()
         char *token = strtok(cstr,var);
         token = strtok(NULL,var);
         cout<<token<<endl;
+        this->nombresCB=token;
         verificarBloqueo(infoConv);
     }
     else if(infoConv.substr(0,2)=="MB"||infoConv.substr(0,2)=="MC")
     {
+        cout<<"DDKJDSKDJKSDFNDSCDJNSXNCLKSDNCSDKND"<<endl;
         char cstr[infoConv.size() + 1];
         strcpy(cstr, infoConv.c_str());
         char var[]=";";
         char *token = strtok(cstr,var);
         token = strtok(NULL,var);
         cout<<token<<endl;
+        this->nombresCB=token;
         verificarBloqueo(infoConv);
         //correccion(infoConv.substr(0,2));
     }

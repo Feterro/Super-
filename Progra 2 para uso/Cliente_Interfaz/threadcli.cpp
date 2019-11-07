@@ -83,7 +83,7 @@ void ThreadCli::run()
                 {
                     cout<<"Usted no esta registrado, desea hacerlo ahora? S/N: ";
                     cin>>elecc;
-                    emit escribirServidor(QString::fromStdString("IN"+cedDig).toUtf8());
+                    emit escribirServidor(QString::fromStdString("IN").toUtf8());
                     this->sleep(1);
                     if(socketCli.bloqueo==false)
                     {

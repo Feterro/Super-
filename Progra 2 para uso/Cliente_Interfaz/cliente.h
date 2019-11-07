@@ -21,6 +21,7 @@ public:
     bool registro;
     bool bloqueo=false;
     bool correcto;
+    string nombresCB;
 
 public slots:
     void connected();

@@ -1906,7 +1906,8 @@ string Principal::consultarUnPrecio(string codPas, string codProd, string codMar
             vali3=arbolPasillos.validarMarca(arbolPasillos.raiz, codPas, codProd, codMar, vali3);
             if(vali3){
                 pnodoMarca mar=arbolPasillos.encontrarNodo1(arbolPasillos.raiz, codPas, codProd, codMar, mar);
-                string precio=to_string(mar->precio);
+                int pre=mar->precio;
+                string precio=to_string(pre);
                 return precio;
             }
             else{
@@ -1961,8 +1962,9 @@ string Principal::consultarUnPrecioAdm(){
             vali3=arbolPasillos.validarMarca(arbolPasillos.raiz, codPas, codProd, codMar, vali3);
             if(vali3){
                 pnodoMarca mar=arbolPasillos.encontrarNodo1(arbolPasillos.raiz, codPas, codProd, codMar, mar);
-                string precio=to_string(mar->precio);
-                return "El precio de "+mar->nombre+" es de: "+precio;
+                int pre=mar->precio;
+                string precio=to_string(pre);
+                return precio;
             }
             else{
             return"Codigos invalidos,trate de nuevo";
@@ -2698,8 +2700,9 @@ string Principal::ConsultarImpuesto(string codPas, string codProd, string codMar
             vali3=arbolPasillos.validarMarca(arbolPasillos.raiz, codPas, codProd, codMar, vali3);
             if(vali3){
                 pnodoInventario invent=arbolInventario.encontrarNodo(arbolInventario.raiz, codPas, codProd, codMar, invent);
-                string impuesto=to_string(invent->impuesto);
-                return "El impuesto del producto solicitado es de: "+impuesto;
+                int imp=invent->impuesto;
+                string impuesto=to_string(imp);
+                return impuesto;
             }
             else{
                 return"Codigos invalidos,trate de nuevo";

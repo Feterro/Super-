@@ -21,8 +21,8 @@ QT_BEGIN_MOC_NAMESPACE
 QT_WARNING_PUSH
 QT_WARNING_DISABLE_DEPRECATED
 struct qt_meta_stringdata_ventanaPrincipalCliente_t {
-    QByteArrayData data[9];
-    char stringdata0[140];
+    QByteArrayData data[14];
+    char stringdata0[271];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -38,14 +38,23 @@ QT_MOC_LITERAL(3, 42, 4), // "info"
 QT_MOC_LITERAL(4, 47, 20), // "on_BIngresar_clicked"
 QT_MOC_LITERAL(5, 68, 14), // "on_BNo_clicked"
 QT_MOC_LITERAL(6, 83, 14), // "on_BSi_clicked"
-QT_MOC_LITERAL(7, 98, 16), // "verificarCliente"
-QT_MOC_LITERAL(8, 115, 24) // "on_TCedula_returnPressed"
+QT_MOC_LITERAL(7, 98, 24), // "on_TCedula_returnPressed"
+QT_MOC_LITERAL(8, 123, 21), // "on_BRegistrar_clicked"
+QT_MOC_LITERAL(9, 145, 24), // "on_BBuscarPrecio_clicked"
+QT_MOC_LITERAL(10, 170, 25), // "on_BBuscarPasillo_clicked"
+QT_MOC_LITERAL(11, 196, 22), // "on_BBuscarProd_clicked"
+QT_MOC_LITERAL(12, 219, 28), // "on_BLlenarCBPasillos_clicked"
+QT_MOC_LITERAL(13, 248, 22) // "on_BBuscarOtra_clicked"
 
     },
     "ventanaPrincipalCliente\0escribirServidor\0"
     "\0info\0on_BIngresar_clicked\0on_BNo_clicked\0"
-    "on_BSi_clicked\0verificarCliente\0"
-    "on_TCedula_returnPressed"
+    "on_BSi_clicked\0on_TCedula_returnPressed\0"
+    "on_BRegistrar_clicked\0on_BBuscarPrecio_clicked\0"
+    "on_BBuscarPasillo_clicked\0"
+    "on_BBuscarProd_clicked\0"
+    "on_BLlenarCBPasillos_clicked\0"
+    "on_BBuscarOtra_clicked"
 };
 #undef QT_MOC_LITERAL
 
@@ -55,7 +64,7 @@ static const uint qt_meta_data_ventanaPrincipalCliente[] = {
        8,       // revision
        0,       // classname
        0,    0, // classinfo
-       6,   14, // methods
+      11,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -63,14 +72,19 @@ static const uint qt_meta_data_ventanaPrincipalCliente[] = {
        1,       // signalCount
 
  // signals: name, argc, parameters, tag, flags
-       1,    1,   44,    2, 0x06 /* Public */,
+       1,    1,   69,    2, 0x06 /* Public */,
 
  // slots: name, argc, parameters, tag, flags
-       4,    0,   47,    2, 0x08 /* Private */,
-       5,    0,   48,    2, 0x08 /* Private */,
-       6,    0,   49,    2, 0x08 /* Private */,
-       7,    0,   50,    2, 0x08 /* Private */,
-       8,    0,   51,    2, 0x08 /* Private */,
+       4,    0,   72,    2, 0x08 /* Private */,
+       5,    0,   73,    2, 0x08 /* Private */,
+       6,    0,   74,    2, 0x08 /* Private */,
+       7,    0,   75,    2, 0x08 /* Private */,
+       8,    0,   76,    2, 0x08 /* Private */,
+       9,    0,   77,    2, 0x08 /* Private */,
+      10,    0,   78,    2, 0x08 /* Private */,
+      11,    0,   79,    2, 0x08 /* Private */,
+      12,    0,   80,    2, 0x08 /* Private */,
+      13,    0,   81,    2, 0x08 /* Private */,
 
  // signals: parameters
     QMetaType::Void, QMetaType::QByteArray,    3,
@@ -79,7 +93,12 @@ static const uint qt_meta_data_ventanaPrincipalCliente[] = {
     QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
-    QMetaType::Bool,
+    QMetaType::Void,
+    QMetaType::Void,
+    QMetaType::Void,
+    QMetaType::Void,
+    QMetaType::Void,
+    QMetaType::Void,
     QMetaType::Void,
 
        0        // eod
@@ -95,8 +114,13 @@ void ventanaPrincipalCliente::qt_static_metacall(QObject *_o, QMetaObject::Call 
         case 1: _t->on_BIngresar_clicked(); break;
         case 2: _t->on_BNo_clicked(); break;
         case 3: _t->on_BSi_clicked(); break;
-            if (_a[0]) *reinterpret_cast< bool*>(_a[0]) = std::move(_r); }  break;
-        case 5: _t->on_TCedula_returnPressed(); break;
+        case 4: _t->on_TCedula_returnPressed(); break;
+        case 5: _t->on_BRegistrar_clicked(); break;
+        case 6: _t->on_BBuscarPrecio_clicked(); break;
+        case 7: _t->on_BBuscarPasillo_clicked(); break;
+        case 8: _t->on_BBuscarProd_clicked(); break;
+        case 9: _t->on_BLlenarCBPasillos_clicked(); break;
+        case 10: _t->on_BBuscarOtra_clicked(); break;
         default: ;
         }
     } else if (_c == QMetaObject::IndexOfMethod) {
@@ -140,13 +164,13 @@ int ventanaPrincipalCliente::qt_metacall(QMetaObject::Call _c, int _id, void **_
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 6)
+        if (_id < 11)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 6;
+        _id -= 11;
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 6)
+        if (_id < 11)
             *reinterpret_cast<int*>(_a[0]) = -1;
-        _id -= 6;
+        _id -= 11;
     }
     return _id;
 }

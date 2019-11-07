@@ -1,0 +1,9 @@
+<RCC>
+    <qresource prefix="/ima">
+        <file>Images/colon.png</file>
+        <file>Images/colon2.png</file>
+        <file>Images/colon3.png</file>
+        <file>Images/índice.png</file>
+        <file>Images/colon4.jpg</file>
+    </qresource>
+</RCC>
