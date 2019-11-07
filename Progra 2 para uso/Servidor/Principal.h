@@ -55,7 +55,7 @@ class listaVentas
     void InsertarFinal(string codPas, string codProd, string codMar, int cant);
     bool ListaVacia() { return primero == NULL; }
     void Mostrar();
-    bool agregarArticulo(listaVentas lista, string pas, string prod, string mar);
+    bool agregarArticulo(string pas, string prod, string mar);
     void BorrarInicio();
     int largoLista();
     pnodoVenta primero;

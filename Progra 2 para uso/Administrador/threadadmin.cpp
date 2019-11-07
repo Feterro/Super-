@@ -34,11 +34,15 @@ void ThreadAdmin::run()
                 cout<<"7.Modificar si el producto pertenece a la canasta basica"<<endl;
                 cout<<"8.Consultar un precio"<<endl;
                 cout<<"9.Consultar si un producto es de la canasta"<<endl;
-                cout<<"10.Facturar"<<endl;
-                cout<<"11.Verificar gondolas"<<endl;
-                cout<<"12.Verificar inventario"<<endl;
-                cout<<"13.Reportes"<<endl;
-                cout<<"14.Salir"<<endl;
+                cout<<"10.Eliminar Pasillo"<<endl;
+                cout<<"11.Eliminar Producto"<<endl;
+                cout<<"12.Eliminar Marca"<<endl;
+                cout<<"13.Eliminar cliente"<<endl;
+                cout<<"14.Facturar"<<endl;
+                cout<<"15.Verificar gondolas"<<endl;
+                cout<<"16.Verificar inventario"<<endl;
+                cout<<"17.Reportes"<<endl;
+                cout<<"18.Salir"<<endl;
                 cout<<"\nEscriba el numero de la opcion que desea: "<<endl;
                 string resp;
                 cin>>resp;
@@ -70,20 +74,32 @@ void ThreadAdmin::run()
                     cons(resp);
                 }
                 else if (resp=="10"){
+                    cout<<"eliminar"<<endl;
+                }
+                else if (resp=="11"){
+                    cout<<"eliminar"<<endl;
+                }
+                else if (resp=="12"){
+                    cout<<"eliminar"<<endl;
+                }
+                else if (resp=="13"){
+                    cout<<"eliminar"<<endl;
+                }
+                else if (resp=="14"){
                     emit escribirServidor(QString::fromStdString("FK").toUtf8());
                     this->sleep(1);
                 }
-                else if (resp=="11"){
+                else if (resp=="15"){
                     revisarGondolas();
                 }
-                else if (resp=="12"){
+                else if (resp=="16"){
                     //princi.cargarInventario();
                 }
-                else if(resp=="13"){
+                else if(resp=="17"){
                     //princi.generarReporte();
                     cout<<"reporte generado!"<<endl;
                 }
-                else if (resp=="14"){
+                else if (resp=="18"){
                     cout<<"Gracias por usar el sistema"<<endl;
                     menu=false;
                     fin=true;

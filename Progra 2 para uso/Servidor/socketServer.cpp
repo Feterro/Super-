@@ -52,7 +52,7 @@ void serverSocket::funcionesAdministrador(string infoConv)
         pnodoVenta aux=princi.ventas.primero;
         while(num<princi.ventas.largoLista())
         {
-            cout<<aux->codPasillo<<endl;
+            cout<<aux->codPasillo<<"~";
             aux=aux->siguiente;
             num++;
         }
@@ -333,6 +333,14 @@ void serverSocket::funcionesAdministrador(string infoConv)
         string factura=princi.agregarListaOrdenada();
         cout<<"\n\n"<<factura<<endl;
         crearFactura(nombre,factura);
+
+//        cout<<"VENTAS"<<endl;
+//        pnodoVenta aux=princi.ventas.primero;
+//        while(aux->siguiente!=NULL)
+//        {
+//            cout<<aux->codPasillo<<"~";
+//            aux=aux->siguiente;
+//        }
     }
 }
 void serverSocket::funcionesCliente(string infoConv)

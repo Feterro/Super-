@@ -2431,11 +2431,9 @@ Metodo que revisa gondolas y las rellena de ser necesario
 */
     string lis;
     int canti=0;
-    pnodoVenta prodPila=ventas.primero;
-    int larglist=ventas.largoLista();
-    int cont=0;
+    pnodoVenta prodPila=princi.ventas.primero;
     cout<<ventas.largoLista()<<endl;
-    while(cont<larglist)
+    while(prodPila!=NULL)
     {
         pnodoMarca mar=arbolPasillos.encontrarNodo1(arbolPasillos.raiz, prodPila->codPasillo, prodPila->codProducto, prodPila->codMarca, mar);
         cout<<mar->nombre<<endl;
@@ -2444,11 +2442,8 @@ Metodo que revisa gondolas y las rellena de ser necesario
             lis=lis+" "+mar->nombre;
         }
         prodPila=prodPila->siguiente;
-        cont++;
     }
     string cant=to_string(canti);
-    cout<<cant<<endl;
-    cout<<lis<<endl;
     cant=cant+";"+lis;
     return cant;
 }
@@ -2501,8 +2496,8 @@ void Pila::InsertarFinalOrd(string pas, string prod, string mar, int cant, float
                 aux->siguiente=new nodoPila(pas, prod, mar, precio, cant);
         }
 }
-bool listaVentas::agregarArticulo(listaVentas lista, string codPas, string codProd, string codMar){
-    pnodoVenta aux=lista.primero;
+bool listaVentas::agregarArticulo(string codPas, string codProd, string codMar){
+    pnodoVenta aux=princi.ventas.primero;
     while (aux!=NULL){
         if(aux->codPasillo==codPas && aux->codProducto==codProd && aux->codMarca==codMar)
             return false;
@@ -2519,8 +2514,8 @@ void Principal::listaVentas1(string pas, string prod, string mar, int cant)
         ventas.InsertarFinal(pas, prod, mar, cant);
     }
     else{
-        bool rep=ventas.agregarArticulo(ventas, pas, prod, mar);
-        if (!rep){
+        bool rep=ventas.agregarArticulo(pas, prod, mar);
+        if (rep){
            ventas.InsertarFinal(pas, prod, mar, cant);
         }
         else{
@@ -2677,14 +2672,23 @@ string Principal::agregarListaOrdenada(){
     string resp;
     while(pil!=NULL)
     {
+        cout<<"PIL"<<pil->codPas<<endl;
         pas=pil->codPas;
         prod=pil->codProd;
         marca=pil->codMarc;
         cant=pil->cant;
-        listaVentas1(pas, prod, marca, cant);
+        princi.listaVentas1(pas, prod, marca, cant);
         pil=pil->siguiente;
     }
     string devuelto=pagar(lista1);
+    //cout<<"VENTAS"<<endl;
+    pnodoVenta auxil=princi.ventas.primero;
+    while(auxil->siguiente!=NULL)
+    {
+        //cout<<"CICLO"<<endl;
+        //cout<<auxil->codPasillo<<"~";
+        auxil=auxil->siguiente;
+    }
     return devuelto;
 }
 
