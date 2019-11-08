@@ -43,5 +43,8 @@ int main(int argc, char *argv[])
 //    string result = grafoArt.AP();
 //    cout<<result;
 
+    //arbolPasillos.borrarPasillo("01");
+    //arbolPasillos.borrarProducto("22","45");
+    //arbolPasillos.borrarMarca("15","04","88");
     return a.exec();
 }

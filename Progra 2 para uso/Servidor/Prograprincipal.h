@@ -1642,9 +1642,11 @@ void AVLProducto::MostrarMarcas2(pnodoProd R, string codProd){
     if(R==NULL){
     }else{
         MostrarMarcas2(R->hIzq, codProd);
-        if (codProd==R->subsiguiente->codProducto){
-            RN mar;
-            mar.MostrarMarcas3(R->subsiguiente);
+        if (R->subsiguiente!=NULL){
+            if (codProd==R->subsiguiente->codProducto){
+                RN mar;
+             mar.MostrarMarcas3(R->subsiguiente);
+            }
         }
         MostrarMarcas2(R->hDer, codProd);
     }
