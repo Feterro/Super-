@@ -22,7 +22,9 @@ public:
     void cons(string resp);
     void modificar(string resp);
     void revisarGondolas();
-
+    void elimPas();
+    void elimPro();
+    void elimMar();
 
 signals:
     void escribirServidor(QByteArray info);

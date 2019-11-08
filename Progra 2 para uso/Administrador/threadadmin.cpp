@@ -74,16 +74,16 @@ void ThreadAdmin::run()
                     cons(resp);
                 }
                 else if (resp=="10"){
-                    cout<<"eliminar"<<endl;
+                    elimPas();
                 }
                 else if (resp=="11"){
-                    cout<<"eliminar"<<endl;
+                    elimPro();
                 }
                 else if (resp=="12"){
-                    cout<<"eliminar"<<endl;
+                    elimMar();
                 }
                 else if (resp=="13"){
-                    cout<<"eliminar"<<endl;
+                    cout<<"eliminar Cliente"<<endl;
                 }
                 else if (resp=="14"){
                     emit escribirServidor(QString::fromStdString("FK").toUtf8());
@@ -112,6 +112,65 @@ void ThreadAdmin::run()
             cout<<"Codigo invalido"<<endl;
     }
 }
+void ThreadAdmin::elimPas()
+{
+    cout<<"\n";
+    emit escribirServidor(QString::fromStdString("XO").toUtf8());
+    this->sleep(1);
+    string env;
+    cout<<"\nDigite el codigo de Pasillo que desea: "<<endl;
+    cin>>env;
+    cout<<"\n";
+    emit escribirServidor(QString::fromStdString("EP;"+env).toUtf8());
+    this->sleep(1);
+}
+void ThreadAdmin::elimPro()
+{
+    cout<<"\n";
+    emit escribirServidor(QString::fromStdString("XO").toUtf8());
+    this->sleep(1);
+    string env;
+    string codComp;
+    cout<<"\nDigite el codigo de Pasillo que desea: "<<endl;
+    cin>>env;
+    cout<<"\n";
+    codComp=env;
+    emit escribirServidor(QString::fromStdString("XA"+codComp).toUtf8());
+    this->sleep(1);
+    cout<<"Digite el codigo de Producto que desea: "<<endl;
+    cin>>env;
+    cout<<"\n";
+    codComp=codComp+";"+env;
+    emit escribirServidor(QString::fromStdString("ER;"+codComp).toUtf8());
+    this->sleep(1);
+
+}
+void ThreadAdmin::elimMar()
+{
+    cout<<"\n";
+    emit escribirServidor(QString::fromStdString("XO").toUtf8());
+    this->sleep(1);
+    string env;
+    string codComp;
+    cout<<"\nDigite el codigo de Pasillo que desea: "<<endl;
+    cin>>env;
+    cout<<"\n";
+    codComp=env;
+    emit escribirServidor(QString::fromStdString("XA"+codComp).toUtf8());
+    this->sleep(1);
+    cout<<"Digite el codigo de Producto que desea: "<<endl;
+    cin>>env;
+    cout<<"\n";
+    codComp=codComp+";"+env;
+    emit escribirServidor(QString::fromStdString("BX;"+codComp).toUtf8());
+    this->sleep(1);
+    cout<<"Digite el codigo de Marca que desea: "<<endl;
+    cin>>env;
+    codComp=codComp+";"+env;
+    emit escribirServidor(QString::fromStdString("EM;"+codComp).toUtf8());
+    this->sleep(1);
+
+}
 void ThreadAdmin::revisarGondolas()
 {
     cout<<"\n"<<endl;
@@ -128,6 +187,7 @@ void ThreadAdmin::revisarGondolas()
         cont--;
     }
     cout<<"\nRecarga terminada!\n"<<endl;
+    this->sleep(1);
 }
 
 void ThreadAdmin::modificar(string resp)

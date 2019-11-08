@@ -12,7 +12,7 @@ ArbolInventario arbolInventario;
 Ciudad listaCiudades;
 Principal princi;
 Servidor servGlo;
-//Graph grafoArt = montarGrafo("Ciudades.txt", "Ptos de articulacion.txt");
+Graph grafoArt = montarGrafo("Ciudades.txt", "Ptos de articulacion.txt");
 
 int main(int argc, char *argv[])
 {
@@ -40,8 +40,9 @@ int main(int argc, char *argv[])
 
 //    Admin administrador;
 //    administrador.start();
-//    string result = grafoArt.AP();
-//    cout<<result;
+
+    string result = grafoArt.AP();
+    cout<<result;
 
     //arbolPasillos.borrarPasillo("01");
     //arbolPasillos.borrarProducto("22","45");
