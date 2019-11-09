@@ -48,6 +48,24 @@ ventanaPrincipalCliente::ventanaPrincipalCliente(QWidget *parent) :
     ui->BBuscarPasillo->setEnabled(false);
     QPixmap colon(":/ima/Images/colon4.jpg");
     ui->LColonIma->setPixmap(colon);
+    ui->BBPasillo->setEnabled(false);
+    ui->BBProd->setVisible(false);
+    ui->BBPrecio->setVisible(false);
+    ui->CBProductos2->setVisible(false);
+    ui->CBMarcas2->setVisible(false);
+    QPixmap porciento(":/ima/Images/porcentaje.jpg");
+    ui->porcentaje->setPixmap(porciento);
+    QPixmap conf(":/ima/Images/check.jpg");
+    QPixmap nega(":/ima/Images/eqis.jpg");
+    ui->confirmacion->setPixmap(conf);
+    ui->confirmacion_2->setPixmap(nega);
+    ui->confirmacion->setVisible(false);
+    ui->confirmacion_2->setVisible(false);
+    ui->BBPasillo2->setEnabled(false);
+    ui->BBProducto2->setVisible(false);
+    ui->BBPrecio2->setVisible(false);
+    ui->CBProductos3->setVisible(false);
+    ui->CBMarcas3->setVisible(false);
 
     connect(this, SIGNAL(escribirServidor(QByteArray)),&socketCli,SLOT(escribirServidor(QByteArray)));
 }
@@ -56,9 +74,7 @@ ventanaPrincipalCliente::~ventanaPrincipalCliente()
 {
     delete ui;
 }
-string codPas;
-string codProd;
-string codMar;
+
 void ventanaPrincipalCliente::on_BIngresar_clicked()
 {
 
@@ -146,7 +162,7 @@ void ventanaPrincipalCliente::on_BRegistrar_clicked()
     string telefono= tele.toLocal8Bit().constData();
     QString cor=ui->TCorreo->text();
     string correo= cor.toLocal8Bit().constData();
-    QVariant ciu=ui->CBCiudad->itemData (ui->CBCiudad-> currentIndex ());
+    QString ciu=ui->CBCiudad->currentText();
     cout<<ced.isEmpty()<<endl;
     if (ced.isEmpty()||nomb.isEmpty()||tele.isEmpty()||cor.isEmpty()){
         cout<<"If"<<endl;
@@ -163,64 +179,12 @@ void ventanaPrincipalCliente::on_BRegistrar_clicked()
 
     }
     else{
-        cout<<"Else"<<endl;
-        if (ciu=="San Jose"){
-            codCiu="11";
-        }
-        else if (ciu=="Cartago"){
-            codCiu="22";
-        }
-        else if (ciu=="Heredia"){
-            codCiu="33";
-        }
-        else if (ciu=="Liberia"){
-            codCiu="55";
-        }
-        else if (ciu=="P4"){
-            codCiu="114";
-        }
-        else if (ciu=="Buenos Aires"){
-            codCiu="88";
-        }
-        else if (ciu=="Tilarán"){
-            codCiu="99";
-        }
-        else if (ciu=="Bagaces"){
-            codCiu="66";
-        }
-        else if (ciu=="P3"){
-            codCiu="113";
-        }
-        else if (ciu=="Puerto Viejo"){
-            codCiu="100";
-        }
-        else if (ciu=="Pital"){
-            codCiu="12";
-        }
-        else if (ciu=="Siquirres"){
-            codCiu="49";
-        }
-        else if (ciu=="Matina"){
-            codCiu="18";
-        }
-        else if (ciu=="P2"){
-            codCiu="112";
-        }
-        else if (ciu=="Telire"){
-            codCiu="95";
-        }
-        else if (ciu=="Parrita"){
-            codCiu="120";
-        }
-        else if (ciu=="Samara"){
-            codCiu="122";
-        }
-        else if (ciu=="Jacó"){
-            codCiu="09";
-        }
-        else if (ciu=="P1"){
-            codCiu="111";
-        }
+        string ciud=ciu.toLocal8Bit().constData();
+        char cstr[ciud.size() + 1];
+        strcpy(cstr, ciud.c_str());
+        char var[]=";";
+        char *token = strtok(cstr,var);
+        token = strtok(NULL,var);
         string nuevReg=";"+cedula+";"+nombre+";"+codCiu+";"+telefono+";"+correo+";";
         emit escribirServidor(QString::fromStdString("RE"+nuevReg).toUtf8());
         thread()->sleep(1);
@@ -401,4 +365,333 @@ void ventanaPrincipalCliente::on_BBuscarOtra_clicked()
     ui->LCDPrecio->display("0");
     cont=0;
 
+}
+
+void ventanaPrincipalCliente::on_BLlenarCBPasillos_2_clicked()
+{
+    emit escribirServidor(QString::fromStdString("CO").toUtf8());
+    if(!socketCli.bloqueo){
+        thread()->sleep(1);
+        stringstream pasi=stringstream(socketCli.nombresCB);
+        cout<<socketCli.nombresCB<<endl;
+        pasi.str(socketCli.nombresCB);
+        string pas;
+        bool llen=false;
+        while(getline(pasi, pas)){
+            llen =true;
+            if (!(pas.empty())){
+                QString pasq = QString::fromStdString(pas);
+                ui->CBPasillos2->addItem(pasq);
+            }
+        }
+        if (llen)
+            ui->BBPasillo->setEnabled(true);
+            cont=0;
+
+    }
+    else{
+        QMessageBox::information(
+        this,
+        tr("Informacion"),
+        tr("Se está actulizando el servidor, espere unos minutos") );
+    }
+
+}
+
+void ventanaPrincipalCliente::on_BBPasillo_clicked()
+{
+    cont ++;
+    QString pasillo=ui->CBPasillos2->currentText();
+    string pas = pasillo.toLocal8Bit().constData();
+    char cstr[pas.size() + 1];
+    strcpy(cstr, pas.c_str());
+    char var[]=":";
+    char *token = strtok(cstr,var);
+    string codPasi=token;
+    codPas=codPasi;
+    emit escribirServidor(QString::fromStdString("CA"+codPas).toUtf8());
+    thread()->sleep(1);
+    if (!socketCli.bloqueo){
+        stringstream producto=stringstream(socketCli.nombresCB);
+        producto.str(socketCli.nombresCB);
+        string pas;
+        bool lleno=false;
+        ui->CBProductos2->clear();
+        while(getline(producto, pas)){
+            lleno =true;
+            if (!(pas.empty())){
+                cout<<socketCli.nombresCB<<endl;
+                QString pasq = QString::fromStdString(pas);
+                ui->CBProductos2->addItem(pasq);
+            }
+        }
+        if (lleno && cont==2){
+            ui->LPasProdMar_2->setText("Producto");
+            ui->LInformacion_2->setText("Seleccione el producto de la marca de la que desea conocer el precio");
+            ui->CBPasillos2->setVisible(false);
+            ui->CBProductos2->setVisible(true);
+            ui->BBPasillo->setVisible(false);
+            ui->BBProd->setVisible(true);
+            cont=0;
+        }
+    }
+    else{
+        QMessageBox::information(
+        this,
+        tr("Informacion"),
+        tr("Se está actulizando el servidor, espere unos minutos") );
+    }
+
+}
+
+void ventanaPrincipalCliente::on_BBProd_clicked()
+{
+    cont ++;
+    QString produc=ui->CBProductos2->currentText();
+    string pas = produc.toLocal8Bit().constData();
+    char cstr[pas.size() + 1];
+    strcpy(cstr, pas.c_str());
+    char var[]=":";
+    char *token = strtok(cstr,var);
+    string codProdu=token;
+    codProd=codProdu;
+    emit escribirServidor(QString::fromStdString("CB;"+codPas+";"+codProdu).toUtf8());
+    thread()->sleep(1);
+    if (!socketCli.bloqueo){
+        cout<<"If"<<endl;
+        bool lleno=false;
+        stringstream marca=stringstream(socketCli.nombresCB);
+        marca.str(socketCli.nombresCB);
+        string mar;
+        ui->CBMarcas2->clear();
+        while(getline(marca, mar)){
+            lleno =true;
+            if (!(pas.empty())){
+                QString marq = QString::fromStdString(mar);
+                ui->CBMarcas2->addItem(marq);
+            }
+        }
+        if (lleno&&cont==2){
+            cont=0;
+            ui->BBPrecio->setVisible(true);
+            ui->LPasProdMar_2->setText("Marcas");
+            ui->LInformacion_2->setText("Seleccione la marca de la que desea conocer el precio");
+            ui->CBMarcas2->setVisible(true);
+            ui->CBProductos2->setVisible(false);
+            ui->BBProd->setVisible(false);
+        }
+    }
+}
+
+void ventanaPrincipalCliente::on_BBPrecio_clicked()
+{
+    cont++;
+    QString marca=ui->CBMarcas2->currentText();
+    string mar = marca.toLocal8Bit().constData();
+    char cstr[mar.size() + 1];
+    strcpy(cstr, mar.c_str());
+    char var[]=":";
+    char *token = strtok(cstr,var);
+    string codMarc=token;
+    codMar=codMarc;
+    emit escribirServidor(QString::fromStdString("ZR;"+codPas+";"+codProd+";"+codMar).toUtf8());
+    string precio=socketCli.nombresCB;
+    QString preci = QString::fromLocal8Bit(precio.c_str());
+    if (cont>=2)
+        ui->LCDImpuesto->display(preci);
+
+}
+
+void ventanaPrincipalCliente::on_BBOtra_clicked()
+{
+    ui->LInformacion_2->setText("Seleccione el pasillo de la marca de la que desea conocer el precio");
+    ui->LPasProdMar_2->setText("Pasillo");
+    ui->BBPrecio->setVisible(false);
+    ui->BBPasillo->setVisible(true);
+    ui->CBMarcas2->setVisible(false);
+    ui->CBPasillos2->setVisible(true);
+    ui->LCDImpuesto->display("0");
+    cont=0;
+}
+
+void ventanaPrincipalCliente::on_BLlenarCBPasillos3_clicked()
+{
+    emit escribirServidor(QString::fromStdString("CO").toUtf8());
+    if(!socketCli.bloqueo){
+        thread()->sleep(1);
+        stringstream pasi=stringstream(socketCli.nombresCB);
+        cout<<socketCli.nombresCB<<endl;
+        pasi.str(socketCli.nombresCB);
+        string pas;
+        bool llen=false;
+        while(getline(pasi, pas)){
+            llen =true;
+            if (!(pas.empty())){
+                QString pasq = QString::fromStdString(pas);
+                ui->CBPasillos3->addItem(pasq);
+            }
+        }
+        if (llen)
+            ui->BBPasillo2->setEnabled(true);
+            cont=0;
+
+    }
+    else{
+        QMessageBox::information(
+        this,
+        tr("Informacion"),
+        tr("Se está actulizando el servidor, espere unos minutos") );
+    }
+
+}
+
+void ventanaPrincipalCliente::on_BBPasillo2_clicked()
+{
+    cont ++;
+    QString pasillo=ui->CBPasillos3->currentText();
+    string pas = pasillo.toLocal8Bit().constData();
+    char cstr[pas.size() + 1];
+    strcpy(cstr, pas.c_str());
+    char var[]=":";
+    char *token = strtok(cstr,var);
+    string codPasi=token;
+    codPas=codPasi;
+    emit escribirServidor(QString::fromStdString("CA"+codPas).toUtf8());
+    thread()->sleep(1);
+    if (!socketCli.bloqueo){
+        stringstream producto=stringstream(socketCli.nombresCB);
+        producto.str(socketCli.nombresCB);
+        string pas;
+        bool lleno=false;
+        ui->CBProductos3->clear();
+        while(getline(producto, pas)){
+            lleno =true;
+            if (!(pas.empty())){
+                cout<<socketCli.nombresCB<<endl;
+                QString pasq = QString::fromStdString(pas);
+                ui->CBProductos3->addItem(pasq);
+            }
+        }
+        if (lleno && cont==2){
+            ui->LPasProdMar_7->setText("Producto");
+            ui->LInformacion_7->setText("Seleccione el producto de la marca de la que desea conocer el precio");
+            ui->CBPasillos3->setVisible(false);
+            ui->CBProductos3->setVisible(true);
+            ui->BBPasillo2->setVisible(false);
+            ui->BBProducto2->setVisible(true);
+            cont=0;
+        }
+    }
+    else{
+        QMessageBox::information(
+        this,
+        tr("Informacion"),
+        tr("Se está actulizando el servidor, espere unos minutos") );
+    }
+}
+
+void ventanaPrincipalCliente::on_BBProducto2_clicked()
+{
+    cont ++;
+    QString produc=ui->CBProductos3->currentText();
+    string pas = produc.toLocal8Bit().constData();
+    char cstr[pas.size() + 1];
+    strcpy(cstr, pas.c_str());
+    char var[]=":";
+    char *token = strtok(cstr,var);
+    string codProdu=token;
+    codProd=codProdu;
+    emit escribirServidor(QString::fromStdString("CB;"+codPas+";"+codProdu).toUtf8());
+    thread()->sleep(1);
+    if (!socketCli.bloqueo){
+        cout<<"If"<<endl;
+        bool lleno=false;
+        stringstream marca=stringstream(socketCli.nombresCB);
+        marca.str(socketCli.nombresCB);
+        string mar;
+        ui->CBMarcas3->clear();
+        while(getline(marca, mar)){
+            lleno =true;
+            if (!(pas.empty())){
+                QString marq = QString::fromStdString(mar);
+                ui->CBMarcas3->addItem(marq);
+            }
+        }
+        if (lleno&&cont==2){
+            cont=0;
+            ui->BBPrecio2->setVisible(true);
+            ui->LPasProdMar_7->setText("Marcas");
+            ui->LInformacion_7->setText("Seleccione la marca de la que desea conocer el precio");
+            ui->CBMarcas3->setVisible(true);
+            ui->CBProductos3->setVisible(false);
+            ui->BBProducto2->setVisible(false);
+        }
+    }
+}
+
+void ventanaPrincipalCliente::on_BBPrecio2_clicked()
+{
+    cont++;
+    QString marca=ui->CBMarcas3->currentText();
+    string mar = marca.toLocal8Bit().constData();
+    char cstr[mar.size() + 1];
+    strcpy(cstr, mar.c_str());
+    char var[]=":";
+    char *token = strtok(cstr,var);
+    string codMarc=token;
+    codMar=codMarc;
+    emit escribirServidor(QString::fromStdString("ZC;"+codPas+";"+codProd+";"+codMar).toUtf8());
+    string precio=socketCli.nombresCB;
+    QString preci = QString::fromLocal8Bit(precio.c_str());
+    if (cont>=2)
+    {
+        if(socketCli.nombresCB=="SI")
+        {
+            ui->confirmacion_2->setVisible(false);
+            ui->confirmacion->setVisible(true);
+        }
+        else if(socketCli.nombresCB=="NO")
+        {
+            ui->confirmacion_2->setVisible(true);
+            ui->confirmacion->setVisible(false);
+        }
+    }
+}
+
+void ventanaPrincipalCliente::on_BBOtra2_clicked()
+{
+    ui->LInformacion_7->setText("Seleccione el pasillo de la marca de la que desea conocer el precio");
+    ui->LPasProdMar_7->setText("Pasillo");
+    ui->BBPrecio2->setVisible(false);
+    ui->BBPasillo2->setVisible(true);
+    ui->CBMarcas3->setVisible(false);
+    ui->CBPasillos3->setVisible(true);
+    ui->LCDImpuesto->display("0");
+    cont=0;
+}
+
+void ventanaPrincipalCliente::on_pushButton_clicked()
+{
+    emit escribirServidor(QString::fromStdString("CZ").toUtf8());
+    if(!socketCli.bloqueo){
+        thread()->sleep(1);
+        stringstream pasi=stringstream(socketCli.nombresCB);
+        cout<<socketCli.nombresCB<<endl;
+        pasi.str(socketCli.nombresCB);
+        string pas;
+        bool llen=false;
+        while(getline(pasi, pas)){
+            llen =true;
+            if (!(pas.empty())){
+                QString pasq = QString::fromStdString(pas);
+                ui->CBCiudad->addItem(pasq);
+            }
+        }
+    }
+    else{
+        QMessageBox::information(
+        this,
+        tr("Informacion"),
+        tr("Se está actulizando el servidor, espere unos minutos"));
+    }
 }

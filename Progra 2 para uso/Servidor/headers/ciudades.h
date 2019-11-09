@@ -17,9 +17,11 @@ class Ciudad {
     int largoCiudad();
     Ciudad agregarCiudades();
     bool agregarCiudad(Ciudad lista, int cod);
+    string enviarCiudades();
+    pnodoCiudad primero;
 
    private:
-    pnodoCiudad primero;
     pnodoCiudad actual;
+
 };
 #endif // CIUDADES_H

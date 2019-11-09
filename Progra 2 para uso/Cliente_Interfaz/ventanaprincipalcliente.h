@@ -44,9 +44,33 @@ private slots:
 
     void on_BBuscarOtra_clicked();
 
+    void on_BLlenarCBPasillos_2_clicked();
+    void on_BBPasillo_clicked();
+
+    void on_BBProd_clicked();
+
+    void on_BBPrecio_clicked();
+
+    void on_BBOtra_clicked();
+
+    void on_BLlenarCBPasillos3_clicked();
+
+    void on_BBPasillo2_clicked();
+
+    void on_BBProducto2_clicked();
+
+    void on_BBPrecio2_clicked();
+
+    void on_BBOtra2_clicked();
+
+    void on_pushButton_clicked();
+
 private:
     Ui::ventanaPrincipalCliente *ui;
     int cont;
+    string codPas;
+    string codProd;
+    string codMar;
 };
 
 #endif // VENTANAPRINCIPALCLIENTE_H

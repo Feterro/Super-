@@ -95,7 +95,23 @@ bool Ciudad::agregarCiudad(Ciudad lista, int cod){
     }
     return true;
 }
-//Marcas
+string Ciudad::enviarCiudades()
+{
+    string ciudad;
+    nodoCiudad *aux;
+    if (primero== NULL)
+        ciudad="No hay elementos";
+    else
+    {
+        aux = primero;
+        while(aux)
+        {
+            ciudad=ciudad+to_string(aux->codigo)+":"+aux->nombre+"\n";
+            aux = aux->siguiente;
+        }
+   }
+    return ciudad;
+}
 pnodoMarca RN::insertarNodo(pnodoMarca raiz, pnodoMarca pt){
     /*
     Inserta marcas a! Árbol
@@ -2735,9 +2751,9 @@ string Principal::ConsultarCanasta(string codPas, string codProd, string codMar)
             if(vali3){
                 pnodoInventario invent=arbolInventario.encontrarNodo(arbolInventario.raiz, codPas, codProd, codMar, invent);
                 if(invent->codCanasta)
-                    return"\nEl producto si pertenece a la canasta";
+                    return"SI";
                 else
-                    return"\nEl producto no pertenece a la canasta";
+                    return"NO";
             }
             else{
                 return"\nCodigos invalidos,trate de nuevo";

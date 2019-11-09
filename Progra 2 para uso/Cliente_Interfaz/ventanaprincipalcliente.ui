@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>681</width>
-    <height>414</height>
+    <width>680</width>
+    <height>413</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -17,7 +17,7 @@
    <widget class="QTabWidget" name="tabsClientes">
     <property name="geometry">
      <rect>
-      <x>0</x>
+      <x>-10</x>
       <y>0</y>
       <width>691</width>
       <height>401</height>
@@ -28,7 +28,7 @@
     </property>
     <widget class="QWidget" name="tab">
      <attribute name="title">
-      <string>Tab 1</string>
+      <string>    Registro</string>
      </attribute>
      <widget class="QLineEdit" name="TTelefono">
       <property name="geometry">
@@ -183,106 +183,6 @@
         <height>22</height>
        </rect>
       </property>
-      <item>
-       <property name="text">
-        <string>No seleccionado</string>
-       </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>San Jose</string>
-       </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>Catago</string>
-       </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>Heredia</string>
-       </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>Liberia</string>
-       </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>P4</string>
-       </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>Buenos Aires</string>
-       </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>Tilarán</string>
-       </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>Bagaces</string>
-       </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>P3</string>
-       </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>Pital</string>
-       </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>Puerto Viejo</string>
-       </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>Siquirres</string>
-       </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>Matina</string>
-       </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>P2</string>
-       </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>Telire</string>
-       </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>Parrita</string>
-       </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>Samara</string>
-       </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>Jacó</string>
-       </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>P1</string>
-       </property>
-      </item>
      </widget>
      <widget class="QLabel" name="LPregunta">
       <property name="geometry">
@@ -437,10 +337,23 @@
        <string>Su registro fue éxitoso</string>
       </property>
      </widget>
+     <widget class="QPushButton" name="pushButton">
+      <property name="geometry">
+       <rect>
+        <x>650</x>
+        <y>330</y>
+        <width>20</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
     </widget>
     <widget class="QWidget" name="tab_2">
      <attribute name="title">
-      <string>Tab 2</string>
+      <string>Consulta de Precio</string>
      </attribute>
      <widget class="QLCDNumber" name="LCDPrecio">
       <property name="geometry">
@@ -563,8 +476,8 @@
      <widget class="QPushButton" name="BLlenarCBPasillos">
       <property name="geometry">
        <rect>
-        <x>653</x>
-        <y>338</y>
+        <x>650</x>
+        <y>330</y>
         <width>20</width>
         <height>20</height>
        </rect>
@@ -589,19 +502,150 @@
     </widget>
     <widget class="QWidget" name="tab_3">
      <attribute name="title">
-      <string>Page</string>
+      <string>Consulta de Impuesto</string>
      </attribute>
-     <widget class="QLabel" name="label">
+     <widget class="QLabel" name="LInformacion_2">
       <property name="geometry">
        <rect>
-        <x>120</x>
-        <y>30</y>
-        <width>431</width>
+        <x>140</x>
+        <y>40</y>
+        <width>401</width>
         <height>41</height>
        </rect>
       </property>
       <property name="text">
-       <string>Conozca cuales de nuestros productos pertencen a la canasta básica</string>
+       <string>Seleccione el pasillo de la marca de la que desea conocer el porcentaje de impuesto</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="LPasProdMar_2">
+      <property name="geometry">
+       <rect>
+        <x>20</x>
+        <y>190</y>
+        <width>55</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Pasillos</string>
+      </property>
+     </widget>
+     <widget class="QComboBox" name="CBPasillos2">
+      <property name="geometry">
+       <rect>
+        <x>140</x>
+        <y>190</y>
+        <width>201</width>
+        <height>22</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="BBOtra">
+      <property name="geometry">
+       <rect>
+        <x>260</x>
+        <y>270</y>
+        <width>121</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Buscar otra marca</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="BLlenarCBPasillos_2">
+      <property name="geometry">
+       <rect>
+        <x>650</x>
+        <y>330</y>
+        <width>20</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+     <widget class="QLCDNumber" name="LCDImpuesto">
+      <property name="geometry">
+       <rect>
+        <x>390</x>
+        <y>160</y>
+        <width>171</width>
+        <height>71</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="BBPasillo">
+      <property name="geometry">
+       <rect>
+        <x>90</x>
+        <y>270</y>
+        <width>121</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Buscar en pasillo</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="BBProd">
+      <property name="geometry">
+       <rect>
+        <x>90</x>
+        <y>270</y>
+        <width>121</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Buscar en producto</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="BBPrecio">
+      <property name="geometry">
+       <rect>
+        <x>90</x>
+        <y>270</y>
+        <width>121</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Buscar Marca</string>
+      </property>
+     </widget>
+     <widget class="QComboBox" name="CBProductos2">
+      <property name="geometry">
+       <rect>
+        <x>140</x>
+        <y>190</y>
+        <width>201</width>
+        <height>22</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QComboBox" name="CBMarcas2">
+      <property name="geometry">
+       <rect>
+        <x>140</x>
+        <y>190</y>
+        <width>201</width>
+        <height>22</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QLabel" name="porcentaje">
+      <property name="geometry">
+       <rect>
+        <x>590</x>
+        <y>160</y>
+        <width>91</width>
+        <height>81</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string/>
       </property>
      </widget>
     </widget>
@@ -609,6 +653,153 @@
      <attribute name="title">
       <string>Page</string>
      </attribute>
+     <widget class="QLabel" name="LInformacion_7">
+      <property name="geometry">
+       <rect>
+        <x>140</x>
+        <y>40</y>
+        <width>401</width>
+        <height>41</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Seleccione el pasillo de la marca de la que desea conocer el porcentaje de impuesto</string>
+      </property>
+     </widget>
+     <widget class="QComboBox" name="CBMarcas3">
+      <property name="geometry">
+       <rect>
+        <x>140</x>
+        <y>190</y>
+        <width>201</width>
+        <height>22</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QLabel" name="LPasProdMar_7">
+      <property name="geometry">
+       <rect>
+        <x>20</x>
+        <y>190</y>
+        <width>55</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Pasillos</string>
+      </property>
+     </widget>
+     <widget class="QComboBox" name="CBProductos3">
+      <property name="geometry">
+       <rect>
+        <x>140</x>
+        <y>190</y>
+        <width>201</width>
+        <height>22</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QComboBox" name="CBPasillos3">
+      <property name="geometry">
+       <rect>
+        <x>140</x>
+        <y>190</y>
+        <width>201</width>
+        <height>22</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="BBPrecio2">
+      <property name="geometry">
+       <rect>
+        <x>90</x>
+        <y>270</y>
+        <width>121</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Buscar Marca</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="BBProducto2">
+      <property name="geometry">
+       <rect>
+        <x>90</x>
+        <y>270</y>
+        <width>121</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Buscar Marca</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="BBPasillo2">
+      <property name="geometry">
+       <rect>
+        <x>90</x>
+        <y>270</y>
+        <width>121</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Buscar Marca</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="BBOtra2">
+      <property name="geometry">
+       <rect>
+        <x>260</x>
+        <y>270</y>
+        <width>121</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Buscar otra marca</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="BLlenarCBPasillos3">
+      <property name="geometry">
+       <rect>
+        <x>650</x>
+        <y>330</y>
+        <width>20</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+     <widget class="QLabel" name="confirmacion">
+      <property name="geometry">
+       <rect>
+        <x>450</x>
+        <y>150</y>
+        <width>151</width>
+        <height>121</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+     <widget class="QLabel" name="confirmacion_2">
+      <property name="geometry">
+       <rect>
+        <x>450</x>
+        <y>140</y>
+        <width>151</width>
+        <height>121</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
     </widget>
     <widget class="QWidget" name="tab_5">
      <attribute name="title">

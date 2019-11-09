@@ -42,7 +42,7 @@ int main(int argc, char *argv[])
 //    administrador.start();
 
     string result = grafoArt.AP();
-    cout<<result;
+    //cout<<result;
 
     //arbolPasillos.borrarPasillo("01");
     //arbolPasillos.borrarProducto("22","45");

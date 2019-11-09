@@ -59,7 +59,6 @@ void Cliente::readyRead()
     }
     else if(infoConv.substr(0,2)=="MB"||infoConv.substr(0,2)=="MC")
     {
-        cout<<"DDKJDSKDJKSDFNDSCDJNSXNCLKSDNCSDKND"<<endl;
         char cstr[infoConv.size() + 1];
         strcpy(cstr, infoConv.c_str());
         char var[]=";";
