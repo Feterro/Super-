@@ -41,8 +41,8 @@ int main(int argc, char *argv[])
 //    Admin administrador;
 //    administrador.start();
 
-    string result = grafoArt.AP();
-    cout<<result;
+     string result = grafoArt.AP();
+     cout<<result;
 
     //arbolPasillos.borrarPasillo("01");
     //arbolPasillos.borrarProducto("22","45");

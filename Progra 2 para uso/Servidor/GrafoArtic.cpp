@@ -1,5 +1,30 @@
 #include "GrafoArtic.h"
 
+void SubirNodoSupermercado (string pNombreArchivo)
+{
+    ifstream in(pNombreArchivo);
+    if (in.is_open())
+    {
+        std::vector<std::string> content;
+        for (std::string line; std::getline(in, line); )
+        {
+            content.push_back(line);
+        }
+        in.close();
+        std::iter_swap(content.begin(), content.begin() + 3);
+
+        ofstream out("Ptos de aritulacion temporales.txt");
+        if (out.is_open()) {
+            for (auto i : content)
+            {
+                out << i << std::endl;
+            }
+            out.close();
+        }
+    }
+}
+
+
 Graph::Graph(int V)
 {
     this->V = V;
@@ -29,7 +54,6 @@ void Graph::cargarRelaciones(string pNombreArchivo) {
         int primerNodo = encontrarNodo(stoi(numero1));
         int segundoNodo = encontrarNodo(stoi(numero2));
         if (primerNodo == -1 || segundoNodo == -1){
-            cout<<"Se ha detectado una relacion con un nodo inválido"<<endl;
         } else {
         this->addEdge(primerNodo,segundoNodo);
         }
@@ -65,10 +89,11 @@ int contarNodos (string pNombreArchivo, arbolPas &repetidos){
 
 Graph montarGrafo(string pNombreArchivo, string pNombreRelaciones)
 {
+    SubirNodoSupermercado(pNombreArchivo);
     arbolPas repetidos = arbolPas ();
-    int nodosGrafo = contarNodos(pNombreArchivo,repetidos);
+    int nodosGrafo = contarNodos("Ptos de aritulacion temporales.txt",repetidos);
     Graph nuevoGrafo = Graph (nodosGrafo+1);
-    nuevoGrafo.rellenarDatos(pNombreArchivo,repetidos);
+    nuevoGrafo.rellenarDatos("Ptos de aritulacion temporales.txt",repetidos);
     nuevoGrafo.cargarRelaciones(pNombreRelaciones);
     return nuevoGrafo;
 }
@@ -113,7 +138,7 @@ void Graph::addEdge(int v, int w)
 // parent[] --> Stores parent vertices in DFS tree
 // ap[] --> Store articulation points
 void Graph::APUtil(int u, bool visited[], int disc[],
-                                      int low[], int parent[], bool ap[], string razones[])
+                   int low[], int parent[], bool ap[], string razones[], string comparaciones [])
 {
     // A static variable is used for simplicity, we can avoid use of static
     // variable by passing a pointer.
@@ -140,17 +165,22 @@ void Graph::APUtil(int u, bool visited[], int disc[],
         {
             children++;
             parent[v] = u;
-            APUtil(v, visited, disc, low, parent, ap,razones);
+            APUtil(v, visited, disc, low, parent, ap,razones,comparaciones);
 
             // Check if the subtree rooted with v has a connection to
             // one of the ancestors of u
             low[u]  = min(low[u], low[v]);
+            if (disc[u]!=1)
+                comparaciones[u].append(" " + to_string(low[v]) + " >= " + to_string(disc[u]) + "?");
+            else
+                comparaciones[u] = "Raiz con " + to_string(children) + " hijo(s)";
 
             // u is an articulation point in following cases
 
             // (1) u is root of DFS tree and has two or more chilren.
             if (parent[u] == NIL && children > 1){
                ap[u] = true;
+               comparaciones[u].append(" Nodo raiz con al menos dos hijos, PT");
                razones[u] = "Nodo raiz con al menos dos hijos";
             }
 
@@ -158,6 +188,7 @@ void Graph::APUtil(int u, bool visited[], int disc[],
             // than discovery value of u.
             if (parent[u] != NIL && low[v] >= disc[u]){
                ap[u] = true;
+               comparaciones[u].append(" Alguno de sus hijos posee un bajor mayor o igual a su num, PT");
                razones[u] = to_string(low[v]) + " >= " + to_string(disc[u]);
             }
         }
@@ -171,6 +202,7 @@ void Graph::APUtil(int u, bool visited[], int disc[],
 // The function to do DFS traversal. It uses recursive function APUtil()
 string Graph::AP()
 {
+    string comparacionesS = "";
     string result = "";
     // Mark all the vertices as not visited
     bool *visited = new bool[V];
@@ -179,6 +211,7 @@ string Graph::AP()
     int *parent = new int[V];
     bool *ap = new bool[V]; // To store articulation points
     string *razones = new string[V];
+    string *comparaciones = new string[V];
 
     // Initialize parent and visited, and ap(articulation point) arrays
     for (int i = 0; i < V; i++)
@@ -193,19 +226,30 @@ string Graph::AP()
     // in DFS tree rooted with vertex 'i'
     for (int i = 0; i < V; i++)
         if (visited[i] == false)
-            APUtil(i, visited, disc, low, parent, ap, razones);
+            APUtil(i, visited, disc, low, parent, ap, razones, comparaciones);
 
     // Now ap[] contains articulation points, print them
+    result.append("Puntos de articulacion: ");
+    result.append("\n");
     for (int i = 0; i < V; i++){
+        comparacionesS.append(to_string(this->numeros[i]));
+        comparacionesS.append("//");
+        comparacionesS.append(this->nombres[i]);
+        comparacionesS.append("     ");
+        comparacionesS.append(comparaciones[i]);
+        comparacionesS.append("\n");
         if (ap[i] == true){
             result.append(to_string(this->numeros[i]));
             result.append("//");
             result.append(this->nombres[i]);
-            result.append("     ");
-            result.append(razones[i]);
             result.append("\n");
         }
     }
+    ofstream out("Comparaciones (Ptos de articulacion).txt",ios::out | ios::trunc);
+    if (out.is_open()) {
+         out << comparacionesS;
+     }
+    out.close();
     return result;
 }
 
