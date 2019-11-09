@@ -13,7 +13,7 @@ void SubirNodoSupermercado (string pNombreArchivo)
         in.close();
         std::iter_swap(content.begin(), content.begin() + 3);
 
-        ofstream out("Ptos de aritulacion temporales.txt");
+        ofstream out("Ciudades temporales.txt");
         if (out.is_open()) {
             for (auto i : content)
             {
@@ -55,7 +55,7 @@ void Graph::cargarRelaciones(string pNombreArchivo) {
         int segundoNodo = encontrarNodo(stoi(numero2));
         if (primerNodo == -1 || segundoNodo == -1){
         } else {
-        this->addEdge(primerNodo,segundoNodo);
+          this->addEdge(primerNodo,segundoNodo);
         }
     }
     archivo.close();
@@ -91,10 +91,11 @@ Graph montarGrafo(string pNombreArchivo, string pNombreRelaciones)
 {
     SubirNodoSupermercado(pNombreArchivo);
     arbolPas repetidos = arbolPas ();
-    int nodosGrafo = contarNodos("Ptos de aritulacion temporales.txt",repetidos);
+    int nodosGrafo = contarNodos("Ciudades temporales.txt",repetidos);
     Graph nuevoGrafo = Graph (nodosGrafo+1);
-    nuevoGrafo.rellenarDatos("Ptos de aritulacion temporales.txt",repetidos);
+    nuevoGrafo.rellenarDatos("Ciudades temporales.txt",repetidos);
     nuevoGrafo.cargarRelaciones(pNombreRelaciones);
+    remove("Ciudades temporales.txt");
     return nuevoGrafo;
 }
 
@@ -237,6 +238,8 @@ string Graph::AP()
         comparacionesS.append(this->nombres[i]);
         comparacionesS.append("     ");
         comparacionesS.append(comparaciones[i]);
+        if (comparaciones[i]=="")
+            comparacionesS.append("Nodo hoja");
         comparacionesS.append("\n");
         if (ap[i] == true){
             result.append(to_string(this->numeros[i]));

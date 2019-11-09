@@ -3,19 +3,19 @@
 33//Heredia      1 >= 6?
 11//SanJose      1 >= 7?
 55//Liberia      1 >= 2?
-114//P4     
-66//Bagaces     
-77//Bodega     
+114//P4     Nodo hoja
+66//Bagaces     Nodo hoja
+77//Bodega     Nodo hoja
 88//Buenos Aires      4 >= 11? 19 >= 11? Alguno de sus hijos posee un bajor mayor o igual a su num, PT
 99//Tilaran      1 >= 3?
-113//P3     
+113//P3     Nodo hoja
 12//Pital      2 >= 4? 1 >= 4? 21 >= 4? Alguno de sus hijos posee un bajor mayor o igual a su num, PT
 100//Puerto Viejo      11 >= 13? 18 >= 13? Alguno de sus hijos posee un bajor mayor o igual a su num, PT
 49//Siquirres      11 >= 14?
 18//Matina      11 >= 15?
-112//P2     
+112//P2     Nodo hoja
 95//Telire      17 >= 16? Alguno de sus hijos posee un bajor mayor o igual a su num, PT
 120//Parrita      1 >= 8? 4 >= 8? 20 >= 8? Alguno de sus hijos posee un bajor mayor o igual a su num, PT
 122//Samara      8 >= 9?
-9//Jaco     
-111//P1     
+9//Jaco     Nodo hoja
+111//P1     Nodo hoja
