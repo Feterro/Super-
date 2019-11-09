@@ -17,6 +17,7 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 SOURCES += \
         GrafoArtic.cpp \
+        GrafoPR.cpp \
         admin.cpp \
         main.cpp \
         server.cpp \
@@ -34,6 +35,7 @@ HEADERS += \
     admin.h \
     globalHeaders.h \
     globalServer.h \
+    headers/GrafoPR.h \
     headers/arbolInventario.h \
     headers/arbolPas.h \
     headers/arbolb.h \
