@@ -1,0 +1,2 @@
+Recorrido de anchura: 
+44//Supermercado -> 99//Tilaran -> 11//SanJose -> 122//Samara -> 55//Liberia -> 12//Pital -> 66//Bagaces -> 120//Parrita -> 88//Buenos Aires -> 33//Heredia -> 9//Jaco -> 100//Puerto Viejo -> 18//Matina -> 95//Telire -> 22//Cartago -> 49//Siquirres -> 77//Bodega 

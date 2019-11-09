@@ -27,6 +27,9 @@ public:
     void rellenarDatos (string pNombreArchivo, arbolPas repetidos);
     void cargarRelaciones (string pNombreArchivo);
     int encontrarNodo (int numero);
+    void DFSUtil(int v, bool visited[], string &result);
+    string Profundidad ();
+    string Anchura();
     int* numeros;
     string* nombres;
 };

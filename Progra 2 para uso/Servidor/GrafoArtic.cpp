@@ -256,4 +256,94 @@ string Graph::AP()
     return result;
 }
 
+void Graph::DFSUtil(int v, bool visited[], string &result)
+{
+    // Mark the current node as visited and
+    // print it
+    visited[v] = true;
+    result.append(to_string (this->numeros[v]));
+    result.append("//");
+    result.append(this->nombres[v]);
+    result.append(" -> ");
+    // Recur for all the vertices adjacent
+    // to this vertex
+    list<int>::iterator i;
+    for (i = adj[v].begin(); i != adj[v].end(); ++i)
+        if (!visited[*i])
+            DFSUtil(*i, visited, result);
+}
+
+// DFS traversal of the vertices reachable from v.
+// It uses recursive DFSUtil()
+string Graph::Profundidad()
+{
+    int v = 0;
+    string result = "Recorrido de profundidad: \n";
+    // Mark all the vertices as not visited
+    bool *visited = new bool[V];
+    for (int i = 0; i < V; i++)
+        visited[i] = false;
+
+    // Call the recursive helper function
+    // to print DFS traversal
+    DFSUtil(v, visited, result);
+    result = result.substr(0, result.length()-3);
+    ofstream out("Profundidad.txt");
+    if (out.is_open()) {
+        out<<result;
+        out.close();
+    }
+    return result;
+}
+
+string Graph::Anchura()
+{
+    string result = "Recorrido de anchura: \n";
+    int s = 0;
+    // Mark all the vertices as not visited
+    bool *visited = new bool[V];
+    for(int i = 0; i < V; i++)
+        visited[i] = false;
+
+    // Create a queue for BFS
+    list<int> queue;
+
+    // Mark the current node as visited and enqueue it
+    visited[s] = true;
+    queue.push_back(s);
+
+    // 'i' will be used to get all adjacent
+    // vertices of a vertex
+    list<int>::iterator i;
+
+    while(!queue.empty())
+    {
+        // Dequeue a vertex from queue and print it
+        s = queue.front();
+        result.append(to_string (this->numeros[s]));
+        result.append("//");
+        result.append(this->nombres[s]);
+        result.append(" -> ");
+        queue.pop_front();
+        // Get all adjacent vertices of the dequeued
+        // vertex s. If a adjacent has not been visited,
+        // then mark it visited and enqueue it
+        for (i = adj[s].begin(); i != adj[s].end(); ++i)
+        {
+            if (!visited[*i])
+            {
+                visited[*i] = true;
+                queue.push_back(*i);
+            }
+        }
+    }
+    result = result.substr(0, result.length()-3);
+    ofstream out("Anchura.txt");
+    if (out.is_open()) {
+        out<<result;
+        out.close();
+    }
+    return result;
+}
+
 
