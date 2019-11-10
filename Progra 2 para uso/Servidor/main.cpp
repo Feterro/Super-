@@ -48,16 +48,15 @@ int main(int argc, char *argv[])
 
 //Metodos de grafos:
     string result = grafoArt.AP();
-////     cout<<result<<endl;
+    //cout<<result<<endl;
     result = grafoRecorridos.Profundidad();
-////    cout<<result<<endl<<endl;
+    //cout<<result<<endl<<endl;
     result = grafoRecorridos.Anchura();
-////     cout<<result<<endl;
-//    result = grafoPrim.primMST();
-//    cout<<result;
+   // cout<<result<<endl;
+    result = grafoPrim.primMST();
+    cout<<result<<endl;
     result = grafoKruskal.kruskalMST();
-////    cout<<result<<endl<<endl;
-//    cout<<result<<endl;
+    //cout<<result<<endl;
 
 
     return a.exec();
