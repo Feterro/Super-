@@ -82,7 +82,7 @@ string GraphPR::primMST()
     }
 
     int costo = 0;
-    result.append("Las aristas del AEM son: ");
+    result.append("Las aristas del AEM por A. de Prim son: ");
     result.append("\n");
     // Print edges of MST using parent array
     for (int i = 1; i < V; ++i){
@@ -100,7 +100,7 @@ string GraphPR::primMST()
     }
     result.append("El costo total del AEM es: "+to_string(costo));
 
-    ofstream out("AristasAEMPrim.txt",ios::out | ios::trunc);
+    ofstream out("Prim.txt",ios::out | ios::trunc);
     if (out.is_open()) {
          out << result <<endl;
      }
@@ -155,6 +155,7 @@ void GraphPR::cargarRelaciones(string pNombreArchivo) {
     string numero3;
     string linea;
     ifstream archivo (pNombreArchivo);
+    int contRelaciones = 0;
     while (getline(archivo, linea)){
         istringstream lineaActual (linea);
         getline(lineaActual,numero1,';');
@@ -167,12 +168,9 @@ void GraphPR::cargarRelaciones(string pNombreArchivo) {
              peso = stoi (numero3);
         } catch (exception e){
         }
-        cout<<primerNodo;
-        cout<<" , ";
-        cout<<segundoNodo;
-        cout<<", "<<peso<<endl;
         if (primerNodo == -1 || segundoNodo == -1){
         } else {
+           contRelaciones+=1;
           this->addEdge(primerNodo,segundoNodo,peso);
         }
     }

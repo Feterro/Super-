@@ -16,6 +16,7 @@ Servidor servGlo;
 Graph grafoArt = montarGrafo("Ciudades.txt", "Ptos de articulacion.txt");
 Graph grafoRecorridos = montarGrafo("Ciudades.txt", "Conexiones.txt");
 GraphPR grafoPrim = montarGrafoPR("Ciudades.txt", "Conexiones.txt");
+GraphKRUS grafoKruskal = montarGrafoKRUS("Ciudades.txt", "Conexiones.txt");
 
 
 int main(int argc, char *argv[])
@@ -52,8 +53,13 @@ int main(int argc, char *argv[])
 //    cout<<result<<endl<<endl;
 //     result = grafoRecorridos.Anchura();
 //     cout<<result<<endl;
-    string result = grafoPrim.primMST();
-    cout<<result;
+//    string result = grafoPrim.primMST();
+//    cout<<result;
+    string result = grafoKruskal.kruskalMST();
+    cout<<result<<endl<<endl;
+
+    result = grafoPrim.primMST();
+    cout<<result<<endl;
 
 
     return a.exec();

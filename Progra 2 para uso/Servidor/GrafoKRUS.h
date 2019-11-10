@@ -8,6 +8,8 @@
 #include <sstream>
 #include <list>
 #include "headers/arbolPas.h"
+#include "GrafoArtic.h"
+
 using namespace std;
 
 // Creating shortcut for an integer pair
@@ -22,11 +24,7 @@ struct GraphKRUS
     string* nombres;
 
     // Constructor
-    GraphKRUS(int V, int E)
-    {
-        this->V = V;
-        this->E = E;
-    }
+    GraphKRUS(int V, int E);
 
     // Utility function to add an edge
     void addEdge(int u, int v, int w)
@@ -36,13 +34,14 @@ struct GraphKRUS
 
     // Function to find MST using Kruskal's
     // MST algorithm
-    int kruskalMST();
+    string kruskalMST();
     void rellenarDatos (string pNombreArchivo, arbolPas repetidos);
     void cargarRelaciones (string pNombreArchivo);
     int encontrarNodo (int numero);
 };
 
 GraphKRUS montarGrafoKRUS(string pNombreArchivo, string pNombreRelaciones);
+int contarNodosKRUS (string pNombreArchivo, arbolPas &repetidos);
 
 // To represent Disjoint Sets
 struct DisjointSets

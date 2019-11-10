@@ -1,4 +1,4 @@
-Las aristas del AEM son: 
+Las aristas del AEM por A. de Prim son: 
 33---22, peso: 7
 12---33, peso: 3
 44---11, peso: 1

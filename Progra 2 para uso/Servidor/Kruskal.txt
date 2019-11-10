@@ -1,0 +1,19 @@
+Las aristas del AEM por A. de Kruskal son: 
+44---11, peso: 1
+99---66, peso: 1
+33---100, peso: 2
+55---66, peso: 2
+99---120, peso: 2
+120---88, peso: 2
+33---12, peso: 3
+95---18, peso: 3
+120---11, peso: 3
+122---9, peso: 3
+44---122, peso: 4
+66---12, peso: 6
+100---49, peso: 6
+33---22, peso: 7
+95---77, peso: 9
+88---18, peso: 15
+El costo total del AEM es: 69
+
