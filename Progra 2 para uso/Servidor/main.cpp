@@ -54,7 +54,7 @@ int main(int argc, char *argv[])
     result = grafoRecorridos.Anchura();
 ////     cout<<result<<endl;
 //    result = grafoPrim.primMST();
-////    cout<<result;
+//    cout<<result;
     result = grafoKruskal.kruskalMST();
 ////    cout<<result<<endl<<endl;
 //    cout<<result<<endl;
