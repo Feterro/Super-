@@ -17,5 +17,6 @@ extern  ArbolInventario arbolInventario;
 extern  Ciudad listaCiudades;
 extern  Principal princi;
 extern  Graph grafoArt;
+extern  Graph grafoRecorridos;
 
 #endif // GLOBALHEADERS_H

@@ -13,6 +13,7 @@ Ciudad listaCiudades;
 Principal princi;
 Servidor servGlo;
 Graph grafoArt = montarGrafo("Ciudades.txt", "Ptos de articulacion.txt");
+Graph grafoRecorridos = montarGrafo("Ciudades.txt", "Conexiones.txt");
 
 int main(int argc, char *argv[])
 {
@@ -41,11 +42,17 @@ int main(int argc, char *argv[])
 //    Admin administrador;
 //    administrador.start();
 
+<<<<<<< HEAD
     string result = grafoArt.AP();
     //cout<<result;
+=======
+     string result = grafoArt.AP();
+     cout<<result<<endl;
+     result = grafoRecorridos.Profundidad();
+     cout<<result<<endl<<endl;
+     result = grafoRecorridos.Anchura();
+     cout<<result<<endl;
+>>>>>>> master
 
-    //arbolPasillos.borrarPasillo("01");
-    //arbolPasillos.borrarProducto("22","45");
-    //arbolPasillos.borrarMarca("15","04","88");
     return a.exec();
 }

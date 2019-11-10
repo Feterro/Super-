@@ -17,7 +17,7 @@ class Graph
     int V;    // No. of vertices
     list<int> *adj;    // A dynamic array of adjacency lists
     void APUtil(int v, bool visited[], int disc[], int low[],
-                int parent[], bool ap[], string razones[]);
+                int parent[], bool ap[], string razones[], string comparaciones[]);
 
 public:
     Graph (string pNombreArchivo);
@@ -27,10 +27,15 @@ public:
     void rellenarDatos (string pNombreArchivo, arbolPas repetidos);
     void cargarRelaciones (string pNombreArchivo);
     int encontrarNodo (int numero);
+    void DFSUtil(int v, bool visited[], string &result);
+    string Profundidad ();
+    string Anchura();
     int* numeros;
     string* nombres;
 };
 
 Graph montarGrafo(string pNombreArchivo, string pNombreRelaciones);
+
+void SubirNodoSupermercado (string pNombreArchivo);
 
 #endif // GRAFOARTIC_H
