@@ -98,8 +98,6 @@ Graph montarGrafo(string pNombreArchivo, string pNombreRelaciones)
     remove("Ciudades temporales.txt");
     return nuevoGrafo;
 }
-
-
 void Graph::rellenarDatos (string pNombreArchivo, arbolPas repetidos){
     string nombre;
     string numero;

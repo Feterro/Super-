@@ -32,12 +32,6 @@ ventanaPrincipalCliente::ventanaPrincipalCliente(QWidget *parent) :
     ui->LDatos->setVisible(false);
     ui->BRegistrar->setVisible(false);
     ui->BCancelar->setVisible(false);
-    ui->tabsClientes->setTabText(0, "Ingresar");
-    ui->tabsClientes->setTabText(1, "Consultar Precio");
-    ui->tabsClientes->setTabText(2, "Consultar Canasta");
-    ui->tabsClientes->setTabText(3, "Consultar Impuesto");
-    ui->tabsClientes->setTabText(5, "Ver Facturas");
-    ui->tabsClientes->setTabText(4, "Comprar");
     ui->tabsClientes->setTabEnabled(4, false);
     ui->tabsClientes->setTabEnabled(5, false);
     ui->CBMarcas->setVisible(false);
@@ -55,10 +49,12 @@ ventanaPrincipalCliente::ventanaPrincipalCliente(QWidget *parent) :
     ui->CBMarcas2->setVisible(false);
     QPixmap porciento(":/ima/Images/porcentaje.jpg");
     ui->porcentaje->setPixmap(porciento);
+    QPixmap cana(":/ima/Images/canasta.png");
     QPixmap conf(":/ima/Images/check.jpg");
-    QPixmap nega(":/ima/Images/eqis.jpg");
+    QPixmap nega(":/ima/Images/equis.png");
     ui->confirmacion->setPixmap(conf);
     ui->confirmacion_2->setPixmap(nega);
+    ui->confirmacion_3->setPixmap(cana);
     ui->confirmacion->setVisible(false);
     ui->confirmacion_2->setVisible(false);
     ui->BBPasillo2->setEnabled(false);
@@ -427,7 +423,7 @@ void ventanaPrincipalCliente::on_BBPasillo_clicked()
         }
         if (lleno && cont==2){
             ui->LPasProdMar_2->setText("Producto");
-            ui->LInformacion_2->setText("Seleccione el producto de la marca de la que desea conocer el precio");
+            ui->LInformacion_2->setText("Seleccione el producto de la marca de la que desea conocer el impuesto");
             ui->CBPasillos2->setVisible(false);
             ui->CBProductos2->setVisible(true);
             ui->BBPasillo->setVisible(false);
@@ -475,7 +471,7 @@ void ventanaPrincipalCliente::on_BBProd_clicked()
             cont=0;
             ui->BBPrecio->setVisible(true);
             ui->LPasProdMar_2->setText("Marcas");
-            ui->LInformacion_2->setText("Seleccione la marca de la que desea conocer el precio");
+            ui->LInformacion_2->setText("Seleccione la marca de la que desea conocer el impuesto");
             ui->CBMarcas2->setVisible(true);
             ui->CBProductos2->setVisible(false);
             ui->BBProd->setVisible(false);
@@ -504,7 +500,7 @@ void ventanaPrincipalCliente::on_BBPrecio_clicked()
 
 void ventanaPrincipalCliente::on_BBOtra_clicked()
 {
-    ui->LInformacion_2->setText("Seleccione el pasillo de la marca de la que desea conocer el precio");
+    ui->LInformacion_2->setText("Seleccione el pasillo de la marca de la que desea conocer el impuesto");
     ui->LPasProdMar_2->setText("Pasillo");
     ui->BBPrecio->setVisible(false);
     ui->BBPasillo->setVisible(true);
@@ -574,7 +570,7 @@ void ventanaPrincipalCliente::on_BBPasillo2_clicked()
         }
         if (lleno && cont==2){
             ui->LPasProdMar_7->setText("Producto");
-            ui->LInformacion_7->setText("Seleccione el producto de la marca de la que desea conocer el precio");
+            ui->LInformacion_7->setText("Seleccione el producto de la marca de la que desea conocer el canastaje");
             ui->CBPasillos3->setVisible(false);
             ui->CBProductos3->setVisible(true);
             ui->BBPasillo2->setVisible(false);
@@ -621,7 +617,7 @@ void ventanaPrincipalCliente::on_BBProducto2_clicked()
             cont=0;
             ui->BBPrecio2->setVisible(true);
             ui->LPasProdMar_7->setText("Marcas");
-            ui->LInformacion_7->setText("Seleccione la marca de la que desea conocer el precio");
+            ui->LInformacion_7->setText("Seleccione la marca de la que desea conocer el canastaje");
             ui->CBMarcas3->setVisible(true);
             ui->CBProductos3->setVisible(false);
             ui->BBProducto2->setVisible(false);
@@ -645,6 +641,7 @@ void ventanaPrincipalCliente::on_BBPrecio2_clicked()
     QString preci = QString::fromLocal8Bit(precio.c_str());
     if (cont>=2)
     {
+        ui->confirmacion_3->setVisible(false);
         if(socketCli.nombresCB=="SI")
         {
             ui->confirmacion_2->setVisible(false);
@@ -660,13 +657,15 @@ void ventanaPrincipalCliente::on_BBPrecio2_clicked()
 
 void ventanaPrincipalCliente::on_BBOtra2_clicked()
 {
-    ui->LInformacion_7->setText("Seleccione el pasillo de la marca de la que desea conocer el precio");
+    ui->LInformacion_7->setText("Seleccione el pasillo de la marca de la que desea conocer el canastaje");
     ui->LPasProdMar_7->setText("Pasillo");
     ui->BBPrecio2->setVisible(false);
     ui->BBPasillo2->setVisible(true);
     ui->CBMarcas3->setVisible(false);
     ui->CBPasillos3->setVisible(true);
-    ui->LCDImpuesto->display("0");
+    ui->confirmacion->setVisible(false);
+    ui->confirmacion_2->setVisible(false);
+    ui->confirmacion_3->setVisible(true);
     cont=0;
 }
 
@@ -694,4 +693,170 @@ void ventanaPrincipalCliente::on_pushButton_clicked()
         tr("Informacion"),
         tr("Se está actulizando el servidor, espere unos minutos"));
     }
+}
+
+void ventanaPrincipalCliente::on_BLlenarCBPasillos3_2_clicked()
+{
+    {
+        emit escribirServidor(QString::fromStdString("CO").toUtf8());
+        if(!socketCli.bloqueo){
+            thread()->sleep(1);
+            stringstream pasi=stringstream(socketCli.nombresCB);
+            cout<<socketCli.nombresCB<<endl;
+            pasi.str(socketCli.nombresCB);
+            string pas;
+            bool llen=false;
+            while(getline(pasi, pas)){
+                llen =true;
+                if (!(pas.empty())){
+                    QString pasq = QString::fromStdString(pas);
+                    ui->CBPasillos4->addItem(pasq);
+                }
+            }
+            if (llen)
+                ui->BBPasillo4->setEnabled(true);
+                cont=0;
+        }
+        else{
+            QMessageBox::information(
+            this,
+            tr("Informacion"),
+            tr("Se está actulizando el servidor, espere unos minutos") );
+        }
+
+    }
+}
+
+void ventanaPrincipalCliente::on_BBPasillo4_clicked()
+{
+    cont ++;
+    QString pasillo=ui->CBPasillos4->currentText();
+    string pas = pasillo.toLocal8Bit().constData();
+    char cstr[pas.size() + 1];
+    strcpy(cstr, pas.c_str());
+    char var[]=":";
+    char *token = strtok(cstr,var);
+    string codPasi=token;
+    codPas=codPasi;
+    emit escribirServidor(QString::fromStdString("CA"+codPas).toUtf8());
+    thread()->sleep(1);
+    if (!socketCli.bloqueo){
+        stringstream producto=stringstream(socketCli.nombresCB);
+        producto.str(socketCli.nombresCB);
+        string pas;
+        bool lleno=false;
+        ui->CBProductos4->clear();
+        while(getline(producto, pas)){
+            lleno =true;
+            if (!(pas.empty())){
+                cout<<socketCli.nombresCB<<endl;
+                QString pasq = QString::fromStdString(pas);
+                ui->CBProductos4->addItem(pasq);
+            }
+        }
+        if (lleno && cont==2){
+            ui->LPasProdMar_8->setText("Producto");
+            ui->LInformacion_8->setText("Seleccione el producto de la marca de la que desea conocer el precio");
+            ui->CBPasillos4->setVisible(false);
+            ui->CBProductos4->setVisible(true);
+            ui->BBPasillo4->setVisible(false);
+            ui->BBProducto4->setVisible(true);
+            cont=0;
+        }
+    }
+    else{
+        QMessageBox::information(
+        this,
+        tr("Informacion"),
+        tr("Se está actulizando el servidor, espere unos minutos") );
+    }
+}
+
+void ventanaPrincipalCliente::on_BBProducto4_clicked()
+{
+    cont ++;
+    QString produc=ui->CBProductos4->currentText();
+    string pas = produc.toLocal8Bit().constData();
+    char cstr[pas.size() + 1];
+    strcpy(cstr, pas.c_str());
+    char var[]=":";
+    char *token = strtok(cstr,var);
+    string codProdu=token;
+    codProd=codProdu;
+    emit escribirServidor(QString::fromStdString("CB;"+codPas+";"+codProdu).toUtf8());
+    thread()->sleep(1);
+    if (!socketCli.bloqueo){
+        cout<<"If"<<endl;
+        bool lleno=false;
+        stringstream marca=stringstream(socketCli.nombresCB);
+        marca.str(socketCli.nombresCB);
+        string mar;
+        ui->CBMarcas4->clear();
+        while(getline(marca, mar)){
+            lleno =true;
+            if (!(pas.empty())){
+                QString marq = QString::fromStdString(mar);
+                ui->CBMarcas4->addItem(marq);
+            }
+        }
+        if (lleno&&cont==2){
+            cont=0;
+            ui->BBPrecio4->setVisible(true);
+            ui->LPasProdMar_8->setText("Marcas");
+            ui->LInformacion_8->setText("Seleccione la marca de la que desea conocer el precio");
+            ui->CBMarcas4->setVisible(true);
+            ui->CBProductos4->setVisible(false);
+            ui->BBProducto4->setVisible(false);
+        }
+    }
+}
+
+void ventanaPrincipalCliente::on_BBPrecio4_clicked()
+{
+    cont ++;
+    QString produc=ui->CBProductos4->currentText();
+    string pas = produc.toLocal8Bit().constData();
+    char cstr[pas.size() + 1];
+    strcpy(cstr, pas.c_str());
+    char var[]=":";
+    char *token = strtok(cstr,var);
+    string codProdu=token;
+    codProd=codProdu;
+    emit escribirServidor(QString::fromStdString("CB;"+codPas+";"+codProdu).toUtf8());
+    thread()->sleep(1);
+    if (!socketCli.bloqueo){
+        bool lleno=false;
+        stringstream marca=stringstream(socketCli.nombresCB);
+        marca.str(socketCli.nombresCB);
+        string mar;
+        ui->CBMarcas4->clear();
+        while(getline(marca, mar)){
+            lleno=true;
+            if (!(pas.empty())){
+                QString marq = QString::fromStdString(mar);
+                ui->CBMarcas4->addItem(marq);
+            }
+        }
+        if (lleno&&cont==2){
+            cont=0;
+            ui->BBPrecio4->setVisible(true);
+            ui->LPasProdMar_8->setText("Marcas");
+            ui->LInformacion_8->setText("Seleccione la marca de la que desea conocer el precio");
+            ui->CBMarcas4->setVisible(true);
+            ui->CBProductos4->setVisible(false);
+            ui->BBProducto4->setVisible(false);
+        }
+    }
+}
+
+
+void ventanaPrincipalCliente::on_BBOtra3_clicked()
+{
+    ui->LInformacion_8->setText("Seleccione el pasillo de la marca de la que desea conocer el precio");
+    ui->LPasProdMar_8->setText("Pasillo");
+    ui->BBPrecio4->setVisible(false);
+    ui->BBPasillo4->setVisible(true);
+    ui->CBMarcas4->setVisible(false);
+    ui->CBPasillos4->setVisible(true);
+    cont=0;
 }

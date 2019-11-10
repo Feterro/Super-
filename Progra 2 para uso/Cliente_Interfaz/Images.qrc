@@ -6,7 +6,9 @@
         <file>Images/índice.png</file>
         <file>Images/colon4.jpg</file>
         <file>Images/check.jpg</file>
-        <file>Images/equis.jpg</file>
         <file>Images/porcentaje.jpg</file>
+        <file>Images/canasta.png</file>
+        <file>Images/equis.png</file>
     </qresource>
+    <qresource prefix="/"/>
 </RCC>

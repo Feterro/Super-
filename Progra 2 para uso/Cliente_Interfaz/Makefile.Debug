@@ -114,13 +114,14 @@ compiler_rcc_clean:
 	-$(DEL_FILE) debug\qrc_Images.cpp
 debug/qrc_Images.cpp: Images.qrc \
 		F:/Qt/5.12.5/mingw73_32/bin/rcc.exe \
+		Images/canasta.png \
 		Images/índice.png \
 		Images/check.jpg \
+		Images/equis.png \
 		Images/colon.png \
 		Images/colon3.png \
 		Images/colon2.png \
 		Images/colon4.jpg \
-		Images/equis.jpg \
 		Images/porcentaje.jpg
 	F:\Qt\5.12.5\mingw73_32\bin\rcc.exe -name Images Images.qrc -o debug\qrc_Images.cpp
 

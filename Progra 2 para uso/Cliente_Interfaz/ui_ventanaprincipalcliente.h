@@ -94,7 +94,18 @@ public:
     QPushButton *BLlenarCBPasillos3;
     QLabel *confirmacion;
     QLabel *confirmacion_2;
+    QLabel *confirmacion_3;
     QWidget *tab_5;
+    QLabel *LInformacion_8;
+    QLabel *LPasProdMar_8;
+    QComboBox *CBPasillos4;
+    QPushButton *BBPrecio4;
+    QPushButton *BBProducto4;
+    QPushButton *BBPasillo4;
+    QPushButton *BBOtra3;
+    QPushButton *BLlenarCBPasillos3_2;
+    QComboBox *CBProductos4;
+    QComboBox *CBMarcas4;
     QWidget *tab_6;
     QStatusBar *statusbar;
 
@@ -301,13 +312,46 @@ public:
         BLlenarCBPasillos3->setGeometry(QRect(650, 330, 20, 20));
         confirmacion = new QLabel(tab_4);
         confirmacion->setObjectName(QString::fromUtf8("confirmacion"));
-        confirmacion->setGeometry(QRect(450, 150, 151, 121));
+        confirmacion->setGeometry(QRect(480, 150, 151, 121));
         confirmacion_2 = new QLabel(tab_4);
         confirmacion_2->setObjectName(QString::fromUtf8("confirmacion_2"));
-        confirmacion_2->setGeometry(QRect(450, 140, 151, 121));
+        confirmacion_2->setGeometry(QRect(480, 150, 151, 121));
+        confirmacion_3 = new QLabel(tab_4);
+        confirmacion_3->setObjectName(QString::fromUtf8("confirmacion_3"));
+        confirmacion_3->setGeometry(QRect(480, 150, 151, 121));
         tabsClientes->addTab(tab_4, QString());
         tab_5 = new QWidget();
         tab_5->setObjectName(QString::fromUtf8("tab_5"));
+        LInformacion_8 = new QLabel(tab_5);
+        LInformacion_8->setObjectName(QString::fromUtf8("LInformacion_8"));
+        LInformacion_8->setGeometry(QRect(190, 40, 261, 41));
+        LPasProdMar_8 = new QLabel(tab_5);
+        LPasProdMar_8->setObjectName(QString::fromUtf8("LPasProdMar_8"));
+        LPasProdMar_8->setGeometry(QRect(20, 190, 55, 16));
+        CBPasillos4 = new QComboBox(tab_5);
+        CBPasillos4->setObjectName(QString::fromUtf8("CBPasillos4"));
+        CBPasillos4->setGeometry(QRect(220, 160, 201, 22));
+        BBPrecio4 = new QPushButton(tab_5);
+        BBPrecio4->setObjectName(QString::fromUtf8("BBPrecio4"));
+        BBPrecio4->setGeometry(QRect(140, 250, 121, 31));
+        BBProducto4 = new QPushButton(tab_5);
+        BBProducto4->setObjectName(QString::fromUtf8("BBProducto4"));
+        BBProducto4->setGeometry(QRect(140, 250, 121, 31));
+        BBPasillo4 = new QPushButton(tab_5);
+        BBPasillo4->setObjectName(QString::fromUtf8("BBPasillo4"));
+        BBPasillo4->setGeometry(QRect(140, 250, 121, 31));
+        BBOtra3 = new QPushButton(tab_5);
+        BBOtra3->setObjectName(QString::fromUtf8("BBOtra3"));
+        BBOtra3->setGeometry(QRect(370, 250, 121, 31));
+        BLlenarCBPasillos3_2 = new QPushButton(tab_5);
+        BLlenarCBPasillos3_2->setObjectName(QString::fromUtf8("BLlenarCBPasillos3_2"));
+        BLlenarCBPasillos3_2->setGeometry(QRect(650, 330, 20, 20));
+        CBProductos4 = new QComboBox(tab_5);
+        CBProductos4->setObjectName(QString::fromUtf8("CBProductos4"));
+        CBProductos4->setGeometry(QRect(220, 160, 201, 22));
+        CBMarcas4 = new QComboBox(tab_5);
+        CBMarcas4->setObjectName(QString::fromUtf8("CBMarcas4"));
+        CBMarcas4->setGeometry(QRect(220, 160, 201, 22));
         tabsClientes->addTab(tab_5, QString());
         tab_6 = new QWidget();
         tab_6->setObjectName(QString::fromUtf8("tab_6"));
@@ -319,7 +363,7 @@ public:
 
         retranslateUi(ventanaPrincipalCliente);
 
-        tabsClientes->setCurrentIndex(0);
+        tabsClientes->setCurrentIndex(1);
 
 
         QMetaObject::connectSlotsByName(ventanaPrincipalCliente);
@@ -367,7 +411,7 @@ public:
         BBPrecio->setText(QApplication::translate("ventanaPrincipalCliente", "Buscar Marca", nullptr));
         porcentaje->setText(QString());
         tabsClientes->setTabText(tabsClientes->indexOf(tab_3), QApplication::translate("ventanaPrincipalCliente", "Consulta de Impuesto", nullptr));
-        LInformacion_7->setText(QApplication::translate("ventanaPrincipalCliente", "Seleccione el pasillo de la marca de la que desea conocer el porcentaje de impuesto", nullptr));
+        LInformacion_7->setText(QApplication::translate("ventanaPrincipalCliente", "Seleccione el pasillo de la marca de la que desea conocer canastaje", nullptr));
         LPasProdMar_7->setText(QApplication::translate("ventanaPrincipalCliente", "Pasillos", nullptr));
         BBPrecio2->setText(QApplication::translate("ventanaPrincipalCliente", "Buscar Marca", nullptr));
         BBProducto2->setText(QApplication::translate("ventanaPrincipalCliente", "Buscar Marca", nullptr));
@@ -376,9 +420,17 @@ public:
         BLlenarCBPasillos3->setText(QString());
         confirmacion->setText(QString());
         confirmacion_2->setText(QString());
-        tabsClientes->setTabText(tabsClientes->indexOf(tab_4), QApplication::translate("ventanaPrincipalCliente", "Page", nullptr));
-        tabsClientes->setTabText(tabsClientes->indexOf(tab_5), QApplication::translate("ventanaPrincipalCliente", "Page", nullptr));
-        tabsClientes->setTabText(tabsClientes->indexOf(tab_6), QApplication::translate("ventanaPrincipalCliente", "Page", nullptr));
+        confirmacion_3->setText(QString());
+        tabsClientes->setTabText(tabsClientes->indexOf(tab_4), QApplication::translate("ventanaPrincipalCliente", "Consulta de Canasta", nullptr));
+        LInformacion_8->setText(QApplication::translate("ventanaPrincipalCliente", "Seleccione el pasillo de la marca que desea comprar", nullptr));
+        LPasProdMar_8->setText(QApplication::translate("ventanaPrincipalCliente", "Pasillos", nullptr));
+        BBPrecio4->setText(QApplication::translate("ventanaPrincipalCliente", "Buscar Marca", nullptr));
+        BBProducto4->setText(QApplication::translate("ventanaPrincipalCliente", "Buscar Productos", nullptr));
+        BBPasillo4->setText(QApplication::translate("ventanaPrincipalCliente", "Buscar Pasillos", nullptr));
+        BBOtra3->setText(QApplication::translate("ventanaPrincipalCliente", "Buscar otra marca", nullptr));
+        BLlenarCBPasillos3_2->setText(QString());
+        tabsClientes->setTabText(tabsClientes->indexOf(tab_5), QApplication::translate("ventanaPrincipalCliente", "Comprar", nullptr));
+        tabsClientes->setTabText(tabsClientes->indexOf(tab_6), QApplication::translate("ventanaPrincipalCliente", "Otros", nullptr));
     } // retranslateUi
 
 };

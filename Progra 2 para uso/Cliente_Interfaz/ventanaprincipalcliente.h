@@ -65,6 +65,16 @@ private slots:
 
     void on_pushButton_clicked();
 
+    void on_BLlenarCBPasillos3_2_clicked();
+
+    void on_BBPasillo4_clicked();
+
+    void on_BBProducto4_clicked();
+
+    void on_BBPrecio4_clicked();
+
+    void on_BBOtra3_clicked();
+
 private:
     Ui::ventanaPrincipalCliente *ui;
     int cont;

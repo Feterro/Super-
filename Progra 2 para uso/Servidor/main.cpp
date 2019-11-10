@@ -42,17 +42,12 @@ int main(int argc, char *argv[])
 //    Admin administrador;
 //    administrador.start();
 
-<<<<<<< HEAD
-    string result = grafoArt.AP();
-    //cout<<result;
-=======
      string result = grafoArt.AP();
-     cout<<result<<endl;
+//     cout<<result<<endl;
      result = grafoRecorridos.Profundidad();
-     cout<<result<<endl<<endl;
+//    cout<<result<<endl<<endl;
      result = grafoRecorridos.Anchura();
-     cout<<result<<endl;
->>>>>>> master
+//     cout<<result<<endl;
 
     return a.exec();
 }
