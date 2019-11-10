@@ -9,6 +9,8 @@
         <file>Images/porcentaje.jpg</file>
         <file>Images/canasta.png</file>
         <file>Images/equis.png</file>
+        <file>Images/ovalo.png</file>
+        <file>Images/santamanosarriba.png</file>
     </qresource>
     <qresource prefix="/"/>
 </RCC>

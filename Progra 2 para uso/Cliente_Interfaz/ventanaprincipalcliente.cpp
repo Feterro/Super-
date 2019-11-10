@@ -67,6 +67,11 @@ ventanaPrincipalCliente::ventanaPrincipalCliente(QWidget *parent) :
     ui->BBPrecio4->setVisible(false);
     ui->CBProductos4->setVisible(false);
     ui->CBMarcas4->setVisible(false);
+    ui->sBoxCantidad->setVisible(false);
+    ui->BBCanti->setVisible(false);
+    QPixmap sanCom(":/ima/Images/santamanosarriba.png");
+    ui->santaManos->setPixmap(sanCom);
+    ui->santaManos->setVisible(false);
 
     connect(this, SIGNAL(escribirServidor(QByteArray)),&socketCli,SLOT(escribirServidor(QByteArray)));
 }
@@ -789,9 +794,8 @@ void ventanaPrincipalCliente::on_BBProducto4_clicked()
     string codProdu=token;
     codProd=codProdu;
     emit escribirServidor(QString::fromStdString("CB;"+codPas+";"+codProdu).toUtf8());
-    thread()->sleep(1);
+    this->thread()->sleep(1);
     if (!socketCli.bloqueo){
-        cout<<"If"<<endl;
         bool lleno=false;
         stringstream marca=stringstream(socketCli.nombresCB);
         marca.str(socketCli.nombresCB);
@@ -818,8 +822,7 @@ void ventanaPrincipalCliente::on_BBProducto4_clicked()
 
 void ventanaPrincipalCliente::on_BBPrecio4_clicked()
 {
-    cont++;
-    QString marca=ui->CBMarcas2->currentText();
+    QString marca=ui->CBMarcas4->currentText();
     string mar = marca.toLocal8Bit().constData();
     char cstr[mar.size() + 1];
     strcpy(cstr, mar.c_str());
@@ -827,36 +830,71 @@ void ventanaPrincipalCliente::on_BBPrecio4_clicked()
     char *token = strtok(cstr,var);
     string codMarc=token;
     codMar=codMarc;
-    if(!compra)
-        emit escribirServidor(QString::fromStdString("CF;"+codPas+";"+codProd+";"+codMar).toUtf8());
-    else
-        emit escribirServidor(QString::fromStdString("CFD;"+codPas+";"+codProd+";"+codMar).toUtf8());
-    string precio=socketCli.nombresCB;
-    QString preci = QString::fromLocal8Bit(precio.c_str());
-    if (cont>=2)
-        ui->LCDImpuesto->display(preci);
-    compra=true;
-    if(socketCli.nombresCB=="SI")
-        QMessageBox::information(
-        this,
-        tr("Informacion"),
-        tr("Compra realizada!") );
-    else if(socketCli.nombresCB=="NO")
-        QMessageBox::information(
-        this,
-        tr("Informacion"),
-        tr("Usted ya se encuentra en la lista de facturacion"));
+    ui->BBPrecio4->setVisible(false);
+    ui->sBoxCantidad->setVisible(true);
+    ui->BBCanti->setVisible(true);
+    ui->CBMarcas4->setVisible(false);
 }
 
 
 void ventanaPrincipalCliente::on_BBOtra3_clicked()
 {
+    cont++;
+    if (cont>=2)
+    {
+        this->thread()->sleep(1);
+        if(socketCli.nombresCB=="SI")
+        {
+            QMessageBox::information(
+            this,
+            tr("Informacion"),
+            tr("Compra realizada!") );
+        }
+        else if(socketCli.nombresCB=="NO")
+        {
+            QMessageBox::information(
+            this,
+            tr("Informacion"),
+            tr("Usted ya se encuentra en la lista de facturacion"));
+        }
+    }
+    compra=false;
+}
+
+void ventanaPrincipalCliente::on_BBCanti_clicked()
+{
+    QString can=ui->sBoxCantidad->text();
+    string canti=can.toLocal8Bit().constData();
+    QString cedu=ui->TCedula->text();
+    string ced=cedu.toLocal8Bit().constData();
+    bool comp=compra;
+    if(!comp)
+    {
+        emit escribirServidor(QString::fromStdString("CF;"+codPas+";"+codProd+";"+codMar+";"+canti+";"+ced).toUtf8());
+        compra=true;
+    }
+    else
+        emit escribirServidor(QString::fromStdString("CFD;"+codPas+";"+codProd+";"+codMar+";"+canti+";"+ced).toUtf8());
+    string precio=socketCli.nombresCB;
+    QString preci = QString::fromLocal8Bit(precio.c_str());
+//    ui->sBoxCantidad->setVisible(false);
+//    ui->BBOtra3->setVisible(false);
+//    ui->BBCanti->setVisible(false);
+//    ui->LInformacion_8->setVisible(false);
+//    ui->LPasProdMar_8->setVisible(false);
+//    ui->santaManos->setVisible(true);
+//    this->thread()->sleep(5);
+//    ui->santaManos->setVisible(false);
+//    ui->LInformacion_8->setVisible(true);
+//    ui->LPasProdMar_8->setVisible(true);
+//    ui->BBOtra3->setVisible(true);
     ui->LInformacion_8->setText("Seleccione el pasillo de la marca que desea conocer el comprar");
     ui->LPasProdMar_8->setText("Pasillo");
     ui->BBPrecio4->setVisible(false);
     ui->BBPasillo4->setVisible(true);
     ui->CBMarcas4->setVisible(false);
     ui->CBPasillos4->setVisible(true);
+    ui->sBoxCantidad->setVisible(false);
+    ui->BBCanti->setVisible(false);
     cont=0;
-    compra=false;
 }

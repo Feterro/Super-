@@ -77,6 +77,8 @@ private slots:
 
     void on_BBOtra3_clicked();
 
+    void on_BBCanti_clicked();
+
 private:
     Ui::ventanaPrincipalCliente *ui;
     int cont;

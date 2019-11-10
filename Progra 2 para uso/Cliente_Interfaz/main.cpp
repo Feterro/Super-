@@ -11,6 +11,7 @@ int main(int argc, char *argv[])
 
     QApplication a(argc, argv);
     socketCli.SocketConnection();
+
     ventanaPrincipalCliente w;
     w.show();
     return a.exec();

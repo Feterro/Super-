@@ -53,7 +53,7 @@ void Cliente::readyRead()
         char var[]=";";
         char *token = strtok(cstr,var);
         token = strtok(NULL,var);
-        cout<<token<<endl;
+        //cout<<token<<endl;
         this->nombresCB=token;
         verificarBloqueo(infoConv);
     }
@@ -76,7 +76,7 @@ void Cliente::readyRead()
         char var[]=";";
         char *token = strtok(cstr,var);
         token = strtok(NULL,var);
-        cout<<token<<endl;
+        //cout<<token<<endl;
     }
 }
 void Cliente::escribirServidor(QByteArray info)
