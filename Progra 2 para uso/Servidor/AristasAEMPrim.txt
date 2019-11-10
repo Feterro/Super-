@@ -1,0 +1,18 @@
+Las aristas del AEM son: 
+33---22, peso: 7
+12---33, peso: 3
+44---11, peso: 1
+66---55, peso: 2
+99---66, peso: 1
+95---77, peso: 9
+120---88, peso: 2
+120---99, peso: 2
+66---12, peso: 6
+33---100, peso: 2
+100---49, peso: 6
+88---18, peso: 15
+18---95, peso: 3
+11---120, peso: 3
+44---122, peso: 4
+122---9, peso: 3
+El costo total del AEM es: 69

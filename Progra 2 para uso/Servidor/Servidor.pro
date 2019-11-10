@@ -17,6 +17,7 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 SOURCES += \
         GrafoArtic.cpp \
+        GrafoKRUS.cpp \
         GrafoPR.cpp \
         admin.cpp \
         main.cpp \
@@ -30,6 +31,8 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 
 HEADERS += \
     GrafoArtic.h \
+    GrafoKRUS.h \
+    GrafoPR.h \
     Principal.h \
     Prograprincipal.h \
     admin.h \

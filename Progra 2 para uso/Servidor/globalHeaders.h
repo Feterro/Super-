@@ -9,6 +9,8 @@
 #include "headers/rojinegro.h"
 #include "Principal.h"
 #include "GrafoArtic.h"
+#include "GrafoPR.h"
+#include "GrafoKRUS.h"
 
 extern  ArbolB arbolClientes;
 extern  ArbolB arbolAdmin;
@@ -18,5 +20,7 @@ extern  Ciudad listaCiudades;
 extern  Principal princi;
 extern  Graph grafoArt;
 extern  Graph grafoRecorridos;
+extern GraphPR grafoPrim;
+extern GraphKRUS grafoKruskal;
 
 #endif // GLOBALHEADERS_H

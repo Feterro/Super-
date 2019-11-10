@@ -1,0 +1,10 @@
+release/GrafoArtic.o
+release/GrafoKRUS.o
+release/GrafoPR.o
+release/admin.o
+release/main.o
+release/server.o
+release/socketServer.o
+release/moc_admin.o
+release/moc_server.o
+release/moc_socketServer.o

@@ -4,6 +4,7 @@
 #include "socketServer.h"
 #include "globalHeaders.h"
 #include "Prograprincipal.h"
+#include "GrafoPR.h"
 
 ArbolB arbolClientes=ArbolB(5);
 ArbolB arbolAdmin=ArbolB(5);
@@ -14,6 +15,8 @@ Principal princi;
 Servidor servGlo;
 Graph grafoArt = montarGrafo("Ciudades.txt", "Ptos de articulacion.txt");
 Graph grafoRecorridos = montarGrafo("Ciudades.txt", "Conexiones.txt");
+GraphPR grafoPrim = montarGrafoPR("Ciudades.txt", "Conexiones.txt");
+
 
 int main(int argc, char *argv[])
 {
@@ -42,12 +45,16 @@ int main(int argc, char *argv[])
 //    Admin administrador;
 //    administrador.start();
 
-     string result = grafoArt.AP();
+//Metodos de grafos:
+//     string result = grafoArt.AP();
 //     cout<<result<<endl;
-     result = grafoRecorridos.Profundidad();
+//     result = grafoRecorridos.Profundidad();
 //    cout<<result<<endl<<endl;
-     result = grafoRecorridos.Anchura();
+//     result = grafoRecorridos.Anchura();
 //     cout<<result<<endl;
+    string result = grafoPrim.primMST();
+    cout<<result;
+
 
     return a.exec();
 }

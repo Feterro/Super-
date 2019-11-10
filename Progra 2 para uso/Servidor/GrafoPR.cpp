@@ -1,9 +1,16 @@
-#include "headers/GrafoPR.h"
+#include "GrafoPR.h"
+#include <fstream>
+#include <iostream>
+#include <fstream>
+#include <string>
+#include <sstream>
 
 GraphPR::GraphPR(int V)
 {
     this->V = V;
     adj = new list<iPair> [V];
+    numeros = new int[V];
+    nombres = new string [V];
 }
 
 void GraphPR::addEdge(int u, int v, int w)
@@ -13,8 +20,9 @@ void GraphPR::addEdge(int u, int v, int w)
 }
 
 // Prints shortest paths from src to all other vertices
-void GraphPR::primMST()
+string GraphPR::primMST()
 {
+    string result = "";
     // Create a priority queue to store vertices that
     // are being preinMST. This is weird syntax in C++.
     // Refer below link for details of this syntax
@@ -73,7 +81,137 @@ void GraphPR::primMST()
         }
     }
 
+    int costo = 0;
+    result.append("Las aristas del AEM son: ");
+    result.append("\n");
     // Print edges of MST using parent array
-    for (int i = 1; i < V; ++i)
-        printf("%d - %d\n", parent[i], i);
+    for (int i = 1; i < V; ++i){
+       result.append(to_string (this->numeros[parent[i]]) + "---" + to_string (this->numeros[i]));
+       list <iPair> x = this->adj[parent[i]];
+       list< pair<int, int> >::iterator cont;
+       for (cont = x.begin(); cont != x.end(); ++cont)
+       {
+           if ((*cont).first==i){
+               result.append(", peso: "+to_string((*cont).second));
+               costo+=(*cont).second;
+           }
+       }
+       result.append("\n");
+    }
+    result.append("El costo total del AEM es: "+to_string(costo));
+
+    ofstream out("AristasAEMPrim.txt",ios::out | ios::trunc);
+    if (out.is_open()) {
+         out << result <<endl;
+     }
+    out.close();
+    return result;
 }
+
+
+int contarNodosPR (string pNombreArchivo, arbolPas &repetidos){
+    arbolPas numeros = arbolPas();
+    string numero;
+    int i = -1;
+    int contLineas = 1;
+    string linea;
+    ifstream archivo (pNombreArchivo);
+    while (getline(archivo, linea)){
+        istringstream lineaActual (linea);
+        getline(lineaActual,numero,';');
+        bool temp = false;
+        numeros.encontrarPasillo(temp,numeros.raiz,numero);
+        if (!temp && numero != "114" && numero != "113" && numero != "112" && numero != "111"){
+            numeros.InsertaBinario(numeros.raiz,numero,"");
+            i++;
+            contLineas++;
+        }else{
+            repetidos.InsertaBinario(repetidos.raiz,to_string(contLineas),"");
+            temp = false;
+            contLineas++;
+        }
+    }
+    archivo.close();
+    return i;
+}
+
+
+
+GraphPR montarGrafoPR(string pNombreArchivo, string pNombreRelaciones)
+{
+    SubirNodoSupermercado(pNombreArchivo);
+    arbolPas repetidos = arbolPas ();
+    int nodosGrafo = contarNodosPR("Ciudades temporales.txt",repetidos);
+    GraphPR nuevoGrafo = GraphPR (nodosGrafo+1);
+    nuevoGrafo.rellenarDatos("Ciudades temporales.txt",repetidos);
+    nuevoGrafo.cargarRelaciones(pNombreRelaciones);
+    remove ("Ciudades temporales.txt");
+    return nuevoGrafo;
+}
+
+void GraphPR::cargarRelaciones(string pNombreArchivo) {
+    string numero1;
+    string numero2;
+    string numero3;
+    string linea;
+    ifstream archivo (pNombreArchivo);
+    while (getline(archivo, linea)){
+        istringstream lineaActual (linea);
+        getline(lineaActual,numero1,';');
+        getline(lineaActual,numero2,';');
+        getline(lineaActual,numero3,';');
+        int primerNodo = encontrarNodo(stoi(numero1));
+        int segundoNodo = encontrarNodo(stoi(numero2));
+        int peso;
+        try {
+             peso = stoi (numero3);
+        } catch (exception e){
+        }
+        cout<<primerNodo;
+        cout<<" , ";
+        cout<<segundoNodo;
+        cout<<", "<<peso<<endl;
+        if (primerNodo == -1 || segundoNodo == -1){
+        } else {
+          this->addEdge(primerNodo,segundoNodo,peso);
+        }
+    }
+    archivo.close();
+}
+
+void GraphPR::rellenarDatos (string pNombreArchivo, arbolPas repetidos){
+    string nombre;
+    string numero;
+    string linea;
+    ifstream archivo (pNombreArchivo);
+    int i = -1;
+    int contNodos = 1;
+    while (getline(archivo, linea)){
+        istringstream lineaActual (linea);
+        getline(lineaActual,numero,';');
+        getline(lineaActual,nombre,';');
+        bool lineaInvalida = false;
+        repetidos.encontrarPasillo(lineaInvalida,repetidos.raiz,to_string(contNodos));
+        if (lineaInvalida){
+            lineaInvalida = false;
+        }
+        else {
+            i++;
+            this->numeros[i] = stoi (numero);
+            this->nombres[i] = nombre;
+        }
+        contNodos++;
+    }
+    archivo.close();
+}
+
+int GraphPR::encontrarNodo (int numero){
+    for (int i = 0; i <= this->V-1;i++){
+        if (this->numeros[i]==numero){
+            return i;
+        }
+    }
+    return -1;
+}
+
+

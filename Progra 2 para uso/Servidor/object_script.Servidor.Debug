@@ -1,0 +1,10 @@
+debug/GrafoArtic.o
+debug/GrafoKRUS.o
+debug/GrafoPR.o
+debug/admin.o
+debug/main.o
+debug/server.o
+debug/socketServer.o
+debug/moc_admin.o
+debug/moc_server.o
+debug/moc_socketServer.o

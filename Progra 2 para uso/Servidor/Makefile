@@ -108,7 +108,6 @@ Makefile: Servidor.pro C:/Qt/5.13.1/mingw73_32/mkspecs/win32-g++/qmake.conf C:/Q
 		C:/Qt/5.13.1/mingw73_32/mkspecs/modules/qt_lib_axserver_private.pri \
 		C:/Qt/5.13.1/mingw73_32/mkspecs/modules/qt_lib_bluetooth.pri \
 		C:/Qt/5.13.1/mingw73_32/mkspecs/modules/qt_lib_bluetooth_private.pri \
-		C:/Qt/5.13.1/mingw73_32/mkspecs/modules/qt_lib_bodymovin_private.pri \
 		C:/Qt/5.13.1/mingw73_32/mkspecs/modules/qt_lib_bootstrap_private.pri \
 		C:/Qt/5.13.1/mingw73_32/mkspecs/modules/qt_lib_charts.pri \
 		C:/Qt/5.13.1/mingw73_32/mkspecs/modules/qt_lib_charts_private.pri \
@@ -159,8 +158,6 @@ Makefile: Servidor.pro C:/Qt/5.13.1/mingw73_32/mkspecs/win32-g++/qmake.conf C:/Q
 		C:/Qt/5.13.1/mingw73_32/mkspecs/modules/qt_lib_positioningquick_private.pri \
 		C:/Qt/5.13.1/mingw73_32/mkspecs/modules/qt_lib_printsupport.pri \
 		C:/Qt/5.13.1/mingw73_32/mkspecs/modules/qt_lib_printsupport_private.pri \
-		C:/Qt/5.13.1/mingw73_32/mkspecs/modules/qt_lib_purchasing.pri \
-		C:/Qt/5.13.1/mingw73_32/mkspecs/modules/qt_lib_purchasing_private.pri \
 		C:/Qt/5.13.1/mingw73_32/mkspecs/modules/qt_lib_qml.pri \
 		C:/Qt/5.13.1/mingw73_32/mkspecs/modules/qt_lib_qml_private.pri \
 		C:/Qt/5.13.1/mingw73_32/mkspecs/modules/qt_lib_qmldebug_private.pri \
@@ -206,8 +203,6 @@ Makefile: Servidor.pro C:/Qt/5.13.1/mingw73_32/mkspecs/win32-g++/qmake.conf C:/Q
 		C:/Qt/5.13.1/mingw73_32/mkspecs/modules/qt_lib_uiplugin.pri \
 		C:/Qt/5.13.1/mingw73_32/mkspecs/modules/qt_lib_uitools.pri \
 		C:/Qt/5.13.1/mingw73_32/mkspecs/modules/qt_lib_uitools_private.pri \
-		C:/Qt/5.13.1/mingw73_32/mkspecs/modules/qt_lib_virtualkeyboard.pri \
-		C:/Qt/5.13.1/mingw73_32/mkspecs/modules/qt_lib_virtualkeyboard_private.pri \
 		C:/Qt/5.13.1/mingw73_32/mkspecs/modules/qt_lib_webchannel.pri \
 		C:/Qt/5.13.1/mingw73_32/mkspecs/modules/qt_lib_webchannel_private.pri \
 		C:/Qt/5.13.1/mingw73_32/mkspecs/modules/qt_lib_websockets.pri \
@@ -295,7 +290,6 @@ C:/Qt/5.13.1/mingw73_32/mkspecs/modules/qt_lib_axserver.pri:
 C:/Qt/5.13.1/mingw73_32/mkspecs/modules/qt_lib_axserver_private.pri:
 C:/Qt/5.13.1/mingw73_32/mkspecs/modules/qt_lib_bluetooth.pri:
 C:/Qt/5.13.1/mingw73_32/mkspecs/modules/qt_lib_bluetooth_private.pri:
-C:/Qt/5.13.1/mingw73_32/mkspecs/modules/qt_lib_bodymovin_private.pri:
 C:/Qt/5.13.1/mingw73_32/mkspecs/modules/qt_lib_bootstrap_private.pri:
 C:/Qt/5.13.1/mingw73_32/mkspecs/modules/qt_lib_charts.pri:
 C:/Qt/5.13.1/mingw73_32/mkspecs/modules/qt_lib_charts_private.pri:
@@ -346,8 +340,6 @@ C:/Qt/5.13.1/mingw73_32/mkspecs/modules/qt_lib_positioningquick.pri:
 C:/Qt/5.13.1/mingw73_32/mkspecs/modules/qt_lib_positioningquick_private.pri:
 C:/Qt/5.13.1/mingw73_32/mkspecs/modules/qt_lib_printsupport.pri:
 C:/Qt/5.13.1/mingw73_32/mkspecs/modules/qt_lib_printsupport_private.pri:
-C:/Qt/5.13.1/mingw73_32/mkspecs/modules/qt_lib_purchasing.pri:
-C:/Qt/5.13.1/mingw73_32/mkspecs/modules/qt_lib_purchasing_private.pri:
 C:/Qt/5.13.1/mingw73_32/mkspecs/modules/qt_lib_qml.pri:
 C:/Qt/5.13.1/mingw73_32/mkspecs/modules/qt_lib_qml_private.pri:
 C:/Qt/5.13.1/mingw73_32/mkspecs/modules/qt_lib_qmldebug_private.pri:
@@ -393,8 +385,6 @@ C:/Qt/5.13.1/mingw73_32/mkspecs/modules/qt_lib_theme_support_private.pri:
 C:/Qt/5.13.1/mingw73_32/mkspecs/modules/qt_lib_uiplugin.pri:
 C:/Qt/5.13.1/mingw73_32/mkspecs/modules/qt_lib_uitools.pri:
 C:/Qt/5.13.1/mingw73_32/mkspecs/modules/qt_lib_uitools_private.pri:
-C:/Qt/5.13.1/mingw73_32/mkspecs/modules/qt_lib_virtualkeyboard.pri:
-C:/Qt/5.13.1/mingw73_32/mkspecs/modules/qt_lib_virtualkeyboard_private.pri:
 C:/Qt/5.13.1/mingw73_32/mkspecs/modules/qt_lib_webchannel.pri:
 C:/Qt/5.13.1/mingw73_32/mkspecs/modules/qt_lib_webchannel_private.pri:
 C:/Qt/5.13.1/mingw73_32/mkspecs/modules/qt_lib_websockets.pri:
