@@ -327,7 +327,7 @@ public:
         LInformacion_8->setGeometry(QRect(190, 40, 261, 41));
         LPasProdMar_8 = new QLabel(tab_5);
         LPasProdMar_8->setObjectName(QString::fromUtf8("LPasProdMar_8"));
-        LPasProdMar_8->setGeometry(QRect(20, 190, 55, 16));
+        LPasProdMar_8->setGeometry(QRect(90, 160, 55, 16));
         CBPasillos4 = new QComboBox(tab_5);
         CBPasillos4->setObjectName(QString::fromUtf8("CBPasillos4"));
         CBPasillos4->setGeometry(QRect(220, 160, 201, 22));
@@ -363,7 +363,7 @@ public:
 
         retranslateUi(ventanaPrincipalCliente);
 
-        tabsClientes->setCurrentIndex(1);
+        tabsClientes->setCurrentIndex(4);
 
 
         QMetaObject::connectSlotsByName(ventanaPrincipalCliente);
@@ -427,7 +427,7 @@ public:
         BBPrecio4->setText(QApplication::translate("ventanaPrincipalCliente", "Buscar Marca", nullptr));
         BBProducto4->setText(QApplication::translate("ventanaPrincipalCliente", "Buscar Productos", nullptr));
         BBPasillo4->setText(QApplication::translate("ventanaPrincipalCliente", "Buscar Pasillos", nullptr));
-        BBOtra3->setText(QApplication::translate("ventanaPrincipalCliente", "Buscar otra marca", nullptr));
+        BBOtra3->setText(QApplication::translate("ventanaPrincipalCliente", "Finalizar Compra", nullptr));
         BLlenarCBPasillos3_2->setText(QString());
         tabsClientes->setTabText(tabsClientes->indexOf(tab_5), QApplication::translate("ventanaPrincipalCliente", "Comprar", nullptr));
         tabsClientes->setTabText(tabsClientes->indexOf(tab_6), QApplication::translate("ventanaPrincipalCliente", "Otros", nullptr));

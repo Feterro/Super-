@@ -20,6 +20,8 @@ public:
     explicit ventanaPrincipalCliente(QWidget *parent = nullptr);
     ~ventanaPrincipalCliente();
 
+    bool compra=false;
+
 signals:
     void escribirServidor(QByteArray info);
 

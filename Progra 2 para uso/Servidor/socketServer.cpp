@@ -559,16 +559,17 @@ void serverSocket::funcionesCliente(string infoConv)
                     //    }
                      //   aux=aux->siguiente;
                     //}
-                    //this->socket->write("MC; ");
+                    this->socket->write("MC;SI");
                 }
                 else
-                    this->socket->write("MC;Usted ya se encuentra en la lista de facturacion");
+                    this->socket->write("MC;NO");
     //        }
     //        else
     //            this->socket->write("VF");
         }
         else
             this->socket->write("BK");
+        cout<<"compra"<<endl;
     }
     else if(infoConv.substr(0,2)=="ZP")
     {
