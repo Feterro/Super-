@@ -47,19 +47,17 @@ int main(int argc, char *argv[])
 //    administrador.start();
 
 //Metodos de grafos:
-//     string result = grafoArt.AP();
-//     cout<<result<<endl;
-//     result = grafoRecorridos.Profundidad();
-//    cout<<result<<endl<<endl;
-//     result = grafoRecorridos.Anchura();
-//     cout<<result<<endl;
-//    string result = grafoPrim.primMST();
-//    cout<<result;
-    string result = grafoKruskal.kruskalMST();
-    cout<<result<<endl<<endl;
-
-    result = grafoPrim.primMST();
-    cout<<result<<endl;
+    string result = grafoArt.AP();
+////     cout<<result<<endl;
+    result = grafoRecorridos.Profundidad();
+////    cout<<result<<endl<<endl;
+    result = grafoRecorridos.Anchura();
+////     cout<<result<<endl;
+//    result = grafoPrim.primMST();
+////    cout<<result;
+    result = grafoKruskal.kruskalMST();
+////    cout<<result<<endl<<endl;
+//    cout<<result<<endl;
 
 
     return a.exec();

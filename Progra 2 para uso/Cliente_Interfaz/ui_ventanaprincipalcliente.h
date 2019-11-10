@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'ventanaprincipalcliente.ui'
 **
-** Created by: Qt User Interface Compiler version 5.13.1
+** Created by: Qt User Interface Compiler version 5.12.5
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
 ********************************************************************************/
@@ -15,6 +15,7 @@
 #include <QtWidgets/QLCDNumber>
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QLineEdit>
+#include <QtWidgets/QListView>
 #include <QtWidgets/QMainWindow>
 #include <QtWidgets/QPushButton>
 #include <QtWidgets/QSpinBox>
@@ -110,6 +111,9 @@ public:
     QSpinBox *sBoxCantidad;
     QPushButton *BBCanti;
     QLabel *santaManos;
+    QPushButton *BBcarrito;
+    QPushButton *BBregresar;
+    QListView *viewCompras;
     QWidget *tab_6;
     QStatusBar *statusbar;
 
@@ -364,7 +368,16 @@ public:
         BBCanti->setGeometry(QRect(140, 250, 121, 31));
         santaManos = new QLabel(tab_5);
         santaManos->setObjectName(QString::fromUtf8("santaManos"));
-        santaManos->setGeometry(QRect(210, 130, 301, 251));
+        santaManos->setGeometry(QRect(120, 210, 131, 141));
+        BBcarrito = new QPushButton(tab_5);
+        BBcarrito->setObjectName(QString::fromUtf8("BBcarrito"));
+        BBcarrito->setGeometry(QRect(140, 290, 131, 31));
+        BBregresar = new QPushButton(tab_5);
+        BBregresar->setObjectName(QString::fromUtf8("BBregresar"));
+        BBregresar->setGeometry(QRect(290, 290, 121, 31));
+        viewCompras = new QListView(tab_5);
+        viewCompras->setObjectName(QString::fromUtf8("viewCompras"));
+        viewCompras->setGeometry(QRect(400, 60, 256, 192));
         tabsClientes->addTab(tab_5, QString());
         tab_6 = new QWidget();
         tab_6->setObjectName(QString::fromUtf8("tab_6"));
@@ -384,68 +397,70 @@ public:
 
     void retranslateUi(QMainWindow *ventanaPrincipalCliente)
     {
-        ventanaPrincipalCliente->setWindowTitle(QCoreApplication::translate("ventanaPrincipalCliente", "MainWindow", nullptr));
-        BCancelar->setText(QCoreApplication::translate("ventanaPrincipalCliente", "Cancelar", nullptr));
-        LTelefono->setText(QCoreApplication::translate("ventanaPrincipalCliente", "Telefono", nullptr));
-        LIngresar->setText(QCoreApplication::translate("ventanaPrincipalCliente", "Ingrese su numero de cedula para ingresar", nullptr));
-        LBienvenida->setText(QCoreApplication::translate("ventanaPrincipalCliente", "Bienvenido al supermercado", nullptr));
-        LCorreo->setText(QCoreApplication::translate("ventanaPrincipalCliente", "Correo", nullptr));
-        BIngresar->setText(QCoreApplication::translate("ventanaPrincipalCliente", "Ingresar", nullptr));
-        LNoReg->setText(QCoreApplication::translate("ventanaPrincipalCliente", "Usted no se encuentra registrado", nullptr));
-        LCedulaR->setText(QCoreApplication::translate("ventanaPrincipalCliente", "Cedula", nullptr));
-        LPregunta->setText(QCoreApplication::translate("ventanaPrincipalCliente", "\302\277Desea registrarse?", nullptr));
-        LCiudad->setText(QCoreApplication::translate("ventanaPrincipalCliente", "Ciudad", nullptr));
-        LNombre->setText(QCoreApplication::translate("ventanaPrincipalCliente", "Nombre", nullptr));
-        BRegistrar->setText(QCoreApplication::translate("ventanaPrincipalCliente", "Registrar", nullptr));
-        LDatos->setText(QCoreApplication::translate("ventanaPrincipalCliente", "Ingrese sus datos", nullptr));
-        BSi->setText(QCoreApplication::translate("ventanaPrincipalCliente", "S\303\215", nullptr));
-        BNo->setText(QCoreApplication::translate("ventanaPrincipalCliente", "NO", nullptr));
-        LCedula->setText(QCoreApplication::translate("ventanaPrincipalCliente", "Cedula", nullptr));
-        LVerExitosa->setText(QCoreApplication::translate("ventanaPrincipalCliente", "Usted fue verificado existosamente", nullptr));
-        LDisfrute->setText(QCoreApplication::translate("ventanaPrincipalCliente", "Disfrute de sus opciones como cliente registrado!!", nullptr));
-        LResEx->setText(QCoreApplication::translate("ventanaPrincipalCliente", "Su registro fue \303\251xitoso", nullptr));
+        ventanaPrincipalCliente->setWindowTitle(QApplication::translate("ventanaPrincipalCliente", "MainWindow", nullptr));
+        BCancelar->setText(QApplication::translate("ventanaPrincipalCliente", "Cancelar", nullptr));
+        LTelefono->setText(QApplication::translate("ventanaPrincipalCliente", "Telefono", nullptr));
+        LIngresar->setText(QApplication::translate("ventanaPrincipalCliente", "Ingrese su numero de cedula para ingresar", nullptr));
+        LBienvenida->setText(QApplication::translate("ventanaPrincipalCliente", "Bienvenido al supermercado", nullptr));
+        LCorreo->setText(QApplication::translate("ventanaPrincipalCliente", "Correo", nullptr));
+        BIngresar->setText(QApplication::translate("ventanaPrincipalCliente", "Ingresar", nullptr));
+        LNoReg->setText(QApplication::translate("ventanaPrincipalCliente", "Usted no se encuentra registrado", nullptr));
+        LCedulaR->setText(QApplication::translate("ventanaPrincipalCliente", "Cedula", nullptr));
+        LPregunta->setText(QApplication::translate("ventanaPrincipalCliente", "\302\277Desea registrarse?", nullptr));
+        LCiudad->setText(QApplication::translate("ventanaPrincipalCliente", "Ciudad", nullptr));
+        LNombre->setText(QApplication::translate("ventanaPrincipalCliente", "Nombre", nullptr));
+        BRegistrar->setText(QApplication::translate("ventanaPrincipalCliente", "Registrar", nullptr));
+        LDatos->setText(QApplication::translate("ventanaPrincipalCliente", "Ingrese sus datos", nullptr));
+        BSi->setText(QApplication::translate("ventanaPrincipalCliente", "S\303\215", nullptr));
+        BNo->setText(QApplication::translate("ventanaPrincipalCliente", "NO", nullptr));
+        LCedula->setText(QApplication::translate("ventanaPrincipalCliente", "Cedula", nullptr));
+        LVerExitosa->setText(QApplication::translate("ventanaPrincipalCliente", "Usted fue verificado existosamente", nullptr));
+        LDisfrute->setText(QApplication::translate("ventanaPrincipalCliente", "Disfrute de sus opciones como cliente registrado!!", nullptr));
+        LResEx->setText(QApplication::translate("ventanaPrincipalCliente", "Su registro fue \303\251xitoso", nullptr));
         pushButton->setText(QString());
-        tabsClientes->setTabText(tabsClientes->indexOf(tab), QCoreApplication::translate("ventanaPrincipalCliente", "    Registro", nullptr));
-        LPasProdMar->setText(QCoreApplication::translate("ventanaPrincipalCliente", "Pasillos", nullptr));
-        LInformacion->setText(QCoreApplication::translate("ventanaPrincipalCliente", "Seleccione el pasillo de la marca de la que desea conocer el precio", nullptr));
-        BBuscarPasillo->setText(QCoreApplication::translate("ventanaPrincipalCliente", "Buscar en pasillo", nullptr));
-        BBuscarProd->setText(QCoreApplication::translate("ventanaPrincipalCliente", "Buscar en producto", nullptr));
-        BBuscarPrecio->setText(QCoreApplication::translate("ventanaPrincipalCliente", "Buscar Marca", nullptr));
+        tabsClientes->setTabText(tabsClientes->indexOf(tab), QApplication::translate("ventanaPrincipalCliente", "    Registro", nullptr));
+        LPasProdMar->setText(QApplication::translate("ventanaPrincipalCliente", "Pasillos", nullptr));
+        LInformacion->setText(QApplication::translate("ventanaPrincipalCliente", "Seleccione el pasillo de la marca de la que desea conocer el precio", nullptr));
+        BBuscarPasillo->setText(QApplication::translate("ventanaPrincipalCliente", "Buscar en pasillo", nullptr));
+        BBuscarProd->setText(QApplication::translate("ventanaPrincipalCliente", "Buscar en producto", nullptr));
+        BBuscarPrecio->setText(QApplication::translate("ventanaPrincipalCliente", "Buscar Marca", nullptr));
         LColonIma->setText(QString());
         BLlenarCBPasillos->setText(QString());
-        BBuscarOtra->setText(QCoreApplication::translate("ventanaPrincipalCliente", "Buscar otra marca", nullptr));
-        tabsClientes->setTabText(tabsClientes->indexOf(tab_2), QCoreApplication::translate("ventanaPrincipalCliente", "Consulta de Precio", nullptr));
-        LInformacion_2->setText(QCoreApplication::translate("ventanaPrincipalCliente", "Seleccione el pasillo de la marca de la que desea conocer el porcentaje de impuesto", nullptr));
-        LPasProdMar_2->setText(QCoreApplication::translate("ventanaPrincipalCliente", "Pasillos", nullptr));
-        BBOtra->setText(QCoreApplication::translate("ventanaPrincipalCliente", "Buscar otra marca", nullptr));
+        BBuscarOtra->setText(QApplication::translate("ventanaPrincipalCliente", "Buscar otra marca", nullptr));
+        tabsClientes->setTabText(tabsClientes->indexOf(tab_2), QApplication::translate("ventanaPrincipalCliente", "Consulta de Precio", nullptr));
+        LInformacion_2->setText(QApplication::translate("ventanaPrincipalCliente", "Seleccione el pasillo de la marca de la que desea conocer el porcentaje de impuesto", nullptr));
+        LPasProdMar_2->setText(QApplication::translate("ventanaPrincipalCliente", "Pasillos", nullptr));
+        BBOtra->setText(QApplication::translate("ventanaPrincipalCliente", "Buscar otra marca", nullptr));
         BLlenarCBPasillos_2->setText(QString());
-        BBPasillo->setText(QCoreApplication::translate("ventanaPrincipalCliente", "Buscar en pasillo", nullptr));
-        BBProd->setText(QCoreApplication::translate("ventanaPrincipalCliente", "Buscar en producto", nullptr));
-        BBPrecio->setText(QCoreApplication::translate("ventanaPrincipalCliente", "Buscar Marca", nullptr));
+        BBPasillo->setText(QApplication::translate("ventanaPrincipalCliente", "Buscar en pasillo", nullptr));
+        BBProd->setText(QApplication::translate("ventanaPrincipalCliente", "Buscar en producto", nullptr));
+        BBPrecio->setText(QApplication::translate("ventanaPrincipalCliente", "Buscar Marca", nullptr));
         porcentaje->setText(QString());
-        tabsClientes->setTabText(tabsClientes->indexOf(tab_3), QCoreApplication::translate("ventanaPrincipalCliente", "Consulta de Impuesto", nullptr));
-        LInformacion_7->setText(QCoreApplication::translate("ventanaPrincipalCliente", "Seleccione el pasillo de la marca de la que desea conocer canastaje", nullptr));
-        LPasProdMar_7->setText(QCoreApplication::translate("ventanaPrincipalCliente", "Pasillos", nullptr));
-        BBPrecio2->setText(QCoreApplication::translate("ventanaPrincipalCliente", "Buscar Marca", nullptr));
-        BBProducto2->setText(QCoreApplication::translate("ventanaPrincipalCliente", "Buscar Marca", nullptr));
-        BBPasillo2->setText(QCoreApplication::translate("ventanaPrincipalCliente", "Buscar Marca", nullptr));
-        BBOtra2->setText(QCoreApplication::translate("ventanaPrincipalCliente", "Buscar otra marca", nullptr));
+        tabsClientes->setTabText(tabsClientes->indexOf(tab_3), QApplication::translate("ventanaPrincipalCliente", "Consulta de Impuesto", nullptr));
+        LInformacion_7->setText(QApplication::translate("ventanaPrincipalCliente", "Seleccione el pasillo de la marca de la que desea conocer canastaje", nullptr));
+        LPasProdMar_7->setText(QApplication::translate("ventanaPrincipalCliente", "Pasillos", nullptr));
+        BBPrecio2->setText(QApplication::translate("ventanaPrincipalCliente", "Buscar Marca", nullptr));
+        BBProducto2->setText(QApplication::translate("ventanaPrincipalCliente", "Buscar Marca", nullptr));
+        BBPasillo2->setText(QApplication::translate("ventanaPrincipalCliente", "Buscar Marca", nullptr));
+        BBOtra2->setText(QApplication::translate("ventanaPrincipalCliente", "Buscar otra marca", nullptr));
         BLlenarCBPasillos3->setText(QString());
         confirmacion->setText(QString());
         confirmacion_2->setText(QString());
         confirmacion_3->setText(QString());
-        tabsClientes->setTabText(tabsClientes->indexOf(tab_4), QCoreApplication::translate("ventanaPrincipalCliente", "Consulta de Canasta", nullptr));
-        LInformacion_8->setText(QCoreApplication::translate("ventanaPrincipalCliente", "Seleccione el pasillo de la marca que desea comprar", nullptr));
-        LPasProdMar_8->setText(QCoreApplication::translate("ventanaPrincipalCliente", "Pasillos", nullptr));
-        BBPrecio4->setText(QCoreApplication::translate("ventanaPrincipalCliente", "Buscar Marca", nullptr));
-        BBProducto4->setText(QCoreApplication::translate("ventanaPrincipalCliente", "Buscar Productos", nullptr));
-        BBPasillo4->setText(QCoreApplication::translate("ventanaPrincipalCliente", "Buscar Pasillos", nullptr));
-        BBOtra3->setText(QCoreApplication::translate("ventanaPrincipalCliente", "Finalizar Compra", nullptr));
+        tabsClientes->setTabText(tabsClientes->indexOf(tab_4), QApplication::translate("ventanaPrincipalCliente", "Consulta de Canasta", nullptr));
+        LInformacion_8->setText(QApplication::translate("ventanaPrincipalCliente", "Seleccione el pasillo de la marca que desea comprar", nullptr));
+        LPasProdMar_8->setText(QApplication::translate("ventanaPrincipalCliente", "Pasillos", nullptr));
+        BBPrecio4->setText(QApplication::translate("ventanaPrincipalCliente", "Buscar Marca", nullptr));
+        BBProducto4->setText(QApplication::translate("ventanaPrincipalCliente", "Buscar Productos", nullptr));
+        BBPasillo4->setText(QApplication::translate("ventanaPrincipalCliente", "Buscar Pasillos", nullptr));
+        BBOtra3->setText(QApplication::translate("ventanaPrincipalCliente", "Finalizar Compra", nullptr));
         BLlenarCBPasillos3_2->setText(QString());
-        BBCanti->setText(QCoreApplication::translate("ventanaPrincipalCliente", "Buscar Cantidad", nullptr));
-        santaManos->setText(QCoreApplication::translate("ventanaPrincipalCliente", "TextLabel", nullptr));
-        tabsClientes->setTabText(tabsClientes->indexOf(tab_5), QCoreApplication::translate("ventanaPrincipalCliente", "Comprar", nullptr));
-        tabsClientes->setTabText(tabsClientes->indexOf(tab_6), QCoreApplication::translate("ventanaPrincipalCliente", "Otros", nullptr));
+        BBCanti->setText(QApplication::translate("ventanaPrincipalCliente", "Buscar Cantidad", nullptr));
+        santaManos->setText(QString());
+        BBcarrito->setText(QApplication::translate("ventanaPrincipalCliente", "Ver Cantidad de compra", nullptr));
+        BBregresar->setText(QApplication::translate("ventanaPrincipalCliente", "Regresar", nullptr));
+        tabsClientes->setTabText(tabsClientes->indexOf(tab_5), QApplication::translate("ventanaPrincipalCliente", "Comprar", nullptr));
+        tabsClientes->setTabText(tabsClientes->indexOf(tab_6), QApplication::translate("ventanaPrincipalCliente", "Otros", nullptr));
     } // retranslateUi
 
 };

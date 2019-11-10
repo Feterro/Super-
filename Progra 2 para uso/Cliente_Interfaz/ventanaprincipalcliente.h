@@ -79,6 +79,8 @@ private slots:
 
     void on_BBCanti_clicked();
 
+    void on_BBcarrito_clicked();
+
 private:
     Ui::ventanaPrincipalCliente *ui;
     int cont;

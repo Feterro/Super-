@@ -965,14 +965,50 @@
      <widget class="QLabel" name="santaManos">
       <property name="geometry">
        <rect>
-        <x>210</x>
-        <y>130</y>
-        <width>301</width>
-        <height>251</height>
+        <x>120</x>
+        <y>210</y>
+        <width>131</width>
+        <height>141</height>
        </rect>
       </property>
       <property name="text">
-       <string>TextLabel</string>
+       <string/>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="BBcarrito">
+      <property name="geometry">
+       <rect>
+        <x>140</x>
+        <y>290</y>
+        <width>131</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Ver Cantidad de compra</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="BBregresar">
+      <property name="geometry">
+       <rect>
+        <x>290</x>
+        <y>290</y>
+        <width>121</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Regresar</string>
+      </property>
+     </widget>
+     <widget class="QListView" name="viewCompras">
+      <property name="geometry">
+       <rect>
+        <x>400</x>
+        <y>60</y>
+        <width>256</width>
+        <height>192</height>
+       </rect>
       </property>
      </widget>
     </widget>

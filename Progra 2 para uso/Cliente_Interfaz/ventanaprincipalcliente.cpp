@@ -72,6 +72,9 @@ ventanaPrincipalCliente::ventanaPrincipalCliente(QWidget *parent) :
     QPixmap sanCom(":/ima/Images/santamanosarriba.png");
     ui->santaManos->setPixmap(sanCom);
     ui->santaManos->setVisible(false);
+    ui->BBcarrito->setVisible(false);
+    ui->BBregresar->setVisible(false);
+    ui->viewCompras->setVisible(false);
 
     connect(this, SIGNAL(escribirServidor(QByteArray)),&socketCli,SLOT(escribirServidor(QByteArray)));
 }
@@ -877,17 +880,7 @@ void ventanaPrincipalCliente::on_BBCanti_clicked()
         emit escribirServidor(QString::fromStdString("CFD;"+codPas+";"+codProd+";"+codMar+";"+canti+";"+ced).toUtf8());
     string precio=socketCli.nombresCB;
     QString preci = QString::fromLocal8Bit(precio.c_str());
-//    ui->sBoxCantidad->setVisible(false);
-//    ui->BBOtra3->setVisible(false);
-//    ui->BBCanti->setVisible(false);
-//    ui->LInformacion_8->setVisible(false);
-//    ui->LPasProdMar_8->setVisible(false);
-//    ui->santaManos->setVisible(true);
-//    this->thread()->sleep(5);
-//    ui->santaManos->setVisible(false);
-//    ui->LInformacion_8->setVisible(true);
-//    ui->LPasProdMar_8->setVisible(true);
-//    ui->BBOtra3->setVisible(true);
+    ui->BBcarrito->setVisible(true);
     ui->LInformacion_8->setText("Seleccione el pasillo de la marca que desea conocer el comprar");
     ui->LPasProdMar_8->setText("Pasillo");
     ui->BBPrecio4->setVisible(false);
@@ -897,4 +890,16 @@ void ventanaPrincipalCliente::on_BBCanti_clicked()
     ui->sBoxCantidad->setVisible(false);
     ui->BBCanti->setVisible(false);
     cont=0;
+}
+
+void ventanaPrincipalCliente::on_BBcarrito_clicked()
+{
+    ui->LInformacion_8->setVisible(false);
+    ui->LPasProdMar_8->setVisible(false);
+    ui->santaManos->setVisible(true);
+    ui->BBregresar->setVisible(true);
+    ui->viewCompras->setVisible(true);
+    ui->BBPasillo->setVisible(false);
+    ui->BBOtra3->setVisible(false);
+    ui->CBPasillos4->setVisible(false);
 }
