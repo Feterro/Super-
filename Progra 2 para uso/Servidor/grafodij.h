@@ -35,19 +35,19 @@ int minDistance(int dist[],
 // Function to print shortest
 // path from source to j
 // using parent array
-void printPath(int parent[], int j);
+void printPath(int parent[], int j, string &result);
 
 // A utility function to print
 // the constructed distance
 // array
 void printSolution(int dist[], int n,
-                      int parent[]);
+                      int parent[], string &result);
 
 // Funtion that implements Dijkstra's
 // single source shortest path
 // algorithm for a graph represented
 // using adjacency matrix representation
-void dijkstra(int src);
+string dijkstra(int src);
 void rellenarDatos (std::string pNombreArchivo, arbolPas repetidos);
 void cargarRelaciones (std::string pNombreArchivo);
 int encontrarNodo (int numero);

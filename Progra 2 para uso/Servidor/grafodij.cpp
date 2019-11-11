@@ -1,5 +1,31 @@
 #include "grafodij.h"
 
+void SubirNodoBodega(string pNombreArchivo)
+{
+    ifstream in(pNombreArchivo);
+    if (in.is_open())
+    {
+        std::vector<std::string> content;
+        for (std::string line; std::getline(in, line); )
+        {
+            content.push_back(line);
+        }
+        in.close();
+        std::iter_swap(content.begin(), content.begin() + 8);
+
+        ofstream out("Ciudades temporales.txt");
+        if (out.is_open()) {
+            for (auto i : content)
+            {
+                out << i << std::endl;
+            }
+            out.close();
+        }
+    }
+}
+
+
+
 GrafoDIJ::GrafoDIJ(int V)
 {
     this->V = V;
@@ -39,31 +65,40 @@ int GrafoDIJ::minDistance(int dist[],
 // Function to print shortest
 // path from source to j
 // using parent array
-void GrafoDIJ::printPath(int parent[], int j)
+void GrafoDIJ::printPath(int parent[], int j, string &result)
 {
 
     // Base Case : If j is source
     if (parent[j] == - 1)
         return;
 
-    printPath(parent, parent[j]);
-
-    cout<<this->numeros[j]<<"->";
+    printPath(parent, parent[j], result);
+    result.append("-->");
+    result.append(to_string(this->numeros[j]));
+    result.append("    ");
+    result.append("peso: ");
+    result.append(to_string(this->graph[parent[j]][j]));
+    result.append("\n");
+    if (this->numeros[j]!=44)
+        result.append(to_string(this->numeros[j]));
 }
 
 // A utility function to print
 // the constructed distance
 // array
 void GrafoDIJ::printSolution(int dist[], int n,
-                      int parent[])
+                      int parent[], string &result)
 {
     int src = 0;
     for (int i = 1; i < V; i++)
     {
-
-        cout<<this->numeros[src]<<"---"<<this->numeros[i]<<" "<<dist[i]<<"   "<<this->numeros[src]<<"->";
-        printPath(parent, i);
-        cout<<endl;
+        if (this->numeros[i]==44){
+            result.append(to_string(this->numeros[src]));
+            printPath(parent, i, result);
+            result.append("El costo total de la ruta es: ");
+            result.append(to_string(dist[i]));
+            result.append("\n");
+        }
     }
 }
 
@@ -71,9 +106,10 @@ void GrafoDIJ::printSolution(int dist[], int n,
 // single source shortest path
 // algorithm for a graph represented
 // using adjacency matrix representation
-void GrafoDIJ::dijkstra(int src)
+string GrafoDIJ::dijkstra(int src)
 {
 
+    string result = "El camino mas corto desde la bodega(77) al supermercado(44) es: \n";
     // The output array. dist[i]
     // will hold the shortest
     // distance from src to i
@@ -139,7 +175,14 @@ void GrafoDIJ::dijkstra(int src)
 
     // print the constructed
     // distance array
-    printSolution(dist, V, parent);
+    printSolution(dist, V, parent, result);
+    ofstream out("Dijkstra.txt",ios::out | ios::trunc);
+    if (out.is_open()) {
+         out << result <<endl;
+     }
+    out.close();
+    return result;
+    return result;
 }
 
 int contarNodosDIJ (string pNombreArchivo, arbolPas &repetidos){
@@ -233,7 +276,7 @@ int GrafoDIJ::encontrarNodo (int numero){
 
 GrafoDIJ montarGrafoDIJ(string pNombreArchivo, string pNombreRelaciones)
 {
-    SubirNodoSupermercado(pNombreArchivo);
+    SubirNodoBodega(pNombreArchivo);
     arbolPas repetidos = arbolPas ();
     int nodosGrafo = contarNodosDIJ("Ciudades temporales.txt",repetidos);
     GrafoDIJ nuevoGrafo = GrafoDIJ (nodosGrafo+1);

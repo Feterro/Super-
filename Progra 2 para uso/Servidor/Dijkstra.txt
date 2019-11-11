@@ -1,0 +1,8 @@
+El camino mas corto desde la bodega(77) al supermercado(44) es: 
+77-->95    peso: 9
+95-->88    peso: 15
+88-->120    peso: 2
+120-->11    peso: 3
+11-->44    peso: 1
+El costo total de la ruta es: 30
+
