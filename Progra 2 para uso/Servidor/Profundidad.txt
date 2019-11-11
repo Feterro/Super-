@@ -1,2 +1,2 @@
 Recorrido de profundidad: 
-44//Supermercado -> 99//Tilaran -> 55//Liberia -> 66//Bagaces -> 12//Pital -> 33//Heredia -> 11//SanJose -> 120//Parrita -> 122//Samara -> 9//Jaco -> 88//Buenos Aires -> 18//Matina -> 49//Siquirres -> 100//Puerto Viejo -> 22//Cartago -> 95//Telire -> 77//Bodega 
+44//Supermercado -> 55//Liberia -> 99//Tilaran -> 12//Pital -> 66//Bagaces -> 33//Heredia -> 11//SanJose -> 120//Parrita -> 122//Samara -> 9//Jaco -> 88//Buenos Aires -> 22//Cartago -> 100//Puerto Viejo -> 49//Siquirres -> 18//Matina -> 95//Telire -> 77//Bodega 

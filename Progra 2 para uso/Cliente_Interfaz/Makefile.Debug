@@ -893,42 +893,7 @@ debug/ventanaprincipalcliente.o: ventanaprincipalcliente.cpp ventanaprincipalcli
 		F:/Qt/5.12.5/mingw73_32/include/QtCore/QThreadPool \
 		F:/Qt/5.12.5/mingw73_32/include/QtCore/qthreadpool.h \
 		F:/Qt/5.12.5/mingw73_32/include/QtCore/qrunnable.h \
-		ui_ventanaprincipalcliente.h \
-		F:/Qt/5.12.5/mingw73_32/include/QtCore/QVariant \
-		F:/Qt/5.12.5/mingw73_32/include/QtWidgets/QApplication \
-		F:/Qt/5.12.5/mingw73_32/include/QtWidgets/qapplication.h \
-		F:/Qt/5.12.5/mingw73_32/include/QtCore/qcoreapplication.h \
-		F:/Qt/5.12.5/mingw73_32/include/QtCore/qeventloop.h \
-		F:/Qt/5.12.5/mingw73_32/include/QtWidgets/qdesktopwidget.h \
-		F:/Qt/5.12.5/mingw73_32/include/QtGui/qguiapplication.h \
-		F:/Qt/5.12.5/mingw73_32/include/QtGui/qinputmethod.h \
-		F:/Qt/5.12.5/mingw73_32/include/QtWidgets/QComboBox \
-		F:/Qt/5.12.5/mingw73_32/include/QtWidgets/qcombobox.h \
-		F:/Qt/5.12.5/mingw73_32/include/QtWidgets/qabstractitemdelegate.h \
-		F:/Qt/5.12.5/mingw73_32/include/QtWidgets/qstyleoption.h \
-		F:/Qt/5.12.5/mingw73_32/include/QtWidgets/qabstractspinbox.h \
-		F:/Qt/5.12.5/mingw73_32/include/QtGui/qvalidator.h \
-		F:/Qt/5.12.5/mingw73_32/include/QtCore/qregularexpression.h \
-		F:/Qt/5.12.5/mingw73_32/include/QtWidgets/qslider.h \
-		F:/Qt/5.12.5/mingw73_32/include/QtWidgets/qabstractslider.h \
-		F:/Qt/5.12.5/mingw73_32/include/QtWidgets/qstyle.h \
-		F:/Qt/5.12.5/mingw73_32/include/QtWidgets/qtabbar.h \
-		F:/Qt/5.12.5/mingw73_32/include/QtWidgets/qrubberband.h \
-		F:/Qt/5.12.5/mingw73_32/include/QtCore/qabstractitemmodel.h \
-		F:/Qt/5.12.5/mingw73_32/include/QtWidgets/QLCDNumber \
-		F:/Qt/5.12.5/mingw73_32/include/QtWidgets/qlcdnumber.h \
-		F:/Qt/5.12.5/mingw73_32/include/QtWidgets/QLabel \
-		F:/Qt/5.12.5/mingw73_32/include/QtWidgets/qlabel.h \
-		F:/Qt/5.12.5/mingw73_32/include/QtWidgets/QLineEdit \
-		F:/Qt/5.12.5/mingw73_32/include/QtWidgets/QPushButton \
-		F:/Qt/5.12.5/mingw73_32/include/QtWidgets/qpushbutton.h \
-		F:/Qt/5.12.5/mingw73_32/include/QtWidgets/qabstractbutton.h \
-		F:/Qt/5.12.5/mingw73_32/include/QtWidgets/QSpinBox \
-		F:/Qt/5.12.5/mingw73_32/include/QtWidgets/qspinbox.h \
-		F:/Qt/5.12.5/mingw73_32/include/QtWidgets/QStatusBar \
-		F:/Qt/5.12.5/mingw73_32/include/QtWidgets/qstatusbar.h \
-		F:/Qt/5.12.5/mingw73_32/include/QtWidgets/QTabWidget \
-		F:/Qt/5.12.5/mingw73_32/include/QtWidgets/QWidget
+		ui_ventanaprincipalcliente.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\ventanaprincipalcliente.o ventanaprincipalcliente.cpp
 
 debug/qrc_Images.o: debug/qrc_Images.cpp 

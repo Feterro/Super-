@@ -51,7 +51,7 @@ void Admin::readyRead()
         char *token = strtok(cstr,var);
         token = strtok(NULL,var);
         string lectura=token;
-        cout<<lectura<<endl;
+        cout<<"\n"+lectura<<endl;
     }
     else if(infoConv.substr(0,2)=="MA")
     {

@@ -20,6 +20,7 @@ SOURCES += \
         GrafoKRUS.cpp \
         GrafoPR.cpp \
         admin.cpp \
+        grafodij.cpp \
         main.cpp \
         server.cpp \
         socketServer.cpp
@@ -38,6 +39,7 @@ HEADERS += \
     admin.h \
     globalHeaders.h \
     globalServer.h \
+    grafodij.h \
     headers/GrafoPR.h \
     headers/arbolInventario.h \
     headers/arbolPas.h \

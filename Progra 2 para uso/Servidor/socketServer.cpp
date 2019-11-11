@@ -352,25 +352,29 @@ void serverSocket::funcionesAdministrador(string infoConv)
         arbolPasillos.InordenTriple(arbolPasillos.raiz);
     }
     else if (infoConv.substr(0,2)=="FK") {
-        int fac=princi.cola.primero->cedula;
-        string fact=to_string(fac);
-        pnodoCola auxi=princi.cliente.primeroClie;
-        int cantF=0;
-        while(auxi->siguiente!=NULL)
+        if(princi.cola.primero!=NULL)
         {
-            if(auxi->cedula==princi.cola.primero->cedula)
+            int fac=princi.cola.primero->cedula;
+            string fact=to_string(fac);
+            pnodoCola auxi=princi.cliente.primeroClie;
+            int cantF=0;
+            while(auxi->siguiente!=NULL)
             {
-                cantF=auxi->cantFact;
+                if(auxi->cedula==princi.cola.primero->cedula)
+                {
+                    cantF=auxi->cantFact;
+                }
+                auxi=auxi->siguiente;
             }
-            auxi=auxi->siguiente;
+            string cantf=to_string(cantF);
+            string nombre=fact+"_"+cantf+".txt";
+            cout<<nombre<<endl;
+            string factura=princi.agregarListaOrdenada();
+            cout<<"\n\n"<<factura<<endl;
+            crearFactura(nombre,factura);
         }
-        string cantf=to_string(cantF);
-        string nombre=fact+"_"+cantf+".txt";
-        cout<<nombre<<endl;
-        string factura=princi.agregarListaOrdenada();
-        cout<<"\n\n"<<factura<<endl;
-        crearFactura(nombre,factura);
-
+        else
+            this->socket->write("LE;Nadie ha comprado aun");
 //        cout<<"VENTAS"<<endl;
 //        pnodoVenta aux=princi.ventas.primero;
 //        while(aux->siguiente!=NULL)
@@ -560,16 +564,20 @@ void serverSocket::funcionesCliente(string infoConv)
                      //   aux=aux->siguiente;
                     //}
                     this->socket->write("MC;SI");
+                    cout<<"compra"<<endl;
                 }
                 else
+                {
                     this->socket->write("MC;NO");
+                    cout<<"no compra"<<endl;
+                }
+
     //        }
     //        else
     //            this->socket->write("VF");
         }
         else
             this->socket->write("BK");
-        cout<<"compra"<<endl;
     }
     else if(infoConv.substr(0,2)=="ZP")
     {

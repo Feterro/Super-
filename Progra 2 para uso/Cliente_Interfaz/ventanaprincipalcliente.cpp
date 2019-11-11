@@ -70,6 +70,9 @@ ventanaPrincipalCliente::ventanaPrincipalCliente(QWidget *parent) :
     ui->sBoxCantidad->setVisible(false);
     ui->BBCanti->setVisible(false);
     QPixmap sanCom(":/ima/Images/santamanosarriba.png");
+    QPixmap canSanta(":/ima/Images/ovalo.png");
+    ui->LCanaston->setPixmap(canSanta);
+    ui->LCanaston->setVisible(false);
     ui->santaManos->setPixmap(sanCom);
     ui->santaManos->setVisible(false);
     ui->BBcarrito->setVisible(false);
@@ -342,6 +345,7 @@ void ventanaPrincipalCliente::on_BLlenarCBPasillos_clicked()
         pasillo.str(socketCli.nombresCB);
         string pas;
         bool lleno=false;
+        ui->CBPasillos->clear();
         while(getline(pasillo, pas)){
             lleno =true;
             if (!(pas.empty())){
@@ -386,6 +390,7 @@ void ventanaPrincipalCliente::on_BLlenarCBPasillos_2_clicked()
         pasi.str(socketCli.nombresCB);
         string pas;
         bool llen=false;
+        ui->CBPasillos2->clear();
         while(getline(pasi, pas)){
             llen =true;
             if (!(pas.empty())){
@@ -533,6 +538,7 @@ void ventanaPrincipalCliente::on_BLlenarCBPasillos3_clicked()
         pasi.str(socketCli.nombresCB);
         string pas;
         bool llen=false;
+        ui->CBPasillos3->clear();
         while(getline(pasi, pas)){
             llen =true;
             if (!(pas.empty())){
@@ -665,6 +671,7 @@ void ventanaPrincipalCliente::on_BBPrecio2_clicked()
             ui->confirmacion_2->setVisible(true);
             ui->confirmacion->setVisible(false);
         }
+
     }
 }
 
@@ -719,6 +726,7 @@ void ventanaPrincipalCliente::on_BLlenarCBPasillos3_2_clicked()
             pasi.str(socketCli.nombresCB);
             string pas;
             bool llen=false;
+            ui->CBPasillos4->clear();
             while(getline(pasi, pas)){
                 llen =true;
                 if (!(pas.empty())){
@@ -774,6 +782,7 @@ void ventanaPrincipalCliente::on_BBPasillo4_clicked()
             ui->CBProductos4->setVisible(true);
             ui->BBPasillo4->setVisible(false);
             ui->BBProducto4->setVisible(true);
+            ui->BBcarrito->setVisible(false);
             cont=0;
         }
     }
@@ -833,12 +842,38 @@ void ventanaPrincipalCliente::on_BBPrecio4_clicked()
     char *token = strtok(cstr,var);
     string codMarc=token;
     codMar=codMarc;
+    token = strtok(NULL,var);
+    ui->viewCompras->addItem(token);
     ui->BBPrecio4->setVisible(false);
     ui->sBoxCantidad->setVisible(true);
     ui->BBCanti->setVisible(true);
     ui->CBMarcas4->setVisible(false);
 }
 
+void ventanaPrincipalCliente::comprobar()
+{
+    cont++;
+    if (cont>=2)
+    {
+        this->thread()->sleep(1);
+        if(socketCli.nombresCB=="SI")
+        {
+            QMessageBox::information(
+            this,
+            tr("Informacion"),
+            tr("Compra realizada o finalizada con exito!") );
+            compra=true;
+        }
+        else if(socketCli.nombresCB=="NO")
+        {
+            QMessageBox::information(
+            this,
+            tr("Informacion"),
+            tr("Usted ya se encuentra en la lista de facturacion"));
+            compra=false;
+        }
+    }
+}
 
 void ventanaPrincipalCliente::on_BBOtra3_clicked()
 {
@@ -851,7 +886,7 @@ void ventanaPrincipalCliente::on_BBOtra3_clicked()
             QMessageBox::information(
             this,
             tr("Informacion"),
-            tr("Compra realizada!") );
+            tr("Compra realizada o finalizada con exito!") );
         }
         else if(socketCli.nombresCB=="NO")
         {
@@ -860,36 +895,44 @@ void ventanaPrincipalCliente::on_BBOtra3_clicked()
             tr("Informacion"),
             tr("Usted ya se encuentra en la lista de facturacion"));
         }
+        compra=false;
     }
-    compra=false;
 }
 
 void ventanaPrincipalCliente::on_BBCanti_clicked()
 {
-    QString can=ui->sBoxCantidad->text();
-    string canti=can.toLocal8Bit().constData();
-    QString cedu=ui->TCedula->text();
-    string ced=cedu.toLocal8Bit().constData();
-    bool comp=compra;
-    if(!comp)
+    cont++;
+    if(cont==1)
     {
-        emit escribirServidor(QString::fromStdString("CF;"+codPas+";"+codProd+";"+codMar+";"+canti+";"+ced).toUtf8());
-        compra=true;
+        QString can=ui->sBoxCantidad->text();
+        string canti=can.toLocal8Bit().constData();
+        QString cedu=ui->TCedula->text();
+        string ced=cedu.toLocal8Bit().constData();
+        bool comp=compra;
+        if(!comp)
+        {
+            emit escribirServidor(QString::fromStdString("CF;"+codPas+";"+codProd+";"+codMar+";"+canti+";"+ced).toUtf8());
+        }
+        else
+            emit escribirServidor(QString::fromStdString("CFD;"+codPas+";"+codProd+";"+codMar+";"+canti+";"+ced).toUtf8());
+        comprobar();
     }
-    else
-        emit escribirServidor(QString::fromStdString("CFD;"+codPas+";"+codProd+";"+codMar+";"+canti+";"+ced).toUtf8());
-    string precio=socketCli.nombresCB;
-    QString preci = QString::fromLocal8Bit(precio.c_str());
-    ui->BBcarrito->setVisible(true);
-    ui->LInformacion_8->setText("Seleccione el pasillo de la marca que desea conocer el comprar");
-    ui->LPasProdMar_8->setText("Pasillo");
-    ui->BBPrecio4->setVisible(false);
-    ui->BBPasillo4->setVisible(true);
-    ui->CBMarcas4->setVisible(false);
-    ui->CBPasillos4->setVisible(true);
-    ui->sBoxCantidad->setVisible(false);
-    ui->BBCanti->setVisible(false);
-    cont=0;
+//    string precio=socketCli.nombresCB;
+//    QString preci = QString::fromLocal8Bit(precio.c_str());
+    else if(cont>2)
+    {
+        ui->BBcarrito->setVisible(true);
+        ui->LInformacion_8->setText("Seleccione el pasillo de la marca que desea comprar");
+        ui->LPasProdMar_8->setText("Pasillo");
+        ui->BBPrecio4->setVisible(false);
+        ui->BBPasillo4->setVisible(true);
+        ui->CBMarcas4->setVisible(false);
+        ui->CBPasillos4->setVisible(true);
+        ui->sBoxCantidad->setVisible(false);
+        ui->BBCanti->setVisible(false);
+        comprobar();
+        cont=0;
+    }
 }
 
 void ventanaPrincipalCliente::on_BBcarrito_clicked()
@@ -899,7 +942,23 @@ void ventanaPrincipalCliente::on_BBcarrito_clicked()
     ui->santaManos->setVisible(true);
     ui->BBregresar->setVisible(true);
     ui->viewCompras->setVisible(true);
-    ui->BBPasillo->setVisible(false);
+    ui->BBPasillo4->setVisible(false);
     ui->BBOtra3->setVisible(false);
     ui->CBPasillos4->setVisible(false);
+    ui->BBcarrito->setVisible(false);
+    ui->LCanaston->setVisible(true);
+}
+
+void ventanaPrincipalCliente::on_BBregresar_clicked()
+{
+    ui->LInformacion_8->setVisible(true);
+    ui->LPasProdMar_8->setVisible(true);
+    ui->santaManos->setVisible(false);
+    ui->BBregresar->setVisible(false);
+    ui->viewCompras->setVisible(false);
+    ui->BBPasillo4->setVisible(true);
+    ui->BBOtra3->setVisible(true);
+    ui->CBPasillos4->setVisible(true);
+    ui->BBcarrito->setVisible(true);
+    ui->LCanaston->setVisible(false);
 }

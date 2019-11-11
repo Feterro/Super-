@@ -15,7 +15,7 @@
 #include <QtWidgets/QLCDNumber>
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QLineEdit>
-#include <QtWidgets/QListView>
+#include <QtWidgets/QListWidget>
 #include <QtWidgets/QMainWindow>
 #include <QtWidgets/QPushButton>
 #include <QtWidgets/QSpinBox>
@@ -113,7 +113,8 @@ public:
     QLabel *santaManos;
     QPushButton *BBcarrito;
     QPushButton *BBregresar;
-    QListView *viewCompras;
+    QListWidget *viewCompras;
+    QLabel *LCanaston;
     QWidget *tab_6;
     QStatusBar *statusbar;
 
@@ -212,7 +213,7 @@ public:
         tab_2->setObjectName(QString::fromUtf8("tab_2"));
         LCDPrecio = new QLCDNumber(tab_2);
         LCDPrecio->setObjectName(QString::fromUtf8("LCDPrecio"));
-        LCDPrecio->setGeometry(QRect(490, 160, 171, 71));
+        LCDPrecio->setGeometry(QRect(450, 160, 211, 71));
         LPasProdMar = new QLabel(tab_2);
         LPasProdMar->setObjectName(QString::fromUtf8("LPasProdMar"));
         LPasProdMar->setGeometry(QRect(20, 190, 55, 16));
@@ -239,7 +240,7 @@ public:
         BBuscarPrecio->setGeometry(QRect(90, 270, 121, 31));
         LColonIma = new QLabel(tab_2);
         LColonIma->setObjectName(QString::fromUtf8("LColonIma"));
-        LColonIma->setGeometry(QRect(410, 170, 81, 61));
+        LColonIma->setGeometry(QRect(360, 170, 81, 61));
         BLlenarCBPasillos = new QPushButton(tab_2);
         BLlenarCBPasillos->setObjectName(QString::fromUtf8("BLlenarCBPasillos"));
         BLlenarCBPasillos->setGeometry(QRect(650, 330, 20, 20));
@@ -368,16 +369,19 @@ public:
         BBCanti->setGeometry(QRect(140, 250, 121, 31));
         santaManos = new QLabel(tab_5);
         santaManos->setObjectName(QString::fromUtf8("santaManos"));
-        santaManos->setGeometry(QRect(120, 210, 131, 141));
+        santaManos->setGeometry(QRect(140, 200, 211, 161));
         BBcarrito = new QPushButton(tab_5);
         BBcarrito->setObjectName(QString::fromUtf8("BBcarrito"));
-        BBcarrito->setGeometry(QRect(140, 290, 131, 31));
+        BBcarrito->setGeometry(QRect(250, 300, 131, 31));
         BBregresar = new QPushButton(tab_5);
         BBregresar->setObjectName(QString::fromUtf8("BBregresar"));
-        BBregresar->setGeometry(QRect(290, 290, 121, 31));
-        viewCompras = new QListView(tab_5);
+        BBregresar->setGeometry(QRect(270, 290, 121, 31));
+        viewCompras = new QListWidget(tab_5);
         viewCompras->setObjectName(QString::fromUtf8("viewCompras"));
-        viewCompras->setGeometry(QRect(400, 60, 256, 192));
+        viewCompras->setGeometry(QRect(390, 70, 256, 192));
+        LCanaston = new QLabel(tab_5);
+        LCanaston->setObjectName(QString::fromUtf8("LCanaston"));
+        LCanaston->setGeometry(QRect(70, 40, 451, 231));
         tabsClientes->addTab(tab_5, QString());
         tab_6 = new QWidget();
         tab_6->setObjectName(QString::fromUtf8("tab_6"));
@@ -389,7 +393,7 @@ public:
 
         retranslateUi(ventanaPrincipalCliente);
 
-        tabsClientes->setCurrentIndex(4);
+        tabsClientes->setCurrentIndex(1);
 
 
         QMetaObject::connectSlotsByName(ventanaPrincipalCliente);
@@ -459,6 +463,7 @@ public:
         santaManos->setText(QString());
         BBcarrito->setText(QApplication::translate("ventanaPrincipalCliente", "Ver Cantidad de compra", nullptr));
         BBregresar->setText(QApplication::translate("ventanaPrincipalCliente", "Regresar", nullptr));
+        LCanaston->setText(QString());
         tabsClientes->setTabText(tabsClientes->indexOf(tab_5), QApplication::translate("ventanaPrincipalCliente", "Comprar", nullptr));
         tabsClientes->setTabText(tabsClientes->indexOf(tab_6), QApplication::translate("ventanaPrincipalCliente", "Otros", nullptr));
     } // retranslateUi

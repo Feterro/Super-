@@ -17,7 +17,7 @@ Graph grafoArt = montarGrafo("Ciudades.txt", "Ptos de articulacion.txt");
 Graph grafoRecorridos = montarGrafo("Ciudades.txt", "Conexiones.txt");
 GraphPR grafoPrim = montarGrafoPR("Ciudades.txt", "Conexiones.txt");
 GraphKRUS grafoKruskal = montarGrafoKRUS("Ciudades.txt", "Conexiones.txt");
-
+GrafoDIJ grafoDijkstra=montarGrafoDIJ("Ciudades.txt", "Conexiones.txt");
 
 int main(int argc, char *argv[])
 {
@@ -52,11 +52,12 @@ int main(int argc, char *argv[])
     result = grafoRecorridos.Profundidad();
     //cout<<result<<endl<<endl;
     result = grafoRecorridos.Anchura();
-   // cout<<result<<endl;
+    //cout<<result<<endl;
     result = grafoPrim.primMST();
-    cout<<result<<endl;
+    //cout<<result<<endl;
     result = grafoKruskal.kruskalMST();
     //cout<<result<<endl;
+    //grafoDijkstra.dijkstra(0);
 
 
     return a.exec();

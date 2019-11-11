@@ -2,6 +2,7 @@ release/GrafoArtic.o
 release/GrafoKRUS.o
 release/GrafoPR.o
 release/admin.o
+release/grafodij.o
 release/main.o
 release/server.o
 release/socketServer.o

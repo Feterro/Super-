@@ -26,6 +26,8 @@ signals:
     void escribirServidor(QByteArray info);
 
 private slots:
+    void comprobar();
+
     void on_BIngresar_clicked();
 
     void on_BNo_clicked();
@@ -80,6 +82,8 @@ private slots:
     void on_BBCanti_clicked();
 
     void on_BBcarrito_clicked();
+
+    void on_BBregresar_clicked();
 
 private:
     Ui::ventanaPrincipalCliente *ui;

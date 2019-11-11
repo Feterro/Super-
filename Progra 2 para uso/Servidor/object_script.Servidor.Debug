@@ -2,6 +2,7 @@ debug/GrafoArtic.o
 debug/GrafoKRUS.o
 debug/GrafoPR.o
 debug/admin.o
+debug/grafodij.o
 debug/main.o
 debug/server.o
 debug/socketServer.o

@@ -11,6 +11,7 @@
 #include "GrafoArtic.h"
 #include "GrafoPR.h"
 #include "GrafoKRUS.h"
+#include "grafodij.h"
 
 extern  ArbolB arbolClientes;
 extern  ArbolB arbolAdmin;
@@ -22,5 +23,6 @@ extern  Graph grafoArt;
 extern  Graph grafoRecorridos;
 extern GraphPR grafoPrim;
 extern GraphKRUS grafoKruskal;
+extern GrafoDIJ grafoDijkstra;
 
 #endif // GLOBALHEADERS_H
