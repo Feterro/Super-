@@ -537,44 +537,24 @@ void serverSocket::funcionesCliente(string infoConv)
             stringstream camb2(cedula);
             int ced;
             camb2>>ced;
-    //        bool val=false;
-    //        val=arbolPasillos.validarMarca(arbolPasillos.raiz,codPas,codPro,codMar,val);
-    //        if(val)
-    //        {
-                //***********************************
-                bool rep=true;
-                if(codi!="CFD")
-                {
-                    rep=princi.cola.agregarCliente(princi.cola,ced);
+            bool rep=true;
+            if(codi!="CFD")
+            {
+                rep=princi.cola.agregarCliente(princi.cola,ced);
+                if(rep)
                     princi.agregarCola(arbolClientes,ced,this->socket->socketDescriptor());
-                }
-                if(rep==true)
-                {
-                    pnodoCola aux=princi.cola.primero;
-                    princi.comprar(cantidad,codPas,codPro,codMar);
-                   // for(int i=0;i<princi.cola.largoLista();i++)
-                  //  {
-                  //      cout<<"cedCli "<<aux->cedula<<"->";
-                  //      pnodoPila auxi=aux->pila;
-                  //      while(auxi!=NULL)
-                  //     {
-                   //         cout<<"peticion "<<auxi->codMarc<<" "<<auxi->cant<<endl;
-                   //         auxi=auxi->siguiente;
-                    //    }
-                     //   aux=aux->siguiente;
-                    //}
-                    this->socket->write("MC;SI");
-                    cout<<"compra"<<endl;
-                }
-                else
-                {
-                    this->socket->write("MC;NO");
-                    cout<<"no compra"<<endl;
-                }
-
-    //        }
-    //        else
-    //            this->socket->write("VF");
+            }
+            if(rep)
+            {
+                princi.comprar(cantidad,codPas,codPro,codMar);
+                this->socket->write("MC;SI");
+                cout<<"compra"<<endl;
+            }
+            else
+            {
+                this->socket->write("MC;NO");
+                cout<<"no compra"<<endl;
+            }
         }
         else
             this->socket->write("BK");

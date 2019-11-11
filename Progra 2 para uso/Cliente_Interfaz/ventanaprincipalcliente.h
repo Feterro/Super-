@@ -7,6 +7,7 @@
 #include <QIcon>
 #include <sstream>
 #include "globalizarSocket.h"
+#include <fstream>
 
 namespace Ui {
 class ventanaPrincipalCliente;
@@ -21,12 +22,14 @@ public:
     ~ventanaPrincipalCliente();
 
     bool compra=false;
+    string nom;
+    int cantReg=0;
 
 signals:
     void escribirServidor(QByteArray info);
 
 private slots:
-    void comprobar();
+    void comprobar(QString canti);
 
     void on_BIngresar_clicked();
 
@@ -85,9 +88,13 @@ private slots:
 
     void on_BBregresar_clicked();
 
+    void on_BBRepo_clicked();
+
+    void on_BBFactu_clicked();
+
 private:
     Ui::ventanaPrincipalCliente *ui;
-    int cont;
+    int cont=0;
     string codPas;
     string codProd;
     string codMar;

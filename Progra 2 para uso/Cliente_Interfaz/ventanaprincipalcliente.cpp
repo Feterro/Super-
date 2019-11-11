@@ -71,6 +71,29 @@ ventanaPrincipalCliente::ventanaPrincipalCliente(QWidget *parent) :
     ui->BBCanti->setVisible(false);
     QPixmap sanCom(":/ima/Images/santamanosarriba.png");
     QPixmap canSanta(":/ima/Images/ovalo.png");
+    QPixmap rega1(":/ima/Images/regalo1.png");
+    QPixmap rega2(":/ima/Images/regalo2.png");
+    QPixmap rega3(":/ima/Images/regalo3.png");
+    QPixmap rega4(":/ima/Images/regalo4.png");
+    QPixmap rega5(":/ima/Images/regalo5.png");
+    QPixmap rega6(":/ima/Images/regalo6.png");
+    QPixmap rega7(":/ima/Images/regalo7.png");
+    QPixmap arbol(":/ima/Images/arbol.png");
+    ui->Arb->setPixmap(arbol);
+    ui->reg1->setPixmap(rega1);
+    ui->reg2->setPixmap(rega2);
+    ui->reg3->setPixmap(rega3);
+    ui->reg4->setPixmap(rega4);
+    ui->reg5->setPixmap(rega5);
+    ui->reg6->setPixmap(rega6);
+    ui->reg7->setPixmap(rega7);
+    ui->reg1->setVisible(false);
+    ui->reg2->setVisible(false);
+    ui->reg3->setVisible(false);
+    ui->reg4->setVisible(false);
+    ui->reg5->setVisible(false);
+    ui->reg6->setVisible(false);
+    ui->reg7->setVisible(false);
     ui->LCanaston->setPixmap(canSanta);
     ui->LCanaston->setVisible(false);
     ui->santaManos->setPixmap(sanCom);
@@ -78,6 +101,8 @@ ventanaPrincipalCliente::ventanaPrincipalCliente(QWidget *parent) :
     ui->BBcarrito->setVisible(false);
     ui->BBregresar->setVisible(false);
     ui->viewCompras->setVisible(false);
+    ui->sBoxCantidad->setMinimum(1);
+    ui->spinFact->setMinimum(1);
 
     connect(this, SIGNAL(escribirServidor(QByteArray)),&socketCli,SLOT(escribirServidor(QByteArray)));
 }
@@ -843,14 +868,14 @@ void ventanaPrincipalCliente::on_BBPrecio4_clicked()
     string codMarc=token;
     codMar=codMarc;
     token = strtok(NULL,var);
-    ui->viewCompras->addItem(token);
+    nom=token;
     ui->BBPrecio4->setVisible(false);
     ui->sBoxCantidad->setVisible(true);
     ui->BBCanti->setVisible(true);
     ui->CBMarcas4->setVisible(false);
 }
 
-void ventanaPrincipalCliente::comprobar()
+void ventanaPrincipalCliente::comprobar(QString can)
 {
     cont++;
     if (cont>=2)
@@ -862,7 +887,10 @@ void ventanaPrincipalCliente::comprobar()
             this,
             tr("Informacion"),
             tr("Compra realizada o finalizada con exito!") );
+            QString nombre=QString::fromStdString(nom);
+            ui->viewCompras->addItem(nombre+" "+can);
             compra=true;
+            cantReg++;
         }
         else if(socketCli.nombresCB=="NO")
         {
@@ -896,6 +924,8 @@ void ventanaPrincipalCliente::on_BBOtra3_clicked()
             tr("Usted ya se encuentra en la lista de facturacion"));
         }
         compra=false;
+        ui->viewCompras->clear();
+        cantReg=0;
     }
 }
 
@@ -915,12 +945,13 @@ void ventanaPrincipalCliente::on_BBCanti_clicked()
         }
         else
             emit escribirServidor(QString::fromStdString("CFD;"+codPas+";"+codProd+";"+codMar+";"+canti+";"+ced).toUtf8());
-        comprobar();
+        comprobar(can);
     }
 //    string precio=socketCli.nombresCB;
 //    QString preci = QString::fromLocal8Bit(precio.c_str());
     else if(cont>2)
     {
+        QString can=ui->sBoxCantidad->text();
         ui->BBcarrito->setVisible(true);
         ui->LInformacion_8->setText("Seleccione el pasillo de la marca que desea comprar");
         ui->LPasProdMar_8->setText("Pasillo");
@@ -930,7 +961,7 @@ void ventanaPrincipalCliente::on_BBCanti_clicked()
         ui->CBPasillos4->setVisible(true);
         ui->sBoxCantidad->setVisible(false);
         ui->BBCanti->setVisible(false);
-        comprobar();
+        comprobar(can);
         cont=0;
     }
 }
@@ -947,6 +978,20 @@ void ventanaPrincipalCliente::on_BBcarrito_clicked()
     ui->CBPasillos4->setVisible(false);
     ui->BBcarrito->setVisible(false);
     ui->LCanaston->setVisible(true);
+    if(cantReg>=1)
+        ui->reg1->setVisible(true);
+    if(cantReg>=2)
+        ui->reg2->setVisible(true);
+    if(cantReg>=3)
+        ui->reg3->setVisible(true);
+    if(cantReg>=4)
+        ui->reg5->setVisible(true);
+    if(cantReg>=5)
+        ui->reg4->setVisible(true);
+    if(cantReg>=6)
+        ui->reg6->setVisible(true);
+    if(cantReg>=7)
+        ui->reg7->setVisible(true);
 }
 
 void ventanaPrincipalCliente::on_BBregresar_clicked()
@@ -961,4 +1006,52 @@ void ventanaPrincipalCliente::on_BBregresar_clicked()
     ui->CBPasillos4->setVisible(true);
     ui->BBcarrito->setVisible(true);
     ui->LCanaston->setVisible(false);
+    ui->reg1->setVisible(false);
+    ui->reg2->setVisible(false);
+    ui->reg3->setVisible(false);
+    ui->reg4->setVisible(false);
+    ui->reg5->setVisible(false);
+    ui->reg6->setVisible(false);
+    ui->reg7->setVisible(false);
+}
+
+void ventanaPrincipalCliente::on_BBRepo_clicked()
+{
+//    ofstream archivo;
+//    archivo.open("Reportes.txt",ios::out);
+//    emit(C)
+}
+
+void ventanaPrincipalCliente::on_BBFactu_clicked()
+{   cont++;
+    string titFac;
+    string ced=ui->TCedula->text().toLocal8Bit().constData();
+    titFac=ced+"_"+ui->spinFact->text().toLocal8Bit().constData()+".txt";
+    ofstream archivo;
+    emit escribirServidor(QString::fromStdString("RK;"+titFac).toUtf8());
+    this->thread()->sleep(1);
+    if(socketCli.nombresCB=="Factura no encontrada")
+    {
+        QMessageBox::information(
+        this,
+        tr("Informacion"),
+        tr("Factura no encontrada"));
+        cont=0;
+    }
+    else
+    {
+        archivo.open("Factura.txt",ios::out);
+        archivo<<socketCli.nombresCB;
+        archivo.close();
+        cout<<cont<<endl;
+        if(cont==3)
+        {
+            QMessageBox::information(
+            this,
+            tr("Informacion"),
+            tr("La Factura ha sido creada"));
+            cont=0;
+        }
+    }
+
 }

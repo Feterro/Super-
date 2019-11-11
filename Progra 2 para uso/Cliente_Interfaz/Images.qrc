@@ -11,6 +11,14 @@
         <file>Images/equis.png</file>
         <file>Images/ovalo.png</file>
         <file>Images/santamanosarriba.png</file>
+        <file>Images/regalo2.png</file>
+        <file>Images/regalo3.png</file>
+        <file>Images/regalo4.png</file>
+        <file>Images/regalo5.png</file>
+        <file>Images/regalo6.png</file>
+        <file>Images/regalo7.png</file>
+        <file>Images/regalo1.png</file>
+        <file>Images/arbol.png</file>
     </qresource>
     <qresource prefix="/"/>
 </RCC>
