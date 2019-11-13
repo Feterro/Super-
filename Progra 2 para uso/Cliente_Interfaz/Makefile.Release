@@ -115,7 +115,6 @@ compiler_rcc_clean:
 release/qrc_Images.cpp: Images.qrc \
 		C:/Qt/5.13.1/mingw73_32/bin/rcc.exe \
 		Images/regalo1.png \
-		Images/porcentaje.jpg \
 		Images/regalo2.png \
 		Images/regalo3.png \
 		Images/regalo4.png \
@@ -123,14 +122,16 @@ release/qrc_Images.cpp: Images.qrc \
 		Images/regalo5.png \
 		Images/regalo6.png \
 		Images/regalo7.png \
+		Images/porcentaje.png \
 		Images/equis.png \
-		Images/colon4.jpg \
 		Images/índice.png \
 		Images/check.jpg \
 		Images/ovalo.png \
 		Images/canasta.png \
+		Images/arbol.png \
 		Images/colon2.png \
 		Images/colon3.png \
+		Images/colon4.png \
 		Images/colon.png
 	C:\Qt\5.13.1\mingw73_32\bin\rcc.exe -name Images Images.qrc -o release\qrc_Images.cpp
 
@@ -221,7 +222,7 @@ release/moc_cliente.cpp: cliente.h \
 		C:/Qt/5.13.1/mingw73_32/include/QtCore/qrunnable.h \
 		release/moc_predefs.h \
 		C:/Qt/5.13.1/mingw73_32/bin/moc.exe
-	C:\Qt\5.13.1\mingw73_32\bin\moc.exe $(DEFINES) --include "C:/Users/Edgar/Desktop/Fabri/c++/Progra 3/SuperMaxipali-Revivido/Progra 2 para uso/Cliente_Interfaz/release/moc_predefs.h" -IC:/Qt/5.13.1/mingw73_32/mkspecs/win32-g++ -I"C:/Users/Edgar/Desktop/Fabri/c++/Progra 3/SuperMaxipali-Revivido/Progra 2 para uso/Cliente_Interfaz" -IC:/Qt/5.13.1/mingw73_32/include -IC:/Qt/5.13.1/mingw73_32/include/QtWidgets -IC:/Qt/5.13.1/mingw73_32/include/QtGui -IC:/Qt/5.13.1/mingw73_32/include/QtANGLE -IC:/Qt/5.13.1/mingw73_32/include/QtNetwork -IC:/Qt/5.13.1/mingw73_32/include/QtCore -IC:/Qt/Tools/mingw730_32/lib/gcc/i686-w64-mingw32/7.3.0/include/c++ -IC:/Qt/Tools/mingw730_32/lib/gcc/i686-w64-mingw32/7.3.0/include/c++/i686-w64-mingw32 -IC:/Qt/Tools/mingw730_32/lib/gcc/i686-w64-mingw32/7.3.0/include/c++/backward -IC:/Qt/Tools/mingw730_32/lib/gcc/i686-w64-mingw32/7.3.0/include -IC:/Qt/Tools/mingw730_32/lib/gcc/i686-w64-mingw32/7.3.0/include-fixed -IC:/Qt/Tools/mingw730_32/i686-w64-mingw32/include cliente.h -o release\moc_cliente.cpp
+	C:\Qt\5.13.1\mingw73_32\bin\moc.exe $(DEFINES) --include "C:/Users/Edgar/Desktop/SuperMaxipali-Revivido/Progra 2 para uso/Cliente_Interfaz/release/moc_predefs.h" -IC:/Qt/5.13.1/mingw73_32/mkspecs/win32-g++ -I"C:/Users/Edgar/Desktop/SuperMaxipali-Revivido/Progra 2 para uso/Cliente_Interfaz" -IC:/Qt/5.13.1/mingw73_32/include -IC:/Qt/5.13.1/mingw73_32/include/QtWidgets -IC:/Qt/5.13.1/mingw73_32/include/QtGui -IC:/Qt/5.13.1/mingw73_32/include/QtANGLE -IC:/Qt/5.13.1/mingw73_32/include/QtNetwork -IC:/Qt/5.13.1/mingw73_32/include/QtCore -IC:/Qt/Tools/mingw730_32/lib/gcc/i686-w64-mingw32/7.3.0/include/c++ -IC:/Qt/Tools/mingw730_32/lib/gcc/i686-w64-mingw32/7.3.0/include/c++/i686-w64-mingw32 -IC:/Qt/Tools/mingw730_32/lib/gcc/i686-w64-mingw32/7.3.0/include/c++/backward -IC:/Qt/Tools/mingw730_32/lib/gcc/i686-w64-mingw32/7.3.0/include -IC:/Qt/Tools/mingw730_32/lib/gcc/i686-w64-mingw32/7.3.0/include-fixed -IC:/Qt/Tools/mingw730_32/i686-w64-mingw32/include cliente.h -o release\moc_cliente.cpp
 
 release/moc_threadcli.cpp: threadcli.h \
 		C:/Qt/5.13.1/mingw73_32/include/QtCore/QObject \
@@ -303,7 +304,7 @@ release/moc_threadcli.cpp: threadcli.h \
 		globalizarSocket.h \
 		release/moc_predefs.h \
 		C:/Qt/5.13.1/mingw73_32/bin/moc.exe
-	C:\Qt\5.13.1\mingw73_32\bin\moc.exe $(DEFINES) --include "C:/Users/Edgar/Desktop/Fabri/c++/Progra 3/SuperMaxipali-Revivido/Progra 2 para uso/Cliente_Interfaz/release/moc_predefs.h" -IC:/Qt/5.13.1/mingw73_32/mkspecs/win32-g++ -I"C:/Users/Edgar/Desktop/Fabri/c++/Progra 3/SuperMaxipali-Revivido/Progra 2 para uso/Cliente_Interfaz" -IC:/Qt/5.13.1/mingw73_32/include -IC:/Qt/5.13.1/mingw73_32/include/QtWidgets -IC:/Qt/5.13.1/mingw73_32/include/QtGui -IC:/Qt/5.13.1/mingw73_32/include/QtANGLE -IC:/Qt/5.13.1/mingw73_32/include/QtNetwork -IC:/Qt/5.13.1/mingw73_32/include/QtCore -IC:/Qt/Tools/mingw730_32/lib/gcc/i686-w64-mingw32/7.3.0/include/c++ -IC:/Qt/Tools/mingw730_32/lib/gcc/i686-w64-mingw32/7.3.0/include/c++/i686-w64-mingw32 -IC:/Qt/Tools/mingw730_32/lib/gcc/i686-w64-mingw32/7.3.0/include/c++/backward -IC:/Qt/Tools/mingw730_32/lib/gcc/i686-w64-mingw32/7.3.0/include -IC:/Qt/Tools/mingw730_32/lib/gcc/i686-w64-mingw32/7.3.0/include-fixed -IC:/Qt/Tools/mingw730_32/i686-w64-mingw32/include threadcli.h -o release\moc_threadcli.cpp
+	C:\Qt\5.13.1\mingw73_32\bin\moc.exe $(DEFINES) --include "C:/Users/Edgar/Desktop/SuperMaxipali-Revivido/Progra 2 para uso/Cliente_Interfaz/release/moc_predefs.h" -IC:/Qt/5.13.1/mingw73_32/mkspecs/win32-g++ -I"C:/Users/Edgar/Desktop/SuperMaxipali-Revivido/Progra 2 para uso/Cliente_Interfaz" -IC:/Qt/5.13.1/mingw73_32/include -IC:/Qt/5.13.1/mingw73_32/include/QtWidgets -IC:/Qt/5.13.1/mingw73_32/include/QtGui -IC:/Qt/5.13.1/mingw73_32/include/QtANGLE -IC:/Qt/5.13.1/mingw73_32/include/QtNetwork -IC:/Qt/5.13.1/mingw73_32/include/QtCore -IC:/Qt/Tools/mingw730_32/lib/gcc/i686-w64-mingw32/7.3.0/include/c++ -IC:/Qt/Tools/mingw730_32/lib/gcc/i686-w64-mingw32/7.3.0/include/c++/i686-w64-mingw32 -IC:/Qt/Tools/mingw730_32/lib/gcc/i686-w64-mingw32/7.3.0/include/c++/backward -IC:/Qt/Tools/mingw730_32/lib/gcc/i686-w64-mingw32/7.3.0/include -IC:/Qt/Tools/mingw730_32/lib/gcc/i686-w64-mingw32/7.3.0/include-fixed -IC:/Qt/Tools/mingw730_32/i686-w64-mingw32/include threadcli.h -o release\moc_threadcli.cpp
 
 release/moc_ventanaprincipalcliente.cpp: ventanaprincipalcliente.h \
 		C:/Qt/5.13.1/mingw73_32/include/QtWidgets/QMainWindow \
@@ -440,7 +441,7 @@ release/moc_ventanaprincipalcliente.cpp: ventanaprincipalcliente.h \
 		C:/Qt/5.13.1/mingw73_32/include/QtCore/qrunnable.h \
 		release/moc_predefs.h \
 		C:/Qt/5.13.1/mingw73_32/bin/moc.exe
-	C:\Qt\5.13.1\mingw73_32\bin\moc.exe $(DEFINES) --include "C:/Users/Edgar/Desktop/Fabri/c++/Progra 3/SuperMaxipali-Revivido/Progra 2 para uso/Cliente_Interfaz/release/moc_predefs.h" -IC:/Qt/5.13.1/mingw73_32/mkspecs/win32-g++ -I"C:/Users/Edgar/Desktop/Fabri/c++/Progra 3/SuperMaxipali-Revivido/Progra 2 para uso/Cliente_Interfaz" -IC:/Qt/5.13.1/mingw73_32/include -IC:/Qt/5.13.1/mingw73_32/include/QtWidgets -IC:/Qt/5.13.1/mingw73_32/include/QtGui -IC:/Qt/5.13.1/mingw73_32/include/QtANGLE -IC:/Qt/5.13.1/mingw73_32/include/QtNetwork -IC:/Qt/5.13.1/mingw73_32/include/QtCore -IC:/Qt/Tools/mingw730_32/lib/gcc/i686-w64-mingw32/7.3.0/include/c++ -IC:/Qt/Tools/mingw730_32/lib/gcc/i686-w64-mingw32/7.3.0/include/c++/i686-w64-mingw32 -IC:/Qt/Tools/mingw730_32/lib/gcc/i686-w64-mingw32/7.3.0/include/c++/backward -IC:/Qt/Tools/mingw730_32/lib/gcc/i686-w64-mingw32/7.3.0/include -IC:/Qt/Tools/mingw730_32/lib/gcc/i686-w64-mingw32/7.3.0/include-fixed -IC:/Qt/Tools/mingw730_32/i686-w64-mingw32/include ventanaprincipalcliente.h -o release\moc_ventanaprincipalcliente.cpp
+	C:\Qt\5.13.1\mingw73_32\bin\moc.exe $(DEFINES) --include "C:/Users/Edgar/Desktop/SuperMaxipali-Revivido/Progra 2 para uso/Cliente_Interfaz/release/moc_predefs.h" -IC:/Qt/5.13.1/mingw73_32/mkspecs/win32-g++ -I"C:/Users/Edgar/Desktop/SuperMaxipali-Revivido/Progra 2 para uso/Cliente_Interfaz" -IC:/Qt/5.13.1/mingw73_32/include -IC:/Qt/5.13.1/mingw73_32/include/QtWidgets -IC:/Qt/5.13.1/mingw73_32/include/QtGui -IC:/Qt/5.13.1/mingw73_32/include/QtANGLE -IC:/Qt/5.13.1/mingw73_32/include/QtNetwork -IC:/Qt/5.13.1/mingw73_32/include/QtCore -IC:/Qt/Tools/mingw730_32/lib/gcc/i686-w64-mingw32/7.3.0/include/c++ -IC:/Qt/Tools/mingw730_32/lib/gcc/i686-w64-mingw32/7.3.0/include/c++/i686-w64-mingw32 -IC:/Qt/Tools/mingw730_32/lib/gcc/i686-w64-mingw32/7.3.0/include/c++/backward -IC:/Qt/Tools/mingw730_32/lib/gcc/i686-w64-mingw32/7.3.0/include -IC:/Qt/Tools/mingw730_32/lib/gcc/i686-w64-mingw32/7.3.0/include-fixed -IC:/Qt/Tools/mingw730_32/i686-w64-mingw32/include ventanaprincipalcliente.h -o release\moc_ventanaprincipalcliente.cpp
 
 compiler_moc_objc_header_make_all:
 compiler_moc_objc_header_clean:

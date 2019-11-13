@@ -32,7 +32,6 @@ public:
     QTabWidget *tabsClientes;
     QWidget *tab;
     QLineEdit *TTelefono;
-    QPushButton *BCancelar;
     QLineEdit *TCorreo;
     QLineEdit *TCedulaR;
     QLineEdit *TNombre;
@@ -128,6 +127,15 @@ public:
     QLabel *LabinfFac;
     QSpinBox *spinFact;
     QPushButton *BBRepo;
+    QPushButton *BBSPas;
+    QPushButton *BBSPro;
+    QPushButton *BBSMar;
+    QLabel *label;
+    QLabel *label_2;
+    QLabel *label_3;
+    QComboBox *CBRpas;
+    QComboBox *CBRmar;
+    QComboBox *CBRpro;
     QStatusBar *statusbar;
 
     void setupUi(QMainWindow *ventanaPrincipalCliente)
@@ -139,15 +147,12 @@ public:
         centralwidget->setObjectName(QString::fromUtf8("centralwidget"));
         tabsClientes = new QTabWidget(centralwidget);
         tabsClientes->setObjectName(QString::fromUtf8("tabsClientes"));
-        tabsClientes->setGeometry(QRect(-10, 0, 691, 401));
+        tabsClientes->setGeometry(QRect(0, 0, 691, 401));
         tab = new QWidget();
         tab->setObjectName(QString::fromUtf8("tab"));
         TTelefono = new QLineEdit(tab);
         TTelefono->setObjectName(QString::fromUtf8("TTelefono"));
         TTelefono->setGeometry(QRect(270, 240, 181, 22));
-        BCancelar = new QPushButton(tab);
-        BCancelar->setObjectName(QString::fromUtf8("BCancelar"));
-        BCancelar->setGeometry(QRect(370, 300, 93, 28));
         TCorreo = new QLineEdit(tab);
         TCorreo->setObjectName(QString::fromUtf8("TCorreo"));
         TCorreo->setGeometry(QRect(270, 210, 181, 22));
@@ -183,7 +188,7 @@ public:
         CBCiudad->setGeometry(QRect(270, 180, 181, 22));
         LPregunta = new QLabel(tab);
         LPregunta->setObjectName(QString::fromUtf8("LPregunta"));
-        LPregunta->setGeometry(QRect(260, 150, 121, 31));
+        LPregunta->setGeometry(QRect(260, 150, 151, 31));
         LCiudad = new QLabel(tab);
         LCiudad->setObjectName(QString::fromUtf8("LCiudad"));
         LCiudad->setGeometry(QRect(140, 180, 55, 16));
@@ -192,7 +197,7 @@ public:
         LNombre->setGeometry(QRect(140, 120, 55, 16));
         BRegistrar = new QPushButton(tab);
         BRegistrar->setObjectName(QString::fromUtf8("BRegistrar"));
-        BRegistrar->setGeometry(QRect(200, 300, 93, 28));
+        BRegistrar->setGeometry(QRect(270, 290, 181, 28));
         LDatos = new QLabel(tab);
         LDatos->setObjectName(QString::fromUtf8("LDatos"));
         LDatos->setGeometry(QRect(270, 60, 111, 16));
@@ -213,7 +218,7 @@ public:
         LVerExitosa->setGeometry(QRect(220, 100, 211, 61));
         LDisfrute = new QLabel(tab);
         LDisfrute->setObjectName(QString::fromUtf8("LDisfrute"));
-        LDisfrute->setGeometry(QRect(190, 150, 291, 51));
+        LDisfrute->setGeometry(QRect(210, 150, 291, 51));
         LResEx = new QLabel(tab);
         LResEx->setObjectName(QString::fromUtf8("LResEx"));
         LResEx->setGeometry(QRect(270, 70, 151, 41));
@@ -423,16 +428,43 @@ public:
         Arb->setGeometry(QRect(480, 90, 201, 261));
         BBFactu = new QPushButton(tab_6);
         BBFactu->setObjectName(QString::fromUtf8("BBFactu"));
-        BBFactu->setGeometry(QRect(50, 50, 361, 41));
+        BBFactu->setGeometry(QRect(50, 30, 361, 41));
         LabinfFac = new QLabel(tab_6);
         LabinfFac->setObjectName(QString::fromUtf8("LabinfFac"));
-        LabinfFac->setGeometry(QRect(120, 120, 241, 16));
+        LabinfFac->setGeometry(QRect(110, 80, 241, 16));
         spinFact = new QSpinBox(tab_6);
         spinFact->setObjectName(QString::fromUtf8("spinFact"));
-        spinFact->setGeometry(QRect(50, 140, 361, 22));
+        spinFact->setGeometry(QRect(50, 100, 361, 22));
         BBRepo = new QPushButton(tab_6);
         BBRepo->setObjectName(QString::fromUtf8("BBRepo"));
-        BBRepo->setGeometry(QRect(50, 230, 361, 41));
+        BBRepo->setGeometry(QRect(50, 170, 361, 41));
+        BBSPas = new QPushButton(tab_6);
+        BBSPas->setObjectName(QString::fromUtf8("BBSPas"));
+        BBSPas->setGeometry(QRect(340, 240, 80, 21));
+        BBSPro = new QPushButton(tab_6);
+        BBSPro->setObjectName(QString::fromUtf8("BBSPro"));
+        BBSPro->setGeometry(QRect(340, 280, 80, 21));
+        BBSMar = new QPushButton(tab_6);
+        BBSMar->setObjectName(QString::fromUtf8("BBSMar"));
+        BBSMar->setGeometry(QRect(340, 320, 80, 21));
+        label = new QLabel(tab_6);
+        label->setObjectName(QString::fromUtf8("label"));
+        label->setGeometry(QRect(40, 240, 61, 20));
+        label_2 = new QLabel(tab_6);
+        label_2->setObjectName(QString::fromUtf8("label_2"));
+        label_2->setGeometry(QRect(40, 280, 61, 20));
+        label_3 = new QLabel(tab_6);
+        label_3->setObjectName(QString::fromUtf8("label_3"));
+        label_3->setGeometry(QRect(40, 320, 61, 20));
+        CBRpas = new QComboBox(tab_6);
+        CBRpas->setObjectName(QString::fromUtf8("CBRpas"));
+        CBRpas->setGeometry(QRect(110, 240, 211, 22));
+        CBRmar = new QComboBox(tab_6);
+        CBRmar->setObjectName(QString::fromUtf8("CBRmar"));
+        CBRmar->setGeometry(QRect(110, 320, 211, 22));
+        CBRpro = new QComboBox(tab_6);
+        CBRpro->setObjectName(QString::fromUtf8("CBRpro"));
+        CBRpro->setGeometry(QRect(110, 280, 211, 22));
         tabsClientes->addTab(tab_6, QString());
         ventanaPrincipalCliente->setCentralWidget(centralwidget);
         statusbar = new QStatusBar(ventanaPrincipalCliente);
@@ -441,7 +473,7 @@ public:
 
         retranslateUi(ventanaPrincipalCliente);
 
-        tabsClientes->setCurrentIndex(5);
+        tabsClientes->setCurrentIndex(0);
 
 
         QMetaObject::connectSlotsByName(ventanaPrincipalCliente);
@@ -450,7 +482,6 @@ public:
     void retranslateUi(QMainWindow *ventanaPrincipalCliente)
     {
         ventanaPrincipalCliente->setWindowTitle(QCoreApplication::translate("ventanaPrincipalCliente", "MainWindow", nullptr));
-        BCancelar->setText(QCoreApplication::translate("ventanaPrincipalCliente", "Cancelar", nullptr));
         LTelefono->setText(QCoreApplication::translate("ventanaPrincipalCliente", "Telefono", nullptr));
         LIngresar->setText(QCoreApplication::translate("ventanaPrincipalCliente", "Ingrese su numero de cedula para ingresar", nullptr));
         LBienvenida->setText(QCoreApplication::translate("ventanaPrincipalCliente", "Bienvenido al supermercado", nullptr));
@@ -524,6 +555,12 @@ public:
         BBFactu->setText(QCoreApplication::translate("ventanaPrincipalCliente", "Generar Factura", nullptr));
         LabinfFac->setText(QCoreApplication::translate("ventanaPrincipalCliente", "Digite el numero de factura que desea obtener", nullptr));
         BBRepo->setText(QCoreApplication::translate("ventanaPrincipalCliente", "Generar Reportes", nullptr));
+        BBSPas->setText(QCoreApplication::translate("ventanaPrincipalCliente", "Buscar", nullptr));
+        BBSPro->setText(QCoreApplication::translate("ventanaPrincipalCliente", "Buscar", nullptr));
+        BBSMar->setText(QCoreApplication::translate("ventanaPrincipalCliente", "Buscar", nullptr));
+        label->setText(QCoreApplication::translate("ventanaPrincipalCliente", "Pasillo", nullptr));
+        label_2->setText(QCoreApplication::translate("ventanaPrincipalCliente", "Productos", nullptr));
+        label_3->setText(QCoreApplication::translate("ventanaPrincipalCliente", "Marcas", nullptr));
         tabsClientes->setTabText(tabsClientes->indexOf(tab_6), QCoreApplication::translate("ventanaPrincipalCliente", "Otros", nullptr));
     } // retranslateUi
 

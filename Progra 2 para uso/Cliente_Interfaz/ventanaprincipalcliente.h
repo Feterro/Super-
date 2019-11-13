@@ -92,12 +92,20 @@ private slots:
 
     void on_BBFactu_clicked();
 
+    void on_BBSPas_clicked();
+
+    void on_BBSPro_clicked();
+
+    void on_BBSMar_clicked();
+
+
 private:
     Ui::ventanaPrincipalCliente *ui;
     int cont=0;
     string codPas;
     string codProd;
     string codMar;
+    string repo;
 };
 
 #endif // VENTANAPRINCIPALCLIENTE_H

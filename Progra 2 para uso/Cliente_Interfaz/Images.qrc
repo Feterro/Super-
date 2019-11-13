@@ -4,11 +4,7 @@
         <file>Images/colon2.png</file>
         <file>Images/colon3.png</file>
         <file>Images/índice.png</file>
-        <file>Images/colon4.jpg</file>
-        <file>Images/check.jpg</file>
-        <file>Images/porcentaje.jpg</file>
         <file>Images/canasta.png</file>
-        <file>Images/equis.png</file>
         <file>Images/ovalo.png</file>
         <file>Images/santamanosarriba.png</file>
         <file>Images/regalo2.png</file>
@@ -19,6 +15,10 @@
         <file>Images/regalo7.png</file>
         <file>Images/regalo1.png</file>
         <file>Images/arbol.png</file>
+        <file>Images/colon4.png</file>
+        <file>Images/porcentaje.png</file>
+        <file>Images/check.jpg</file>
+        <file>Images/equis.png</file>
     </qresource>
     <qresource prefix="/"/>
 </RCC>

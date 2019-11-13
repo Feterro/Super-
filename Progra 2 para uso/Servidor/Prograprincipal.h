@@ -1730,6 +1730,7 @@ pnodoMarca arbolPas::encontrarNodo1(pnodoPas ra, string codPas, string codProd, 
     }else{
         marca=encontrarNodo1(ra->hIzq, codPas, codProd,codMar, marca);
         if (ra->codPasillo==codPas){
+            ra->pasvis=ra->pasvis+1;
             AVLProducto pro;
             pro.raiz=ra->subsiguiente;
             marca=pro.encontrarNodo2(ra->subsiguiente, codProd,codMar, marca);
@@ -2655,6 +2656,18 @@ string Principal::pagar(Pila pila){
         prim=prim->siguiente;
     }
     precio_Totals=to_string(precio_Total);
+    int ced1=princi.cola.primero->cedula;
+    pnodoCola auxil=princi.cliente.primeroClie;
+    int ced2=0;
+    while(auxil->siguiente!=NULL)
+    {
+        if(auxil->cedula==ced1)
+        {
+            int pre=stoi(precio_Totals);
+            auxil->montoFact=pre;
+        }
+        auxil=auxil->siguiente;
+    }
     return devolver+" "+precio_Totals;
 }
 
@@ -2679,7 +2692,7 @@ string Principal::agregarListaOrdenada(){
         lista1.InsertarFinalOrd(aux2->codPas, aux2->codProd, aux2->codMarc, aux2->cant,  aux2->precioP);
         aux2=aux2->siguiente;
     }
-    cola.BorrarInicio();
+
     //Ordenar la pila
     lista1.quickSort(&(lista1.primero));
     string pas;
@@ -2699,6 +2712,7 @@ string Principal::agregarListaOrdenada(){
         pil=pil->siguiente;
     }
     string devuelto=pagar(lista1);
+    cola.BorrarInicio();
     //cout<<"VENTAS"<<endl;
     pnodoVenta auxil=princi.ventas.primero;
     while(auxil->siguiente!=NULL)
@@ -2767,9 +2781,25 @@ string Principal::ConsultarCanasta(string codPas, string codProd, string codMar)
         return"\nCodigos invalidos,trate de nuevo";
     }
 }
-void Principal::generarReporte(){
+string Principal::generarReporte(string codigos){
+    char cstr[codigos.size() + 1];
+    strcpy(cstr, codigos.c_str());
+    char var[]=";";
+    char *token = strtok(cstr,var);
+    token = strtok(NULL,var);
+    string codPas1=token;
+    token = strtok(NULL,var);
+    string codPas2=token;
+    token = strtok(NULL,var);
+    string codPas3=token;
+    token = strtok(NULL,var);
+    string codPro1=token;
+    token = strtok(NULL,var);
+    string codPas4=token;
+    token = strtok(NULL,var);
+    string codPro2=token;
     ofstream archivo;
-    archivo.open("Reportes Administrador.txt",ios::app);
+    archivo.open("Reportes Administrador.txt",ios::out);
     archivo<<"*******************************Reportes administrador*******************************"<<endl;
     archivo<<"Pasillo mas vendido: "<<endl;
     pnodoPas masVendido=arbolPasillos.raiz;
@@ -2778,14 +2808,8 @@ void Principal::generarReporte(){
     archivo<<"\nPasillo menos vendido: "<<endl;
     pnodoPas menosVendido=arbolPasillos.raiz;
     menosVendido=PasillosMenosVisitado(arbolPasillos.raiz,menosVendido);
-    cout<<menosVendido->nombre<<endl;
     archivo<<"                      "<<menosVendido->codPasillo<<" "<<menosVendido->nombre<<endl;
-    cout<<"***Producto mas vendido en un pasillo***"<<endl;
-    cout<<"Estas son las opciones de pasillos: "<<endl;
-    arbolPasillos.MostrarPasillos(arbolPasillos.raiz);
-    cout<<"Seleccione un codigo de pasillo: "<<endl;
-    string codPas;
-    cin>>codPas;
+    string codPas=codPas1;
     bool valid=false;
     valid=arbolPasillos.encontrarPasillo(valid, arbolPasillos.raiz, codPas);
     if (valid){
@@ -2798,20 +2822,11 @@ void Principal::generarReporte(){
     else{
         archivo<<"Se selecciono un codigo de pasillo inexistente"<<endl;
     }
-    cout<<"**Marca mas vendida en un pasillo en un producto**"<<endl;
-    cout<<"Las opciones de pasillos son: "<<endl;
-    arbolPasillos.MostrarPasillos(arbolPasillos.raiz);
-    cout<<"Escoja un codigo de pasillo: "<<endl;
-    string pas;
-    cin>>pas;
+    string pas=codPas3;
     bool val=false;
     val=arbolPasillos.encontrarPasillo(val, arbolPasillos.raiz, pas);
     if(val){
-        cout<<"Las opciones de productos son: "<<endl;
-        arbolPasillos.MostrarProductos(arbolPasillos.raiz, pas);
-        cout<<"Escoja un codigo de producto: "<<endl;
-        string prod;
-        cin>>prod;
+        string prod=codPro1;
         bool val2=false;
         val2=arbolPasillos.ValidarProducto1(arbolPasillos.raiz, pas, prod, val2);
         if(val2){
@@ -2829,20 +2844,11 @@ void Principal::generarReporte(){
     else{
         archivo<<"Se escogio un codigo invalido"<<endl;
     }
-    cout<<"**Mostrar las marcas de un pasillo en un producto**"<<endl;
-    cout<<"Las opciones de pasillos son: "<<endl;
-    arbolPasillos.MostrarPasillos(arbolPasillos.raiz);
-    cout<<"Escoja el codigo: "<<endl;
-    string pas1;
-    cin>>pas1;
+    string pas1=codPas4;
     bool vali3=false;
     vali3=arbolPasillos.encontrarPasillo(vali3, arbolPasillos.raiz, pas1);
     if (vali3){
-        cout<<"Las opciones de productos son: "<<endl;
-        arbolPasillos.MostrarProductos(arbolPasillos.raiz, pas1);
-        cout<<"Escoja el codigo: "<<endl;
-        string prod1;
-        cin>>prod1;
+        string prod1=codPro2;
         bool vali2=false;
         vali2=arbolPasillos.ValidarProducto1(arbolPasillos.raiz, pas1, prod1, vali2);
         if (vali2){
@@ -2857,12 +2863,6 @@ void Principal::generarReporte(){
     else{
         archivo<<"Se ingreso un codigo incorrecto"<<endl;
     }
-    cout<<"***Productos de un pasillo***"<<endl;
-    cout<<"Estas son las opciones de pasillos: "<<endl;
-    arbolPasillos.MostrarPasillos(arbolPasillos.raiz);
-    cout<<"Seleccione un codigo de pasillo: "<<endl;
-    string codPas2;
-    cin>>codPas2;
     bool valid2=false;
     valid2=arbolPasillos.encontrarPasillo(valid2, arbolPasillos.raiz, codPas2);
     if (valid2){
@@ -2885,6 +2885,23 @@ void Principal::generarReporte(){
     arbolInventario.InordenReporte(arbolInventario.raiz);
     clienteMasFacturas();
     archivo.close();
+    string repo=convertirReporte();
+    return repo;
+}
+
+string Principal::convertirReporte()
+{
+    string repo;
+    ifstream archivo;
+    string texto;
+    archivo.open("Reportes Administrador.txt",ios::app);
+    while(!archivo.eof())
+    {
+        getline(archivo,texto);
+        repo=repo+texto+"\n";
+    }
+    archivo.close();
+    return repo;
 }
 pnodoProd Principal::masCargadoGondola(pnodoPas R,  pnodoProd masGon){
     if (R==NULL){
@@ -3258,7 +3275,6 @@ void Principal::clienteMasFacturas(){
     pnodoCola menor=princi.cliente.primeroClie;
     pnodoCola mayor=princi.cliente.primeroClie;
     pnodoCola masMonto=princi.cliente.primeroClie;
-    cout<<"Cola sirve: "<<aux<<endl;
     while(aux!=NULL){
         if (mayor->cantFact<aux->cantFact){
             mayor=aux;

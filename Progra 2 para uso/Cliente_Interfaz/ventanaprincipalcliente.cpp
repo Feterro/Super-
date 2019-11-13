@@ -23,7 +23,6 @@ ventanaPrincipalCliente::ventanaPrincipalCliente(QWidget *parent) :
     ui->TCorreo->setVisible(false);
     ui->TTelefono->setVisible(false);
     ui->BRegistrar->setVisible(false);
-    ui->BCancelar->setVisible(false);
     ui->LDatos->setVisible(false);
     ui->BIngresar->setEnabled(false);
     ui->LVerExitosa->setVisible(false);
@@ -31,7 +30,6 @@ ventanaPrincipalCliente::ventanaPrincipalCliente(QWidget *parent) :
     ui->LResEx->setVisible(false);
     ui->LDatos->setVisible(false);
     ui->BRegistrar->setVisible(false);
-    ui->BCancelar->setVisible(false);
     ui->tabsClientes->setTabEnabled(4, false);
     ui->tabsClientes->setTabEnabled(5, false);
     ui->CBMarcas->setVisible(false);
@@ -40,14 +38,14 @@ ventanaPrincipalCliente::ventanaPrincipalCliente(QWidget *parent) :
     ui->BBuscarPrecio->setVisible(false);
     ui->LCDPrecio->setDecMode();
     ui->BBuscarPasillo->setEnabled(false);
-    QPixmap colon(":/ima/Images/colon4.jpg");
+    QPixmap colon(":/ima/Images/colon4.png");
     ui->LColonIma->setPixmap(colon);
     ui->BBPasillo->setEnabled(false);
     ui->BBProd->setVisible(false);
     ui->BBPrecio->setVisible(false);
     ui->CBProductos2->setVisible(false);
     ui->CBMarcas2->setVisible(false);
-    QPixmap porciento(":/ima/Images/porcentaje.jpg");
+    QPixmap porciento(":/ima/Images/porcentaje.png");
     ui->porcentaje->setPixmap(porciento);
     QPixmap cana(":/ima/Images/canasta.png");
     QPixmap conf(":/ima/Images/check.jpg");
@@ -103,6 +101,8 @@ ventanaPrincipalCliente::ventanaPrincipalCliente(QWidget *parent) :
     ui->viewCompras->setVisible(false);
     ui->sBoxCantidad->setMinimum(1);
     ui->spinFact->setMinimum(1);
+    ui->BBSPro->setEnabled(false);
+    ui->BBSMar->setEnabled(false);
 
     connect(this, SIGNAL(escribirServidor(QByteArray)),&socketCli,SLOT(escribirServidor(QByteArray)));
 }
@@ -142,7 +142,10 @@ void ventanaPrincipalCliente::on_BIngresar_clicked()
 
 void ventanaPrincipalCliente::on_BNo_clicked()
 {
-    //Menu de cliente no registrado
+    ui->BNo->setVisible(false);
+    ui->BSi->setVisible(false);
+    ui->LNoReg->setVisible(false);
+    ui->LPregunta->setText("Usted decidio no registrarse");
 }
 
 void ventanaPrincipalCliente::on_BSi_clicked()
@@ -164,7 +167,6 @@ void ventanaPrincipalCliente::on_BSi_clicked()
         ui->LCorreo->setVisible(true);
         ui->TCorreo->setVisible(true);
         ui->BRegistrar->setVisible(true);
-        ui->BCancelar->setVisible(true);
         ui->CBProductos->setVisible(false);
         ui->CBMarcas->setVisible(false);
         ui->BBuscarProd->setVisible(false);
@@ -183,7 +185,6 @@ void ventanaPrincipalCliente::on_TCedula_returnPressed()
 {
     QString cedula=ui->TCedula->text();
     emit escribirServidor("IN"+cedula.toUtf8());
-    thread()->sleep(1);
     ui->BIngresar->setEnabled(true);
 }
 
@@ -224,7 +225,6 @@ void ventanaPrincipalCliente::on_BRegistrar_clicked()
         token = strtok(NULL,var);
         string nuevReg=";"+cedula+";"+nombre+";"+codCiu+";"+telefono+";"+correo+";";
         emit escribirServidor(QString::fromStdString("RE"+nuevReg).toUtf8());
-        thread()->sleep(1);
         if(!socketCli.bloqueo)
         {
             ui->LResEx->setVisible(true);
@@ -240,7 +240,6 @@ void ventanaPrincipalCliente::on_BRegistrar_clicked()
             ui->TTelefono->setVisible(false);
             ui->CBCiudad->setVisible(false);
             ui->LCiudad->setVisible(false);
-            ui->BCancelar->setVisible(false);
             ui->BRegistrar->setVisible(false);
             ui->LDatos->setVisible(false);
             ui->tabsClientes->setTabEnabled(4, true);
@@ -289,7 +288,6 @@ void ventanaPrincipalCliente::on_BBuscarPasillo_clicked()
     string codPasi=token;
     codPas=codPasi;
     emit escribirServidor(QString::fromStdString("CA"+codPas).toUtf8());
-    thread()->sleep(1);
     if (!socketCli.bloqueo){
         stringstream producto=stringstream(socketCli.nombresCB);
         producto.str(socketCli.nombresCB);
@@ -334,7 +332,6 @@ void ventanaPrincipalCliente::on_BBuscarProd_clicked()
     string codProdu=token;
     codProd=codProdu;
     emit escribirServidor(QString::fromStdString("CB;"+codPas+";"+codProdu).toUtf8());
-    thread()->sleep(1);
     if (!socketCli.bloqueo){
         cout<<"If"<<endl;
         bool lleno=false;
@@ -365,7 +362,6 @@ void ventanaPrincipalCliente::on_BLlenarCBPasillos_clicked()
 {
     emit escribirServidor(QString::fromStdString("CO").toUtf8());
     if(!socketCli.bloqueo){
-        thread()->sleep(1);
         stringstream pasillo=stringstream(socketCli.nombresCB);
         pasillo.str(socketCli.nombresCB);
         string pas;
@@ -409,7 +405,6 @@ void ventanaPrincipalCliente::on_BLlenarCBPasillos_2_clicked()
 {
     emit escribirServidor(QString::fromStdString("CO").toUtf8());
     if(!socketCli.bloqueo){
-        thread()->sleep(1);
         stringstream pasi=stringstream(socketCli.nombresCB);
         cout<<socketCli.nombresCB<<endl;
         pasi.str(socketCli.nombresCB);
@@ -449,7 +444,6 @@ void ventanaPrincipalCliente::on_BBPasillo_clicked()
     string codPasi=token;
     codPas=codPasi;
     emit escribirServidor(QString::fromStdString("CA"+codPas).toUtf8());
-    thread()->sleep(1);
     if (!socketCli.bloqueo){
         stringstream producto=stringstream(socketCli.nombresCB);
         producto.str(socketCli.nombresCB);
@@ -495,7 +489,6 @@ void ventanaPrincipalCliente::on_BBProd_clicked()
     string codProdu=token;
     codProd=codProdu;
     emit escribirServidor(QString::fromStdString("CB;"+codPas+";"+codProdu).toUtf8());
-    thread()->sleep(1);
     if (!socketCli.bloqueo){
         cout<<"If"<<endl;
         bool lleno=false;
@@ -557,7 +550,6 @@ void ventanaPrincipalCliente::on_BLlenarCBPasillos3_clicked()
 {
     emit escribirServidor(QString::fromStdString("CO").toUtf8());
     if(!socketCli.bloqueo){
-        thread()->sleep(1);
         stringstream pasi=stringstream(socketCli.nombresCB);
         cout<<socketCli.nombresCB<<endl;
         pasi.str(socketCli.nombresCB);
@@ -597,7 +589,6 @@ void ventanaPrincipalCliente::on_BBPasillo2_clicked()
     string codPasi=token;
     codPas=codPasi;
     emit escribirServidor(QString::fromStdString("CA"+codPas).toUtf8());
-    thread()->sleep(1);
     if (!socketCli.bloqueo){
         stringstream producto=stringstream(socketCli.nombresCB);
         producto.str(socketCli.nombresCB);
@@ -642,7 +633,6 @@ void ventanaPrincipalCliente::on_BBProducto2_clicked()
     string codProdu=token;
     codProd=codProdu;
     emit escribirServidor(QString::fromStdString("CB;"+codPas+";"+codProdu).toUtf8());
-    thread()->sleep(1);
     if (!socketCli.bloqueo){
         cout<<"If"<<endl;
         bool lleno=false;
@@ -718,7 +708,6 @@ void ventanaPrincipalCliente::on_pushButton_clicked()
 {
     emit escribirServidor(QString::fromStdString("CZ").toUtf8());
     if(!socketCli.bloqueo){
-        thread()->sleep(1);
         stringstream pasi=stringstream(socketCli.nombresCB);
         cout<<socketCli.nombresCB<<endl;
         pasi.str(socketCli.nombresCB);
@@ -742,34 +731,30 @@ void ventanaPrincipalCliente::on_pushButton_clicked()
 
 void ventanaPrincipalCliente::on_BLlenarCBPasillos3_2_clicked()
 {
-    {
-        emit escribirServidor(QString::fromStdString("CO").toUtf8());
-        if(!socketCli.bloqueo){
-            thread()->sleep(1);
-            stringstream pasi=stringstream(socketCli.nombresCB);
-            cout<<socketCli.nombresCB<<endl;
-            pasi.str(socketCli.nombresCB);
-            string pas;
-            bool llen=false;
-            ui->CBPasillos4->clear();
-            while(getline(pasi, pas)){
-                llen =true;
-                if (!(pas.empty())){
-                    QString pasq = QString::fromStdString(pas);
-                    ui->CBPasillos4->addItem(pasq);
-                }
+    emit escribirServidor(QString::fromStdString("CO").toUtf8());
+    if(!socketCli.bloqueo){
+        stringstream pasi=stringstream(socketCli.nombresCB);
+        cout<<socketCli.nombresCB<<endl;
+        pasi.str(socketCli.nombresCB);
+        string pas;
+        bool llen=false;
+        ui->CBPasillos4->clear();
+        while(getline(pasi, pas)){
+            llen =true;
+            if (!(pas.empty())){
+                QString pasq = QString::fromStdString(pas);
+                ui->CBPasillos4->addItem(pasq);
             }
-            if (llen)
-                ui->BBPasillo4->setEnabled(true);
-                cont=0;
         }
-        else{
-            QMessageBox::information(
-            this,
-            tr("Informacion"),
-            tr("Se está actulizando el servidor, espere unos minutos") );
-        }
-
+        if (llen)
+            ui->BBPasillo4->setEnabled(true);
+            cont=0;
+    }
+    else{
+        QMessageBox::information(
+        this,
+        tr("Informacion"),
+        tr("Se está actulizando el servidor, espere unos minutos") );
     }
 }
 
@@ -785,7 +770,6 @@ void ventanaPrincipalCliente::on_BBPasillo4_clicked()
     string codPasi=token;
     codPas=codPasi;
     emit escribirServidor(QString::fromStdString("CA"+codPas).toUtf8());
-    thread()->sleep(1);
     if (!socketCli.bloqueo){
         stringstream producto=stringstream(socketCli.nombresCB);
         producto.str(socketCli.nombresCB);
@@ -831,7 +815,6 @@ void ventanaPrincipalCliente::on_BBProducto4_clicked()
     string codProdu=token;
     codProd=codProdu;
     emit escribirServidor(QString::fromStdString("CB;"+codPas+";"+codProdu).toUtf8());
-    this->thread()->sleep(1);
     if (!socketCli.bloqueo){
         bool lleno=false;
         stringstream marca=stringstream(socketCli.nombresCB);
@@ -880,7 +863,6 @@ void ventanaPrincipalCliente::comprobar(QString can)
     cont++;
     if (cont>=2)
     {
-        this->thread()->sleep(1);
         if(socketCli.nombresCB=="SI")
         {
             QMessageBox::information(
@@ -908,7 +890,6 @@ void ventanaPrincipalCliente::on_BBOtra3_clicked()
     cont++;
     if (cont>=2)
     {
-        this->thread()->sleep(1);
         if(socketCli.nombresCB=="SI")
         {
             QMessageBox::information(
@@ -1015,13 +996,6 @@ void ventanaPrincipalCliente::on_BBregresar_clicked()
     ui->reg7->setVisible(false);
 }
 
-void ventanaPrincipalCliente::on_BBRepo_clicked()
-{
-//    ofstream archivo;
-//    archivo.open("Reportes.txt",ios::out);
-//    emit(C)
-}
-
 void ventanaPrincipalCliente::on_BBFactu_clicked()
 {   cont++;
     string titFac;
@@ -1029,14 +1003,16 @@ void ventanaPrincipalCliente::on_BBFactu_clicked()
     titFac=ced+"_"+ui->spinFact->text().toLocal8Bit().constData()+".txt";
     ofstream archivo;
     emit escribirServidor(QString::fromStdString("RK;"+titFac).toUtf8());
-    this->thread()->sleep(1);
     if(socketCli.nombresCB=="Factura no encontrada")
     {
-        QMessageBox::information(
-        this,
-        tr("Informacion"),
-        tr("Factura no encontrada"));
-        cont=0;
+        if(cont==3)
+        {
+            QMessageBox::information(
+            this,
+            tr("Informacion"),
+            tr("Factura no encontrada"));
+            cont=0;
+        }
     }
     else
     {
@@ -1054,4 +1030,127 @@ void ventanaPrincipalCliente::on_BBFactu_clicked()
         }
     }
 
+}
+
+void ventanaPrincipalCliente::on_BBSPas_clicked()
+{
+    cont++;
+    emit escribirServidor(QString::fromStdString("CO").toUtf8());
+    if(!socketCli.bloqueo){
+        if(cont==1)
+            repo="---------------Pasillos---------------\n";
+        stringstream pasi=stringstream(socketCli.nombresCB);
+        cout<<socketCli.nombresCB<<endl;
+        pasi.str(socketCli.nombresCB);
+        string pas;
+        bool llen=false;
+        while(getline(pasi, pas)){
+            llen =true;
+            if (!(pas.empty())){
+                QString pasq = QString::fromStdString(pas);
+                ui->CBRpas->addItem(pasq);
+                if(cont==1)
+                    repo=repo+pas+"\n";
+            }
+        }
+        if (llen)
+            ui->BBSPro->setEnabled(true);
+            cont=0;            
+    }
+    else{
+        QMessageBox::information(
+        this,
+        tr("Informacion"),
+        tr("Se está actulizando el servidor, espere unos minutos") );
+    }
+    cout<<"PAS"<<repo<<endl;
+}
+
+void ventanaPrincipalCliente::on_BBSPro_clicked()
+{
+    cont ++;
+    QString pasillo=ui->CBRpas->currentText();
+    string pas = pasillo.toLocal8Bit().constData();
+    char cstr[pas.size() + 1];
+    strcpy(cstr, pas.c_str());
+    char var[]=":";
+    char *token = strtok(cstr,var);
+    string codPasi=token;
+    codPas=codPasi;
+    emit escribirServidor(QString::fromStdString("CA"+codPas).toUtf8());
+    if (!socketCli.bloqueo){
+        stringstream producto=stringstream(socketCli.nombresCB);
+        producto.str(socketCli.nombresCB);
+        if(cont==1)
+            repo=repo+"---------------Productos---------------\n";
+        string pas;
+        bool lleno=false;
+        ui->CBRpro->clear();
+        while(getline(producto, pas)){
+            lleno =true;
+            if (!(pas.empty())){
+                cout<<socketCli.nombresCB<<endl;
+                QString pasq = QString::fromStdString(pas);
+                ui->CBRpro->addItem(pasq);
+                if(cont==2)
+                    repo=repo+pas+"\n";
+            }
+        }
+        if (lleno && cont==2){
+            ui->BBSMar->setEnabled(true);
+            cont=0;
+        }
+    }
+    else{
+        QMessageBox::information(
+        this,
+        tr("Informacion"),
+        tr("Se está actulizando el servidor, espere unos minutos") );
+    }
+    cout<<"PRO"<<repo<<endl;
+}
+
+void ventanaPrincipalCliente::on_BBSMar_clicked()
+{
+    cont ++;
+    QString produc=ui->CBRpro->currentText();
+    string pas = produc.toLocal8Bit().constData();
+    char cstr[pas.size() + 1];
+    strcpy(cstr, pas.c_str());
+    char var[]=":";
+    char *token = strtok(cstr,var);
+    string codProdu=token;
+    codProd=codProdu;
+    emit escribirServidor(QString::fromStdString("CB;"+codPas+";"+codProdu).toUtf8());
+    if (!socketCli.bloqueo){
+        if(cont==2)
+            repo=repo+"---------------Marcas---------------\n";
+        bool lleno=false;
+        stringstream marca=stringstream(socketCli.nombresCB);
+        marca.str(socketCli.nombresCB);
+        string mar;
+        ui->CBRmar->clear();
+        while(getline(marca, mar)){
+            lleno =true;
+            if (!(pas.empty())){
+                QString marq = QString::fromStdString(mar);
+                ui->CBRmar->addItem(marq);
+                if(cont==2)
+                    repo=repo+mar+"\n";
+            }
+        }
+    }
+    cout<<"MAR"<<repo<<endl;
+}
+
+void ventanaPrincipalCliente::on_BBRepo_clicked()
+{
+    cont++;
+    if (cont>=2)
+    {
+        ofstream archivo;
+        archivo.open("Reporte.txt",ios::out);
+        archivo<<repo;
+        archivo.close();
+    }
 }

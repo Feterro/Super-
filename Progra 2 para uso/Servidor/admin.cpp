@@ -87,7 +87,7 @@ void Admin::run()
                     princi.cargarInventario();
                 }
                 else if(resp=="13"){
-                    princi.generarReporte();
+                    //princi.generarReporte();
                     cout<<"reporte generado!"<<endl;
                 }
                 else if (resp=="14"){

@@ -100,7 +100,7 @@ class Principal
         void PasillosMasMenosVisitado(pnodoPas R, string codPas, pnodoPas pasillo);
         pnodoPas PasillosMasVisitado(pnodoPas R,pnodoPas nodo1);
         pnodoPas PasillosMenosVisitado(pnodoPas R, pnodoPas nodo1);
-        void generarReporte();
+        string generarReporte(string codigos);
         pnodoProd ProductosMasVendidos2(pnodoProd R,pnodoProd prodMas);
         pnodoProd ProductosMasVendidos(pnodoPas R, string codPas,pnodoProd prodMas);
         void ventaProductos2(pnodoProd R, string codProd);
@@ -124,6 +124,7 @@ class Principal
         pnodoProd masGondola(pnodoProd R, pnodoProd nodo2);
         void clienteMasFacturas();
         string consultarFactura(string nomArch);
+        string convertirReporte();
         colaCliente cola;
         lista cliente;
         listaVentas ventas;

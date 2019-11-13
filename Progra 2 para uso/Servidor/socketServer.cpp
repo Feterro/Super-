@@ -31,7 +31,7 @@ void serverSocket::readyRead()
     string infoConv=info.toStdString();
     if(infoConv.substr(0,2)=="IN"||infoConv.substr(0,2)=="CZ"||infoConv.substr(0,2)=="RK"||infoConv.substr(0,2)=="KA"||infoConv.substr(0,2)=="RE"||infoConv.substr(0,2)=="CO"||infoConv.substr(0,2)=="CA"||infoConv.substr(0,2)=="CB"||infoConv.substr(0,2)=="CF"||infoConv.substr(0,2)=="ZP"||infoConv.substr(0,2)=="ZC"||infoConv.substr(0,2)=="ZR")
           this->funcionesCliente(infoConv);
-    else if(infoConv.substr(0,2)=="EM"||infoConv.substr(0,2)=="ER"||infoConv.substr(0,2)=="EP"||infoConv.substr(0,2)=="RG"||infoConv.substr(0,2)=="LG"||infoConv.substr(0,2)=="FK"||infoConv.substr(0,2)=="WZ"||infoConv.substr(0,2)=="YZ"||infoConv.substr(0,2)=="NX"||infoConv.substr(0,2)=="LX"||infoConv.substr(0,2)=="MX"||infoConv.substr(0,2)=="XZ"||infoConv.substr(0,2)=="BX"||infoConv.substr(0,2)=="XO"||infoConv.substr(0,2)=="XA"||infoConv.substr(0,2)=="XB"||infoConv.substr(0,2)=="XD"||infoConv.substr(0,2)=="XV"||infoConv.substr(0,2)=="XP"||infoConv.substr(0,2)=="XR"||infoConv.substr(0,2)=="XM"||infoConv.substr(0,2)=="XC")
+    else if(infoConv.substr(0,2)=="GK"||infoConv.substr(0,2)=="MM"||infoConv.substr(0,2)=="EM"||infoConv.substr(0,2)=="ER"||infoConv.substr(0,2)=="EP"||infoConv.substr(0,2)=="RG"||infoConv.substr(0,2)=="LG"||infoConv.substr(0,2)=="FK"||infoConv.substr(0,2)=="WZ"||infoConv.substr(0,2)=="YZ"||infoConv.substr(0,2)=="NX"||infoConv.substr(0,2)=="LX"||infoConv.substr(0,2)=="MX"||infoConv.substr(0,2)=="XZ"||infoConv.substr(0,2)=="BX"||infoConv.substr(0,2)=="XO"||infoConv.substr(0,2)=="XA"||infoConv.substr(0,2)=="XB"||infoConv.substr(0,2)=="XD"||infoConv.substr(0,2)=="XV"||infoConv.substr(0,2)=="XP"||infoConv.substr(0,2)=="XR"||infoConv.substr(0,2)=="XM"||infoConv.substr(0,2)=="XC")
         this->funcionesAdministrador(infoConv);
 }
 void serverSocket::funcionesAdministrador(string infoConv)
@@ -43,6 +43,12 @@ void serverSocket::funcionesAdministrador(string infoConv)
     else if(infoConv.substr(0,2)=="XD")
     {
         arbolPasillos.bloqueo=false;
+    }
+    else if(infoConv.substr(0,2)=="MM")
+    {
+        string reporte=princi.generarReporte(infoConv);
+        QByteArray listaPro(reporte.c_str(), reporte.length());
+        this->socket->write("MM"+listaPro);
     }
     else if(infoConv.substr(0,2)=="LG")
     {
@@ -69,9 +75,15 @@ void serverSocket::funcionesAdministrador(string infoConv)
         string cantidad=token;
         princi.revisarGondolas(stoi(cantidad));
     }
+    else if(infoConv.substr(0,2)=="GK")
+    {
+        string grafos=grafoPrim.primMST();
+        grafos=grafos+"\n\n\n"+grafoKruskal.kruskalMST();
+        QByteArray listaPro(grafos.c_str(), grafos.length());
+        socket->write("MB;"+listaPro);
+    }
     else if(infoConv.substr(0,2)=="EP")
     {
-        cout<<"me cago en Andres"<<endl;
         char cstr[infoConv.size() + 1];
         strcpy(cstr, infoConv.c_str());
         char var[]=";";

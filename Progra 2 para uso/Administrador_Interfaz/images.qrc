@@ -1,0 +1,10 @@
+<RCC>
+    <qresource prefix="/ime"/>
+    <qresource prefix="/">
+        <file>Images/colon4.jpg</file>
+        <file>Images/porcentaje.jpg</file>
+        <file>Images/IMG-20191110-WA0026.jpg</file>
+        <file>Images/check.jpg</file>
+        <file>Images/IMG-20191110-WA0029.jpg</file>
+    </qresource>
+</RCC>

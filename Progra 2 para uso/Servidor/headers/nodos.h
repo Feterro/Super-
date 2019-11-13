@@ -296,6 +296,7 @@ class nodoCola {
        pila=NULL;
        cantFact=1;
        descriptor=0;
+       montoFact=0;
     }
     nodoCola(int ced, string nom, string ciudad,  string tel, string correo,qintptr descri)
     {
@@ -309,6 +310,7 @@ class nodoCola {
        descriptor= descri;
        cantFact=1;
        descriptor=descri;
+       montoFact=0;
     }
 
 nodoCola(int ced, string nom, string ciudad, string tel, string correo,qintptr descri, nodoCola * signodo)

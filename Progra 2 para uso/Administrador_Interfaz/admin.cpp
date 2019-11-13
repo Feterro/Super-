@@ -37,7 +37,7 @@ void Admin::readyRead()
 {
     QByteArray info=socketCli->readAll();
     string infoConv=info.toStdString();
-    //cout<<infoConv<<endl;
+   //cout<<infoConv<<endl;
     if(infoConv.substr(0,2)=="AV"||infoConv.substr(0,2)=="AN")
     {
         cambiarRegistro(infoConv);
@@ -51,7 +51,19 @@ void Admin::readyRead()
         char *token = strtok(cstr,var);
         token = strtok(NULL,var);
         string lectura=token;
-        cout<<lectura<<endl;
+        aviso=lectura;
+    }
+    else if(infoConv.substr(0,2)=="MM")
+    {
+        string codVal=infoConv;
+        char cstr[codVal.size() + 1];
+        strcpy(cstr, codVal.c_str());
+        char var[]=";";
+        char *token = strtok(cstr,var);
+        ofstream archivo;
+        archivo.open("Reporte.txt",ios::out);
+        archivo<<token;
+        archivo.close();
     }
     else if(infoConv.substr(0,2)=="MA")
     {
@@ -60,7 +72,12 @@ void Admin::readyRead()
         char var[]=";";
         char *token = strtok(cstr,var);
         token = strtok(NULL,var);
-        cout<<token<<endl;
+        if (token==nullptr){
+            this->nombres="No pasillos disponibles";
+        }
+        else{
+            this->nombres=token;
+        }
     }
     else if(infoConv.substr(0,2)=="MB"||infoConv.substr(0,2)=="MC")
     {
@@ -69,16 +86,42 @@ void Admin::readyRead()
         char var[]=";";
         char *token = strtok(cstr,var);
         token = strtok(NULL,var);
-        cout<<token<<endl;
+        if (token==nullptr){
+            if (infoConv.substr(0,2)=="MB"){
+                this->nombres="No productos disponibles";
+            }
+            else if (infoConv.substr(0,2)=="MC"){
+                this->nombres="No marcas disponibles";
+            }
+        }
+        else{
+            this->nombres=token;
+            cout<<"Nombres: "<<nombres<<endl;
+       }
     }
     else if(infoConv.substr(0,2)=="VF")
     {
         correccion(infoConv);
     }
+    else if(infoConv.substr(0,2)=="LG")
+    {
+        //cout<<infoConv<<endl;
+        char cstr[infoConv.size() + 1];
+        strcpy(cstr, infoConv.c_str());
+        char var[]=";";
+        char *token = strtok(cstr,var);
+        token = strtok(NULL,var);
+        string canti=token;
+        this->cantRecar=stoi(canti);
+        cout<<"Recarga: "<<cantRecar<<endl;
+        if(this->cantRecar>0){
+            token = strtok(NULL,var);
+            nombres=nombres+token;
+        }
+    }
 }
 void Admin::escribirServidor(QByteArray info)
 {
-    cout<<"aqui"<<endl;
     this->socketCli->write(info);
 }
 void Admin::cambiarRegistro(string infoConv)
@@ -95,7 +138,7 @@ void Admin::cambiarRegistro(string infoConv)
 
 void Admin::correccion(string vali)
 {
-    cout<<"VALI="<<vali<<endl;
+   //cout<<"VALI="<<vali<<endl;
     if(vali=="VF")
         this->correcto=false;
     else

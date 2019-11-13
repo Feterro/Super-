@@ -6,7 +6,7 @@
 #include <QTcpSocket>
 #include <iostream>
 #include "admin.h"
-#include "globalizarsocketad.h"
+#include "globalizarSocketAd.h"
 
 using namespace std;
 
@@ -19,9 +19,12 @@ public:
     void insertarPas();
     void insertarPro();
     void insertarMar();
-    void consImp();
+    void cons(string resp);
     void modificar(string resp);
-
+    void revisarGondolas();
+    void elimPas();
+    void elimPro();
+    void elimMar();
 
 signals:
     void escribirServidor(QByteArray info);
@@ -35,3 +38,4 @@ protected:
 };
 
 #endif // THREADADMIN_H
+
