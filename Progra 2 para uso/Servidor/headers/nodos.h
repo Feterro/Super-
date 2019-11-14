@@ -30,6 +30,7 @@ Clase amiga de lista marcas y la clase principal.
         cantGondola=cantGon;
         precio=val;
         cantcomp=0;
+
         hIzq = NULL;
         hDer = NULL;
         padre=NULL;
@@ -364,7 +365,8 @@ class nodoListaVentas {
     nodoListaVentas *siguiente;
     string codPasillo;
    private:
-    int cantidad;   
+    int cantidad;
+    int cantRecar=0;
     string codProducto;
     string codMarca;
     string codCiudad;

@@ -29,6 +29,15 @@ public:
         this->orden = m;
         this->raiz = NULL;
     }
+    void eliminar(tipoClave cl);
+    Pagina *eliminar(tipoClave cl, Pagina* raiz);
+    void eliminarRegistro(tipoClave cl, Pagina *ra, bool &encontrado);
+    void quitar(Pagina*& p, int k);
+    void sucesor(Pagina*& p, int k);
+    void restablecer(Pagina*& p, int k);
+    void moverDerecha(Pagina*& p, int k);
+    void moverIzquierda(Pagina*& p, int k);
+    void combina(Pagina*& p, int k);
     bool arbolVacio() { return this->raiz == NULL; }
     Pagina *obtenerRaiz() { return raiz; }
     void cambiarRaiz(Pagina *r) { raiz = r; }

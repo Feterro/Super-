@@ -1,6 +1,6 @@
 *******************************Reportes administrador*******************************
 Pasillo mas vendido: 
-                     08 Alcohol
+                     20 Limpieza
 
 Pasillo menos vendido: 
                       01 Abarrotes
@@ -9,13 +9,13 @@ Producto mas vendido en un pasillo:
                                     Pasillo: 01 
                                                  01 Arroz
 La marca mas vendida es: 
-                       Pasillo: 15 producto: 04
-                                                      88 Kerns
+                       Pasillo: 01 producto: 01
+                                                      91 Luisiana
 Las marcas del producto que escogio son: 
-Pasillo: 08 Producto: 34 : 
+Pasillo: 01 Producto: 01 : 
 
 Productos de un pasillo: 
-Pasillo: 08
+Pasillo: 01
 
 Clientes registrados del supermercado: 
 
@@ -24,9 +24,7 @@ Pasillos que existen en el supermercado:
 Producto mas cargado en gondolas: 
                                   01 Arroz
 El iventario del supermecado es: 
-    125874,Francisco Garita
-
-                                    126897,Francisco Montero
+ 126897,Francisco Montero
 
                                     256874,Michael Artavia
 
@@ -228,10 +226,10 @@ El iventario del supermecado es:
                                    19 ITCR  1 1
 
 Cliente con mas facturas: 
-                         2345678 2
+                         1234567 2
 
 Cliente con menos facturas: 
-                         1234567 1
+                         9256947 1
 
 Factura de mayor monto: 
-                          2345678 Ana Campos 960
+                          1234567 Juan Perez 1515

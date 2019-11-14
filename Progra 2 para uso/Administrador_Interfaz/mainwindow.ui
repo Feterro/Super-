@@ -30,7 +30,7 @@
      </rect>
     </property>
     <property name="currentIndex">
-     <number>7</number>
+     <number>5</number>
     </property>
     <widget class="QWidget" name="tab_7">
      <attribute name="title">
@@ -1340,8 +1340,8 @@
      <widget class="QPushButton" name="BInven">
       <property name="geometry">
        <rect>
-        <x>210</x>
-        <y>170</y>
+        <x>220</x>
+        <y>180</y>
         <width>181</width>
         <height>71</height>
        </rect>
@@ -1413,6 +1413,52 @@
       </property>
      </widget>
      <widget class="QSpinBox" name="SGon">
+      <property name="geometry">
+       <rect>
+        <x>410</x>
+        <y>80</y>
+        <width>141</width>
+        <height>22</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QListWidget" name="LQInv">
+      <property name="geometry">
+       <rect>
+        <x>20</x>
+        <y>50</y>
+        <width>256</width>
+        <height>192</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="BVolverInv">
+      <property name="geometry">
+       <rect>
+        <x>470</x>
+        <y>130</y>
+        <width>111</width>
+        <height>28</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Volver</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="BAgregarInv">
+      <property name="geometry">
+       <rect>
+        <x>340</x>
+        <y>130</y>
+        <width>111</width>
+        <height>28</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Agregar Cantidad</string>
+      </property>
+     </widget>
+     <widget class="QSpinBox" name="sInv">
       <property name="geometry">
        <rect>
         <x>410</x>
@@ -1664,7 +1710,7 @@
      <widget class="QPushButton" name="pushButton_7">
       <property name="geometry">
        <rect>
-        <x>80</x>
+        <x>30</x>
         <y>190</y>
         <width>121</width>
         <height>31</height>
@@ -1677,7 +1723,7 @@
      <widget class="QPushButton" name="pushButton_8">
       <property name="geometry">
        <rect>
-        <x>260</x>
+        <x>190</x>
         <y>190</y>
         <width>121</width>
         <height>31</height>
@@ -1690,7 +1736,7 @@
      <widget class="QPushButton" name="pushButton_9">
       <property name="geometry">
        <rect>
-        <x>440</x>
+        <x>340</x>
         <y>190</y>
         <width>121</width>
         <height>31</height>
@@ -1698,6 +1744,19 @@
       </property>
       <property name="text">
        <string>Puntos de Articulacion</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="pushButton_10">
+      <property name="geometry">
+       <rect>
+        <x>490</x>
+        <y>190</y>
+        <width>121</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Ver mapa</string>
       </property>
      </widget>
     </widget>

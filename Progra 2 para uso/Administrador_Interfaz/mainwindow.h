@@ -12,6 +12,7 @@
 #include <QInputDialog>
 #include <QIcon>
 #include <sstream>
+#include <windows.h>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -154,6 +155,18 @@ private slots:
     string dividir(string cod);
 
     void on_pushButton_7_clicked();
+
+    void on_pushButton_8_clicked();
+
+    void on_pushButton_10_clicked();
+
+    void on_pushButton_9_clicked();
+
+    void on_BInven_clicked();
+
+    void on_BAgregarInv_clicked();
+
+    void on_BVolverInv_clicked();
 
 private:
     Ui::MainWindow *ui;

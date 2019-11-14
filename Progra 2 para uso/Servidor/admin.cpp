@@ -84,7 +84,7 @@ void Admin::run()
                     //princi.revisarGondolas();
                 }
                 else if (resp=="12"){
-                    princi.cargarInventario();
+                    //princi.cargarInventario();
                 }
                 else if(resp=="13"){
                     //princi.generarReporte();

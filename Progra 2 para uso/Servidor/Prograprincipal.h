@@ -1166,7 +1166,7 @@ void ArbolInventario::Inorden(pnodoInventario R){
         return;
     }else{
         Inorden(R->hIzq);
-        cout<<R->codArbol<<" ** "<<R->nivel<<"->";
+        cout<<R->nombre<<"~"<<R->cantStock<<"->";
         Inorden(R->hDer);
     }
 }
@@ -1720,59 +1720,7 @@ bool RN::validarMarcas3(pnodoMarca ra, string codMar,bool encontrado){
     }
     return encontrado;
 }
-pnodoMarca arbolPas::encontrarNodo1(pnodoPas ra, string codPas, string codProd, string codMar, pnodoMarca marca){
-    /*
-    Encuentra nodo de pasillo
-    */
 
-    bool var=false;
-    if(ra==NULL){
-    }else{
-        marca=encontrarNodo1(ra->hIzq, codPas, codProd,codMar, marca);
-        if (ra->codPasillo==codPas){
-            ra->pasvis=ra->pasvis+1;
-            AVLProducto pro;
-            pro.raiz=ra->subsiguiente;
-            marca=pro.encontrarNodo2(ra->subsiguiente, codProd,codMar, marca);
-        }
-        marca=encontrarNodo1(ra->hDer, codPas, codProd, codMar, marca);
-    }
-    return marca;
-
-}
-pnodoMarca AVLProducto::encontrarNodo2(pnodoProd ra, string codProd, string codMar, pnodoMarca marca){
-    /*
-    Encuentra nodo de pasillo
-    */
-
-    if(ra==NULL){
-    }else{
-        marca=encontrarNodo2(ra->hIzq,codProd,codMar, marca);
-        if (ra->codProducto==codProd){
-            RN marcas;
-            marcas.raiz=ra->subsiguiente;
-            marca=marcas.encontrarNodo3(ra->subsiguiente,codMar, marca);
-        }
-        marca=encontrarNodo2(ra->hDer, codProd, codMar, marca);
-    }
-    return marca;
-}
-pnodoMarca RN::encontrarNodo3(pnodoMarca ra, string codMar, pnodoMarca marca){
-    /*
-    Encuentra nodo de pasillo
-    */
-
-    bool var=false;
-    if(ra==NULL){
-    }else{
-        marca=encontrarNodo3(ra->hIzq, codMar, marca);
-        if (ra->codMarca==codMar){
-            marca=ra;
-        }
-        marca=encontrarNodo3(ra->hDer,codMar, marca);
-    }
-    return marca;
-}
 void Principal::escogerPasillo(int cant1,string codPas,string codPro,string codMar){
     /*
     Encuentra nodo de pasillo
@@ -1829,16 +1777,14 @@ void Principal::escogerMarca(int cant1,string codPas,string codProd,string codMa
                 }
                 pil=pil->siguiente;
             }
-            mar->cantGondola=((mar->cantGondola)-cant1);
         }
+        mar->cantGondola=((mar->cantGondola)-cant1);
     }
     else if(mar->cantGondola<cant1)
     {
 
         if(auxC->pila==NULL){
             auxC->pila=new nodoPila(codPas, codProd, codMar,mar->precio, mar->cantGondola);
-            //arbolPasillos.ventaPasillo(arbolPasillos.raiz, codPas);
-
         }
         else
         {
@@ -2451,14 +2397,14 @@ Metodo que revisa gondolas y las rellena de ser necesario
     string lis;
     int canti=0;
     pnodoVenta prodPila=princi.ventas.primero;
-    cout<<ventas.largoLista()<<endl;
     while(prodPila!=NULL)
     {
         pnodoMarca mar=arbolPasillos.encontrarNodo1(arbolPasillos.raiz, prodPila->codPasillo, prodPila->codProducto, prodPila->codMarca, mar);
-        cout<<mar->nombre<<endl;
+        cout<<"CANTIDAD"<<mar->nombre<<" "<<mar->cantGondola<<endl;
         if (mar->cantGondola<=2){
+            prodPila->cantRecar++;
             canti+=1;
-            lis=lis+" "+mar->nombre;
+            lis=lis+"\n"+mar->nombre;
         }
         prodPila=prodPila->siguiente;
     }
@@ -2466,30 +2412,33 @@ Metodo que revisa gondolas y las rellena de ser necesario
     cant=cant+";"+lis;
     return cant;
 }
-void Principal::cargarInventario(){
+string Principal::enlistarInventario(){
+    string recargas="";
     pnodoVenta prodPila=ventas.primero;
-    int larglist=ventas.largoLista();
-    cout<<larglist<<endl;
-    int cont=0;
-    while(cont<larglist)
+    int canti=0;
+    while(prodPila!=NULL)
     {
         pnodoInventario inven=arbolInventario.encontrarNodo(arbolInventario.raiz, prodPila->codPasillo, prodPila->codProducto, prodPila->codMarca, inven);
-        cout<<inven->codPasillo<<endl;
-        cout<<inven->cantStock<<endl;
         if (inven->cantStock<=20){
-            cout<<"Cuanto desea cargar en el producto ?: "<<endl;
-            int canti;
-            cin>>canti;
-            if(!cin){
-                cin.clear();
-                cin.ignore();
-                cout<<"Ingrese solo numeros: "<<endl;
-                cin>>canti;
-            }
-            inven->cantStock=((inven->cantStock)+canti);
+            recargas=recargas+"\n"+inven->nombre;
+            canti++;
         }
         prodPila=prodPila->siguiente;
-        cont++;
+    }
+    string cant=to_string(canti);
+    cant=cant+";"+recargas;
+    return cant;
+}
+void Principal::cargarInventario(int canti){
+    pnodoVenta prodPila=ventas.primero;
+    while(prodPila!=NULL)
+    {
+        pnodoInventario inven=arbolInventario.encontrarNodo(arbolInventario.raiz, prodPila->codPasillo, prodPila->codProducto, prodPila->codMarca, inven);
+        if (inven->cantStock<=20){
+            inven->cantStock=((inven->cantStock)+canti);
+            break;
+        }
+        prodPila=prodPila->siguiente;
     }
 }
 //Facturar y pagar ********************************************************************************************************************
@@ -2781,6 +2730,59 @@ string Principal::ConsultarCanasta(string codPas, string codProd, string codMar)
         return"\nCodigos invalidos,trate de nuevo";
     }
 }
+pnodoMarca arbolPas::encontrarNodo1(pnodoPas ra, string codPas, string codProd, string codMar, pnodoMarca marca){
+    /*
+    Encuentra nodo de pasillo
+    */
+
+    bool var=false;
+    if(ra==NULL){
+    }else{
+        marca=encontrarNodo1(ra->hIzq, codPas, codProd,codMar, marca);
+        if (ra->codPasillo==codPas){
+            ra->pasvis=ra->pasvis+1;
+            AVLProducto pro;
+            pro.raiz=ra->subsiguiente;
+            marca=pro.encontrarNodo2(ra->subsiguiente, codProd,codMar, marca);
+        }
+        marca=encontrarNodo1(ra->hDer, codPas, codProd, codMar, marca);
+    }
+    return marca;
+
+}
+pnodoMarca AVLProducto::encontrarNodo2(pnodoProd ra, string codProd, string codMar, pnodoMarca marca){
+    /*
+    Encuentra nodo de pasillo
+    */
+
+    if(ra==NULL){
+    }else{
+        marca=encontrarNodo2(ra->hIzq,codProd,codMar, marca);
+        if (ra->codProducto==codProd){
+            RN marcas;
+            marcas.raiz=ra->subsiguiente;
+            marca=marcas.encontrarNodo3(ra->subsiguiente,codMar, marca);
+        }
+        marca=encontrarNodo2(ra->hDer, codProd, codMar, marca);
+    }
+    return marca;
+}
+pnodoMarca RN::encontrarNodo3(pnodoMarca ra, string codMar, pnodoMarca marca){
+    /*
+    Encuentra nodo de pasillo
+    */
+
+    bool var=false;
+    if(ra==NULL){
+    }else{
+        marca=encontrarNodo3(ra->hIzq, codMar, marca);
+        if (ra->codMarca==codMar){
+            marca=ra;
+        }
+        marca=encontrarNodo3(ra->hDer,codMar, marca);
+    }
+    return marca;
+}
 string Principal::generarReporte(string codigos){
     char cstr[codigos.size() + 1];
     strcpy(cstr, codigos.c_str());
@@ -2822,6 +2824,7 @@ string Principal::generarReporte(string codigos){
     else{
         archivo<<"Se selecciono un codigo de pasillo inexistente"<<endl;
     }
+    cout<<"****************************************************************************************"<<endl;
     string pas=codPas3;
     bool val=false;
     val=arbolPasillos.encontrarPasillo(val, arbolPasillos.raiz, pas);
@@ -2886,6 +2889,7 @@ string Principal::generarReporte(string codigos){
     clienteMasFacturas();
     archivo.close();
     string repo=convertirReporte();
+    cout<<"Fin del reporte!"<<endl;
     return repo;
 }
 
@@ -2908,20 +2912,27 @@ pnodoProd Principal::masCargadoGondola(pnodoPas R,  pnodoProd masGon){
     }
     else{
         masGon=masCargadoGondola(R->hIzq, masGon);
-        masGon=masGondola(R->subsiguiente,masGon);
+       // masGon=masGondola(R->subsiguiente,masGon);
         masGon=masCargadoGondola(R->hDer, masGon);
     }
     return masGon;
 }
-pnodoProd Principal::masGondola(pnodoProd R, pnodoProd masGon){
+string Principal::masGondola(pnodoVenta R){
+    string masGon;
     if(R==NULL){
-
+        return "No se han realizado compras";
     }
     else{
-        masGon=masGondola(R->hIzq, masGon);
-        if (R->cargaGondolas>masGon->cargaGondolas)
-            masGon=R;
-        masGon=masGondola(R->hDer, masGon);
+        int mayor=0;
+        while(R!=NULL)
+        {
+            if(R->cantRecar>mayor)
+            {
+                pnodoMarca ele=arbolPasillos.encontrarNodo1(arbolPasillos.raiz,R->codPasillo,R->codProducto,R->codMarca,ele);
+                masGon=ele->nombre;
+            }
+
+        }
     }
     return masGon;
 }

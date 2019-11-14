@@ -39,6 +39,8 @@ RESOURCES += \
     images.qrc
 
 DISTFILES += \
+    Entraga de compras.txt \
+    Entraga de compras.txt \
     GrafoGeneral.png \
     GrafoPK.png \
     grafoDijkstra.png

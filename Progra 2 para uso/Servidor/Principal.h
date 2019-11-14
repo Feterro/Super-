@@ -94,7 +94,8 @@ class Principal
         void revisarGondolas(int canti);
         string enlistarGondolas();
         void encontrarPasSumar(pnodoPas R, string codPas, pnodoPas pasillo);
-        void cargarInventario();
+        void cargarInventario(int canti);
+        string enlistarInventario();
         string agregarListaOrdenada();
         string pagar(Pila pila);
         void PasillosMasMenosVisitado(pnodoPas R, string codPas, pnodoPas pasillo);
@@ -121,7 +122,7 @@ class Principal
         pnodoProd ProductosMasCargado2(pnodoProd R,pnodoProd prodMas);
         pnodoProd ProductosMasCargado(pnodoPas R, string codPas,pnodoProd prodMas);
         pnodoProd masCargadoGondola(pnodoPas R, pnodoProd nodo2);
-        pnodoProd masGondola(pnodoProd R, pnodoProd nodo2);
+        string masGondola(pnodoVenta R);
         void clienteMasFacturas();
         string consultarFactura(string nomArch);
         string convertirReporte();

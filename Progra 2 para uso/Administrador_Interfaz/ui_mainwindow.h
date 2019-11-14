@@ -148,6 +148,10 @@ public:
     QLabel *LCantGon;
     QPushButton *BVolverGon;
     QSpinBox *SGon;
+    QListWidget *LQInv;
+    QPushButton *BVolverInv;
+    QPushButton *BAgregarInv;
+    QSpinBox *sInv;
     QWidget *tab;
     QComboBox *CBRPas1;
     QComboBox *CBRPas2;
@@ -172,6 +176,7 @@ public:
     QPushButton *pushButton_7;
     QPushButton *pushButton_8;
     QPushButton *pushButton_9;
+    QPushButton *pushButton_10;
     QMenuBar *menubar;
     QStatusBar *statusbar;
 
@@ -515,7 +520,7 @@ public:
         BGondolas->setGeometry(QRect(210, 70, 181, 71));
         BInven = new QPushButton(tab_12);
         BInven->setObjectName(QString::fromUtf8("BInven"));
-        BInven->setGeometry(QRect(210, 170, 181, 71));
+        BInven->setGeometry(QRect(220, 180, 181, 71));
         LVeri = new QLabel(tab_12);
         LVeri->setObjectName(QString::fromUtf8("LVeri"));
         LVeri->setGeometry(QRect(90, 0, 481, 61));
@@ -534,6 +539,18 @@ public:
         SGon = new QSpinBox(tab_12);
         SGon->setObjectName(QString::fromUtf8("SGon"));
         SGon->setGeometry(QRect(410, 80, 141, 22));
+        LQInv = new QListWidget(tab_12);
+        LQInv->setObjectName(QString::fromUtf8("LQInv"));
+        LQInv->setGeometry(QRect(20, 50, 256, 192));
+        BVolverInv = new QPushButton(tab_12);
+        BVolverInv->setObjectName(QString::fromUtf8("BVolverInv"));
+        BVolverInv->setGeometry(QRect(470, 130, 111, 28));
+        BAgregarInv = new QPushButton(tab_12);
+        BAgregarInv->setObjectName(QString::fromUtf8("BAgregarInv"));
+        BAgregarInv->setGeometry(QRect(340, 130, 111, 28));
+        sInv = new QSpinBox(tab_12);
+        sInv->setObjectName(QString::fromUtf8("sInv"));
+        sInv->setGeometry(QRect(410, 80, 141, 22));
         tabAdm->addTab(tab_12, QString());
         tab = new QWidget();
         tab->setObjectName(QString::fromUtf8("tab"));
@@ -599,13 +616,16 @@ public:
         LOtros->setGeometry(QRect(220, 20, 201, 31));
         pushButton_7 = new QPushButton(tab_13);
         pushButton_7->setObjectName(QString::fromUtf8("pushButton_7"));
-        pushButton_7->setGeometry(QRect(80, 190, 121, 31));
+        pushButton_7->setGeometry(QRect(30, 190, 121, 31));
         pushButton_8 = new QPushButton(tab_13);
         pushButton_8->setObjectName(QString::fromUtf8("pushButton_8"));
-        pushButton_8->setGeometry(QRect(260, 190, 121, 31));
+        pushButton_8->setGeometry(QRect(190, 190, 121, 31));
         pushButton_9 = new QPushButton(tab_13);
         pushButton_9->setObjectName(QString::fromUtf8("pushButton_9"));
-        pushButton_9->setGeometry(QRect(440, 190, 121, 31));
+        pushButton_9->setGeometry(QRect(340, 190, 121, 31));
+        pushButton_10 = new QPushButton(tab_13);
+        pushButton_10->setObjectName(QString::fromUtf8("pushButton_10"));
+        pushButton_10->setGeometry(QRect(490, 190, 121, 31));
         tabAdm->addTab(tab_13, QString());
         MainWindow->setCentralWidget(centralwidget);
         menubar = new QMenuBar(MainWindow);
@@ -618,7 +638,7 @@ public:
 
         retranslateUi(MainWindow);
 
-        tabAdm->setCurrentIndex(7);
+        tabAdm->setCurrentIndex(5);
 
 
         QMetaObject::connectSlotsByName(MainWindow);
@@ -719,6 +739,8 @@ public:
         BAgregar->setText(QApplication::translate("MainWindow", "Agregar Cantidad", nullptr));
         LCantGon->setText(QApplication::translate("MainWindow", "Cantidad a rellenar", nullptr));
         BVolverGon->setText(QApplication::translate("MainWindow", "Volver", nullptr));
+        BVolverInv->setText(QApplication::translate("MainWindow", "Volver", nullptr));
+        BAgregarInv->setText(QApplication::translate("MainWindow", "Agregar Cantidad", nullptr));
         tabAdm->setTabText(tabAdm->indexOf(tab_12), QApplication::translate("MainWindow", "Verificar", nullptr));
         label_2->setText(QApplication::translate("MainWindow", "Seleccione para ver el Producto mas vendido del pasillo", nullptr));
         label_3->setText(QApplication::translate("MainWindow", "Seleccione para ver los Productos del pasillo", nullptr));
@@ -737,6 +759,7 @@ public:
         pushButton_7->setText(QApplication::translate("MainWindow", "Entrega de Compras", nullptr));
         pushButton_8->setText(QApplication::translate("MainWindow", "Ruta hacia la bodega", nullptr));
         pushButton_9->setText(QApplication::translate("MainWindow", "Puntos de Articulacion", nullptr));
+        pushButton_10->setText(QApplication::translate("MainWindow", "Ver mapa", nullptr));
         tabAdm->setTabText(tabAdm->indexOf(tab_13), QApplication::translate("MainWindow", "Otros", nullptr));
     } // retranslateUi
 

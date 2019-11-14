@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>680</width>
-    <height>413</height>
+    <width>690</width>
+    <height>458</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -20,11 +20,11 @@
       <x>0</x>
       <y>0</y>
       <width>691</width>
-      <height>401</height>
+      <height>441</height>
      </rect>
     </property>
     <property name="currentIndex">
-     <number>0</number>
+     <number>2</number>
     </property>
     <widget class="QWidget" name="tab">
      <attribute name="title">
@@ -33,51 +33,65 @@
      <widget class="QLineEdit" name="TTelefono">
       <property name="geometry">
        <rect>
-        <x>270</x>
-        <y>240</y>
-        <width>181</width>
-        <height>22</height>
+        <x>260</x>
+        <y>210</y>
+        <width>191</width>
+        <height>31</height>
        </rect>
       </property>
-     </widget>
-     <widget class="QLineEdit" name="TCorreo">
-      <property name="geometry">
-       <rect>
-        <x>270</x>
-        <y>210</y>
-        <width>181</width>
-        <height>22</height>
-       </rect>
+      <property name="font">
+       <font>
+        <family>handwriting-draft_free-version</family>
+        <pointsize>12</pointsize>
+       </font>
       </property>
      </widget>
      <widget class="QLineEdit" name="TCedulaR">
       <property name="geometry">
        <rect>
-        <x>270</x>
+        <x>260</x>
         <y>150</y>
-        <width>181</width>
-        <height>22</height>
+        <width>191</width>
+        <height>31</height>
        </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>handwriting-draft_free-version</family>
+        <pointsize>12</pointsize>
+       </font>
       </property>
      </widget>
      <widget class="QLineEdit" name="TNombre">
       <property name="geometry">
        <rect>
-        <x>270</x>
-        <y>120</y>
-        <width>181</width>
-        <height>22</height>
+        <x>260</x>
+        <y>90</y>
+        <width>191</width>
+        <height>31</height>
        </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>handwriting-draft_free-version</family>
+        <pointsize>12</pointsize>
+       </font>
       </property>
      </widget>
      <widget class="QLabel" name="LTelefono">
       <property name="geometry">
        <rect>
-        <x>140</x>
-        <y>240</y>
-        <width>55</width>
-        <height>21</height>
+        <x>120</x>
+        <y>200</y>
+        <width>81</width>
+        <height>31</height>
        </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>St. Nicholas</family>
+        <pointsize>14</pointsize>
+       </font>
       </property>
       <property name="text">
        <string>Telefono</string>
@@ -86,24 +100,36 @@
      <widget class="QLabel" name="LIngresar">
       <property name="geometry">
        <rect>
-        <x>200</x>
-        <y>70</y>
-        <width>261</width>
-        <height>21</height>
+        <x>140</x>
+        <y>60</y>
+        <width>401</width>
+        <height>31</height>
        </rect>
       </property>
+      <property name="font">
+       <font>
+        <family>St. Nicholas</family>
+        <pointsize>16</pointsize>
+       </font>
+      </property>
       <property name="text">
-       <string>Ingrese su numero de cedula para ingresar</string>
+       <string>Digite su numero de cedula para ingresar</string>
       </property>
      </widget>
      <widget class="QLabel" name="LBienvenida">
       <property name="geometry">
        <rect>
-        <x>240</x>
-        <y>40</y>
-        <width>171</width>
-        <height>16</height>
+        <x>110</x>
+        <y>0</y>
+        <width>491</width>
+        <height>61</height>
        </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>Cartoon Blocks Christmas</family>
+        <pointsize>26</pointsize>
+       </font>
       </property>
       <property name="text">
        <string>Bienvenido al supermercado</string>
@@ -112,86 +138,55 @@
      <widget class="QLabel" name="LCorreo">
       <property name="geometry">
        <rect>
-        <x>140</x>
-        <y>210</y>
-        <width>55</width>
-        <height>16</height>
+        <x>120</x>
+        <y>260</y>
+        <width>71</width>
+        <height>31</height>
        </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>St. Nicholas</family>
+        <pointsize>14</pointsize>
+       </font>
       </property>
       <property name="text">
        <string>Correo</string>
       </property>
      </widget>
-     <widget class="QPushButton" name="BIngresar">
-      <property name="geometry">
-       <rect>
-        <x>270</x>
-        <y>200</y>
-        <width>93</width>
-        <height>28</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>Ingresar</string>
-      </property>
-     </widget>
-     <widget class="QLabel" name="LNoReg">
-      <property name="geometry">
-       <rect>
-        <x>210</x>
-        <y>100</y>
-        <width>201</width>
-        <height>21</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>Usted no se encuentra registrado</string>
-      </property>
-     </widget>
      <widget class="QLabel" name="LCedulaR">
       <property name="geometry">
        <rect>
-        <x>140</x>
+        <x>120</x>
         <y>150</y>
-        <width>55</width>
-        <height>16</height>
+        <width>71</width>
+        <height>31</height>
        </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>St. Nicholas</family>
+        <pointsize>14</pointsize>
+       </font>
       </property>
       <property name="text">
        <string>Cedula</string>
       </property>
      </widget>
-     <widget class="QComboBox" name="CBCiudad">
-      <property name="geometry">
-       <rect>
-        <x>270</x>
-        <y>180</y>
-        <width>181</width>
-        <height>22</height>
-       </rect>
-      </property>
-     </widget>
-     <widget class="QLabel" name="LPregunta">
-      <property name="geometry">
-       <rect>
-        <x>260</x>
-        <y>150</y>
-        <width>151</width>
-        <height>31</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>¿Desea registrarse?</string>
-      </property>
-     </widget>
      <widget class="QLabel" name="LCiudad">
       <property name="geometry">
        <rect>
-        <x>140</x>
-        <y>180</y>
-        <width>55</width>
-        <height>16</height>
+        <x>120</x>
+        <y>320</y>
+        <width>71</width>
+        <height>31</height>
        </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>St. Nicholas</family>
+        <pointsize>14</pointsize>
+       </font>
       </property>
       <property name="text">
        <string>Ciudad</string>
@@ -200,50 +195,128 @@
      <widget class="QLabel" name="LNombre">
       <property name="geometry">
        <rect>
-        <x>140</x>
-        <y>120</y>
-        <width>55</width>
-        <height>16</height>
+        <x>120</x>
+        <y>90</y>
+        <width>81</width>
+        <height>21</height>
        </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>St. Nicholas</family>
+        <pointsize>14</pointsize>
+       </font>
       </property>
       <property name="text">
        <string>Nombre</string>
       </property>
      </widget>
-     <widget class="QPushButton" name="BRegistrar">
+     <widget class="QLineEdit" name="TCedula">
       <property name="geometry">
        <rect>
-        <x>270</x>
-        <y>290</y>
-        <width>181</width>
-        <height>28</height>
+        <x>260</x>
+        <y>140</y>
+        <width>191</width>
+        <height>31</height>
        </rect>
       </property>
-      <property name="text">
-       <string>Registrar</string>
+      <property name="font">
+       <font>
+        <family>handwriting-draft_free-version</family>
+        <pointsize>12</pointsize>
+       </font>
       </property>
      </widget>
-     <widget class="QLabel" name="LDatos">
+     <widget class="QLabel" name="LCedula">
       <property name="geometry">
        <rect>
-        <x>270</x>
-        <y>60</y>
-        <width>111</width>
-        <height>16</height>
+        <x>120</x>
+        <y>140</y>
+        <width>71</width>
+        <height>31</height>
        </rect>
       </property>
+      <property name="font">
+       <font>
+        <family>St. Nicholas</family>
+        <pointsize>14</pointsize>
+       </font>
+      </property>
       <property name="text">
-       <string>Ingrese sus datos</string>
+       <string>Cedula</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="BIngresar">
+      <property name="geometry">
+       <rect>
+        <x>280</x>
+        <y>190</y>
+        <width>111</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>St. Nicholas</family>
+        <pointsize>14</pointsize>
+       </font>
+      </property>
+      <property name="text">
+       <string>Ingresar</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="LNoReg">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>70</y>
+        <width>671</width>
+        <height>41</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>PWChristmasfont</family>
+        <pointsize>18</pointsize>
+       </font>
+      </property>
+      <property name="text">
+       <string>Usted no se encuentra registrado</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="LPregunta">
+      <property name="geometry">
+       <rect>
+        <x>100</x>
+        <y>100</y>
+        <width>431</width>
+        <height>51</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>PWChristmasfont</family>
+        <pointsize>20</pointsize>
+       </font>
+      </property>
+      <property name="text">
+       <string>Desea registrarse?</string>
       </property>
      </widget>
      <widget class="QPushButton" name="BSi">
       <property name="geometry">
        <rect>
-        <x>200</x>
+        <x>160</x>
         <y>200</y>
-        <width>93</width>
-        <height>28</height>
+        <width>101</width>
+        <height>41</height>
        </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>St. Nicholas</family>
+        <pointsize>14</pointsize>
+       </font>
       </property>
       <property name="text">
        <string>SÍ</string>
@@ -254,83 +327,154 @@
        <rect>
         <x>360</x>
         <y>200</y>
-        <width>93</width>
-        <height>28</height>
+        <width>101</width>
+        <height>41</height>
        </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>St. Nicholas</family>
+        <pointsize>14</pointsize>
+       </font>
       </property>
       <property name="text">
        <string>NO</string>
       </property>
      </widget>
-     <widget class="QLineEdit" name="TCedula">
+     <widget class="QLabel" name="LDatos">
       <property name="geometry">
        <rect>
-        <x>270</x>
-        <y>140</y>
-        <width>181</width>
-        <height>22</height>
+        <x>160</x>
+        <y>30</y>
+        <width>321</width>
+        <height>61</height>
        </rect>
       </property>
-     </widget>
-     <widget class="QLabel" name="LCedula">
-      <property name="geometry">
-       <rect>
-        <x>140</x>
-        <y>130</y>
-        <width>55</width>
-        <height>16</height>
-       </rect>
+      <property name="font">
+       <font>
+        <family>Cartoon Blocks Christmas</family>
+        <pointsize>26</pointsize>
+       </font>
       </property>
       <property name="text">
-       <string>Cedula</string>
+       <string>Ingrese sus datos</string>
       </property>
      </widget>
      <widget class="QLabel" name="LVerExitosa">
       <property name="geometry">
        <rect>
-        <x>220</x>
-        <y>100</y>
-        <width>211</width>
-        <height>61</height>
+        <x>60</x>
+        <y>80</y>
+        <width>661</width>
+        <height>111</height>
        </rect>
       </property>
+      <property name="font">
+       <font>
+        <family>Snowinter</family>
+        <pointsize>48</pointsize>
+       </font>
+      </property>
       <property name="text">
-       <string>Usted fue verificado existosamente</string>
+       <string>Usted fue verificado </string>
       </property>
      </widget>
-     <widget class="QLabel" name="LDisfrute">
+     <widget class="QLineEdit" name="TCorreo">
       <property name="geometry">
        <rect>
-        <x>210</x>
-        <y>150</y>
-        <width>291</width>
-        <height>51</height>
+        <x>260</x>
+        <y>260</y>
+        <width>191</width>
+        <height>31</height>
        </rect>
       </property>
+      <property name="font">
+       <font>
+        <family>handwriting-draft_free-version</family>
+        <pointsize>12</pointsize>
+       </font>
+      </property>
+     </widget>
+     <widget class="QComboBox" name="CBCiudad">
+      <property name="geometry">
+       <rect>
+        <x>260</x>
+        <y>320</y>
+        <width>191</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>handwriting-draft_free-version</family>
+        <pointsize>12</pointsize>
+       </font>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="BRegistrar">
+      <property name="geometry">
+       <rect>
+        <x>280</x>
+        <y>360</y>
+        <width>121</width>
+        <height>41</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>St. Nicholas</family>
+        <pointsize>14</pointsize>
+       </font>
+      </property>
       <property name="text">
-       <string>Disfrute de sus opciones como cliente registrado!!</string>
+       <string>Registrar</string>
       </property>
      </widget>
      <widget class="QLabel" name="LResEx">
       <property name="geometry">
        <rect>
-        <x>270</x>
-        <y>70</y>
-        <width>151</width>
-        <height>41</height>
+        <x>80</x>
+        <y>110</y>
+        <width>581</width>
+        <height>61</height>
        </rect>
       </property>
+      <property name="font">
+       <font>
+        <family>Snowinter</family>
+        <pointsize>36</pointsize>
+       </font>
+      </property>
       <property name="text">
-       <string>Su registro fue éxitoso</string>
+       <string>Su registro fue exitoso</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="LDisfrute">
+      <property name="geometry">
+       <rect>
+        <x>70</x>
+        <y>210</y>
+        <width>601</width>
+        <height>51</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>Snowinter</family>
+        <pointsize>36</pointsize>
+       </font>
+      </property>
+      <property name="text">
+       <string>Disfrute de sus opciones</string>
       </property>
      </widget>
      <widget class="QPushButton" name="pushButton">
       <property name="geometry">
        <rect>
-        <x>650</x>
-        <y>330</y>
+        <x>450</x>
+        <y>320</y>
         <width>20</width>
-        <height>20</height>
+        <height>31</height>
        </rect>
       </property>
       <property name="text">
@@ -345,115 +489,163 @@
      <widget class="QLCDNumber" name="LCDPrecio">
       <property name="geometry">
        <rect>
-        <x>450</x>
-        <y>160</y>
-        <width>211</width>
-        <height>71</height>
+        <x>220</x>
+        <y>180</y>
+        <width>381</width>
+        <height>101</height>
        </rect>
       </property>
      </widget>
      <widget class="QLabel" name="LPasProdMar">
       <property name="geometry">
        <rect>
-        <x>20</x>
-        <y>190</y>
-        <width>55</width>
-        <height>16</height>
+        <x>60</x>
+        <y>120</y>
+        <width>191</width>
+        <height>31</height>
        </rect>
       </property>
+      <property name="font">
+       <font>
+        <family>PWChristmasfont</family>
+        <pointsize>16</pointsize>
+       </font>
+      </property>
       <property name="text">
-       <string>Pasillos</string>
+       <string>Pasillo</string>
       </property>
      </widget>
      <widget class="QLabel" name="LInformacion">
       <property name="geometry">
        <rect>
-        <x>140</x>
-        <y>40</y>
-        <width>391</width>
-        <height>41</height>
+        <x>110</x>
+        <y>30</y>
+        <width>471</width>
+        <height>61</height>
        </rect>
       </property>
+      <property name="font">
+       <font>
+        <family>Cartoon Blocks Christmas</family>
+        <pointsize>28</pointsize>
+       </font>
+      </property>
       <property name="text">
-       <string>Seleccione el pasillo de la marca de la que desea conocer el precio</string>
+       <string>CONSULTAR PRECIO</string>
       </property>
      </widget>
      <widget class="QComboBox" name="CBMarcas">
       <property name="geometry">
        <rect>
-        <x>140</x>
-        <y>190</y>
+        <x>230</x>
+        <y>120</y>
         <width>201</width>
-        <height>21</height>
+        <height>31</height>
        </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>handwriting-draft_free-version</family>
+        <pointsize>12</pointsize>
+       </font>
       </property>
      </widget>
      <widget class="QPushButton" name="BBuscarPasillo">
       <property name="geometry">
        <rect>
-        <x>90</x>
-        <y>270</y>
-        <width>121</width>
+        <x>290</x>
+        <y>310</y>
+        <width>141</width>
         <height>31</height>
        </rect>
       </property>
+      <property name="font">
+       <font>
+        <family>St. Nicholas</family>
+        <pointsize>12</pointsize>
+       </font>
+      </property>
       <property name="text">
-       <string>Buscar en pasillo</string>
+       <string>PASILLO</string>
       </property>
      </widget>
      <widget class="QComboBox" name="CBProductos">
       <property name="geometry">
        <rect>
-        <x>140</x>
-        <y>190</y>
+        <x>230</x>
+        <y>120</y>
         <width>201</width>
-        <height>22</height>
+        <height>31</height>
        </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>handwriting-draft_free-version</family>
+        <pointsize>12</pointsize>
+       </font>
       </property>
      </widget>
      <widget class="QComboBox" name="CBPasillos">
       <property name="geometry">
        <rect>
-        <x>140</x>
-        <y>190</y>
+        <x>230</x>
+        <y>120</y>
         <width>201</width>
-        <height>22</height>
+        <height>31</height>
        </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>handwriting-draft_free-version</family>
+        <pointsize>12</pointsize>
+       </font>
       </property>
      </widget>
      <widget class="QPushButton" name="BBuscarProd">
       <property name="geometry">
        <rect>
-        <x>90</x>
-        <y>270</y>
-        <width>121</width>
+        <x>290</x>
+        <y>310</y>
+        <width>141</width>
         <height>31</height>
        </rect>
       </property>
+      <property name="font">
+       <font>
+        <family>St. Nicholas</family>
+        <pointsize>12</pointsize>
+       </font>
+      </property>
       <property name="text">
-       <string>Buscar en producto</string>
+       <string>PRODUCTO</string>
       </property>
      </widget>
      <widget class="QPushButton" name="BBuscarPrecio">
       <property name="geometry">
        <rect>
-        <x>90</x>
-        <y>270</y>
-        <width>121</width>
+        <x>290</x>
+        <y>310</y>
+        <width>141</width>
         <height>31</height>
        </rect>
       </property>
+      <property name="font">
+       <font>
+        <family>St. Nicholas</family>
+        <pointsize>12</pointsize>
+       </font>
+      </property>
       <property name="text">
-       <string>Buscar Marca</string>
+       <string>MARCA</string>
       </property>
      </widget>
      <widget class="QLabel" name="LColonIma">
       <property name="geometry">
        <rect>
-        <x>360</x>
-        <y>170</y>
+        <x>130</x>
+        <y>190</y>
         <width>81</width>
-        <height>61</height>
+        <height>81</height>
        </rect>
       </property>
       <property name="text">
@@ -463,10 +655,10 @@
      <widget class="QPushButton" name="BLlenarCBPasillos">
       <property name="geometry">
        <rect>
-        <x>650</x>
-        <y>330</y>
-        <width>20</width>
-        <height>20</height>
+        <x>430</x>
+        <y>120</y>
+        <width>21</width>
+        <height>31</height>
        </rect>
       </property>
       <property name="text">
@@ -476,14 +668,20 @@
      <widget class="QPushButton" name="BBuscarOtra">
       <property name="geometry">
        <rect>
-        <x>260</x>
-        <y>270</y>
-        <width>121</width>
-        <height>31</height>
+        <x>490</x>
+        <y>110</y>
+        <width>171</width>
+        <height>41</height>
        </rect>
       </property>
+      <property name="font">
+       <font>
+        <family>St. Nicholas</family>
+        <pointsize>12</pointsize>
+       </font>
+      </property>
       <property name="text">
-       <string>Buscar otra marca</string>
+       <string>BUSCAR OTRA</string>
       </property>
      </widget>
     </widget>
@@ -494,59 +692,83 @@
      <widget class="QLabel" name="LInformacion_2">
       <property name="geometry">
        <rect>
-        <x>140</x>
-        <y>40</y>
-        <width>401</width>
-        <height>41</height>
+        <x>90</x>
+        <y>30</y>
+        <width>531</width>
+        <height>51</height>
        </rect>
       </property>
+      <property name="font">
+       <font>
+        <family>Cartoon Blocks Christmas</family>
+        <pointsize>28</pointsize>
+       </font>
+      </property>
       <property name="text">
-       <string>Seleccione el pasillo de la marca de la que desea conocer el porcentaje de impuesto</string>
+       <string>CONSULTAR IMPUESTO</string>
       </property>
      </widget>
      <widget class="QLabel" name="LPasProdMar_2">
       <property name="geometry">
        <rect>
         <x>20</x>
-        <y>190</y>
-        <width>55</width>
-        <height>16</height>
+        <y>120</y>
+        <width>191</width>
+        <height>31</height>
        </rect>
       </property>
+      <property name="font">
+       <font>
+        <family>PWChristmasfont</family>
+        <pointsize>16</pointsize>
+       </font>
+      </property>
       <property name="text">
-       <string>Pasillos</string>
+       <string>Pasillo</string>
       </property>
      </widget>
      <widget class="QComboBox" name="CBPasillos2">
       <property name="geometry">
        <rect>
-        <x>140</x>
-        <y>190</y>
+        <x>200</x>
+        <y>120</y>
         <width>201</width>
-        <height>22</height>
+        <height>31</height>
        </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>handwriting-draft_free-version</family>
+        <pointsize>12</pointsize>
+       </font>
       </property>
      </widget>
      <widget class="QPushButton" name="BBOtra">
       <property name="geometry">
        <rect>
-        <x>260</x>
-        <y>270</y>
-        <width>121</width>
-        <height>31</height>
+        <x>470</x>
+        <y>110</y>
+        <width>171</width>
+        <height>41</height>
        </rect>
       </property>
+      <property name="font">
+       <font>
+        <family>St. Nicholas</family>
+        <pointsize>12</pointsize>
+       </font>
+      </property>
       <property name="text">
-       <string>Buscar otra marca</string>
+       <string>BUSCAR OTRA</string>
       </property>
      </widget>
      <widget class="QPushButton" name="BLlenarCBPasillos_2">
       <property name="geometry">
        <rect>
-        <x>650</x>
-        <y>330</y>
+        <x>400</x>
+        <y>120</y>
         <width>20</width>
-        <height>20</height>
+        <height>31</height>
        </rect>
       </property>
       <property name="text">
@@ -556,77 +778,107 @@
      <widget class="QLCDNumber" name="LCDImpuesto">
       <property name="geometry">
        <rect>
-        <x>390</x>
-        <y>160</y>
-        <width>171</width>
-        <height>71</height>
+        <x>140</x>
+        <y>180</y>
+        <width>371</width>
+        <height>101</height>
        </rect>
       </property>
      </widget>
      <widget class="QPushButton" name="BBPasillo">
       <property name="geometry">
        <rect>
-        <x>90</x>
-        <y>270</y>
-        <width>121</width>
+        <x>230</x>
+        <y>300</y>
+        <width>141</width>
         <height>31</height>
        </rect>
       </property>
+      <property name="font">
+       <font>
+        <family>St. Nicholas</family>
+        <pointsize>12</pointsize>
+       </font>
+      </property>
       <property name="text">
-       <string>Buscar en pasillo</string>
+       <string>PASILLO</string>
       </property>
      </widget>
      <widget class="QPushButton" name="BBProd">
       <property name="geometry">
        <rect>
-        <x>90</x>
-        <y>270</y>
-        <width>121</width>
+        <x>230</x>
+        <y>300</y>
+        <width>141</width>
         <height>31</height>
        </rect>
       </property>
+      <property name="font">
+       <font>
+        <family>St. Nicholas</family>
+        <pointsize>12</pointsize>
+       </font>
+      </property>
       <property name="text">
-       <string>Buscar en producto</string>
+       <string>PRODUCTO</string>
       </property>
      </widget>
      <widget class="QPushButton" name="BBPrecio">
       <property name="geometry">
        <rect>
-        <x>90</x>
-        <y>270</y>
-        <width>121</width>
+        <x>230</x>
+        <y>300</y>
+        <width>141</width>
         <height>31</height>
        </rect>
       </property>
+      <property name="font">
+       <font>
+        <family>St. Nicholas</family>
+        <pointsize>12</pointsize>
+       </font>
+      </property>
       <property name="text">
-       <string>Buscar Marca</string>
+       <string>MARCA</string>
       </property>
      </widget>
      <widget class="QComboBox" name="CBProductos2">
       <property name="geometry">
        <rect>
-        <x>140</x>
-        <y>190</y>
+        <x>200</x>
+        <y>120</y>
         <width>201</width>
-        <height>22</height>
+        <height>31</height>
        </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>handwriting-draft_free-version</family>
+        <pointsize>12</pointsize>
+       </font>
       </property>
      </widget>
      <widget class="QComboBox" name="CBMarcas2">
       <property name="geometry">
        <rect>
-        <x>140</x>
-        <y>190</y>
+        <x>200</x>
+        <y>120</y>
         <width>201</width>
-        <height>22</height>
+        <height>31</height>
        </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>handwriting-draft_free-version</family>
+        <pointsize>12</pointsize>
+       </font>
       </property>
      </widget>
      <widget class="QLabel" name="porcentaje">
       <property name="geometry">
        <rect>
-        <x>590</x>
-        <y>160</y>
+        <x>520</x>
+        <y>190</y>
         <width>91</width>
         <height>81</height>
        </rect>
@@ -643,24 +895,36 @@
      <widget class="QLabel" name="LInformacion_7">
       <property name="geometry">
        <rect>
-        <x>140</x>
+        <x>90</x>
         <y>40</y>
-        <width>401</width>
-        <height>41</height>
+        <width>521</width>
+        <height>51</height>
        </rect>
       </property>
+      <property name="font">
+       <font>
+        <family>Cartoon Blocks Christmas</family>
+        <pointsize>28</pointsize>
+       </font>
+      </property>
       <property name="text">
-       <string>Seleccione el pasillo de la marca de la que desea conocer canastaje</string>
+       <string>CONSULTAR CANASTA </string>
       </property>
      </widget>
      <widget class="QComboBox" name="CBMarcas3">
       <property name="geometry">
        <rect>
-        <x>140</x>
+        <x>200</x>
         <y>190</y>
         <width>201</width>
-        <height>22</height>
+        <height>31</height>
        </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>handwriting-draft_free-version</family>
+        <pointsize>12</pointsize>
+       </font>
       </property>
      </widget>
      <widget class="QLabel" name="LPasProdMar_7">
@@ -668,9 +932,15 @@
        <rect>
         <x>20</x>
         <y>190</y>
-        <width>55</width>
-        <height>16</height>
+        <width>171</width>
+        <height>31</height>
        </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>PWChristmasfont</family>
+        <pointsize>16</pointsize>
+       </font>
       </property>
       <property name="text">
        <string>Pasillos</string>
@@ -679,82 +949,118 @@
      <widget class="QComboBox" name="CBProductos3">
       <property name="geometry">
        <rect>
-        <x>140</x>
+        <x>200</x>
         <y>190</y>
         <width>201</width>
-        <height>22</height>
+        <height>31</height>
        </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>handwriting-draft_free-version</family>
+        <pointsize>12</pointsize>
+       </font>
       </property>
      </widget>
      <widget class="QComboBox" name="CBPasillos3">
       <property name="geometry">
        <rect>
-        <x>140</x>
+        <x>200</x>
         <y>190</y>
         <width>201</width>
-        <height>22</height>
+        <height>31</height>
        </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>handwriting-draft_free-version</family>
+        <pointsize>12</pointsize>
+       </font>
       </property>
      </widget>
      <widget class="QPushButton" name="BBPrecio2">
       <property name="geometry">
        <rect>
-        <x>90</x>
-        <y>270</y>
-        <width>121</width>
+        <x>230</x>
+        <y>240</y>
+        <width>141</width>
         <height>31</height>
        </rect>
       </property>
+      <property name="font">
+       <font>
+        <family>St. Nicholas</family>
+        <pointsize>12</pointsize>
+       </font>
+      </property>
       <property name="text">
-       <string>Buscar Marca</string>
+       <string>MARCA</string>
       </property>
      </widget>
      <widget class="QPushButton" name="BBProducto2">
       <property name="geometry">
        <rect>
-        <x>90</x>
-        <y>270</y>
-        <width>121</width>
+        <x>230</x>
+        <y>240</y>
+        <width>141</width>
         <height>31</height>
        </rect>
       </property>
+      <property name="font">
+       <font>
+        <family>St. Nicholas</family>
+        <pointsize>12</pointsize>
+       </font>
+      </property>
       <property name="text">
-       <string>Buscar Marca</string>
+       <string>PRODUCTO</string>
       </property>
      </widget>
      <widget class="QPushButton" name="BBPasillo2">
       <property name="geometry">
        <rect>
-        <x>90</x>
-        <y>270</y>
-        <width>121</width>
+        <x>230</x>
+        <y>240</y>
+        <width>141</width>
         <height>31</height>
        </rect>
       </property>
+      <property name="font">
+       <font>
+        <family>St. Nicholas</family>
+        <pointsize>12</pointsize>
+       </font>
+      </property>
       <property name="text">
-       <string>Buscar Marca</string>
+       <string>PASILLO</string>
       </property>
      </widget>
      <widget class="QPushButton" name="BBOtra2">
       <property name="geometry">
        <rect>
-        <x>260</x>
-        <y>270</y>
-        <width>121</width>
-        <height>31</height>
+        <x>440</x>
+        <y>290</y>
+        <width>181</width>
+        <height>41</height>
        </rect>
       </property>
+      <property name="font">
+       <font>
+        <family>St. Nicholas</family>
+        <pointsize>12</pointsize>
+       </font>
+      </property>
       <property name="text">
-       <string>Buscar otra marca</string>
+       <string>BUSCAR OTRA</string>
       </property>
      </widget>
      <widget class="QPushButton" name="BLlenarCBPasillos3">
       <property name="geometry">
        <rect>
-        <x>650</x>
-        <y>330</y>
+        <x>400</x>
+        <y>190</y>
         <width>20</width>
-        <height>20</height>
+        <height>31</height>
        </rect>
       </property>
       <property name="text">
@@ -790,7 +1096,7 @@
      <widget class="QLabel" name="confirmacion_3">
       <property name="geometry">
        <rect>
-        <x>480</x>
+        <x>500</x>
         <y>150</y>
         <width>151</width>
         <height>121</height>
@@ -808,24 +1114,36 @@
      <widget class="QLabel" name="LInformacion_8">
       <property name="geometry">
        <rect>
-        <x>190</x>
-        <y>40</y>
-        <width>261</width>
-        <height>41</height>
+        <x>170</x>
+        <y>20</y>
+        <width>331</width>
+        <height>51</height>
        </rect>
       </property>
+      <property name="font">
+       <font>
+        <family>Cartoon Blocks Christmas</family>
+        <pointsize>28</pointsize>
+       </font>
+      </property>
       <property name="text">
-       <string>Seleccione el pasillo de la marca que desea comprar</string>
+       <string>COMPRANDO</string>
       </property>
      </widget>
      <widget class="QLabel" name="LPasProdMar_8">
       <property name="geometry">
        <rect>
-        <x>90</x>
-        <y>160</y>
-        <width>55</width>
-        <height>16</height>
+        <x>50</x>
+        <y>150</y>
+        <width>171</width>
+        <height>31</height>
        </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>PWChristmasfont</family>
+        <pointsize>16</pointsize>
+       </font>
       </property>
       <property name="text">
        <string>Pasillos</string>
@@ -834,72 +1152,102 @@
      <widget class="QComboBox" name="CBPasillos4">
       <property name="geometry">
        <rect>
-        <x>220</x>
-        <y>160</y>
+        <x>230</x>
+        <y>150</y>
         <width>201</width>
-        <height>22</height>
+        <height>31</height>
        </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>handwriting-draft_free-version</family>
+        <pointsize>10</pointsize>
+       </font>
       </property>
      </widget>
      <widget class="QPushButton" name="BBPrecio4">
       <property name="geometry">
        <rect>
-        <x>140</x>
-        <y>250</y>
-        <width>121</width>
+        <x>60</x>
+        <y>220</y>
+        <width>231</width>
         <height>31</height>
        </rect>
       </property>
+      <property name="font">
+       <font>
+        <family>St. Nicholas</family>
+        <pointsize>12</pointsize>
+       </font>
+      </property>
       <property name="text">
-       <string>Buscar Marca</string>
+       <string>MARCA</string>
       </property>
      </widget>
      <widget class="QPushButton" name="BBProducto4">
       <property name="geometry">
        <rect>
-        <x>140</x>
-        <y>250</y>
-        <width>121</width>
+        <x>60</x>
+        <y>220</y>
+        <width>231</width>
         <height>31</height>
        </rect>
       </property>
+      <property name="font">
+       <font>
+        <family>St. Nicholas</family>
+        <pointsize>12</pointsize>
+       </font>
+      </property>
       <property name="text">
-       <string>Buscar Productos</string>
+       <string>PRODUCTO</string>
       </property>
      </widget>
      <widget class="QPushButton" name="BBPasillo4">
       <property name="geometry">
        <rect>
-        <x>140</x>
-        <y>250</y>
-        <width>121</width>
+        <x>60</x>
+        <y>220</y>
+        <width>231</width>
         <height>31</height>
        </rect>
       </property>
+      <property name="font">
+       <font>
+        <family>St. Nicholas</family>
+        <pointsize>12</pointsize>
+       </font>
+      </property>
       <property name="text">
-       <string>Buscar Pasillos</string>
+       <string>PASILLO</string>
       </property>
      </widget>
      <widget class="QPushButton" name="BBOtra3">
       <property name="geometry">
        <rect>
-        <x>370</x>
-        <y>250</y>
-        <width>121</width>
+        <x>350</x>
+        <y>220</y>
+        <width>231</width>
         <height>31</height>
        </rect>
       </property>
+      <property name="font">
+       <font>
+        <family>St. Nicholas</family>
+        <pointsize>12</pointsize>
+       </font>
+      </property>
       <property name="text">
-       <string>Finalizar Compra</string>
+       <string>FINALIZAR COMPRA</string>
       </property>
      </widget>
      <widget class="QPushButton" name="BLlenarCBPasillos3_2">
       <property name="geometry">
        <rect>
-        <x>650</x>
-        <y>330</y>
+        <x>430</x>
+        <y>150</y>
         <width>20</width>
-        <height>20</height>
+        <height>31</height>
        </rect>
       </property>
       <property name="text">
@@ -909,51 +1257,148 @@
      <widget class="QComboBox" name="CBProductos4">
       <property name="geometry">
        <rect>
-        <x>220</x>
-        <y>160</y>
+        <x>230</x>
+        <y>150</y>
         <width>201</width>
-        <height>22</height>
+        <height>31</height>
        </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>handwriting-draft_free-version</family>
+        <pointsize>10</pointsize>
+       </font>
       </property>
      </widget>
      <widget class="QComboBox" name="CBMarcas4">
       <property name="geometry">
        <rect>
-        <x>220</x>
-        <y>160</y>
+        <x>230</x>
+        <y>150</y>
         <width>201</width>
-        <height>22</height>
+        <height>31</height>
        </rect>
       </property>
-     </widget>
-     <widget class="QSpinBox" name="sBoxCantidad">
-      <property name="geometry">
-       <rect>
-        <x>220</x>
-        <y>160</y>
-        <width>201</width>
-        <height>22</height>
-       </rect>
+      <property name="font">
+       <font>
+        <family>handwriting-draft_free-version</family>
+        <pointsize>10</pointsize>
+       </font>
       </property>
      </widget>
      <widget class="QPushButton" name="BBCanti">
       <property name="geometry">
        <rect>
-        <x>140</x>
-        <y>250</y>
-        <width>121</width>
+        <x>60</x>
+        <y>220</y>
+        <width>231</width>
         <height>31</height>
        </rect>
       </property>
+      <property name="font">
+       <font>
+        <family>St. Nicholas</family>
+        <pointsize>12</pointsize>
+       </font>
+      </property>
       <property name="text">
-       <string>Buscar Cantidad</string>
+       <string>CANTIDAD</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="BBcarrito">
+      <property name="geometry">
+       <rect>
+        <x>260</x>
+        <y>280</y>
+        <width>131</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>St. Nicholas</family>
+        <pointsize>12</pointsize>
+       </font>
+      </property>
+      <property name="text">
+       <string>CARRITO</string>
+      </property>
+     </widget>
+     <widget class="QListWidget" name="viewCompras">
+      <property name="geometry">
+       <rect>
+        <x>410</x>
+        <y>80</y>
+        <width>256</width>
+        <height>192</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>Candy Cane (Unregistered)</family>
+        <pointsize>14</pointsize>
+       </font>
+      </property>
+     </widget>
+     <widget class="QLabel" name="LCarrito">
+      <property name="geometry">
+       <rect>
+        <x>100</x>
+        <y>20</y>
+        <width>451</width>
+        <height>51</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>Cartoon Blocks Christmas</family>
+        <pointsize>28</pointsize>
+       </font>
+      </property>
+      <property name="text">
+       <string>CARRITO COMPRAS</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="BBregresar">
+      <property name="geometry">
+       <rect>
+        <x>460</x>
+        <y>290</y>
+        <width>151</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>St. Nicholas</family>
+        <pointsize>12</pointsize>
+       </font>
+      </property>
+      <property name="text">
+       <string>REGRESAR</string>
+      </property>
+     </widget>
+     <widget class="QSpinBox" name="sBoxCantidad">
+      <property name="geometry">
+       <rect>
+        <x>230</x>
+        <y>150</y>
+        <width>221</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>handwriting-draft_free-version</family>
+        <pointsize>10</pointsize>
+       </font>
       </property>
      </widget>
      <widget class="QLabel" name="santaManos">
       <property name="geometry">
        <rect>
-        <x>140</x>
-        <y>200</y>
+        <x>100</x>
+        <y>230</y>
         <width>211</width>
         <height>161</height>
        </rect>
@@ -962,47 +1407,11 @@
        <string/>
       </property>
      </widget>
-     <widget class="QPushButton" name="BBcarrito">
-      <property name="geometry">
-       <rect>
-        <x>250</x>
-        <y>300</y>
-        <width>131</width>
-        <height>31</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>Ver Cantidad de compra</string>
-      </property>
-     </widget>
-     <widget class="QPushButton" name="BBregresar">
-      <property name="geometry">
-       <rect>
-        <x>270</x>
-        <y>290</y>
-        <width>121</width>
-        <height>31</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>Regresar</string>
-      </property>
-     </widget>
-     <widget class="QListWidget" name="viewCompras">
-      <property name="geometry">
-       <rect>
-        <x>390</x>
-        <y>70</y>
-        <width>256</width>
-        <height>192</height>
-       </rect>
-      </property>
-     </widget>
      <widget class="QLabel" name="LCanaston">
       <property name="geometry">
        <rect>
-        <x>70</x>
-        <y>40</y>
+        <x>20</x>
+        <y>70</y>
         <width>451</width>
         <height>231</height>
        </rect>
@@ -1014,10 +1423,23 @@
      <widget class="QLabel" name="reg1">
       <property name="geometry">
        <rect>
-        <x>140</x>
-        <y>150</y>
+        <x>110</x>
+        <y>180</y>
         <width>101</width>
         <height>91</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+     <widget class="QLabel" name="reg6">
+      <property name="geometry">
+       <rect>
+        <x>140</x>
+        <y>180</y>
+        <width>111</width>
+        <height>101</height>
        </rect>
       </property>
       <property name="text">
@@ -1027,8 +1449,8 @@
      <widget class="QLabel" name="reg2">
       <property name="geometry">
        <rect>
-        <x>130</x>
-        <y>120</y>
+        <x>90</x>
+        <y>160</y>
         <width>111</width>
         <height>101</height>
        </rect>
@@ -1040,47 +1462,8 @@
      <widget class="QLabel" name="reg3">
       <property name="geometry">
        <rect>
-        <x>90</x>
-        <y>100</y>
-        <width>111</width>
-        <height>101</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string/>
-      </property>
-     </widget>
-     <widget class="QLabel" name="reg4">
-      <property name="geometry">
-       <rect>
-        <x>200</x>
-        <y>142</y>
-        <width>111</width>
-        <height>101</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string/>
-      </property>
-     </widget>
-     <widget class="QLabel" name="reg5">
-      <property name="geometry">
-       <rect>
-        <x>230</x>
-        <y>120</y>
-        <width>131</width>
-        <height>111</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string/>
-      </property>
-     </widget>
-     <widget class="QLabel" name="reg6">
-      <property name="geometry">
-       <rect>
-        <x>170</x>
-        <y>150</y>
+        <x>50</x>
+        <y>130</y>
         <width>111</width>
         <height>101</height>
        </rect>
@@ -1092,10 +1475,36 @@
      <widget class="QLabel" name="reg7">
       <property name="geometry">
        <rect>
-        <x>170</x>
-        <y>120</y>
+        <x>140</x>
+        <y>150</y>
         <width>111</width>
         <height>101</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+     <widget class="QLabel" name="reg4">
+      <property name="geometry">
+       <rect>
+        <x>170</x>
+        <y>160</y>
+        <width>111</width>
+        <height>101</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+     <widget class="QLabel" name="reg5">
+      <property name="geometry">
+       <rect>
+        <x>200</x>
+        <y>110</y>
+        <width>131</width>
+        <height>111</height>
        </rect>
       </property>
       <property name="text">
@@ -1110,8 +1519,8 @@
      <widget class="QLabel" name="Arb">
       <property name="geometry">
        <rect>
-        <x>480</x>
-        <y>90</y>
+        <x>460</x>
+        <y>130</y>
         <width>201</width>
         <height>261</height>
        </rect>
@@ -1129,18 +1538,30 @@
         <height>41</height>
        </rect>
       </property>
+      <property name="font">
+       <font>
+        <family>St. Nicholas</family>
+        <pointsize>12</pointsize>
+       </font>
+      </property>
       <property name="text">
-       <string>Generar Factura</string>
+       <string>GENERAR FACTURA</string>
       </property>
      </widget>
      <widget class="QLabel" name="LabinfFac">
       <property name="geometry">
        <rect>
-        <x>110</x>
-        <y>80</y>
-        <width>241</width>
-        <height>16</height>
+        <x>10</x>
+        <y>70</y>
+        <width>591</width>
+        <height>31</height>
        </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>PWChristmasfont</family>
+        <pointsize>12</pointsize>
+       </font>
       </property>
       <property name="text">
        <string>Digite el numero de factura que desea obtener</string>
@@ -1150,10 +1571,16 @@
       <property name="geometry">
        <rect>
         <x>50</x>
-        <y>100</y>
+        <y>110</y>
         <width>361</width>
-        <height>22</height>
+        <height>31</height>
        </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>handwriting-draft_free-version</family>
+        <pointsize>11</pointsize>
+       </font>
       </property>
      </widget>
      <widget class="QPushButton" name="BBRepo">
@@ -1165,116 +1592,176 @@
         <height>41</height>
        </rect>
       </property>
+      <property name="font">
+       <font>
+        <family>St. Nicholas</family>
+        <pointsize>12</pointsize>
+       </font>
+      </property>
       <property name="text">
-       <string>Generar Reportes</string>
+       <string>GENERAR REPORTES</string>
       </property>
      </widget>
      <widget class="QPushButton" name="BBSPas">
       <property name="geometry">
        <rect>
-        <x>340</x>
-        <y>240</y>
-        <width>80</width>
-        <height>21</height>
+        <x>350</x>
+        <y>230</y>
+        <width>91</width>
+        <height>31</height>
        </rect>
       </property>
+      <property name="font">
+       <font>
+        <family>St. Nicholas</family>
+        <pointsize>11</pointsize>
+       </font>
+      </property>
       <property name="text">
-       <string>Buscar</string>
+       <string>BUSCAR</string>
       </property>
      </widget>
      <widget class="QPushButton" name="BBSPro">
       <property name="geometry">
        <rect>
-        <x>340</x>
-        <y>280</y>
-        <width>80</width>
-        <height>21</height>
+        <x>350</x>
+        <y>300</y>
+        <width>91</width>
+        <height>31</height>
        </rect>
       </property>
+      <property name="font">
+       <font>
+        <family>St. Nicholas</family>
+        <pointsize>10</pointsize>
+       </font>
+      </property>
       <property name="text">
-       <string>Buscar</string>
+       <string>BUSCAR</string>
       </property>
      </widget>
      <widget class="QPushButton" name="BBSMar">
       <property name="geometry">
        <rect>
-        <x>340</x>
-        <y>320</y>
-        <width>80</width>
-        <height>21</height>
+        <x>350</x>
+        <y>370</y>
+        <width>91</width>
+        <height>31</height>
        </rect>
       </property>
+      <property name="font">
+       <font>
+        <family>St. Nicholas</family>
+        <pointsize>10</pointsize>
+       </font>
+      </property>
       <property name="text">
-       <string>Buscar</string>
+       <string>BUSCAR</string>
       </property>
      </widget>
      <widget class="QLabel" name="label">
       <property name="geometry">
        <rect>
-        <x>40</x>
-        <y>240</y>
-        <width>61</width>
+        <x>10</x>
+        <y>230</y>
+        <width>81</width>
         <height>20</height>
        </rect>
       </property>
+      <property name="font">
+       <font>
+        <family>St. Nicholas</family>
+        <pointsize>10</pointsize>
+       </font>
+      </property>
       <property name="text">
-       <string>Pasillo</string>
+       <string>PASILLO</string>
       </property>
      </widget>
      <widget class="QLabel" name="label_2">
       <property name="geometry">
        <rect>
-        <x>40</x>
-        <y>280</y>
-        <width>61</width>
+        <x>10</x>
+        <y>300</y>
+        <width>111</width>
         <height>20</height>
        </rect>
       </property>
+      <property name="font">
+       <font>
+        <family>St. Nicholas</family>
+        <pointsize>10</pointsize>
+       </font>
+      </property>
       <property name="text">
-       <string>Productos</string>
+       <string>PRODUCTO</string>
       </property>
      </widget>
      <widget class="QLabel" name="label_3">
       <property name="geometry">
        <rect>
-        <x>40</x>
-        <y>320</y>
-        <width>61</width>
+        <x>20</x>
+        <y>370</y>
+        <width>81</width>
         <height>20</height>
        </rect>
       </property>
+      <property name="font">
+       <font>
+        <family>St. Nicholas</family>
+        <pointsize>10</pointsize>
+       </font>
+      </property>
       <property name="text">
-       <string>Marcas</string>
+       <string>MARCA</string>
       </property>
      </widget>
      <widget class="QComboBox" name="CBRpas">
       <property name="geometry">
        <rect>
-        <x>110</x>
-        <y>240</y>
+        <x>140</x>
+        <y>230</y>
         <width>211</width>
         <height>22</height>
        </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>handwriting-draft_free-version</family>
+        <pointsize>10</pointsize>
+       </font>
       </property>
      </widget>
      <widget class="QComboBox" name="CBRmar">
       <property name="geometry">
        <rect>
-        <x>110</x>
-        <y>320</y>
+        <x>140</x>
+        <y>370</y>
         <width>211</width>
         <height>22</height>
        </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>handwriting-draft_free-version</family>
+        <pointsize>10</pointsize>
+       </font>
       </property>
      </widget>
      <widget class="QComboBox" name="CBRpro">
       <property name="geometry">
        <rect>
-        <x>110</x>
-        <y>280</y>
+        <x>140</x>
+        <y>300</y>
         <width>211</width>
         <height>22</height>
        </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>handwriting-draft_free-version</family>
+        <pointsize>10</pointsize>
+       </font>
       </property>
      </widget>
     </widget>

@@ -17,8 +17,8 @@
         <file>Images/arbol.png</file>
         <file>Images/colon4.png</file>
         <file>Images/porcentaje.png</file>
-        <file>Images/check.jpg</file>
         <file>Images/equis.png</file>
+        <file>Images/check.jpg</file>
     </qresource>
     <qresource prefix="/"/>
 </RCC>

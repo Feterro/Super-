@@ -23,6 +23,7 @@ public:
 
     bool compra=false;
     string nom;
+    int contador=0;
     int cantReg=0;
 
 signals:

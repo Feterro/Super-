@@ -124,6 +124,10 @@ MainWindow::MainWindow(QWidget *parent)
     ui->LCantGon->setVisible(false);
     ui->SGon->setVisible(false);
     ui->BVolverGon->setVisible(false);
+    ui->LQInv->setVisible(false);
+    ui->BAgregarInv->setVisible(false);
+    ui->sInv->setVisible(false);
+    ui->BVolverInv->setVisible(false);
     connect(this, SIGNAL(escribirServidor(QByteArray)),&socketAdmin,SLOT(escribirServidor(QByteArray)));
 }
 
@@ -1560,6 +1564,7 @@ void MainWindow::on_BVolverGon_clicked()
      ui->BVolverGon->setVisible(false);
      ui->BAgregar->setVisible(false);
      ui->LCantGon->setVisible(false);
+     socketAdmin.nombres="";
 }
 
 void MainWindow::on_BFacturar_clicked()
@@ -1751,6 +1756,113 @@ void MainWindow::on_pushButton_7_clicked()
     emit escribirServidor(QString::fromStdString("GK").toUtf8());
     archivo.open("Entraga de compras.txt",ios::out);
     if(cont==2)
+    {
         archivo<<socketAdmin.nombres;
+        ShellExecuteW(NULL, L"open", L"..\\Administrador_Interfaz\\GrafoPK.png", L"", L"..\\Administrador_Interfaz", SW_SHOW);
+        cont=0;
+    }
     archivo.close();
+}
+
+void MainWindow::on_pushButton_8_clicked()
+{
+    cont++;
+    ofstream archivo;
+    emit escribirServidor(QString::fromStdString("GD").toUtf8());
+    archivo.open("Ruta de Bodega a Super.txt",ios::out);
+    if(cont==2)
+    {
+        archivo<<socketAdmin.nombres;
+        ShellExecuteW(NULL, L"open", L"..\\Administrador_Interfaz\\grafoDijkstra.png", L"", L"..\\Administrador_Interfaz", SW_SHOW);
+        cont=0;
+    }
+    archivo.close();
+}
+
+void MainWindow::on_pushButton_10_clicked()
+{
+    cont++;
+    if(cont==2)
+    {
+        ShellExecuteW(NULL, L"open", L"..\\Administrador_Interfaz\\Grafogeneral.png", L"", L"..\\Administrador_Interfaz", SW_SHOW);
+        cont=0;
+    }
+}
+
+void MainWindow::on_pushButton_9_clicked()
+{
+    cont++;
+    ofstream archivo;
+    emit escribirServidor(QString::fromStdString("GZ").toUtf8());
+    archivo.open("Puntos de Articulacion.txt",ios::out);
+    if(cont==2)
+    {
+        archivo<<socketAdmin.nombres;
+        cont=0;
+    }
+    archivo.close();
+}
+
+void MainWindow::on_BInven_clicked()
+{
+    cont++;
+    emit escribirServidor(QString::fromStdString("LI").toUtf8());
+    cout<<"Contador: "<<cont<<endl;
+    cout<<"Recar: "<<socketAdmin.cantRecar<<endl;
+    if (socketAdmin.cantRecar==0&& cont==2){
+        QMessageBox::information(
+            this,
+            tr("Aviso"),
+            tr("No hay productos para recargar"));
+        cont=0;
+    }
+    else{
+        ui->LQInv->clear();
+        stringstream recargar=stringstream(socketAdmin.nombres);
+        recargar.str(socketAdmin.nombres);
+        string productos;
+        bool lleno=false;
+        while(getline(recargar, productos)){
+            lleno=true;
+            if (!(productos.empty())){
+                QString prodq = QString::fromStdString(productos);
+                cout<<"Prod recarga: "<<prodq.toLocal8Bit().constData();
+                ui->LQInv->addItem(prodq);
+           }
+        }
+        if (cont>=2){
+            ui->LVeri->setText("Rellenando Inventario");
+            ui->BGondolas->setVisible(false);
+            ui->BInven->setVisible(false);
+            ui->sInv->setVisible(true);
+            ui->sInv->setValue(1);
+            ui->BAgregarInv->setVisible(true);
+            ui->LQInv->setVisible(true);
+            ui->BVolverInv->setVisible(true);
+            ui->LCantGon->setVisible(true);
+            cont=0;
+        }
+    }
+}
+
+void MainWindow::on_BAgregarInv_clicked()
+{
+    QString canti=ui->sInv->text();
+    emit escribirServidor(("RI;"+canti).toUtf8());
+    ui->LQInv->takeItem(0);
+}
+
+void MainWindow::on_BVolverInv_clicked()
+{
+    ui->LVeri->setText("Verifique la cantidad de productos que hay en las gondolas y en el inventario");
+    ui->BGondolas->setVisible(true);
+    ui->BInven->setVisible(true);
+    ui->LQInv->setVisible(false);
+    ui->LQInv->clear();
+    ui->sInv->setVisible(false);
+    ui->SCant->clear();
+    ui->BVolverInv->setVisible(false);
+    ui->BAgregarInv->setVisible(false);
+    ui->LCantGon->setVisible(false);
+    socketAdmin.nombres="";
 }

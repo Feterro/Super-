@@ -19,8 +19,13 @@ GraphPR grafoPrim = montarGrafoPR("Ciudades.txt", "Conexiones.txt");
 GraphKRUS grafoKruskal = montarGrafoKRUS("Ciudades.txt", "Conexiones.txt");
 GrafoDIJ grafoDijkstra=montarGrafoDIJ("Ciudades.txt", "Conexiones.txt");
 
+string result2 = grafoRecorridos.Anchura();
+//cout<<result2<<endl;
+string result = grafoRecorridos.Profundidad();
+//cout<<result<<endl<<endl;
 int main(int argc, char *argv[])
 {
+
     qRegisterMetaType<qintptr>("qintptr");
     arbolClientes.cargarClientes("Clientes.txt");
     //arbolClientes.listaCreciente();
@@ -59,6 +64,8 @@ int main(int argc, char *argv[])
 //    //cout<<result<<endl;
 //    result = grafoDijkstra.dijkstra(0);
 //    //cout<<result;
+
+//    arbolClientes.eliminar(3219657);
 
 
 
